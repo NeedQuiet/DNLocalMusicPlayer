@@ -12,10 +12,12 @@
 		F51F896F24AD87060066E920 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F896E24AD87060066E920 /* Document.swift */; };
 		F51F897124AD87080066E920 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51F897024AD87080066E920 /* Assets.xcassets */; };
 		F51F897424AD87080066E920 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F51F897224AD87080066E920 /* Main.storyboard */; };
+		F51F898024AD8BF10066E920 /* Localizations.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51F898224AD8BF10066E920 /* Localizations.strings */; };
+		F51F898624AD8D460066E920 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51F898824AD8D460066E920 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F51F896724AD87060066E920 /* DNLocalMusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNLocalMusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F51F896724AD87060066E920 /* DN音乐.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DN音乐.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51F896A24AD87060066E920 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F51F896C24AD87060066E920 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F51F896E24AD87060066E920 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -23,6 +25,10 @@
 		F51F897324AD87080066E920 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F51F897524AD87080066E920 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F51F897624AD87080066E920 /* DNLocalMusicPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DNLocalMusicPlayer.entitlements; sourceTree = "<group>"; };
+		F51F898124AD8BF10066E920 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizations.strings; sourceTree = "<group>"; };
+		F51F898324AD8C030066E920 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizations.strings"; sourceTree = "<group>"; };
+		F51F898724AD8D460066E920 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F51F898924AD8D4A0066E920 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +53,7 @@
 		F51F896824AD87060066E920 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F51F896724AD87060066E920 /* DNLocalMusicPlayer.app */,
+				F51F896724AD87060066E920 /* DN音乐.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +67,8 @@
 				F51F897024AD87080066E920 /* Assets.xcassets */,
 				F51F897224AD87080066E920 /* Main.storyboard */,
 				F51F897524AD87080066E920 /* Info.plist */,
+				F51F898224AD8BF10066E920 /* Localizations.strings */,
+				F51F898824AD8D460066E920 /* InfoPlist.strings */,
 				F51F897624AD87080066E920 /* DNLocalMusicPlayer.entitlements */,
 			);
 			path = DNLocalMusicPlayer;
@@ -83,7 +91,7 @@
 			);
 			name = DNLocalMusicPlayer;
 			productName = DNLocalMusicPlayer;
-			productReference = F51F896724AD87060066E920 /* DNLocalMusicPlayer.app */;
+			productReference = F51F896724AD87060066E920 /* DN音乐.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,6 +116,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = F51F895E24AD87060066E920;
 			productRefGroup = F51F896824AD87060066E920 /* Products */;
@@ -125,6 +134,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F51F897124AD87080066E920 /* Assets.xcassets in Resources */,
+				F51F898624AD8D460066E920 /* InfoPlist.strings in Resources */,
+				F51F898024AD8BF10066E920 /* Localizations.strings in Resources */,
 				F51F897424AD87080066E920 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +164,24 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		F51F898224AD8BF10066E920 /* Localizations.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F51F898124AD8BF10066E920 /* en */,
+				F51F898324AD8C030066E920 /* zh-Hans */,
+			);
+			name = Localizations.strings;
+			sourceTree = "<group>";
+		};
+		F51F898824AD8D460066E920 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F51F898724AD8D460066E920 /* zh-Hans */,
+				F51F898924AD8D4A0066E920 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -160,6 +189,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -220,6 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -282,7 +313,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.daning.musicplayer.DNLocalMusicPlayer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "DN音乐";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -300,7 +331,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.daning.musicplayer.DNLocalMusicPlayer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "DN音乐";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
