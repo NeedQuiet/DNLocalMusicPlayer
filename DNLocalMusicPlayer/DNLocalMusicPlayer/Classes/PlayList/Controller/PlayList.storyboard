@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="l0I-KD-Eeo">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Play List View Controller-->
+        <scene sceneID="cts-UY-3aI">
+            <objects>
+                <viewController id="l0I-KD-Eeo" customClass="PlayListViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Sl6-tp-E58">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p9i-XG-TKm">
+                                <rect key="frame" x="196" y="142" width="58" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="歌单列表" id="cBY-8m-4w9">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="p9i-XG-TKm" firstAttribute="centerY" secondItem="Sl6-tp-E58" secondAttribute="centerY" id="1Tt-PV-jpM"/>
+                            <constraint firstItem="p9i-XG-TKm" firstAttribute="centerX" secondItem="Sl6-tp-E58" secondAttribute="centerX" id="BZz-Ui-JTb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="hfk-fs-p0K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-347" y="1422"/>
+        </scene>
+    </scenes>
+</document>

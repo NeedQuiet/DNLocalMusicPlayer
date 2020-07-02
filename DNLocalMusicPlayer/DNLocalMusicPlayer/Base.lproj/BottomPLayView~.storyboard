@@ -86,7 +86,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DNLocalMusicPlayer" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DN音乐" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,19 +95,31 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="WindowController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="80351C14-3657-4248-B029-CA74B3B26558" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="NI5-Wx-el8">
+                        <toolbar key="toolbar" implicitIdentifier="C13CA7DC-4D3D-4E31-B092-38713A843E4F" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="uEt-Em-sK4">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="lyI-5B-nlr"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="7o4-0c-p6u"/>
+                                <toolbarItem implicitItemIdentifier="30E39CDC-66BE-44F2-9BF2-37CA84F42C3D" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="XD5-xd-2KL">
+                                    <nil key="toolTip"/>
+                                    <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="h8H-1f-PLa">
+                                        <rect key="frame" x="20" y="14" width="37" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="HlD-14-ps0">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="bMz-HM-SkW"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Dnh-8c-xN8"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="7o4-0c-p6u"/>
+                                <toolbarItem reference="Dnh-8c-xN8"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -125,29 +137,45 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="DNLocalMusicPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ERx-hH-rdd">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="386"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="246" translatesAutoresizingMaskIntoConstraints="NO" id="TyV-c9-G0C">
-                                <rect key="frame" x="116" y="125" width="248" height="21"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Your document contents here" id="Cc7-nU-5Mv">
-                                    <font key="font" metaFont="system" size="18"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="6GE-Ub-N20">
+                                <rect key="frame" x="0.0" y="0.0" width="1000" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="h8V-Dc-szG"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1000" id="jE7-Sn-N0Y"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="EFd-2V-VDr" kind="embed" id="MEO-Gr-ltC"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="TyV-c9-G0C" secondAttribute="centerY" id="Rxv-Yd-F43"/>
-                            <constraint firstAttribute="centerX" secondItem="TyV-c9-G0C" secondAttribute="centerX" id="Zn4-Y4-lbg"/>
+                            <constraint firstAttribute="bottom" secondItem="6GE-Ub-N20" secondAttribute="bottom" id="LIR-28-1QI"/>
+                            <constraint firstAttribute="trailing" secondItem="6GE-Ub-N20" secondAttribute="trailing" id="X61-2R-SpB"/>
+                            <constraint firstItem="6GE-Ub-N20" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="wB3-MA-BTo"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="762"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="H7z-2i-5Hm">
+            <objects>
+                <viewController id="EFd-2V-VDr" sceneMemberID="viewController">
+                    <view key="view" id="bc9-2b-yiE">
+                        <rect key="frame" x="0.0" y="0.0" width="713" height="177"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="erx-Bx-Ens" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76" y="1239"/>
         </scene>
     </scenes>
 </document>

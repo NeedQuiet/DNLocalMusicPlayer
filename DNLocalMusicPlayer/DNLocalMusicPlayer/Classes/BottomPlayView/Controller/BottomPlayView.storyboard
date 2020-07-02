@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EFd-2V-VDr">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bottom Play View Controller-->
+        <scene sceneID="H7z-2i-5Hm">
+            <objects>
+                <customObject id="erx-Bx-Ens" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController id="EFd-2V-VDr" customClass="BottomPlayViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="bc9-2b-yiE">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="60"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SVx-aD-vkP">
+                                <rect key="frame" x="465" y="22" width="71" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="底部播控栏" id="Duy-6E-zAg">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Qtb-em-hLT">
+                                <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Qwb-Ci-cZJ"/>
+                                    <constraint firstAttribute="width" constant="40" id="wyo-Kk-oox"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DMU-CO-xZK">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="albumButtonClick:" target="EFd-2V-VDr" id="geW-1u-g0X"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Qtb-em-hLT" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="5FE-Sy-oh7"/>
+                            <constraint firstItem="SVx-aD-vkP" firstAttribute="centerX" secondItem="bc9-2b-yiE" secondAttribute="centerX" id="YhC-1s-ZpX"/>
+                            <constraint firstItem="Qtb-em-hLT" firstAttribute="leading" secondItem="bc9-2b-yiE" secondAttribute="leading" constant="10" id="exx-lH-yEh"/>
+                            <constraint firstItem="SVx-aD-vkP" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="sJc-O8-UNK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumButton" destination="Qtb-em-hLT" id="NzR-zp-SAR"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="76" y="1239"/>
+        </scene>
+    </scenes>
+</document>

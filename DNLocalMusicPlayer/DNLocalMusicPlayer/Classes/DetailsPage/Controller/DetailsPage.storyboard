@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hSr-fg-TIs">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Details Page View Controller-->
+        <scene sceneID="KPv-Qd-qtd">
+            <objects>
+                <viewController id="hSr-fg-TIs" customClass="DetailsPageViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="dol-cb-LWs">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="46M-NH-KCk">
+                                <rect key="frame" x="203" y="142" width="44" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="详情页" id="IMj-55-6m5">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="46M-NH-KCk" firstAttribute="centerX" secondItem="dol-cb-LWs" secondAttribute="centerX" id="HzH-Gx-eAi"/>
+                            <constraint firstItem="46M-NH-KCk" firstAttribute="centerY" secondItem="dol-cb-LWs" secondAttribute="centerY" id="zGs-0p-0Hp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="3bW-yQ-2jl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="790"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sLl-I7-xVb">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Play View Controller-->
+        <scene sceneID="P2V-mq-HPc">
+            <objects>
+                <viewController id="sLl-I7-xVb" customClass="PlayViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="hBW-k4-Dvd">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V3t-dD-plF">
+                                <rect key="frame" x="190" y="244" width="71" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="播放页主页" id="zMs-Le-cM3">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="V3t-dD-plF" firstAttribute="centerX" secondItem="hBW-k4-Dvd" secondAttribute="centerX" id="UFp-jg-u3R"/>
+                            <constraint firstItem="V3t-dD-plF" firstAttribute="top" secondItem="hBW-k4-Dvd" secondAttribute="top" constant="40" id="flm-A7-XoF"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="TSE-2L-tQZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956" y="747"/>
+        </scene>
+    </scenes>
+</document>
