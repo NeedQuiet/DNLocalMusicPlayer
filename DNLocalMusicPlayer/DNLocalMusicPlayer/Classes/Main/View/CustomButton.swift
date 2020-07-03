@@ -44,10 +44,12 @@ extension CustomButton {
     }
     //MARK: 鼠标Hover
     override func mouseEntered(with event: NSEvent) {
+        print("mouseEntered")
         NSCursor.pointingHand.set()
     }
     //MARK: 鼠标离开
     override func mouseExited(with event: NSEvent) {
+        print("mouseExited")
         NSCursor.arrow.set()
     }
     // 点击后，状态会刷新，此时如不做更改会默认改回指针状态

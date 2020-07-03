@@ -175,16 +175,28 @@
                                     <segue destination="Ea8-0Z-Sdg" kind="embed" id="VDA-6e-wJU"/>
                                 </connections>
                             </containerView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="mVq-cj-qWr">
+                                <rect key="frame" x="580" y="60" width="420" height="560"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="420" id="cp5-OS-gBB"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Uyy-mr-Bt4" kind="embed" id="mza-yJ-2Vb"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="V25-GU-0D4" firstAttribute="leading" secondItem="rjl-qs-vPL" secondAttribute="trailing" id="0Xn-uF-Ft4"/>
                             <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="fBY-6m-chA" secondAttribute="bottom" id="94X-bN-1fB"/>
                             <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="rjl-qs-vPL" secondAttribute="bottom" id="9cg-fv-sra"/>
                             <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="V25-GU-0D4" secondAttribute="bottom" id="E6I-yt-REL"/>
+                            <constraint firstAttribute="trailing" secondItem="mVq-cj-qWr" secondAttribute="trailing" id="Edc-TE-ggu"/>
                             <constraint firstAttribute="bottom" secondItem="6GE-Ub-N20" secondAttribute="bottom" id="LIR-28-1QI"/>
+                            <constraint firstItem="mVq-cj-qWr" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="Q9p-2N-iu9"/>
                             <constraint firstAttribute="trailing" secondItem="fBY-6m-chA" secondAttribute="trailing" id="RcP-sr-HeE"/>
                             <constraint firstAttribute="trailing" secondItem="V25-GU-0D4" secondAttribute="trailing" id="ULi-fM-lG0"/>
                             <constraint firstAttribute="trailing" secondItem="6GE-Ub-N20" secondAttribute="trailing" id="X61-2R-SpB"/>
+                            <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="mVq-cj-qWr" secondAttribute="bottom" id="Xjk-U8-IdY"/>
                             <constraint firstItem="rjl-qs-vPL" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="Z0D-FG-BS1"/>
                             <constraint firstItem="fBY-6m-chA" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="esf-X9-jRf"/>
                             <constraint firstItem="rjl-qs-vPL" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="lSA-Mf-y8Z"/>
@@ -194,6 +206,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentPlaylistContainerView" destination="mVq-cj-qWr" id="9z2-D9-3qC"/>
                         <outlet property="playViewContainerView" destination="fBY-6m-chA" id="3Sx-3f-8mK"/>
                         <outlet property="playViewTop" destination="wSW-58-pfP" id="Kkq-YP-LnO"/>
                     </connections>
@@ -207,7 +220,7 @@
                 <controllerPlaceholder storyboardName="BottomPlayView" id="koE-aN-Kxk" sceneMemberID="viewController"/>
                 <customObject id="9Un-71-qtD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="271" y="1286"/>
+            <point key="canvasLocation" x="263" y="1293"/>
         </scene>
         <!--PlayList-->
         <scene sceneID="lst-Pk-cVb">
@@ -215,7 +228,7 @@
                 <controllerPlaceholder storyboardName="PlayList" id="CHe-1y-IKa" sceneMemberID="viewController"/>
                 <customObject id="mdz-uy-Qhm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="1286"/>
+            <point key="canvasLocation" x="-110" y="1293"/>
         </scene>
         <!--DetailsPage-->
         <scene sceneID="WHu-bc-byN">
@@ -223,7 +236,7 @@
                 <controllerPlaceholder storyboardName="DetailsPage" id="PB8-CA-7Aw" sceneMemberID="viewController"/>
                 <customObject id="zZM-ZY-BcN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60" y="1286"/>
+            <point key="canvasLocation" x="74" y="1293"/>
         </scene>
         <!--PlayView-->
         <scene sceneID="jab-CH-xVq">
@@ -231,7 +244,15 @@
                 <controllerPlaceholder storyboardName="PlayView" id="Ea8-0Z-Sdg" sceneMemberID="viewController"/>
                 <customObject id="boC-gB-bkR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="747"/>
+            <point key="canvasLocation" x="975" y="816"/>
+        </scene>
+        <!--CurrentPlaylist-->
+        <scene sceneID="FIh-Bh-vlK">
+            <objects>
+                <controllerPlaceholder storyboardName="CurrentPlaylist" id="Uyy-mr-Bt4" sceneMemberID="viewController"/>
+                <customObject id="duM-Yg-GSy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="957" y="766"/>
         </scene>
     </scenes>
 </document>

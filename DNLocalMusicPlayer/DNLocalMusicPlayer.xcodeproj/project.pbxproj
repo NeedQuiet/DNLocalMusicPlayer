@@ -105,6 +105,10 @@
 		F51F8A5E24AEDC550066E920 /* MiniPlayerCloseButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */; };
 		F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */; };
 		F51F8A6224AEF8670066E920 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* CustomButton.swift */; };
+		F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99324AF3730008FC9C9 /* VolumePopover.swift */; };
+		F560F99624AF3730008FC9C9 /* VolumePopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = F560F99424AF3730008FC9C9 /* VolumePopover.xib */; };
+		F560F99A24AF3C04008FC9C9 /* CurrentPlaylist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F560F99924AF3C04008FC9C9 /* CurrentPlaylist.storyboard */; };
+		F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99B24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,6 +215,10 @@
 		F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButton.tiff; sourceTree = "<group>"; };
 		F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressed.tiff; sourceTree = "<group>"; };
 		F51F8A6124AEF8670066E920 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F560F99324AF3730008FC9C9 /* VolumePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumePopover.swift; sourceTree = "<group>"; };
+		F560F99424AF3730008FC9C9 /* VolumePopover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumePopover.xib; sourceTree = "<group>"; };
+		F560F99924AF3C04008FC9C9 /* CurrentPlaylist.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CurrentPlaylist.storyboard; sourceTree = "<group>"; };
+		F560F99B24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPlaylistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +271,7 @@
 				F51F89A324ADBE820066E920 /* DetailsPage */,
 				F51F89B524ADC8770066E920 /* Playview */,
 				F51F899124ADBA7A0066E920 /* BottomPlayView */,
+				F560F99724AF3B78008FC9C9 /* CurrentPlaylist */,
 				F51F89AB24ADC06D0066E920 /* Tools */,
 			);
 			path = Classes;
@@ -315,6 +324,8 @@
 			children = (
 				F51F899424ADBB480066E920 /* BottomPlayView.storyboard */,
 				F51F89B324ADC3470066E920 /* BottomPlayViewController.swift */,
+				F560F99324AF3730008FC9C9 /* VolumePopover.swift */,
+				F560F99424AF3730008FC9C9 /* VolumePopover.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -539,6 +550,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F560F99724AF3B78008FC9C9 /* CurrentPlaylist */ = {
+			isa = PBXGroup;
+			children = (
+				F560F99824AF3BA9008FC9C9 /* Controller */,
+			);
+			path = CurrentPlaylist;
+			sourceTree = "<group>";
+		};
+		F560F99824AF3BA9008FC9C9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F560F99924AF3C04008FC9C9 /* CurrentPlaylist.storyboard */,
+				F560F99B24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -643,6 +671,7 @@
 				F51F8A3824AEDC550066E920 /* MiniPlayerPauseButton.tiff in Resources */,
 				F51F8A5024AEDC550066E920 /* MiniPlayerPlaylistButton.tiff in Resources */,
 				F51F8A4624AEDC550066E920 /* MiniPlayerPlaylistClosurePressedDark.tiff in Resources */,
+				F560F99624AF3730008FC9C9 /* VolumePopover.xib in Resources */,
 				F51F899C24ADBC920066E920 /* Main.storyboard in Resources */,
 				F51F8A2024AEDC550066E920 /* MiniPlayerPraiseButtonDisabled.tiff in Resources */,
 				F51F89BA24ADC89F0066E920 /* PlayView.storyboard in Resources */,
@@ -681,6 +710,7 @@
 				F51F8A1424AEDC550066E920 /* MiniPlayerVolumeButtonPressedDark.tiff in Resources */,
 				F51F8A2D24AEDC550066E920 /* MiniPlayerDislikeButtonDark.tiff in Resources */,
 				F51F8A5E24AEDC550066E920 /* MiniPlayerCloseButton.tiff in Resources */,
+				F560F99A24AF3C04008FC9C9 /* CurrentPlaylist.storyboard in Resources */,
 				F51F8A3524AEDC550066E920 /* MiniPlayerMiniAlbumDefault.tiff in Resources */,
 				F51F8A1B24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabledDark.tiff in Resources */,
 				F51F8A5324AEDC550066E920 /* MiniPlayerLyricsButtonPressedDark.tiff in Resources */,
@@ -696,6 +726,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F51F89B224ADC2FB0066E920 /* PlayListViewController.swift in Sources */,
+				F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */,
+				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
 				F51F89AE24ADC0A20066E920 /* NSColor-Extension.swift in Sources */,
 				F51F896D24AD87060066E920 /* ViewController.swift in Sources */,
 				F51F898B24AD91FB0066E920 /* WindowController.swift in Sources */,

@@ -9,15 +9,20 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    //MARK: PlayView
     @IBOutlet weak var playViewTop: NSLayoutConstraint!
     @IBOutlet weak var playViewContainerView: NSView!
     private var playViewIsShow: Bool = false
     private var defaultPlayViewHeight: CGFloat = 0
     
+    //MARK: CurrentPlaylist
+    @IBOutlet weak var currentPlaylistContainerView: NSView!
+    private var showCurrentPlaylist: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 初始化 PlayView 显示状态
         setupPlayContainerView()
+        setupCurrentPlayListContainerView()
     }
 
     override var representedObject: Any? {
@@ -62,6 +67,20 @@ extension ViewController {
                 self.playViewTop.constant = self.defaultPlayViewHeight
             }
         }
+    }
+}
+
+//MARK: - CurrentPlayListContainerView
+extension ViewController {
+    func setupCurrentPlayListContainerView() {
+        currentPlaylistContainerView.isHidden = true
+        // 监听 展示/隐藏 状态
+        NotificationCenter.default.addObserver(self, selector: #selector(changeCurrentPlayListViewState), name: NSNotification.Name(rawValue: "changeCurrentPlayListViewState"), object: nil)
+    }
+    
+    @objc func changeCurrentPlayListViewState() {
+        showCurrentPlaylist = !showCurrentPlaylist
+        currentPlaylistContainerView.isHidden = !showCurrentPlaylist
     }
 }
 

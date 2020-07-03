@@ -72,6 +72,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="volumeButtonClick:" target="EFd-2V-VDr" id="QNq-vR-dLh"/>
+                                </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="MIz-8u-tvn" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="918" y="22" width="16" height="16"/>
@@ -85,18 +88,21 @@
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="GOH-4D-YMX" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
-                                <rect key="frame" x="882" y="22" width="16" height="16"/>
+                                <rect key="frame" x="880" y="21" width="18" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="16" id="Sc7-CK-6gN"/>
+                                    <constraint firstAttribute="width" constant="18" id="Sc7-CK-6gN"/>
                                     <constraint firstAttribute="width" secondItem="GOH-4D-YMX" secondAttribute="height" multiplier="1:1" id="XyR-k1-rNv"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerPlaylistButtonPressedDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="w1d-Ig-wah">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="CurrentPlaylist_Default" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="w1d-Ig-wah">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="playlistButtonClick:" target="EFd-2V-VDr" id="RcC-B6-P1W"/>
+                                </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="joT-Zl-g1G" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
-                                <rect key="frame" x="842" y="20" width="20" height="20"/>
+                                <rect key="frame" x="840" y="20" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="9jZ-dg-17c"/>
                                     <constraint firstAttribute="width" secondItem="joT-Zl-g1G" secondAttribute="height" multiplier="1:1" id="hjJ-eX-oVs"/>
@@ -139,6 +145,10 @@
                     </view>
                     <connections>
                         <outlet property="albumButton" destination="bGX-Xu-qcX" id="OcA-1K-C2x"/>
+                        <outlet property="channelButton" destination="joT-Zl-g1G" id="gTn-MF-bhK"/>
+                        <outlet property="lyricButton" destination="MIz-8u-tvn" id="XLM-5C-TZt"/>
+                        <outlet property="playlistButton" destination="GOH-4D-YMX" id="8Ko-ra-oJo"/>
+                        <outlet property="volumeButton" destination="IA9-in-mjz" id="yfb-gO-Cgc"/>
                     </connections>
                 </viewController>
             </objects>
@@ -146,11 +156,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CurrentPlaylist_Default" width="32" height="32"/>
         <image name="MiniPlayerFastForwardButton" width="10" height="10"/>
         <image name="MiniPlayerLyricsButtonDisabledDark" width="16" height="16"/>
         <image name="MiniPlayerMiniAlbumDefault" width="38" height="38"/>
         <image name="MiniPlayerPlayButton" width="29" height="29"/>
-        <image name="MiniPlayerPlaylistButtonPressedDark" width="16" height="16"/>
         <image name="MiniPlayerRewindButton" width="10" height="10"/>
         <image name="MiniPlayerVolumeButtonPressedDark" width="16" height="16"/>
         <image name="TouchBarPlayModeShuffle" width="30" height="30"/>
