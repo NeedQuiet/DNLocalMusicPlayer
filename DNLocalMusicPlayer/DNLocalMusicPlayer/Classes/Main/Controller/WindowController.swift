@@ -14,5 +14,4 @@ class WindowController: NSWindowController {
         super.windowDidLoad()
         window?.titleVisibility = .hidden
     }
-
 }

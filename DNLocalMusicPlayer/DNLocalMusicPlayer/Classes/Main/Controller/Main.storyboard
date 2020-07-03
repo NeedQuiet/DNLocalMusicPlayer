@@ -171,9 +171,6 @@
                             </containerView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fBY-6m-chA">
                                 <rect key="frame" x="0.0" y="60" width="1000" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="KKL-gH-1lb"/>
-                                </constraints>
                                 <connections>
                                     <segue destination="Ea8-0Z-Sdg" kind="embed" id="VDA-6e-wJU"/>
                                 </connections>
@@ -192,11 +189,13 @@
                             <constraint firstItem="fBY-6m-chA" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="esf-X9-jRf"/>
                             <constraint firstItem="rjl-qs-vPL" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="lSA-Mf-y8Z"/>
                             <constraint firstItem="6GE-Ub-N20" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="wB3-MA-BTo"/>
+                            <constraint firstItem="fBY-6m-chA" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="560" id="wSW-58-pfP"/>
                             <constraint firstItem="V25-GU-0D4" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="yeA-oj-vj8"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="playViewHeight" destination="KKL-gH-1lb" id="BbW-wu-Fht"/>
+                        <outlet property="playViewContainerView" destination="fBY-6m-chA" id="3Sx-3f-8mK"/>
+                        <outlet property="playViewTop" destination="wSW-58-pfP" id="Kkq-YP-LnO"/>
                     </connections>
                 </viewController>
             </objects>

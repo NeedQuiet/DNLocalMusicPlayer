@@ -25,6 +25,86 @@
 		F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F89B324ADC3470066E920 /* BottomPlayViewController.swift */; };
 		F51F89BA24ADC89F0066E920 /* PlayView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F51F89B924ADC89F0066E920 /* PlayView.storyboard */; };
 		F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F89BB24ADC8C80066E920 /* PlayViewController.swift */; };
+		F51F8A1124AEDC550066E920 /* MiniPlayerDislikeButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C224AEDC510066E920 /* MiniPlayerDislikeButtonDisabled.tiff */; };
+		F51F8A1224AEDC550066E920 /* MiniPlayerLargeAlbumDefault.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C324AEDC510066E920 /* MiniPlayerLargeAlbumDefault.tiff */; };
+		F51F8A1324AEDC550066E920 /* MiniPlayerPlaylistClosure.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C424AEDC510066E920 /* MiniPlayerPlaylistClosure.tiff */; };
+		F51F8A1424AEDC550066E920 /* MiniPlayerVolumeButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C524AEDC510066E920 /* MiniPlayerVolumeButtonPressedDark.tiff */; };
+		F51F8A1524AEDC550066E920 /* MiniPlayerLyricsButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C624AEDC510066E920 /* MiniPlayerLyricsButtonPressed.tiff */; };
+		F51F8A1624AEDC550066E920 /* YYYMiniPlayerVolumeBarHeader.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C724AEDC510066E920 /* YYYMiniPlayerVolumeBarHeader.tiff */; };
+		F51F8A1724AEDC550066E920 /* MiniPlayerLyricsButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C824AEDC510066E920 /* MiniPlayerLyricsButtonDark.tiff */; };
+		F51F8A1824AEDC550066E920 /* MiniPlayerFastForwardButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89C924AEDC510066E920 /* MiniPlayerFastForwardButtonDisabled.tiff */; };
+		F51F8A1924AEDC550066E920 /* MiniPlayerVolumeButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89CA24AEDC510066E920 /* MiniPlayerVolumeButtonDark.tiff */; };
+		F51F8A1A24AEDC550066E920 /* MiniPlayerAlbumFoldUpButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89CB24AEDC510066E920 /* MiniPlayerAlbumFoldUpButton.tiff */; };
+		F51F8A1B24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabledDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89CC24AEDC510066E920 /* MiniPlayerPlaylistButtonDisabledDark.tiff */; };
+		F51F8A1C24AEDC550066E920 /* MiniPlayerVolumeButtonDisabledDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89CD24AEDC510066E920 /* MiniPlayerVolumeButtonDisabledDark.tiff */; };
+		F51F8A1D24AEDC550066E920 /* MiniPlayerDislikeButtonDisabledDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89CE24AEDC510066E920 /* MiniPlayerDislikeButtonDisabledDark.tiff */; };
+		F51F8A1E24AEDC550066E920 /* MiniPlayerDeleteButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89CF24AEDC510066E920 /* MiniPlayerDeleteButton.tiff */; };
+		F51F8A1F24AEDC550066E920 /* MiniPlayerPlaylistClosurePressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D024AEDC510066E920 /* MiniPlayerPlaylistClosurePressed.tiff */; };
+		F51F8A2024AEDC550066E920 /* MiniPlayerPraiseButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D124AEDC510066E920 /* MiniPlayerPraiseButtonDisabled.tiff */; };
+		F51F8A2124AEDC550066E920 /* MiniPlayerVolumeButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D224AEDC510066E920 /* MiniPlayerVolumeButton.tiff */; };
+		F51F8A2224AEDC550066E920 /* YYYMiniPlayerVolumeBarHeaderDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D324AEDC510066E920 /* YYYMiniPlayerVolumeBarHeaderDark.tiff */; };
+		F51F8A2324AEDC550066E920 /* MiniPlayerDeleteButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D424AEDC510066E920 /* MiniPlayerDeleteButtonPressed.tiff */; };
+		F51F8A2424AEDC550066E920 /* MiniPlayerCloseButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D524AEDC510066E920 /* MiniPlayerCloseButtonDark.tiff */; };
+		F51F8A2524AEDC550066E920 /* YYYMiniPlayerVolumeBarMaxDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D624AEDC510066E920 /* YYYMiniPlayerVolumeBarMaxDark.tiff */; };
+		F51F8A2624AEDC550066E920 /* MiniPlayerDeleteButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D724AEDC510066E920 /* MiniPlayerDeleteButtonDark.tiff */; };
+		F51F8A2724AEDC550066E920 /* MiniPlayerDeleteButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D824AEDC510066E920 /* MiniPlayerDeleteButtonDisabled.tiff */; };
+		F51F8A2824AEDC550066E920 /* MiniPlayerNormalModeButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89D924AEDC510066E920 /* MiniPlayerNormalModeButtonPressed.tiff */; };
+		F51F8A2924AEDC550066E920 /* MiniPlayerNormalModeButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89DA24AEDC510066E920 /* MiniPlayerNormalModeButtonPressedDark.tiff */; };
+		F51F8A2A24AEDC550066E920 /* YYYMiniPlayerVolumeBarMax.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89DB24AEDC520066E920 /* YYYMiniPlayerVolumeBarMax.tiff */; };
+		F51F8A2B24AEDC550066E920 /* MiniPlayerPauseButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89DC24AEDC520066E920 /* MiniPlayerPauseButtonDisabled.tiff */; };
+		F51F8A2C24AEDC550066E920 /* MiniPlayerPauseButtonSelected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89DD24AEDC520066E920 /* MiniPlayerPauseButtonSelected.tiff */; };
+		F51F8A2D24AEDC550066E920 /* MiniPlayerDislikeButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89DE24AEDC520066E920 /* MiniPlayerDislikeButtonDark.tiff */; };
+		F51F8A2E24AEDC550066E920 /* MiniPlayerCloseButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89DF24AEDC520066E920 /* MiniPlayerCloseButtonPressedDark.tiff */; };
+		F51F8A2F24AEDC550066E920 /* MiniPlayerPlaylistButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E024AEDC520066E920 /* MiniPlayerPlaylistButtonPressedDark.tiff */; };
+		F51F8A3024AEDC550066E920 /* MiniPlayerPraiseButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E124AEDC520066E920 /* MiniPlayerPraiseButtonPressedDark.tiff */; };
+		F51F8A3124AEDC550066E920 /* MiniPlayerPlayButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E224AEDC520066E920 /* MiniPlayerPlayButtonDisabled.tiff */; };
+		F51F8A3224AEDC550066E920 /* MiniPlayerDislikeButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E324AEDC520066E920 /* MiniPlayerDislikeButton.tiff */; };
+		F51F8A3324AEDC550066E920 /* MiniPlayerFastForwardButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E424AEDC520066E920 /* MiniPlayerFastForwardButton.tiff */; };
+		F51F8A3424AEDC550066E920 /* MiniPlayerLyricsButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E524AEDC520066E920 /* MiniPlayerLyricsButtonDisabled.tiff */; };
+		F51F8A3524AEDC550066E920 /* MiniPlayerMiniAlbumDefault.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E624AEDC520066E920 /* MiniPlayerMiniAlbumDefault.tiff */; };
+		F51F8A3624AEDC550066E920 /* MiniPlayerPraisedButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E724AEDC520066E920 /* MiniPlayerPraisedButtonPressed.tiff */; };
+		F51F8A3724AEDC550066E920 /* YYYMiniPlayerVolumeBarMinDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E824AEDC520066E920 /* YYYMiniPlayerVolumeBarMinDark.tiff */; };
+		F51F8A3824AEDC550066E920 /* MiniPlayerPauseButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89E924AEDC520066E920 /* MiniPlayerPauseButton.tiff */; };
+		F51F8A3924AEDC550066E920 /* MiniPlayerAlbumFoldUpSpread.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89EA24AEDC520066E920 /* MiniPlayerAlbumFoldUpSpread.tiff */; };
+		F51F8A3A24AEDC550066E920 /* MiniPlayerFastForwardButtonSelected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89EB24AEDC530066E920 /* MiniPlayerFastForwardButtonSelected.tiff */; };
+		F51F8A3B24AEDC550066E920 /* MiniPlayerPraiseButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89EC24AEDC530066E920 /* MiniPlayerPraiseButton.tiff */; };
+		F51F8A3C24AEDC550066E920 /* MiniPlayerPlaylistButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89ED24AEDC530066E920 /* MiniPlayerPlaylistButtonPressed.tiff */; };
+		F51F8A3D24AEDC550066E920 /* MiniPlayerNormalModeButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89EE24AEDC530066E920 /* MiniPlayerNormalModeButton.tiff */; };
+		F51F8A3E24AEDC550066E920 /* MiniPlayerLyricsButtonActive.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89EF24AEDC530066E920 /* MiniPlayerLyricsButtonActive.tiff */; };
+		F51F8A3F24AEDC550066E920 /* MiniPlayerPlayButtonSelected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F024AEDC530066E920 /* MiniPlayerPlayButtonSelected.tiff */; };
+		F51F8A4024AEDC550066E920 /* MiniPlayerDislikeButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F124AEDC530066E920 /* MiniPlayerDislikeButtonPressed.tiff */; };
+		F51F8A4124AEDC550066E920 /* MiniPlayerPraisedButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F224AEDC530066E920 /* MiniPlayerPraisedButton.tiff */; };
+		F51F8A4224AEDC550066E920 /* MiniPlayerPlaylistClosureDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F324AEDC530066E920 /* MiniPlayerPlaylistClosureDark.tiff */; };
+		F51F8A4324AEDC550066E920 /* MiniPlayerPraiseButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F424AEDC530066E920 /* MiniPlayerPraiseButtonDark.tiff */; };
+		F51F8A4424AEDC550066E920 /* MiniPlayerNormalModeButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F524AEDC530066E920 /* MiniPlayerNormalModeButtonDark.tiff */; };
+		F51F8A4524AEDC550066E920 /* MiniPlayerVolumeButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F624AEDC530066E920 /* MiniPlayerVolumeButtonDisabled.tiff */; };
+		F51F8A4624AEDC550066E920 /* MiniPlayerPlaylistClosurePressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F724AEDC530066E920 /* MiniPlayerPlaylistClosurePressedDark.tiff */; };
+		F51F8A4724AEDC550066E920 /* MiniPlayerDeleteButtonDisabledDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F824AEDC530066E920 /* MiniPlayerDeleteButtonDisabledDark.tiff */; };
+		F51F8A4824AEDC550066E920 /* YYYMiniPlayerVolumeBarTailerDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89F924AEDC530066E920 /* YYYMiniPlayerVolumeBarTailerDark.tiff */; };
+		F51F8A4924AEDC550066E920 /* MiniPlayerPlayButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89FA24AEDC540066E920 /* MiniPlayerPlayButton.tiff */; };
+		F51F8A4A24AEDC550066E920 /* MiniPlayerVolumeButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89FB24AEDC540066E920 /* MiniPlayerVolumeButtonPressed.tiff */; };
+		F51F8A4B24AEDC550066E920 /* MiniPlayerDislikeButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89FC24AEDC540066E920 /* MiniPlayerDislikeButtonPressedDark.tiff */; };
+		F51F8A4C24AEDC550066E920 /* MiniPlayerPraiseButtonDisabledDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89FD24AEDC540066E920 /* MiniPlayerPraiseButtonDisabledDark.tiff */; };
+		F51F8A4D24AEDC550066E920 /* MiniPlayerDeleteButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89FE24AEDC540066E920 /* MiniPlayerDeleteButtonPressedDark.tiff */; };
+		F51F8A4E24AEDC550066E920 /* MiniPlayerLikeButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F89FF24AEDC540066E920 /* MiniPlayerLikeButtonPressed.tiff */; };
+		F51F8A4F24AEDC550066E920 /* MiniPlayerPlaylistButtonDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0024AEDC540066E920 /* MiniPlayerPlaylistButtonDark.tiff */; };
+		F51F8A5024AEDC550066E920 /* MiniPlayerPlaylistButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0124AEDC540066E920 /* MiniPlayerPlaylistButton.tiff */; };
+		F51F8A5124AEDC550066E920 /* MiniPlayerPlaylistInfoButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0224AEDC540066E920 /* MiniPlayerPlaylistInfoButton.tiff */; };
+		F51F8A5224AEDC550066E920 /* MiniPlayerRewindButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0324AEDC540066E920 /* MiniPlayerRewindButton.tiff */; };
+		F51F8A5324AEDC550066E920 /* MiniPlayerLyricsButtonPressedDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0424AEDC540066E920 /* MiniPlayerLyricsButtonPressedDark.tiff */; };
+		F51F8A5424AEDC550066E920 /* MiniPlayerPraiseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0524AEDC540066E920 /* MiniPlayerPraiseButtonPressed.tiff */; };
+		F51F8A5524AEDC550066E920 /* MiniPlayerLyricsButtonDisabledDark.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0624AEDC540066E920 /* MiniPlayerLyricsButtonDisabledDark.tiff */; };
+		F51F8A5624AEDC550066E920 /* YYYMiniPlayerVolumeBarTailer.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0724AEDC540066E920 /* YYYMiniPlayerVolumeBarTailer.tiff */; };
+		F51F8A5724AEDC550066E920 /* MiniPlayerLyricsButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0824AEDC540066E920 /* MiniPlayerLyricsButton.tiff */; };
+		F51F8A5824AEDC550066E920 /* MiniPlayerRewindButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0924AEDC540066E920 /* MiniPlayerRewindButtonDisabled.tiff */; };
+		F51F8A5924AEDC550066E920 /* YYYMiniPlayerVolumeBarMin.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0A24AEDC550066E920 /* YYYMiniPlayerVolumeBarMin.tiff */; };
+		F51F8A5A24AEDC550066E920 /* MiniPlayerRewindButtonSelected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0B24AEDC550066E920 /* MiniPlayerRewindButtonSelected.tiff */; };
+		F51F8A5B24AEDC550066E920 /* MiniPlayerPraisedButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0C24AEDC550066E920 /* MiniPlayerPraisedButtonDisabled.tiff */; };
+		F51F8A5C24AEDC550066E920 /* MiniPlayerLikeButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0D24AEDC550066E920 /* MiniPlayerLikeButton.tiff */; };
+		F51F8A5D24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0E24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff */; };
+		F51F8A5E24AEDC550066E920 /* MiniPlayerCloseButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */; };
+		F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */; };
+		F51F8A6224AEF8670066E920 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +131,86 @@
 		F51F89B324ADC3470066E920 /* BottomPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPlayViewController.swift; sourceTree = "<group>"; };
 		F51F89B924ADC89F0066E920 /* PlayView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = PlayView.storyboard; path = DNLocalMusicPlayer/Classes/Playview/Controller/PlayView.storyboard; sourceTree = SOURCE_ROOT; };
 		F51F89BB24ADC8C80066E920 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		F51F89C224AEDC510066E920 /* MiniPlayerDislikeButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDislikeButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89C324AEDC510066E920 /* MiniPlayerLargeAlbumDefault.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLargeAlbumDefault.tiff; sourceTree = "<group>"; };
+		F51F89C424AEDC510066E920 /* MiniPlayerPlaylistClosure.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistClosure.tiff; sourceTree = "<group>"; };
+		F51F89C524AEDC510066E920 /* MiniPlayerVolumeButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerVolumeButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F89C624AEDC510066E920 /* MiniPlayerLyricsButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLyricsButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F89C724AEDC510066E920 /* YYYMiniPlayerVolumeBarHeader.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarHeader.tiff; sourceTree = "<group>"; };
+		F51F89C824AEDC510066E920 /* MiniPlayerLyricsButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLyricsButtonDark.tiff; sourceTree = "<group>"; };
+		F51F89C924AEDC510066E920 /* MiniPlayerFastForwardButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerFastForwardButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89CA24AEDC510066E920 /* MiniPlayerVolumeButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerVolumeButtonDark.tiff; sourceTree = "<group>"; };
+		F51F89CB24AEDC510066E920 /* MiniPlayerAlbumFoldUpButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerAlbumFoldUpButton.tiff; sourceTree = "<group>"; };
+		F51F89CC24AEDC510066E920 /* MiniPlayerPlaylistButtonDisabledDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistButtonDisabledDark.tiff; sourceTree = "<group>"; };
+		F51F89CD24AEDC510066E920 /* MiniPlayerVolumeButtonDisabledDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerVolumeButtonDisabledDark.tiff; sourceTree = "<group>"; };
+		F51F89CE24AEDC510066E920 /* MiniPlayerDislikeButtonDisabledDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDislikeButtonDisabledDark.tiff; sourceTree = "<group>"; };
+		F51F89CF24AEDC510066E920 /* MiniPlayerDeleteButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDeleteButton.tiff; sourceTree = "<group>"; };
+		F51F89D024AEDC510066E920 /* MiniPlayerPlaylistClosurePressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistClosurePressed.tiff; sourceTree = "<group>"; };
+		F51F89D124AEDC510066E920 /* MiniPlayerPraiseButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraiseButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89D224AEDC510066E920 /* MiniPlayerVolumeButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerVolumeButton.tiff; sourceTree = "<group>"; };
+		F51F89D324AEDC510066E920 /* YYYMiniPlayerVolumeBarHeaderDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarHeaderDark.tiff; sourceTree = "<group>"; };
+		F51F89D424AEDC510066E920 /* MiniPlayerDeleteButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDeleteButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F89D524AEDC510066E920 /* MiniPlayerCloseButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonDark.tiff; sourceTree = "<group>"; };
+		F51F89D624AEDC510066E920 /* YYYMiniPlayerVolumeBarMaxDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarMaxDark.tiff; sourceTree = "<group>"; };
+		F51F89D724AEDC510066E920 /* MiniPlayerDeleteButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDeleteButtonDark.tiff; sourceTree = "<group>"; };
+		F51F89D824AEDC510066E920 /* MiniPlayerDeleteButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDeleteButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89D924AEDC510066E920 /* MiniPlayerNormalModeButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerNormalModeButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F89DA24AEDC510066E920 /* MiniPlayerNormalModeButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerNormalModeButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F89DB24AEDC520066E920 /* YYYMiniPlayerVolumeBarMax.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarMax.tiff; sourceTree = "<group>"; };
+		F51F89DC24AEDC520066E920 /* MiniPlayerPauseButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPauseButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89DD24AEDC520066E920 /* MiniPlayerPauseButtonSelected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPauseButtonSelected.tiff; sourceTree = "<group>"; };
+		F51F89DE24AEDC520066E920 /* MiniPlayerDislikeButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDislikeButtonDark.tiff; sourceTree = "<group>"; };
+		F51F89DF24AEDC520066E920 /* MiniPlayerCloseButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F89E024AEDC520066E920 /* MiniPlayerPlaylistButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F89E124AEDC520066E920 /* MiniPlayerPraiseButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraiseButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F89E224AEDC520066E920 /* MiniPlayerPlayButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlayButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89E324AEDC520066E920 /* MiniPlayerDislikeButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDislikeButton.tiff; sourceTree = "<group>"; };
+		F51F89E424AEDC520066E920 /* MiniPlayerFastForwardButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerFastForwardButton.tiff; sourceTree = "<group>"; };
+		F51F89E524AEDC520066E920 /* MiniPlayerLyricsButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLyricsButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89E624AEDC520066E920 /* MiniPlayerMiniAlbumDefault.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerMiniAlbumDefault.tiff; sourceTree = "<group>"; };
+		F51F89E724AEDC520066E920 /* MiniPlayerPraisedButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraisedButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F89E824AEDC520066E920 /* YYYMiniPlayerVolumeBarMinDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarMinDark.tiff; sourceTree = "<group>"; };
+		F51F89E924AEDC520066E920 /* MiniPlayerPauseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPauseButton.tiff; sourceTree = "<group>"; };
+		F51F89EA24AEDC520066E920 /* MiniPlayerAlbumFoldUpSpread.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerAlbumFoldUpSpread.tiff; sourceTree = "<group>"; };
+		F51F89EB24AEDC530066E920 /* MiniPlayerFastForwardButtonSelected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerFastForwardButtonSelected.tiff; sourceTree = "<group>"; };
+		F51F89EC24AEDC530066E920 /* MiniPlayerPraiseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraiseButton.tiff; sourceTree = "<group>"; };
+		F51F89ED24AEDC530066E920 /* MiniPlayerPlaylistButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F89EE24AEDC530066E920 /* MiniPlayerNormalModeButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerNormalModeButton.tiff; sourceTree = "<group>"; };
+		F51F89EF24AEDC530066E920 /* MiniPlayerLyricsButtonActive.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLyricsButtonActive.tiff; sourceTree = "<group>"; };
+		F51F89F024AEDC530066E920 /* MiniPlayerPlayButtonSelected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlayButtonSelected.tiff; sourceTree = "<group>"; };
+		F51F89F124AEDC530066E920 /* MiniPlayerDislikeButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDislikeButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F89F224AEDC530066E920 /* MiniPlayerPraisedButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraisedButton.tiff; sourceTree = "<group>"; };
+		F51F89F324AEDC530066E920 /* MiniPlayerPlaylistClosureDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistClosureDark.tiff; sourceTree = "<group>"; };
+		F51F89F424AEDC530066E920 /* MiniPlayerPraiseButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraiseButtonDark.tiff; sourceTree = "<group>"; };
+		F51F89F524AEDC530066E920 /* MiniPlayerNormalModeButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerNormalModeButtonDark.tiff; sourceTree = "<group>"; };
+		F51F89F624AEDC530066E920 /* MiniPlayerVolumeButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerVolumeButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F89F724AEDC530066E920 /* MiniPlayerPlaylistClosurePressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistClosurePressedDark.tiff; sourceTree = "<group>"; };
+		F51F89F824AEDC530066E920 /* MiniPlayerDeleteButtonDisabledDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDeleteButtonDisabledDark.tiff; sourceTree = "<group>"; };
+		F51F89F924AEDC530066E920 /* YYYMiniPlayerVolumeBarTailerDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarTailerDark.tiff; sourceTree = "<group>"; };
+		F51F89FA24AEDC540066E920 /* MiniPlayerPlayButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlayButton.tiff; sourceTree = "<group>"; };
+		F51F89FB24AEDC540066E920 /* MiniPlayerVolumeButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerVolumeButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F89FC24AEDC540066E920 /* MiniPlayerDislikeButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDislikeButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F89FD24AEDC540066E920 /* MiniPlayerPraiseButtonDisabledDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraiseButtonDisabledDark.tiff; sourceTree = "<group>"; };
+		F51F89FE24AEDC540066E920 /* MiniPlayerDeleteButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerDeleteButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F89FF24AEDC540066E920 /* MiniPlayerLikeButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLikeButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F8A0024AEDC540066E920 /* MiniPlayerPlaylistButtonDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistButtonDark.tiff; sourceTree = "<group>"; };
+		F51F8A0124AEDC540066E920 /* MiniPlayerPlaylistButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistButton.tiff; sourceTree = "<group>"; };
+		F51F8A0224AEDC540066E920 /* MiniPlayerPlaylistInfoButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistInfoButton.tiff; sourceTree = "<group>"; };
+		F51F8A0324AEDC540066E920 /* MiniPlayerRewindButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerRewindButton.tiff; sourceTree = "<group>"; };
+		F51F8A0424AEDC540066E920 /* MiniPlayerLyricsButtonPressedDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLyricsButtonPressedDark.tiff; sourceTree = "<group>"; };
+		F51F8A0524AEDC540066E920 /* MiniPlayerPraiseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraiseButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F8A0624AEDC540066E920 /* MiniPlayerLyricsButtonDisabledDark.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLyricsButtonDisabledDark.tiff; sourceTree = "<group>"; };
+		F51F8A0724AEDC540066E920 /* YYYMiniPlayerVolumeBarTailer.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarTailer.tiff; sourceTree = "<group>"; };
+		F51F8A0824AEDC540066E920 /* MiniPlayerLyricsButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLyricsButton.tiff; sourceTree = "<group>"; };
+		F51F8A0924AEDC540066E920 /* MiniPlayerRewindButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerRewindButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F8A0A24AEDC550066E920 /* YYYMiniPlayerVolumeBarMin.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = YYYMiniPlayerVolumeBarMin.tiff; sourceTree = "<group>"; };
+		F51F8A0B24AEDC550066E920 /* MiniPlayerRewindButtonSelected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerRewindButtonSelected.tiff; sourceTree = "<group>"; };
+		F51F8A0C24AEDC550066E920 /* MiniPlayerPraisedButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPraisedButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F8A0D24AEDC550066E920 /* MiniPlayerLikeButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerLikeButton.tiff; sourceTree = "<group>"; };
+		F51F8A0E24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistButtonDisabled.tiff; sourceTree = "<group>"; };
+		F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButton.tiff; sourceTree = "<group>"; };
+		F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressed.tiff; sourceTree = "<group>"; };
+		F51F8A6124AEF8670066E920 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +245,7 @@
 			children = (
 				F51F899624ADBC0E0066E920 /* Root */,
 				F51F898F24ADBA570066E920 /* Classes */,
+				F51F89C124AEDC380066E920 /* Resource */,
 				F51F897024AD87080066E920 /* Assets.xcassets */,
 				F51F897524AD87080066E920 /* Info.plist */,
 				F51F898224AD8BF10066E920 /* Localizations.strings */,
@@ -110,6 +271,7 @@
 		F51F899024ADBA620066E920 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F51F8A6024AEF8400066E920 /* View */,
 				F51F899A24ADBC6C0066E920 /* Controller */,
 			);
 			path = Main;
@@ -283,6 +445,100 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F51F89C124AEDC380066E920 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F51F89CB24AEDC510066E920 /* MiniPlayerAlbumFoldUpButton.tiff */,
+				F51F89EA24AEDC520066E920 /* MiniPlayerAlbumFoldUpSpread.tiff */,
+				F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */,
+				F51F89D524AEDC510066E920 /* MiniPlayerCloseButtonDark.tiff */,
+				F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */,
+				F51F89DF24AEDC520066E920 /* MiniPlayerCloseButtonPressedDark.tiff */,
+				F51F89CF24AEDC510066E920 /* MiniPlayerDeleteButton.tiff */,
+				F51F89D724AEDC510066E920 /* MiniPlayerDeleteButtonDark.tiff */,
+				F51F89D824AEDC510066E920 /* MiniPlayerDeleteButtonDisabled.tiff */,
+				F51F89F824AEDC530066E920 /* MiniPlayerDeleteButtonDisabledDark.tiff */,
+				F51F89D424AEDC510066E920 /* MiniPlayerDeleteButtonPressed.tiff */,
+				F51F89FE24AEDC540066E920 /* MiniPlayerDeleteButtonPressedDark.tiff */,
+				F51F89E324AEDC520066E920 /* MiniPlayerDislikeButton.tiff */,
+				F51F89DE24AEDC520066E920 /* MiniPlayerDislikeButtonDark.tiff */,
+				F51F89C224AEDC510066E920 /* MiniPlayerDislikeButtonDisabled.tiff */,
+				F51F89CE24AEDC510066E920 /* MiniPlayerDislikeButtonDisabledDark.tiff */,
+				F51F89F124AEDC530066E920 /* MiniPlayerDislikeButtonPressed.tiff */,
+				F51F89FC24AEDC540066E920 /* MiniPlayerDislikeButtonPressedDark.tiff */,
+				F51F89E424AEDC520066E920 /* MiniPlayerFastForwardButton.tiff */,
+				F51F89C924AEDC510066E920 /* MiniPlayerFastForwardButtonDisabled.tiff */,
+				F51F89EB24AEDC530066E920 /* MiniPlayerFastForwardButtonSelected.tiff */,
+				F51F89C324AEDC510066E920 /* MiniPlayerLargeAlbumDefault.tiff */,
+				F51F8A0D24AEDC550066E920 /* MiniPlayerLikeButton.tiff */,
+				F51F89FF24AEDC540066E920 /* MiniPlayerLikeButtonPressed.tiff */,
+				F51F8A0824AEDC540066E920 /* MiniPlayerLyricsButton.tiff */,
+				F51F89EF24AEDC530066E920 /* MiniPlayerLyricsButtonActive.tiff */,
+				F51F89C824AEDC510066E920 /* MiniPlayerLyricsButtonDark.tiff */,
+				F51F89E524AEDC520066E920 /* MiniPlayerLyricsButtonDisabled.tiff */,
+				F51F8A0624AEDC540066E920 /* MiniPlayerLyricsButtonDisabledDark.tiff */,
+				F51F89C624AEDC510066E920 /* MiniPlayerLyricsButtonPressed.tiff */,
+				F51F8A0424AEDC540066E920 /* MiniPlayerLyricsButtonPressedDark.tiff */,
+				F51F89E624AEDC520066E920 /* MiniPlayerMiniAlbumDefault.tiff */,
+				F51F89EE24AEDC530066E920 /* MiniPlayerNormalModeButton.tiff */,
+				F51F89F524AEDC530066E920 /* MiniPlayerNormalModeButtonDark.tiff */,
+				F51F89D924AEDC510066E920 /* MiniPlayerNormalModeButtonPressed.tiff */,
+				F51F89DA24AEDC510066E920 /* MiniPlayerNormalModeButtonPressedDark.tiff */,
+				F51F89E924AEDC520066E920 /* MiniPlayerPauseButton.tiff */,
+				F51F89DC24AEDC520066E920 /* MiniPlayerPauseButtonDisabled.tiff */,
+				F51F89DD24AEDC520066E920 /* MiniPlayerPauseButtonSelected.tiff */,
+				F51F89FA24AEDC540066E920 /* MiniPlayerPlayButton.tiff */,
+				F51F89E224AEDC520066E920 /* MiniPlayerPlayButtonDisabled.tiff */,
+				F51F89F024AEDC530066E920 /* MiniPlayerPlayButtonSelected.tiff */,
+				F51F8A0124AEDC540066E920 /* MiniPlayerPlaylistButton.tiff */,
+				F51F8A0024AEDC540066E920 /* MiniPlayerPlaylistButtonDark.tiff */,
+				F51F8A0E24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff */,
+				F51F89CC24AEDC510066E920 /* MiniPlayerPlaylistButtonDisabledDark.tiff */,
+				F51F89ED24AEDC530066E920 /* MiniPlayerPlaylistButtonPressed.tiff */,
+				F51F89E024AEDC520066E920 /* MiniPlayerPlaylistButtonPressedDark.tiff */,
+				F51F89C424AEDC510066E920 /* MiniPlayerPlaylistClosure.tiff */,
+				F51F89F324AEDC530066E920 /* MiniPlayerPlaylistClosureDark.tiff */,
+				F51F89D024AEDC510066E920 /* MiniPlayerPlaylistClosurePressed.tiff */,
+				F51F89F724AEDC530066E920 /* MiniPlayerPlaylistClosurePressedDark.tiff */,
+				F51F8A0224AEDC540066E920 /* MiniPlayerPlaylistInfoButton.tiff */,
+				F51F89EC24AEDC530066E920 /* MiniPlayerPraiseButton.tiff */,
+				F51F89F424AEDC530066E920 /* MiniPlayerPraiseButtonDark.tiff */,
+				F51F89D124AEDC510066E920 /* MiniPlayerPraiseButtonDisabled.tiff */,
+				F51F89FD24AEDC540066E920 /* MiniPlayerPraiseButtonDisabledDark.tiff */,
+				F51F8A0524AEDC540066E920 /* MiniPlayerPraiseButtonPressed.tiff */,
+				F51F89E124AEDC520066E920 /* MiniPlayerPraiseButtonPressedDark.tiff */,
+				F51F89F224AEDC530066E920 /* MiniPlayerPraisedButton.tiff */,
+				F51F8A0C24AEDC550066E920 /* MiniPlayerPraisedButtonDisabled.tiff */,
+				F51F89E724AEDC520066E920 /* MiniPlayerPraisedButtonPressed.tiff */,
+				F51F8A0324AEDC540066E920 /* MiniPlayerRewindButton.tiff */,
+				F51F8A0924AEDC540066E920 /* MiniPlayerRewindButtonDisabled.tiff */,
+				F51F8A0B24AEDC550066E920 /* MiniPlayerRewindButtonSelected.tiff */,
+				F51F89D224AEDC510066E920 /* MiniPlayerVolumeButton.tiff */,
+				F51F89CA24AEDC510066E920 /* MiniPlayerVolumeButtonDark.tiff */,
+				F51F89F624AEDC530066E920 /* MiniPlayerVolumeButtonDisabled.tiff */,
+				F51F89CD24AEDC510066E920 /* MiniPlayerVolumeButtonDisabledDark.tiff */,
+				F51F89FB24AEDC540066E920 /* MiniPlayerVolumeButtonPressed.tiff */,
+				F51F89C524AEDC510066E920 /* MiniPlayerVolumeButtonPressedDark.tiff */,
+				F51F89C724AEDC510066E920 /* YYYMiniPlayerVolumeBarHeader.tiff */,
+				F51F89D324AEDC510066E920 /* YYYMiniPlayerVolumeBarHeaderDark.tiff */,
+				F51F89DB24AEDC520066E920 /* YYYMiniPlayerVolumeBarMax.tiff */,
+				F51F89D624AEDC510066E920 /* YYYMiniPlayerVolumeBarMaxDark.tiff */,
+				F51F8A0A24AEDC550066E920 /* YYYMiniPlayerVolumeBarMin.tiff */,
+				F51F89E824AEDC520066E920 /* YYYMiniPlayerVolumeBarMinDark.tiff */,
+				F51F8A0724AEDC540066E920 /* YYYMiniPlayerVolumeBarTailer.tiff */,
+				F51F89F924AEDC530066E920 /* YYYMiniPlayerVolumeBarTailerDark.tiff */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		F51F8A6024AEF8400066E920 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F51F8A6124AEF8670066E920 /* CustomButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,14 +598,93 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F51F8A2B24AEDC550066E920 /* MiniPlayerPauseButtonDisabled.tiff in Resources */,
+				F51F8A4524AEDC550066E920 /* MiniPlayerVolumeButtonDisabled.tiff in Resources */,
+				F51F8A4C24AEDC550066E920 /* MiniPlayerPraiseButtonDisabledDark.tiff in Resources */,
+				F51F8A3724AEDC550066E920 /* YYYMiniPlayerVolumeBarMinDark.tiff in Resources */,
+				F51F8A2724AEDC550066E920 /* MiniPlayerDeleteButtonDisabled.tiff in Resources */,
+				F51F8A4024AEDC550066E920 /* MiniPlayerDislikeButtonPressed.tiff in Resources */,
+				F51F8A3A24AEDC550066E920 /* MiniPlayerFastForwardButtonSelected.tiff in Resources */,
+				F51F8A2324AEDC550066E920 /* MiniPlayerDeleteButtonPressed.tiff in Resources */,
+				F51F8A4F24AEDC550066E920 /* MiniPlayerPlaylistButtonDark.tiff in Resources */,
+				F51F8A5424AEDC550066E920 /* MiniPlayerPraiseButtonPressed.tiff in Resources */,
+				F51F8A3D24AEDC550066E920 /* MiniPlayerNormalModeButton.tiff in Resources */,
+				F51F8A4B24AEDC550066E920 /* MiniPlayerDislikeButtonPressedDark.tiff in Resources */,
+				F51F8A1824AEDC550066E920 /* MiniPlayerFastForwardButtonDisabled.tiff in Resources */,
+				F51F8A2E24AEDC550066E920 /* MiniPlayerCloseButtonPressedDark.tiff in Resources */,
+				F51F8A1E24AEDC550066E920 /* MiniPlayerDeleteButton.tiff in Resources */,
+				F51F8A5B24AEDC550066E920 /* MiniPlayerPraisedButtonDisabled.tiff in Resources */,
+				F51F8A2424AEDC550066E920 /* MiniPlayerCloseButtonDark.tiff in Resources */,
+				F51F8A3924AEDC550066E920 /* MiniPlayerAlbumFoldUpSpread.tiff in Resources */,
+				F51F8A4124AEDC550066E920 /* MiniPlayerPraisedButton.tiff in Resources */,
+				F51F8A1724AEDC550066E920 /* MiniPlayerLyricsButtonDark.tiff in Resources */,
+				F51F8A5524AEDC550066E920 /* MiniPlayerLyricsButtonDisabledDark.tiff in Resources */,
+				F51F8A1D24AEDC550066E920 /* MiniPlayerDislikeButtonDisabledDark.tiff in Resources */,
+				F51F8A3F24AEDC550066E920 /* MiniPlayerPlayButtonSelected.tiff in Resources */,
+				F51F8A4824AEDC550066E920 /* YYYMiniPlayerVolumeBarTailerDark.tiff in Resources */,
+				F51F8A1324AEDC550066E920 /* MiniPlayerPlaylistClosure.tiff in Resources */,
+				F51F8A2924AEDC550066E920 /* MiniPlayerNormalModeButtonPressedDark.tiff in Resources */,
+				F51F8A5924AEDC550066E920 /* YYYMiniPlayerVolumeBarMin.tiff in Resources */,
+				F51F8A5824AEDC550066E920 /* MiniPlayerRewindButtonDisabled.tiff in Resources */,
+				F51F8A5224AEDC550066E920 /* MiniPlayerRewindButton.tiff in Resources */,
+				F51F8A1124AEDC550066E920 /* MiniPlayerDislikeButtonDisabled.tiff in Resources */,
+				F51F8A1A24AEDC550066E920 /* MiniPlayerAlbumFoldUpButton.tiff in Resources */,
+				F51F8A4424AEDC550066E920 /* MiniPlayerNormalModeButtonDark.tiff in Resources */,
+				F51F8A2624AEDC550066E920 /* MiniPlayerDeleteButtonDark.tiff in Resources */,
 				F51F899524ADBB480066E920 /* BottomPlayView.storyboard in Resources */,
+				F51F8A3024AEDC550066E920 /* MiniPlayerPraiseButtonPressedDark.tiff in Resources */,
+				F51F8A4724AEDC550066E920 /* MiniPlayerDeleteButtonDisabledDark.tiff in Resources */,
+				F51F8A3324AEDC550066E920 /* MiniPlayerFastForwardButton.tiff in Resources */,
+				F51F8A1224AEDC550066E920 /* MiniPlayerLargeAlbumDefault.tiff in Resources */,
+				F51F8A5724AEDC550066E920 /* MiniPlayerLyricsButton.tiff in Resources */,
 				F51F89A824ADBEC10066E920 /* DetailsPage.storyboard in Resources */,
+				F51F8A3B24AEDC550066E920 /* MiniPlayerPraiseButton.tiff in Resources */,
+				F51F8A1F24AEDC550066E920 /* MiniPlayerPlaylistClosurePressed.tiff in Resources */,
+				F51F8A3824AEDC550066E920 /* MiniPlayerPauseButton.tiff in Resources */,
+				F51F8A5024AEDC550066E920 /* MiniPlayerPlaylistButton.tiff in Resources */,
+				F51F8A4624AEDC550066E920 /* MiniPlayerPlaylistClosurePressedDark.tiff in Resources */,
 				F51F899C24ADBC920066E920 /* Main.storyboard in Resources */,
+				F51F8A2024AEDC550066E920 /* MiniPlayerPraiseButtonDisabled.tiff in Resources */,
 				F51F89BA24ADC89F0066E920 /* PlayView.storyboard in Resources */,
+				F51F8A5124AEDC550066E920 /* MiniPlayerPlaylistInfoButton.tiff in Resources */,
+				F51F8A4924AEDC550066E920 /* MiniPlayerPlayButton.tiff in Resources */,
+				F51F8A5D24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff in Resources */,
+				F51F8A4224AEDC550066E920 /* MiniPlayerPlaylistClosureDark.tiff in Resources */,
+				F51F8A2A24AEDC550066E920 /* YYYMiniPlayerVolumeBarMax.tiff in Resources */,
+				F51F8A3C24AEDC550066E920 /* MiniPlayerPlaylistButtonPressed.tiff in Resources */,
+				F51F8A4324AEDC550066E920 /* MiniPlayerPraiseButtonDark.tiff in Resources */,
+				F51F8A1C24AEDC550066E920 /* MiniPlayerVolumeButtonDisabledDark.tiff in Resources */,
+				F51F8A2224AEDC550066E920 /* YYYMiniPlayerVolumeBarHeaderDark.tiff in Resources */,
 				F51F897124AD87080066E920 /* Assets.xcassets in Resources */,
+				F51F8A4D24AEDC550066E920 /* MiniPlayerDeleteButtonPressedDark.tiff in Resources */,
+				F51F8A3224AEDC550066E920 /* MiniPlayerDislikeButton.tiff in Resources */,
+				F51F8A5C24AEDC550066E920 /* MiniPlayerLikeButton.tiff in Resources */,
+				F51F8A3124AEDC550066E920 /* MiniPlayerPlayButtonDisabled.tiff in Resources */,
+				F51F8A3E24AEDC550066E920 /* MiniPlayerLyricsButtonActive.tiff in Resources */,
 				F51F898624AD8D460066E920 /* InfoPlist.strings in Resources */,
+				F51F8A4A24AEDC550066E920 /* MiniPlayerVolumeButtonPressed.tiff in Resources */,
+				F51F8A5624AEDC550066E920 /* YYYMiniPlayerVolumeBarTailer.tiff in Resources */,
+				F51F8A3424AEDC550066E920 /* MiniPlayerLyricsButtonDisabled.tiff in Resources */,
+				F51F8A4E24AEDC550066E920 /* MiniPlayerLikeButtonPressed.tiff in Resources */,
 				F51F89A224ADBDE80066E920 /* PlayList.storyboard in Resources */,
+				F51F8A2C24AEDC550066E920 /* MiniPlayerPauseButtonSelected.tiff in Resources */,
+				F51F8A2824AEDC550066E920 /* MiniPlayerNormalModeButtonPressed.tiff in Resources */,
+				F51F8A5A24AEDC550066E920 /* MiniPlayerRewindButtonSelected.tiff in Resources */,
 				F51F898024AD8BF10066E920 /* Localizations.strings in Resources */,
+				F51F8A2124AEDC550066E920 /* MiniPlayerVolumeButton.tiff in Resources */,
+				F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */,
+				F51F8A1924AEDC550066E920 /* MiniPlayerVolumeButtonDark.tiff in Resources */,
+				F51F8A1624AEDC550066E920 /* YYYMiniPlayerVolumeBarHeader.tiff in Resources */,
+				F51F8A3624AEDC550066E920 /* MiniPlayerPraisedButtonPressed.tiff in Resources */,
+				F51F8A2524AEDC550066E920 /* YYYMiniPlayerVolumeBarMaxDark.tiff in Resources */,
+				F51F8A1524AEDC550066E920 /* MiniPlayerLyricsButtonPressed.tiff in Resources */,
+				F51F8A1424AEDC550066E920 /* MiniPlayerVolumeButtonPressedDark.tiff in Resources */,
+				F51F8A2D24AEDC550066E920 /* MiniPlayerDislikeButtonDark.tiff in Resources */,
+				F51F8A5E24AEDC550066E920 /* MiniPlayerCloseButton.tiff in Resources */,
+				F51F8A3524AEDC550066E920 /* MiniPlayerMiniAlbumDefault.tiff in Resources */,
+				F51F8A1B24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabledDark.tiff in Resources */,
+				F51F8A5324AEDC550066E920 /* MiniPlayerLyricsButtonPressedDark.tiff in Resources */,
+				F51F8A2F24AEDC550066E920 /* MiniPlayerPlaylistButtonPressedDark.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +702,7 @@
 				F51F89AA24ADBF600066E920 /* DetailsPageViewController.swift in Sources */,
 				F51F896B24AD87060066E920 /* AppDelegate.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,
+				F51F8A6224AEF8670066E920 /* CustomButton.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,
 				F51F896F24AD87060066E920 /* Document.swift in Sources */,

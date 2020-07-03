@@ -10,14 +10,22 @@ import Cocoa
 
 class BottomPlayViewController: BaseViewController {
     
-    @IBOutlet weak var albumButton: NSButton!
+    //MARK: 专辑图按钮
+    @IBOutlet weak var albumButton: CustomButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        setupUI()
+    }
+}
+
+//MARK: - UI设置
+extension BottomPlayViewController {
+    func setupUI() {
         setBackgroundColor(r: 37, g: 37, b: 37)
-        
-        albumButton.image = NSImage.init(named: "music-albums")
+        albumButton.image = NSImage.init(named: "MiniPlayerMiniAlbumDefault")
+        albumButton.setCornerRadius(radius: 4)
     }
 }
 
