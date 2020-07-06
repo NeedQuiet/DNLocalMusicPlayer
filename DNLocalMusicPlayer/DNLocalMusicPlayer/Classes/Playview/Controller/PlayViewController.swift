@@ -23,7 +23,7 @@ class PlayViewController: BaseViewController {
 //MARK: - UI设置
 extension PlayViewController {
     func setupUI() {
-        setBackgroundColor(r: 42, g: 42, b: 42)
+        setBackgroundColor(r: 32, g: 32, b: 32)
         //MARK: 专辑图
         artworkImageView.wantsLayer = true
         artworkImageView.layer?.cornerRadius = artworkImageView.bounds.size.width / 2

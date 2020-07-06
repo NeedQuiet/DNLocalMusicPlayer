@@ -95,33 +95,12 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="WindowController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv">
+                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv" customClass="CustomWindow" customModule="DN音乐" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="C13CA7DC-4D3D-4E31-B092-38713A843E4F" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="uEt-Em-sK4">
-                            <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="30E39CDC-66BE-44F2-9BF2-37CA84F42C3D" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="XD5-xd-2KL">
-                                    <nil key="toolTip"/>
-                                    <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="h8H-1f-PLa">
-                                        <rect key="frame" x="20" y="14" width="37" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="HlD-14-ps0">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="bMz-HM-SkW"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Dnh-8c-xN8"/>
-                            </allowedToolbarItems>
-                            <defaultToolbarItems>
-                                <toolbarItem reference="Dnh-8c-xN8"/>
-                            </defaultToolbarItems>
-                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="jGA-0Y-lOj" id="98r-iN-zZc"/>
                         </connections>
@@ -134,81 +113,110 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5gI-5U-AMq" customClass="MainViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ERx-hH-rdd">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="670"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="6GE-Ub-N20">
-                                <rect key="frame" x="0.0" y="0.0" width="1000" height="60"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="pZJ-vF-4Gn" userLabel="WindowTitleBar" customClass="DNTitleBarView" customModule="DN音乐" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="620" width="1000" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="h8V-Dc-szG"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1000" id="jE7-Sn-N0Y"/>
+                                    <constraint firstAttribute="height" constant="50" id="K93-b2-sRy"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="koE-aN-Kxk" kind="embed" id="MEO-Gr-ltC"/>
-                                </connections>
-                            </containerView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="rjl-qs-vPL">
-                                <rect key="frame" x="0.0" y="60" width="200" height="560"/>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="hoG-12-vUS" customClass="DNBaseView" customModule="DN音乐" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="1000" height="620"/>
+                                <subviews>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="rjl-qs-vPL" userLabel="左侧playlist">
+                                        <rect key="frame" x="0.0" y="60" width="200" height="560"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="KbT-ge-eG1"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="560" id="OOO-UN-El2"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="CHe-1y-IKa" kind="embed" id="bUW-sZ-WaX"/>
+                                        </connections>
+                                    </containerView>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="V25-GU-0D4" userLabel="Playlist详情">
+                                        <rect key="frame" x="200" y="60" width="800" height="560"/>
+                                        <connections>
+                                            <segue destination="PB8-CA-7Aw" kind="embed" id="2x1-Ai-DTz"/>
+                                        </connections>
+                                    </containerView>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="6GE-Ub-N20" userLabel="底部播控">
+                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="h8V-Dc-szG"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1000" id="jE7-Sn-N0Y"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="koE-aN-Kxk" kind="embed" id="MEO-Gr-ltC"/>
+                                        </connections>
+                                    </containerView>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fBY-6m-chA" userLabel="播放详情">
+                                        <rect key="frame" x="0.0" y="60" width="1000" height="0.0"/>
+                                        <connections>
+                                            <segue destination="Ea8-0Z-Sdg" kind="embed" id="VDA-6e-wJU"/>
+                                        </connections>
+                                    </containerView>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="mVq-cj-qWr" userLabel="当前播放列表">
+                                        <rect key="frame" x="580" y="60" width="420" height="560"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="420" id="cp5-OS-gBB"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="Uyy-mr-Bt4" kind="embed" id="mza-yJ-2Vb"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="KbT-ge-eG1"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="560" id="OOO-UN-El2"/>
+                                    <constraint firstItem="rjl-qs-vPL" firstAttribute="leading" secondItem="hoG-12-vUS" secondAttribute="leading" id="0OI-hm-VcZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="6GE-Ub-N20" secondAttribute="bottom" id="12e-GO-EXd"/>
+                                    <constraint firstItem="fBY-6m-chA" firstAttribute="leading" secondItem="hoG-12-vUS" secondAttribute="leading" id="1n3-hU-cnt"/>
+                                    <constraint firstItem="fBY-6m-chA" firstAttribute="top" secondItem="hoG-12-vUS" secondAttribute="top" constant="560" id="3nc-45-7Ep"/>
+                                    <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="rjl-qs-vPL" secondAttribute="bottom" id="7gF-gE-0Ac"/>
+                                    <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="V25-GU-0D4" secondAttribute="bottom" id="9KJ-zj-1Jp"/>
+                                    <constraint firstItem="6GE-Ub-N20" firstAttribute="leading" secondItem="hoG-12-vUS" secondAttribute="leading" id="9wc-oq-wDF"/>
+                                    <constraint firstItem="V25-GU-0D4" firstAttribute="top" secondItem="hoG-12-vUS" secondAttribute="top" id="Afc-66-81d"/>
+                                    <constraint firstItem="rjl-qs-vPL" firstAttribute="top" secondItem="hoG-12-vUS" secondAttribute="top" id="Ehi-Hh-TVe"/>
+                                    <constraint firstItem="mVq-cj-qWr" firstAttribute="top" secondItem="hoG-12-vUS" secondAttribute="top" id="EqU-Xo-Wzn"/>
+                                    <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="mVq-cj-qWr" secondAttribute="bottom" id="GzA-jK-U72"/>
+                                    <constraint firstAttribute="trailing" secondItem="V25-GU-0D4" secondAttribute="trailing" id="RjT-CB-2IT"/>
+                                    <constraint firstAttribute="trailing" secondItem="6GE-Ub-N20" secondAttribute="trailing" id="Xvk-y9-l87"/>
+                                    <constraint firstItem="V25-GU-0D4" firstAttribute="leading" secondItem="rjl-qs-vPL" secondAttribute="trailing" id="aWa-ko-KRO"/>
+                                    <constraint firstAttribute="trailing" secondItem="mVq-cj-qWr" secondAttribute="trailing" id="cDU-QZ-7Gv"/>
+                                    <constraint firstAttribute="trailing" secondItem="fBY-6m-chA" secondAttribute="trailing" id="iek-Ai-Cbk"/>
+                                    <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="fBY-6m-chA" secondAttribute="bottom" id="saR-S2-Cdz"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="CHe-1y-IKa" kind="embed" id="bUW-sZ-WaX"/>
-                                </connections>
-                            </containerView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="V25-GU-0D4">
-                                <rect key="frame" x="200" y="60" width="800" height="560"/>
-                                <connections>
-                                    <segue destination="PB8-CA-7Aw" kind="embed" id="2x1-Ai-DTz"/>
-                                </connections>
-                            </containerView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fBY-6m-chA">
-                                <rect key="frame" x="0.0" y="60" width="1000" height="0.0"/>
-                                <connections>
-                                    <segue destination="Ea8-0Z-Sdg" kind="embed" id="VDA-6e-wJU"/>
-                                </connections>
-                            </containerView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="mVq-cj-qWr">
-                                <rect key="frame" x="580" y="60" width="420" height="560"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="420" id="cp5-OS-gBB"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="Uyy-mr-Bt4" kind="embed" id="mza-yJ-2Vb"/>
-                                </connections>
-                            </containerView>
+                            </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="V25-GU-0D4" firstAttribute="leading" secondItem="rjl-qs-vPL" secondAttribute="trailing" id="0Xn-uF-Ft4"/>
-                            <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="fBY-6m-chA" secondAttribute="bottom" id="94X-bN-1fB"/>
-                            <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="rjl-qs-vPL" secondAttribute="bottom" id="9cg-fv-sra"/>
-                            <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="V25-GU-0D4" secondAttribute="bottom" id="E6I-yt-REL"/>
-                            <constraint firstAttribute="trailing" secondItem="mVq-cj-qWr" secondAttribute="trailing" id="Edc-TE-ggu"/>
-                            <constraint firstAttribute="bottom" secondItem="6GE-Ub-N20" secondAttribute="bottom" id="LIR-28-1QI"/>
-                            <constraint firstItem="mVq-cj-qWr" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="Q9p-2N-iu9"/>
-                            <constraint firstAttribute="trailing" secondItem="fBY-6m-chA" secondAttribute="trailing" id="RcP-sr-HeE"/>
-                            <constraint firstAttribute="trailing" secondItem="V25-GU-0D4" secondAttribute="trailing" id="ULi-fM-lG0"/>
-                            <constraint firstAttribute="trailing" secondItem="6GE-Ub-N20" secondAttribute="trailing" id="X61-2R-SpB"/>
-                            <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="mVq-cj-qWr" secondAttribute="bottom" id="Xjk-U8-IdY"/>
-                            <constraint firstItem="rjl-qs-vPL" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="Z0D-FG-BS1"/>
-                            <constraint firstItem="fBY-6m-chA" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="esf-X9-jRf"/>
-                            <constraint firstItem="rjl-qs-vPL" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="lSA-Mf-y8Z"/>
-                            <constraint firstItem="6GE-Ub-N20" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="wB3-MA-BTo"/>
-                            <constraint firstItem="fBY-6m-chA" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="560" id="wSW-58-pfP"/>
-                            <constraint firstItem="V25-GU-0D4" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="yeA-oj-vj8"/>
+                            <constraint firstItem="hoG-12-vUS" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="7uo-CX-Jil"/>
+                            <constraint firstItem="pZJ-vF-4Gn" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="P9h-lO-790"/>
+                            <constraint firstAttribute="trailing" secondItem="pZJ-vF-4Gn" secondAttribute="trailing" id="QHD-6l-6gM"/>
+                            <constraint firstAttribute="trailing" secondItem="hoG-12-vUS" secondAttribute="trailing" id="WF1-QP-0Xi"/>
+                            <constraint firstItem="pZJ-vF-4Gn" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="XT7-bN-TSy"/>
+                            <constraint firstAttribute="bottom" secondItem="hoG-12-vUS" secondAttribute="bottom" id="q8y-wC-LHc"/>
+                            <constraint firstItem="hoG-12-vUS" firstAttribute="top" secondItem="pZJ-vF-4Gn" secondAttribute="bottom" id="yaF-bF-94x"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="wantsLayer" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="currentPlaylistContainerView" destination="mVq-cj-qWr" id="9z2-D9-3qC"/>
+                        <outlet property="mainContainerView" destination="hoG-12-vUS" id="r5n-sZ-MUk"/>
                         <outlet property="playViewContainerView" destination="fBY-6m-chA" id="3Sx-3f-8mK"/>
-                        <outlet property="playViewTop" destination="wSW-58-pfP" id="Kkq-YP-LnO"/>
+                        <outlet property="playViewTop" destination="3nc-45-7Ep" id="SJp-b7-w0Z"/>
+                        <outlet property="titleBarView" destination="pZJ-vF-4Gn" id="Rvk-na-88c"/>
                     </connections>
                 </viewController>
             </objects>

@@ -21,11 +21,10 @@ class BottomPlayViewController: BaseViewController {
     @IBOutlet weak var lyricButton: CustomButton!
     //MARK: 声音
     @IBOutlet weak var volumeButton: CustomButton!
-    
-    private var showVolumePopover:Bool = false
     private lazy var volumePopover:NSPopover = {
         let popover = NSPopover()
         popover.contentViewController = VolumePopover.init()
+        popover.behavior = .transient // 点击外部自动close popover
         return popover
     }()
     
@@ -39,7 +38,7 @@ class BottomPlayViewController: BaseViewController {
 //MARK: - UI设置
 extension BottomPlayViewController {
     func setupUI() {
-        setBackgroundColor(r: 37, g: 37, b: 37)
+        setBackgroundColor(r: 28, g: 28, b: 28)
         albumButton.image = NSImage.init(named: "MiniPlayerMiniAlbumDefault")
         albumButton.setCornerRadius(radius: 4)
     }
@@ -49,7 +48,7 @@ extension BottomPlayViewController {
 extension BottomPlayViewController {
     //MARK: 专辑图点击
     @IBAction func albumButtonClick(_ sender: NSButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePlayViewState"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: BottomPVNotifications.albumClick.rawValue), object: nil)
     }
     
     //MARK: 播放列表点击
@@ -60,16 +59,15 @@ extension BottomPlayViewController {
         } else {
             playlistButton.image = NSImage.init(named: "CurrentPlaylist_Default")
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeCurrentPlayListViewState"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: BottomPVNotifications.playlistClick.rawValue), object: nil)
     }
     
     //MARK: 声音按钮点击
     @IBAction func volumeButtonClick(_ sender: NSButton) {
-        showVolumePopover = !showVolumePopover
-        if showVolumePopover == true {
-            volumePopover.show(relativeTo: volumeButton.bounds, of: volumeButton, preferredEdge: .minY)
-        } else {
+        if volumePopover.isShown {
             volumePopover.close()
+        } else {
+            volumePopover.show(relativeTo: volumeButton.bounds, of: volumeButton, preferredEdge: .minY)
         }
     }
 }

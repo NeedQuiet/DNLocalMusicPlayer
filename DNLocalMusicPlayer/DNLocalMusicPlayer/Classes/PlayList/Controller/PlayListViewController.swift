@@ -13,7 +13,7 @@ class PlayListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        setBackgroundColor(r: 32, g: 32, b: 32)
+        setBackgroundColor(r: 24, g: 24, b: 24)
     }
     
 }

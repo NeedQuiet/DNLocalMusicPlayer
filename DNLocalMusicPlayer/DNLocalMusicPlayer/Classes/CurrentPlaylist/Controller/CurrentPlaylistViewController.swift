@@ -20,6 +20,6 @@ class CurrentPlaylistViewController: BaseViewController {
 //MARK: - UI设置
 extension CurrentPlaylistViewController {
     func setupUI() {
-        setBackgroundColor(r: 54, g: 54, b: 54)
+        setBackgroundColor(r: 41, g: 41, b: 41)
     }
 }

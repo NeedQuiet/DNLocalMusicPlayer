@@ -13,7 +13,7 @@ class DetailsPageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        setBackgroundColor(r: 37, g: 37, b: 37)
+        setBackgroundColor(r: 28, g: 28, b: 28)
     }
     
 }
