@@ -97,7 +97,7 @@
             <objects>
                 <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv" customClass="CustomWindow" customModule="DN音乐" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -124,6 +124,35 @@
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="pZJ-vF-4Gn" userLabel="WindowTitleBar" customClass="DNTitleBarView" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="620" width="1000" height="50"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Id-Sp-uWh">
+                                        <rect key="frame" x="953" y="17" width="29" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="mini" id="d9L-og-ewQ">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jUR-2V-ZFK">
+                                        <rect key="frame" x="898" y="17" width="31" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="设置" id="Npl-hq-kyG">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLf-dN-udT">
+                                        <rect key="frame" x="833" y="17" width="44" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="搜索框" id="sIj-UM-3AU">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="K93-b2-sRy"/>
                                 </constraints>
@@ -220,7 +249,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="74" y="790"/>
+            <point key="canvasLocation" x="75" y="893"/>
         </scene>
         <!--BottomPlayView-->
         <scene sceneID="Fn9-t2-mcy">
@@ -228,7 +257,7 @@
                 <controllerPlaceholder storyboardName="BottomPlayView" id="koE-aN-Kxk" sceneMemberID="viewController"/>
                 <customObject id="9Un-71-qtD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="1293"/>
+            <point key="canvasLocation" x="249" y="1402"/>
         </scene>
         <!--PlayList-->
         <scene sceneID="lst-Pk-cVb">
@@ -236,7 +265,7 @@
                 <controllerPlaceholder storyboardName="PlayList" id="CHe-1y-IKa" sceneMemberID="viewController"/>
                 <customObject id="mdz-uy-Qhm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-110" y="1293"/>
+            <point key="canvasLocation" x="-93" y="1402"/>
         </scene>
         <!--DetailsPage-->
         <scene sceneID="WHu-bc-byN">
@@ -244,7 +273,7 @@
                 <controllerPlaceholder storyboardName="DetailsPage" id="PB8-CA-7Aw" sceneMemberID="viewController"/>
                 <customObject id="zZM-ZY-BcN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="1293"/>
+            <point key="canvasLocation" x="75" y="1402"/>
         </scene>
         <!--PlayView-->
         <scene sceneID="jab-CH-xVq">

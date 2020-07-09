@@ -112,6 +112,7 @@
 		F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99F24AF4B4B008FC9C9 /* Constants.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
+		F5EE566F24B6CC3B00CE9ABC /* PlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* PlayManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -225,6 +226,7 @@
 		F560F99F24AF4B4B008FC9C9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
+		F5EE566E24B6CC3B00CE9ABC /* PlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +274,7 @@
 		F51F898F24ADBA570066E920 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F5EE566D24B6CBFA00CE9ABC /* Manager */,
 				F51F899024ADBA620066E920 /* Main */,
 				F51F899D24ADBD580066E920 /* PlayList */,
 				F51F89A324ADBE820066E920 /* DetailsPage */,
@@ -576,6 +579,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F5EE566D24B6CBFA00CE9ABC /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F5EE566E24B6CC3B00CE9ABC /* PlayManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -745,6 +756,7 @@
 				F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,
 				F51F8A6224AEF8670066E920 /* CustomButton.swift in Sources */,
+				F5EE566F24B6CC3B00CE9ABC /* PlayManager.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,

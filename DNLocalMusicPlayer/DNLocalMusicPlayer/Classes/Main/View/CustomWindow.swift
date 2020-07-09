@@ -11,8 +11,11 @@ import Cocoa
 class CustomWindow: NSWindow {
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
         // styleMask 默认是 [.titled, .closable, .miniaturizable, .resizable]
-        super.init(contentRect: contentRect, styleMask:[.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView], backing: backingStoreType, defer: flag)
-        //titlebar透明
+        super.init(contentRect: contentRect,
+                   styleMask:[.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+                   backing: backingStoreType,
+                   defer: flag)
+        // titlebar透明
         titlebarAppearsTransparent = true
         // 隐藏title
         titleVisibility = NSWindow.TitleVisibility.hidden

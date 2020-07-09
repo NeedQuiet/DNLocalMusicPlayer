@@ -48,7 +48,8 @@ extension BottomPlayViewController {
 extension BottomPlayViewController {
     //MARK: 专辑图点击
     @IBAction func albumButtonClick(_ sender: NSButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: BottomPVNotifications.albumClick.rawValue), object: nil)
+        let playViewIsShow = PlayManager.share.playViewIsShow
+        PlayManager.share.showPlayView(show: !playViewIsShow)
     }
     
     //MARK: 播放列表点击
