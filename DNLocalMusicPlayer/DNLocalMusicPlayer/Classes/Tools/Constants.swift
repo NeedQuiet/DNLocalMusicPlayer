@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BottomPVNotifications: String {
-    case albumClick = "changePlayViewState"
-    case playlistClick = "changeCurrentPlayListViewState"
-}
+//enum BottomPVNotifications: String {
+//    case albumClick = "changePlayViewState"
+//    case playlistClick = "changeCurrentPlayListViewState"
+//}

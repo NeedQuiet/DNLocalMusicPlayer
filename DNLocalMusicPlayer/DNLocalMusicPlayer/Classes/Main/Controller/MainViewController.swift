@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import RxCocoa
 
 class MainViewController: NSViewController {
     //MARK: 结构
@@ -16,7 +17,6 @@ class MainViewController: NSViewController {
     //MARK: PlayView
     @IBOutlet weak var playViewTop: NSLayoutConstraint!
     @IBOutlet weak var playViewContainerView: NSView!
-    private var playViewIsShow: Bool = false
     private var defaultPlayViewHeight: CGFloat = 0
     
     //MARK: CurrentPlaylist
@@ -25,6 +25,7 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupKVO()
         setupPlayContainerView()
         setupCurrentPlayListContainerView()
     }
@@ -36,11 +37,31 @@ class MainViewController: NSViewController {
     }
 }
 
+//MARK: - KVO
+extension MainViewController {
+    func setupKVO() {
+        //MARK: 监听 WindowManager.share.playViewIsShow
+        _ = WindowManager.share.rx.observeWeakly(Bool.self, "playViewIsShow")
+            .subscribe { [weak self] (change) in
+            if let playViewIsShow = change.element {
+                self?.showPlayView(show: playViewIsShow!)
+            }
+        }
+        
+        //MARK: 监听 WindowManager.share.currentPlaylistIsShow
+        _ = WindowManager.share.rx.observeWeakly(Bool.self, "currentPlaylistIsShow")
+            .subscribe({  [weak self] (change) in
+            if let currentPlaylistIsShow = change.element {
+                self?.showCurrentPlayListView(show: currentPlaylistIsShow!)
+            }
+        })
+    }
+}
+
 //MARK: - PlayView
 extension MainViewController {
+    //MARK: 配置palyView
     func setupPlayContainerView() {
-        // 监听 展示/隐藏 状态
-        NotificationCenter.default.addObserver(self, selector: #selector(changePlayViewState), name: NSNotification.Name(rawValue: BottomPVNotifications.albumClick.rawValue), object: nil)
         // 删除autoresizingMask
         playViewContainerView.autoresizingMask = []
         // 保留默认高度，在隐藏playview后，将top设为默认高度，防止窗口大小被top撑起来无法缩小
@@ -50,10 +71,10 @@ extension MainViewController {
         self.playViewContainerView.isHidden = true
     }
     
-    @objc func changePlayViewState() {
-        playViewIsShow = !playViewIsShow
+    //MARK: 显示/隐藏 PlayView
+    func showPlayView(show:Bool) {
         var top:CGFloat = 0
-        if playViewIsShow == true {
+        if show == true {
             // 展示playView前先显示
             self.playViewContainerView.isHidden = false
             top = 0
@@ -66,7 +87,7 @@ extension MainViewController {
             self.playViewTop.animator().constant = top
         }) {
             // 收起playView后，先隐藏playView，后将top设为默认高度，防止窗口大小被top撑起来无法缩小
-            if self.playViewIsShow == false {
+            if show == false {
                 self.playViewContainerView.isHidden = true
                 self.playViewTop.constant = self.defaultPlayViewHeight
             }
@@ -76,15 +97,14 @@ extension MainViewController {
 
 //MARK: - CurrentPlayList
 extension MainViewController {
+    //MARK: 配置 currentPlaylistView
     func setupCurrentPlayListContainerView() {
         currentPlaylistContainerView.isHidden = true
-        // 监听 展示/隐藏 状态
-        NotificationCenter.default.addObserver(self, selector: #selector(changeCurrentPlayListViewState), name: NSNotification.Name(rawValue: BottomPVNotifications.playlistClick.rawValue), object: nil)
     }
     
-    @objc func changeCurrentPlayListViewState() {
-        showCurrentPlaylist = !showCurrentPlaylist
-        currentPlaylistContainerView.isHidden = !showCurrentPlaylist
+    //MARK: 显示/隐藏 currentPlaylist
+    func showCurrentPlayListView(show:Bool) {
+        currentPlaylistContainerView.isHidden = !show
     }
 }
 

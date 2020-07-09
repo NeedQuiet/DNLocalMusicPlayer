@@ -16,7 +16,6 @@ class BottomPlayViewController: BaseViewController {
     @IBOutlet weak var channelButton: CustomButton!
     //MARK: 播放列表
     @IBOutlet weak var playlistButton: CustomButton!
-    private var showCurrentPlaylist: Bool = false
     //MARK: 歌词
     @IBOutlet weak var lyricButton: CustomButton!
     //MARK: 声音
@@ -48,19 +47,20 @@ extension BottomPlayViewController {
 extension BottomPlayViewController {
     //MARK: 专辑图点击
     @IBAction func albumButtonClick(_ sender: NSButton) {
-        let playViewIsShow = PlayManager.share.playViewIsShow
-        PlayManager.share.showPlayView(show: !playViewIsShow)
+        let playViewIsShow = WindowManager.share.playViewIsShow
+        WindowManager.share.showPlayView(show: !playViewIsShow)
     }
     
     //MARK: 播放列表点击
     @IBAction func playlistButtonClick(_ sender: Any) {
+        var showCurrentPlaylist = WindowManager.share.currentPlaylistIsShow
         showCurrentPlaylist = !showCurrentPlaylist
-        if showCurrentPlaylist {
+        if showCurrentPlaylist == true {
             playlistButton.image = NSImage.init(named: "CurrentPlaylist_Highlight")
         } else {
             playlistButton.image = NSImage.init(named: "CurrentPlaylist_Default")
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: BottomPVNotifications.playlistClick.rawValue), object: nil)
+        WindowManager.share.showCurrentPlayList(show: showCurrentPlaylist)
     }
     
     //MARK: 声音按钮点击

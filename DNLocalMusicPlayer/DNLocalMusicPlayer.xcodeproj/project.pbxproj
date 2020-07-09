@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		377C9925EFA6FE0876C78D74 /* Pods_DNLocalMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */; };
 		F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C100224B31CBC0079DD35 /* CustomWindow.swift */; };
 		F51C100724B3220B0079DD35 /* DNTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C100624B3220B0079DD35 /* DNTitleBarView.swift */; };
 		F51F896B24AD87060066E920 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F896A24AD87060066E920 /* AppDelegate.swift */; };
@@ -112,10 +113,13 @@
 		F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99F24AF4B4B008FC9C9 /* Constants.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
-		F5EE566F24B6CC3B00CE9ABC /* PlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* PlayManager.swift */; };
+		F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DNLocalMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00D5D51D60A5E837DCC0F81 /* Pods-DNLocalMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
+		C98DC77936359675D8B9A143 /* Pods-DNLocalMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		F51C100224B31CBC0079DD35 /* CustomWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWindow.swift; sourceTree = "<group>"; };
 		F51C100624B3220B0079DD35 /* DNTitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleBarView.swift; sourceTree = "<group>"; };
 		F51F896724AD87060066E920 /* DN音乐.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DN音乐.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,7 +230,7 @@
 		F560F99F24AF4B4B008FC9C9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
-		F5EE566E24B6CC3B00CE9ABC /* PlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayManager.swift; sourceTree = "<group>"; };
+		F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,17 +238,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377C9925EFA6FE0876C78D74 /* Pods_DNLocalMusicPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		386BBF873A093DD67852795D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C98DC77936359675D8B9A143 /* Pods-DNLocalMusicPlayer.debug.xcconfig */,
+				B00D5D51D60A5E837DCC0F81 /* Pods-DNLocalMusicPlayer.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A9E865F149EB760F905802D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F51F895E24AD87060066E920 = {
 			isa = PBXGroup;
 			children = (
 				F51F896924AD87060066E920 /* DNLocalMusicPlayer */,
 				F51F896824AD87060066E920 /* Products */,
+				386BBF873A093DD67852795D /* Pods */,
+				A9E865F149EB760F905802D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -582,7 +606,7 @@
 		F5EE566D24B6CBFA00CE9ABC /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				F5EE566E24B6CC3B00CE9ABC /* PlayManager.swift */,
+				F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -594,9 +618,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F51F897924AD87080066E920 /* Build configuration list for PBXNativeTarget "DNLocalMusicPlayer" */;
 			buildPhases = (
+				61E98B16489600873755D9B4 /* [CP] Check Pods Manifest.lock */,
 				F51F896324AD87060066E920 /* Sources */,
 				F51F896424AD87060066E920 /* Frameworks */,
 				F51F896524AD87060066E920 /* Resources */,
+				E6BD27235963295433FD66DE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -740,6 +766,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		61E98B16489600873755D9B4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DNLocalMusicPlayer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6BD27235963295433FD66DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F51F896324AD87060066E920 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -756,7 +824,7 @@
 				F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,
 				F51F8A6224AEF8670066E920 /* CustomButton.swift in Sources */,
-				F5EE566F24B6CC3B00CE9ABC /* PlayManager.swift in Sources */,
+				F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,
@@ -906,6 +974,7 @@
 		};
 		F51F897A24AD87080066E920 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C98DC77936359675D8B9A143 /* Pods-DNLocalMusicPlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DNLocalMusicPlayer/DNLocalMusicPlayer.entitlements;
@@ -924,6 +993,7 @@
 		};
 		F51F897B24AD87080066E920 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B00D5D51D60A5E837DCC0F81 /* Pods-DNLocalMusicPlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DNLocalMusicPlayer/DNLocalMusicPlayer.entitlements;
