@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import RxCocoa
 
 class BottomPlayViewController: BaseViewController {
     
@@ -27,11 +28,16 @@ class BottomPlayViewController: BaseViewController {
         return popover
     }()
     
+    //MARK: 播放暂停
+    @IBOutlet weak var playButton: CustomButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         setupUI()
+        setupKVO()
     }
+
 }
 
 //MARK: - UI设置
@@ -69,6 +75,42 @@ extension BottomPlayViewController {
             volumePopover.close()
         } else {
             volumePopover.show(relativeTo: volumeButton.bounds, of: volumeButton, preferredEdge: .minY)
+        }
+    }
+    
+    //MARK: 播放暂停
+    @IBAction func playButtonclick(_ sender: Any) {
+        if PlayerManager.share.isPlaying == true {
+            PlayerManager.share.pause()
+        } else {
+            PlayerManager.share.play(withIndex: nil)
+        }
+    }
+    
+    //MARK: 下一曲
+    @IBAction func nextClick(_ sender: Any) {
+        PlayerManager.share.next()
+    }
+    
+    //MARK: 上一曲
+    @IBAction func previousClick(_ sender: Any) {
+        PlayerManager.share.previous()
+    }
+}
+
+//MARK: - KVO
+extension BottomPlayViewController {
+    func setupKVO() {
+        //MARK: 监听 WindowManager.share.playViewIsShow
+        _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
+            .subscribe { [weak self] (change) in
+            if let isPlaying = change.element {
+                if isPlaying == true {
+                    self?.playButton.image = NSImage.init(named: "MiniPlayerPauseButton")
+                } else {
+                    self?.playButton.image = NSImage.init(named: "MiniPlayerPlayButton")
+                }
+            }
         }
     }
 }

@@ -17,7 +17,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="mzx-fj-5Mb">
                                 <rect key="frame" x="428" y="0.0" width="144" height="60"/>
                                 <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="38w-9S-N6N" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="38w-9S-N6N" userLabel="播放暂停" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="51" y="9" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="ZzC-x9-Wko"/>
@@ -27,8 +27,11 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="playButtonclick:" target="EFd-2V-VDr" id="HVb-TW-rof"/>
+                                        </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-zT-1RI" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-zT-1RI" userLabel="上一曲" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="9" y="22" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Nzy-zT-1RI" secondAttribute="height" multiplier="1:1" id="R5l-DD-rWc"/>
@@ -38,8 +41,11 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="previousClick:" target="EFd-2V-VDr" id="jus-6A-HXp"/>
+                                        </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="XtM-NC-1rP" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="XtM-NC-1rP" userLabel="下一曲" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="119" y="22" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="16" id="bQa-ri-S5T"/>
@@ -48,6 +54,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="nextClick:" target="EFd-2V-VDr" id="z2w-bB-zL7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -147,6 +156,7 @@
                         <outlet property="albumButton" destination="bGX-Xu-qcX" id="OcA-1K-C2x"/>
                         <outlet property="channelButton" destination="joT-Zl-g1G" id="gTn-MF-bhK"/>
                         <outlet property="lyricButton" destination="MIz-8u-tvn" id="XLM-5C-TZt"/>
+                        <outlet property="playButton" destination="38w-9S-N6N" id="FRV-FA-87i"/>
                         <outlet property="playlistButton" destination="GOH-4D-YMX" id="8Ko-ra-oJo"/>
                         <outlet property="volumeButton" destination="IA9-in-mjz" id="yfb-gO-Cgc"/>
                     </connections>
