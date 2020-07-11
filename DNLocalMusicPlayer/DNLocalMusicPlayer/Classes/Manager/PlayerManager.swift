@@ -26,6 +26,8 @@ class PlayerManager: NSObject {
     var volume: Float = 0.5
     //MARK: 当前播放列表
     var currentPlaylist: [Song] = []
+    //MARK: 播放模式
+    var playmode: DNPlayMode = .play_mode_repeat_all
     
     //MARK: - 声明周期
     override init() {
@@ -41,17 +43,16 @@ class PlayerManager: NSObject {
 //MARK: - 播控
 extension PlayerManager {
     //MARK: 播放
-    func play(withIndex: Int?) {
+    func play(withIndex index: Int?) {
         _ = checkCurrentSongIsEmpty()
         
-        if let index = withIndex {
-            if index >= 0 {
-                currentIndex = index
-                currentSong = currentPlaylist[currentIndex!]
-            }
+        // index有值，说明是选中歌曲播放的
+        if index != nil && index! >= 0 {
+            currentIndex = index
+            currentSong = currentPlaylist[currentIndex!]
         }
         
-        playMusic()
+        playCurrentSong()
     }
     //MARK: 暂停"
     func pause() {
@@ -60,38 +61,30 @@ extension PlayerManager {
     }
     //MARK: 停止
     func stop() {
-        
-    }
-    //MARK: 下一曲
-    func next() {
-        // 暂时按照列表循环处理
-        if checkCurrentSongIsEmpty() == false {
-            var nextIndex:Int = currentIndex!
-            if nextIndex < currentPlaylist.count - 1 {
-                nextIndex += 1
-            } else {
-                nextIndex = 0
-            }
-            currentSong = currentPlaylist[nextIndex]
-            currentIndex = nextIndex
-        }
-        playMusic()
+        isPlaying = false
+        player?.stop()
     }
     
     //MARK: 上一曲
     func previous() {
-        // 暂时按照列表循环处理
-        if checkCurrentSongIsEmpty() == false {
-            var nextIndex:Int = currentIndex!
-            if nextIndex == 0 {
-                nextIndex = currentPlaylist.count - 1
-            } else {
-                nextIndex -= 1
-            }
-            currentSong = currentPlaylist[nextIndex]
-            currentIndex = nextIndex
+        playPreviousOfNextSong(withType: .play_previous_song)
+    }
+    
+    //MARK: 下一曲
+    func next() {
+        playPreviousOfNextSong(withType: .play_next_song)
+    }
+    
+    //MARK: 模式切换
+    func switchPlayMode() {
+        if playmode == .play_mode_shuffle {
+            playmode = .play_mode_repeat_all
+        } else if playmode == .play_mode_repeat_all {
+            playmode = .play_mode_repeat_one
+        } else {
+            playmode = .play_mode_shuffle
         }
-        playMusic()
+        NotificationCenter.default.post(name: kSwitchPlayModeNotificationName, object: nil)
     }
 }
 
@@ -114,15 +107,56 @@ extension PlayerManager {
         return false
     }
     
-    private func playMusic() {
-        if currentSong!.filePath != player?.url?.path {
-            print("播放: \(currentSong!.title)")
-            player = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: currentSong!.filePath))
-            player?.volume = volume
-        } else {
-            print("重复点击: \(currentSong!.title)")
-        }
+    //MARK: 播放currentSong
+    private func playCurrentSong() {
+        print("播放: \(currentSong!.title)")
+        player = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: currentSong!.filePath))
+        player?.delegate = self
+        player?.volume = volume
         isPlaying = true
         player?.play()
+    }
+    
+    //MARK: 上/下一曲方法抽取
+    private func playPreviousOfNextSong(withType type:DNPlayControlType) {
+        // 暂时按照列表循环处理
+        if checkCurrentSongIsEmpty() == false {
+            var newIndex:Int = currentIndex!
+            if playmode == .play_mode_shuffle{ // 随机播放
+                let random = arc4random_uniform(UInt32(currentPlaylist.count)) + 1
+                newIndex = Int(random)
+                print("随机播放第\(newIndex)首")
+            } else { // 列表循环 || 单曲循环
+                if type == .play_previous_song { // 上一曲
+                    newIndex = newIndex == 0 ? currentPlaylist.count - 1 : currentIndex! - 1
+                } else { // 下一曲
+                    newIndex = newIndex < currentPlaylist.count - 1 ? currentIndex! + 1 : 0
+                }
+            }
+            
+            // 更新 currentSong 和 currentIndex
+            currentSong = currentPlaylist[newIndex]
+            currentIndex = newIndex
+        } else {
+            // 如果CurrentSong为空，则说明是首次加载时直接点击的 上/下一曲，直接playCurrentSong 播放当前列表第一首
+        }
+        playCurrentSong()
+    }
+}
+
+//MARK: - AVAudioPlayerDelegate
+extension PlayerManager:AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("音频播放完毕")
+        // 暂时按照列表循环处理
+        if playmode == .play_mode_repeat_one { // 单曲循环
+            play(withIndex: currentIndex)
+        } else { // 列表循环 || 随机播放
+            next()
+        }
+    }
+    
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        print("音频播放器解码错误 \(String(describing: error))")
     }
 }

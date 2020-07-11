@@ -14,7 +14,7 @@ class BottomPlayViewController: BaseViewController {
     //MARK: 专辑图
     @IBOutlet weak var albumButton: CustomButton!
     //MARK: 播放模式
-    @IBOutlet weak var channelButton: CustomButton!
+    @IBOutlet weak var playModeButton: CustomButton!
     //MARK: 播放列表
     @IBOutlet weak var playlistButton: CustomButton!
     //MARK: 歌词
@@ -35,7 +35,7 @@ class BottomPlayViewController: BaseViewController {
         super.viewDidLoad()
         // Do view setup here.
         setupUI()
-        setupKVO()
+        setupKVOAndNotication()
     }
 
 }
@@ -96,11 +96,16 @@ extension BottomPlayViewController {
     @IBAction func previousClick(_ sender: Any) {
         PlayerManager.share.previous()
     }
+    
+    //MARK: 模式切换
+    @IBAction func playModeButtonClick(_ sender: Any) {
+        PlayerManager.share.switchPlayMode()
+    }
 }
 
-//MARK: - KVO
+//MARK: - KVO & Notification
 extension BottomPlayViewController {
-    func setupKVO() {
+    func setupKVOAndNotication() {
         //MARK: 监听 WindowManager.share.playViewIsShow
         _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
             .subscribe { [weak self] (change) in
@@ -112,5 +117,19 @@ extension BottomPlayViewController {
                 }
             }
         }
+        
+        //MARK: 监听 NotificationCenter kSwitchPlayModeNotificationName
+        _ = NotificationCenter.default.rx
+            .notification(kSwitchPlayModeNotificationName, object: nil)
+            .subscribe{ [weak self] (event) in
+                let playMode:DNPlayMode = PlayerManager.share.playmode
+                if playMode == .play_mode_repeat_all {
+                    self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeRepeatAll")
+                } else if playMode == .play_mode_repeat_one{
+                    self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeRepeatOne")
+                } else {
+                    self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeShuffle")
+                }
+            }
     }
 }

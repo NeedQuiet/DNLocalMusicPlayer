@@ -116,10 +116,13 @@
                                     <constraint firstAttribute="width" constant="20" id="9jZ-dg-17c"/>
                                     <constraint firstAttribute="width" secondItem="joT-Zl-g1G" secondAttribute="height" multiplier="1:1" id="hjJ-eX-oVs"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TouchBarPlayModeShuffle" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Hou-B9-b7d">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TouchBarPlayModeRepeatAll" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Hou-B9-b7d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="playModeButtonClick:" target="EFd-2V-VDr" id="ig3-IP-10P"/>
+                                </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xu-qcX" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="40" height="40"/>
@@ -154,10 +157,10 @@
                     </view>
                     <connections>
                         <outlet property="albumButton" destination="bGX-Xu-qcX" id="OcA-1K-C2x"/>
-                        <outlet property="channelButton" destination="joT-Zl-g1G" id="gTn-MF-bhK"/>
                         <outlet property="lyricButton" destination="MIz-8u-tvn" id="XLM-5C-TZt"/>
                         <outlet property="playButton" destination="38w-9S-N6N" id="FRV-FA-87i"/>
-                        <outlet property="playlistButton" destination="GOH-4D-YMX" id="8Ko-ra-oJo"/>
+                        <outlet property="playModeButton" destination="joT-Zl-g1G" id="JvN-1C-D5W"/>
+                        <outlet property="playlistButton" destination="GOH-4D-YMX" id="6Mf-0e-5PF"/>
                         <outlet property="volumeButton" destination="IA9-in-mjz" id="yfb-gO-Cgc"/>
                     </connections>
                 </viewController>
@@ -173,6 +176,6 @@
         <image name="MiniPlayerPlayButton" width="29" height="29"/>
         <image name="MiniPlayerRewindButton" width="10" height="10"/>
         <image name="MiniPlayerVolumeButtonPressedDark" width="16" height="16"/>
-        <image name="TouchBarPlayModeShuffle" width="30" height="30"/>
+        <image name="TouchBarPlayModeRepeatAll" width="30" height="30"/>
     </resources>
 </document>
