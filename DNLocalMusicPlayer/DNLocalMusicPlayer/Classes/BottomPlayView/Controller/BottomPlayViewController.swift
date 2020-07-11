@@ -106,19 +106,19 @@ extension BottomPlayViewController {
 //MARK: - KVO & Notification
 extension BottomPlayViewController {
     func setupKVOAndNotication() {
-        //MARK: 监听 WindowManager.share.playViewIsShow
+        //MARK: playViewIsShow
         _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
             .subscribe { [weak self] (change) in
-            if let isPlaying = change.element {
-                if isPlaying == true {
-                    self?.playButton.image = NSImage.init(named: "MiniPlayerPauseButton")
-                } else {
-                    self?.playButton.image = NSImage.init(named: "MiniPlayerPlayButton")
+                if let isPlaying = change.element {
+                    if isPlaying == true {
+                        self?.playButton.image = NSImage.init(named: "MiniPlayerPauseButton")
+                    } else {
+                        self?.playButton.image = NSImage.init(named: "MiniPlayerPlayButton")
+                    }
                 }
-            }
         }
         
-        //MARK: 监听 NotificationCenter kSwitchPlayModeNotificationName
+        //MARK: playMode
         _ = NotificationCenter.default.rx
             .notification(kSwitchPlayModeNotificationName, object: nil)
             .subscribe{ [weak self] (event) in
@@ -130,6 +130,18 @@ extension BottomPlayViewController {
                 } else {
                     self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeShuffle")
                 }
-            }
+        }
+        
+        //MARK: currentSong
+        _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
+            .subscribe({  [weak self] (change) in
+                if let currentSong = change.element {
+                    var image:NSImage = NSImage(named: "MiniPlayerMiniAlbumDefault")!
+                    if let imageData = currentSong?.artworkData {
+                        image = NSImage(data: imageData) ?? image
+                    }
+                    self?.albumButton.image = image
+                }
+        })
     }
 }

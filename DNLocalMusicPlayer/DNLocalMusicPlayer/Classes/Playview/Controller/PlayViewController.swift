@@ -17,6 +17,7 @@ class PlayViewController: BaseViewController {
         super.viewDidLoad()
         // Do view setup here.
         setupUI()
+        setupKVO()
     }
 }
 
@@ -28,5 +29,22 @@ extension PlayViewController {
         artworkImageView.wantsLayer = true
         artworkImageView.layer?.cornerRadius = artworkImageView.bounds.size.width / 2
         artworkImageView.layer?.masksToBounds = true
+    }
+}
+
+//MARK: - KVO
+extension PlayViewController {
+    func setupKVO() {
+        //MARK: currentSong
+        _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
+            .subscribe({  [weak self] (change) in
+                if let currentSong = change.element {
+                    var image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
+                    if let imageData = currentSong?.artworkData {
+                        image = NSImage(data: imageData) ?? image
+                    }
+                    self?.artworkImageView.image = image
+                }
+        })
     }
 }

@@ -19,7 +19,7 @@ class PlayerManager: NSObject {
     //MARK: player
     var player: AVAudioPlayer?
     //MARK: 当前歌曲
-    var currentSong: Song?
+    @objc dynamic var currentSong: Song?
     //MARK: 当前播放索引
     var currentIndex: Int? = nil
     //MARK: 音量

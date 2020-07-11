@@ -23,12 +23,12 @@
                                                 <rect key="frame" x="100" y="130" width="300" height="300"/>
                                                 <subviews>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Cj-BJ-oqT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                        <rect key="frame" x="50" y="50" width="200" height="200"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="8Cj-BJ-oqT" secondAttribute="height" id="mNH-oh-ekY"/>
-                                                            <constraint firstAttribute="width" constant="300" id="xvB-j6-zbv"/>
+                                                            <constraint firstAttribute="width" constant="200" id="xvB-j6-zbv"/>
                                                         </constraints>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MiniPlayerLargeAlbumDefault" id="GVk-Fk-jbn"/>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="MiniPlayerLargeAlbumDefault" id="GVk-Fk-jbn"/>
                                                     </imageView>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1wG-1A-k6v" userLabel="covercircle Image View">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -36,7 +36,7 @@
                                                             <constraint firstAttribute="width" secondItem="1wG-1A-k6v" secondAttribute="height" multiplier="1:1" id="AD2-WO-NEq"/>
                                                             <constraint firstAttribute="width" constant="300" id="YUa-vy-q4m"/>
                                                         </constraints>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="covercircle" id="Bcl-gn-kfM"/>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="axesIndependently" image="covercircle" id="Bcl-gn-kfM"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
