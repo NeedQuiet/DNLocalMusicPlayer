@@ -39,6 +39,10 @@ class BottomPlayViewController: BaseViewController {
     //MARK: 歌曲时间
     @IBOutlet weak var songTime: NSTextField!
     
+    //MARK: 播放进度
+    var songTimer:Timer?
+    var songProgress: Double = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -132,12 +136,14 @@ extension BottomPlayViewController {
     func setupKVOAndNotication() {
         //MARK: isPlaying
         _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
-            .subscribe { [weak self] (change) in
+            .subscribe { [unowned self] (change) in
                 if let isPlaying = change.element {
                     if isPlaying == true {
-                        self?.playButton.image = NSImage.init(named: "MiniPlayerPauseButton")
+                        self.playButton.image = NSImage.init(named: "MiniPlayerPauseButton")
+                        self.startTimer()
                     } else {
-                        self?.playButton.image = NSImage.init(named: "MiniPlayerPlayButton")
+                        self.playButton.image = NSImage.init(named: "MiniPlayerPlayButton")
+                        self.stopTimer()
                     }
                 }
         }
@@ -187,5 +193,39 @@ extension BottomPlayViewController {
     //MARK: 设置时间显示
     private func setTime(currentTime:String = "00:00" ,totalTime:String = "00:00") {
         songTime.stringValue = "\(currentTime) / \(totalTime)"
+    }
+    
+    //MARK: 时间 & 进度刷新
+    private func startTimer() {
+        stopTimer()
+        songTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
+    }
+    
+    private func stopTimer() {
+        songTimer?.invalidate()
+        songTimer = nil
+    }
+    
+    @objc private func updateProgress() {
+        guard let currentSong = PlayerManager.share.currentSong else { return }
+        guard let player = PlayerManager.share.player else { return }
+        // 设置时间label
+        let totalTimeInterval = currentSong.timeInterval
+        let formatter = DateComponentsFormatter()
+        if Int(totalTimeInterval) > 3600 {
+            formatter.allowedUnits = [.hour ,.minute, .second]
+        } else {
+            formatter.allowedUnits = [.minute, .second]
+        }
+        formatter.zeroFormattingBehavior = .pad
+        
+        let currentTime:TimeInterval = player.currentTime
+        let currentTimeString:String = "\(formatter.string(from: currentTime)!)"
+        let totalTime = currentSong.totalTime
+        setTime(currentTime: currentTimeString, totalTime: totalTime)
+        
+        //TODO: 设置进度条
+        songProgress = currentTime / totalTimeInterval * 100
+        print("当前进度: \(songProgress)%")
     }
 }

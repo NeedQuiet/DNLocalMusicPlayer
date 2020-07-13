@@ -31,7 +31,6 @@ class Song: Object {
     @objc dynamic var totalTime: String {
         get {
             return Song.formatter.string(from: timeInterval)!
-            
         }
     }
     
