@@ -57,52 +57,100 @@
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="gK2-lK-Emq">
                                         <rect key="frame" x="500" y="0.0" width="500" height="560"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMO-sJ-MA1">
-                                                <rect key="frame" x="66" y="481" width="372" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" title="歌名" id="P39-9o-3ZU">
-                                                    <font key="font" usesAppearanceFont="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RMO-sJ-MA1">
+                                                <rect key="frame" x="-2" y="492" width="374" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="370" id="wJX-IG-KYh"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" title="无" id="P39-9o-3ZU">
+                                                    <font key="font" metaFont="system" size="24"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Py-LL-gtJ">
-                                                <rect key="frame" x="66" y="450" width="41" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Py-LL-gtJ">
+                                                <rect key="frame" x="-2" y="457" width="38" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="专辑：" id="66k-cC-lTg">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="label" size="12"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BIq-I2-q4L">
-                                                <rect key="frame" x="185" y="450" width="41" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BIq-I2-q4L">
+                                                <rect key="frame" x="102" y="457" width="38" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="歌手：" id="95u-Jr-ras">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="label" size="12"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="At0-pB-nYK">
-                                                <rect key="frame" x="306" y="450" width="41" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="At0-pB-nYK">
+                                                <rect key="frame" x="206" y="457" width="38" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="来源：" id="qd8-dq-YBg">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="label" size="12"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-Pj-oi1" userLabel="albumButton" customClass="DNTitleButton" customModule="DN音乐" customModuleProvider="target">
+                                                <rect key="frame" x="39" y="457" width="60" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Fqr-fe-UUn"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="tA9-5f-9LJ"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="roundRect" title="无" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="8Su-WP-woV">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="label" size="12"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c2n-lm-ffK" userLabel="artistButton" customClass="DNTitleButton" customModule="DN音乐" customModuleProvider="target">
+                                                <rect key="frame" x="143" y="457" width="60" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="8Pk-sA-99F"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="DZX-H8-TWw"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="roundRect" title="无" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="qx0-IS-rtf">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="label" size="12"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dyZ-vl-BxI" userLabel="fromButton" customClass="DNTitleButton" customModule="DN音乐" customModuleProvider="target">
+                                                <rect key="frame" x="247" y="457" width="60" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="mys-bY-MDF"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="qTz-PS-UKO"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="roundRect" title="无" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="Lt2-Yc-Qye">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="label" size="12"/>
+                                                </buttonCell>
+                                            </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3HF-fH-mfg">
-                                                <rect key="frame" x="190" y="265" width="31" height="16"/>
+                                                <rect key="frame" x="114" y="255" width="58" height="16"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" title="歌词" id="pQx-wQ-o27">
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="暂无歌词" id="pQx-wQ-o27">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="8Py-LL-gtJ" firstAttribute="top" secondItem="RMO-sJ-MA1" secondAttribute="bottom" constant="20" id="2g8-7n-maG"/>
+                                            <constraint firstItem="dyZ-vl-BxI" firstAttribute="centerY" secondItem="At0-pB-nYK" secondAttribute="centerY" id="69A-ox-RCv"/>
+                                            <constraint firstItem="RMO-sJ-MA1" firstAttribute="top" secondItem="gK2-lK-Emq" secondAttribute="top" constant="40" id="Hzx-t3-1fX"/>
+                                            <constraint firstItem="c2n-lm-ffK" firstAttribute="centerY" secondItem="BIq-I2-q4L" secondAttribute="centerY" id="Jwj-dG-2MS"/>
+                                            <constraint firstItem="xJN-Pj-oi1" firstAttribute="leading" secondItem="8Py-LL-gtJ" secondAttribute="trailing" constant="5" id="QNB-Rl-y1c"/>
+                                            <constraint firstItem="At0-pB-nYK" firstAttribute="leading" secondItem="c2n-lm-ffK" secondAttribute="trailing" constant="5" id="SEg-TM-chO"/>
+                                            <constraint firstItem="8Py-LL-gtJ" firstAttribute="leading" secondItem="gK2-lK-Emq" secondAttribute="leading" id="UEG-pZ-xEO"/>
+                                            <constraint firstItem="dyZ-vl-BxI" firstAttribute="leading" secondItem="At0-pB-nYK" secondAttribute="trailing" constant="5" id="e0E-Di-Id8"/>
+                                            <constraint firstItem="xJN-Pj-oi1" firstAttribute="centerY" secondItem="8Py-LL-gtJ" secondAttribute="centerY" id="eBN-am-OCx"/>
+                                            <constraint firstItem="BIq-I2-q4L" firstAttribute="leading" secondItem="xJN-Pj-oi1" secondAttribute="trailing" constant="5" id="fbZ-fT-o7x"/>
+                                            <constraint firstItem="RMO-sJ-MA1" firstAttribute="leading" secondItem="gK2-lK-Emq" secondAttribute="leading" id="nzj-4U-BTF"/>
+                                            <constraint firstItem="At0-pB-nYK" firstAttribute="centerY" secondItem="8Py-LL-gtJ" secondAttribute="centerY" id="rJr-GF-5dk"/>
+                                            <constraint firstItem="BIq-I2-q4L" firstAttribute="centerY" secondItem="8Py-LL-gtJ" secondAttribute="centerY" id="wqc-3c-GkG"/>
+                                            <constraint firstItem="c2n-lm-ffK" firstAttribute="leading" secondItem="BIq-I2-q4L" secondAttribute="trailing" constant="5" id="zU0-FK-tou"/>
+                                        </constraints>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -125,8 +173,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="albumButton" destination="xJN-Pj-oi1" id="TCM-Fd-04l"/>
+                        <outlet property="artistButton" destination="c2n-lm-ffK" id="9md-g5-Pzs"/>
                         <outlet property="artworkBackView" destination="3V9-Eg-LI2" id="fI2-Va-BJA"/>
                         <outlet property="artworkImageView" destination="8Cj-BJ-oqT" id="jge-8w-HPH"/>
+                        <outlet property="fromButton" destination="dyZ-vl-BxI" id="idq-PI-zcf"/>
+                        <outlet property="songTitle" destination="RMO-sJ-MA1" id="jLW-Fu-rgg"/>
                     </connections>
                 </viewController>
                 <customObject id="TSE-2L-tQZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

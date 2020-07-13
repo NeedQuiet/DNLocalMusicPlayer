@@ -17,7 +17,7 @@ class PlayerManager: NSObject {
     //MARK: 播放状态
     @objc dynamic var isPlaying: Bool = false
     //MARK: player
-    var player: AVAudioPlayer?
+    @objc dynamic var player: AVAudioPlayer?
     //MARK: 当前歌曲
     @objc dynamic var currentSong: Song?
     //MARK: 当前播放索引
@@ -46,13 +46,18 @@ extension PlayerManager {
     func play(withIndex index: Int?) {
         _ = checkCurrentSongIsEmpty()
         
-        // index有值，说明是选中歌曲播放的
-        if index != nil && index! >= 0 {
+        if index == nil { // index没有值：底部bottomBar点击的播放
+            if player == nil { // player为空：播放第0首
+                playCurrentSong()
+            } else { // 不为空：是从pause状态，恢复为play状态，直接play即可
+                isPlaying = true
+                player?.play()
+            }
+        } else { // index有值：选中歌曲播放
             currentIndex = index
             currentSong = currentPlaylist[currentIndex!]
+            playCurrentSong()
         }
-        
-        playCurrentSong()
     }
     //MARK: 暂停"
     func pause() {

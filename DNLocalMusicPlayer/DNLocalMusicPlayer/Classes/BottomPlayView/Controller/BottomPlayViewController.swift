@@ -12,15 +12,15 @@ import RxCocoa
 class BottomPlayViewController: BaseViewController {
     
     //MARK: 专辑图
-    @IBOutlet weak var albumButton: CustomButton!
+    @IBOutlet weak var albumButton: DNButton!
     //MARK: 播放模式
-    @IBOutlet weak var playModeButton: CustomButton!
+    @IBOutlet weak var playModeButton: DNButton!
     //MARK: 播放列表
-    @IBOutlet weak var playlistButton: CustomButton!
+    @IBOutlet weak var playlistButton: DNButton!
     //MARK: 歌词
-    @IBOutlet weak var lyricButton: CustomButton!
+    @IBOutlet weak var lyricButton: DNButton!
     //MARK: 声音
-    @IBOutlet weak var volumeButton: CustomButton!
+    @IBOutlet weak var volumeButton: DNButton!
     private lazy var volumePopover:NSPopover = {
         let popover = NSPopover()
         popover.contentViewController = VolumePopover.init()
@@ -29,7 +29,15 @@ class BottomPlayViewController: BaseViewController {
     }()
     
     //MARK: 播放暂停
-    @IBOutlet weak var playButton: CustomButton!
+    @IBOutlet weak var playButton: DNButton!
+    //MARK: 歌名
+    @IBOutlet weak var songTitleButton: DNTitleButton!
+    //MARK: 间隔线
+    @IBOutlet weak var partingLine: NSTextField!
+    //MARK: 歌手
+    @IBOutlet weak var songArtistButton: DNTitleButton!
+    //MARK: 歌曲时间
+    @IBOutlet weak var songTime: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +45,6 @@ class BottomPlayViewController: BaseViewController {
         setupUI()
         setupKVOAndNotication()
     }
-
 }
 
 //MARK: - UI设置
@@ -46,6 +53,14 @@ extension BottomPlayViewController {
         setBackgroundColor(r: 28, g: 28, b: 28)
         albumButton.image = NSImage.init(named: "MiniPlayerMiniAlbumDefault")
         albumButton.setCornerRadius(radius: 4)
+        
+        songTitleButton.defaultColor = kDefaultColor
+        songTitleButton.hoverColor = kHighlightColor
+        
+        songArtistButton.defaultColor = kLightColor
+        songArtistButton.hoverColor = kHighlightColor
+        
+        partingLine.isHidden = true
     }
 }
 
@@ -101,12 +116,21 @@ extension BottomPlayViewController {
     @IBAction func playModeButtonClick(_ sender: Any) {
         PlayerManager.share.switchPlayMode()
     }
+    
+    //MARK: 歌名
+    @IBAction func songTitleClick(_ sender: Any) {
+        let playViewIsShow = WindowManager.share.playViewIsShow
+        WindowManager.share.showPlayView(show: !playViewIsShow)
+    }
+    
+    //MARK: 歌手
+    @IBAction func songArtistClick(_ sender: Any) {}
 }
 
 //MARK: - KVO & Notification
 extension BottomPlayViewController {
     func setupKVOAndNotication() {
-        //MARK: playViewIsShow
+        //MARK: isPlaying
         _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
             .subscribe { [weak self] (change) in
                 if let isPlaying = change.element {
@@ -134,14 +158,34 @@ extension BottomPlayViewController {
         
         //MARK: currentSong
         _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
-            .subscribe({  [weak self] (change) in
+            .subscribe({  [unowned self] (change) in
                 if let currentSong = change.element {
-                    var image:NSImage = NSImage(named: "MiniPlayerMiniAlbumDefault")!
-                    if let imageData = currentSong?.artworkData {
-                        image = NSImage(data: imageData) ?? image
-                    }
-                    self?.albumButton.image = image
+                    guard currentSong != nil else {  return }
+                    self.refreshUI(withSong: currentSong!)
                 }
         })
+    }
+}
+
+//MARK: - Private
+extension BottomPlayViewController {
+    //MARK: 根据歌曲刷新页面信息
+    private func refreshUI(withSong currentSong: Song) {
+        var image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
+        if let imageData = currentSong.artworkData {
+            image = NSImage(data: imageData) ?? image
+        }
+        albumButton.image = image
+        
+        songTitleButton.title = currentSong.album.count > 0 ? currentSong.album : ""
+        songArtistButton.title = currentSong.artist.count > 0 ? currentSong.artist : ""
+        partingLine.isHidden = !(currentSong.artist.count > 0)
+        
+        setTime(currentTime: "00:00", totalTime: currentSong.totalTime)
+    }
+    
+    //MARK: 设置时间显示
+    private func setTime(currentTime:String = "00:00" ,totalTime:String = "00:00") {
+        songTime.stringValue = "\(currentTime) / \(totalTime)"
     }
 }

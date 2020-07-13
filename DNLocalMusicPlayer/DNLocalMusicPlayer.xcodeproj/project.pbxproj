@@ -105,7 +105,7 @@
 		F51F8A5D24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0E24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff */; };
 		F51F8A5E24AEDC550066E920 /* MiniPlayerCloseButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */; };
 		F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */; };
-		F51F8A6224AEF8670066E920 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* CustomButton.swift */; };
+		F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* DNButton.swift */; };
 		F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC424B87E4C00017FBD /* SongManager.swift */; };
 		F55C3BC724B87E8700017FBD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC624B87E8700017FBD /* Song.swift */; };
 		F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99324AF3730008FC9C9 /* VolumePopover.swift */; };
@@ -114,6 +114,8 @@
 		F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99B24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift */; };
 		F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99F24AF4B4B008FC9C9 /* Constants.swift */; };
 		F56F6A6D24B9C03F005D550A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56F6A6C24B9C03F005D550A /* PlayerManager.swift */; };
+		F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58574EB24BC4EC800C7E957 /* Utility.swift */; };
+		F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
 		F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */; };
@@ -225,7 +227,7 @@
 		F51F8A0E24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerPlaylistButtonDisabled.tiff; sourceTree = "<group>"; };
 		F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButton.tiff; sourceTree = "<group>"; };
 		F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressed.tiff; sourceTree = "<group>"; };
-		F51F8A6124AEF8670066E920 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F51F8A6124AEF8670066E920 /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
 		F55C3BC424B87E4C00017FBD /* SongManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongManager.swift; sourceTree = "<group>"; };
 		F55C3BC624B87E8700017FBD /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		F560F99324AF3730008FC9C9 /* VolumePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumePopover.swift; sourceTree = "<group>"; };
@@ -235,6 +237,8 @@
 		F560F99F24AF4B4B008FC9C9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F56F6A6724B98739005D550A /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56F6A6C24B9C03F005D550A /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		F58574EB24BC4EC800C7E957 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleButton.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
 		F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
@@ -453,6 +457,7 @@
 			children = (
 				F51F89AC24ADC0750066E920 /* Extension */,
 				F560F99F24AF4B4B008FC9C9 /* Constants.swift */,
+				F58574EB24BC4EC800C7E957 /* Utility.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -587,7 +592,8 @@
 		F51F8A6024AEF8400066E920 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F51F8A6124AEF8670066E920 /* CustomButton.swift */,
+				F51F8A6124AEF8670066E920 /* DNButton.swift */,
+				F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */,
 				F5CFA52324B40748001D1343 /* DNBaseView.swift */,
 				F51C100624B3220B0079DD35 /* DNTitleBarView.swift */,
 				F51C100224B31CBC0079DD35 /* CustomWindow.swift */,
@@ -844,7 +850,9 @@
 				F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */,
 				F56F6A6D24B9C03F005D550A /* PlayerManager.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,
-				F51F8A6224AEF8670066E920 /* CustomButton.swift in Sources */,
+				F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */,
+				F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */,
+				F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */,
 				F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
 				F55C3BC724B87E8700017FBD /* Song.swift in Sources */,

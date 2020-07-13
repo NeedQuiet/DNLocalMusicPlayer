@@ -1,5 +1,5 @@
 //
-//  CustomButton.swift
+//  DNButton.swift
 //  DNLocalMusicPlayer
 //
 //  Created by 许一宁 on 2020/7/3.
@@ -8,8 +8,9 @@
 
 import Cocoa
 
-class CustomButton: NSButton {
+class DNButton: NSButton {
     private var hover: Bool = false
+    var areaView:NSView = NSView()
     
     override func draw(_ dirtyRect: NSRect) {
         // 禁用点击高亮
@@ -24,7 +25,7 @@ class CustomButton: NSButton {
 }
 
 //MARK: - 类拓展方法
-extension CustomButton {
+extension DNButton {
     //MARK: 设置圆角
     func setCornerRadius (radius: CGFloat) {
         self.wantsLayer = true
@@ -34,13 +35,13 @@ extension CustomButton {
 }
 
 //MARK: - 鼠标监听
-extension CustomButton {
+extension DNButton {
     //MARK: NSTrackingArea对象并关联View
     func addTrackingAreaView() {
-        let view = NSView.init(frame: bounds)
-        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: bounds, options: [.mouseEnteredAndExited,.activeInKeyWindow], owner: view, userInfo: nil)
-        view.addTrackingArea(trackingArea)
-        self .addSubview(view)
+        areaView = NSView.init(frame: bounds)
+        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: bounds, options: [.mouseEnteredAndExited,.activeInKeyWindow], owner: areaView, userInfo: nil)
+        areaView.addTrackingArea(trackingArea)
+        self.addSubview(areaView)
     }
     //MARK: 鼠标Hover
     override func mouseEntered(with event: NSEvent) {

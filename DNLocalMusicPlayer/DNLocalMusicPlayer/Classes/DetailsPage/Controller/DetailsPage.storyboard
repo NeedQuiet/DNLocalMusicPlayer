@@ -16,11 +16,11 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8k-S0-AKm">
                                 <rect key="frame" x="0.0" y="0.0" width="700" height="300"/>
                                 <clipView key="contentView" id="NKS-x4-ZYj">
-                                    <rect key="frame" x="1" y="0.0" width="698" height="299"/>
+                                    <rect key="frame" x="1" y="0.0" width="698" height="284"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Y21-E1-UJH" viewBased="YES" id="8b7-81-efT">
-                                            <rect key="frame" x="0.0" y="0.0" width="1002" height="274"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1002" height="259"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -155,7 +155,7 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         <connections>
-                                                                            <binding destination="Tmh-hS-nvD" name="value" keyPath="objectValue.timeString" id="HCy-qc-CiZ"/>
+                                                                            <binding destination="Tmh-hS-nvD" name="value" keyPath="objectValue.totalTime" id="1TD-O5-mUl"/>
                                                                         </connections>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -173,8 +173,8 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="teD-4X-A4J">
-                                    <rect key="frame" x="1" y="283" width="698" height="16"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.99342105263157898" horizontal="YES" id="teD-4X-A4J">
+                                    <rect key="frame" x="1" y="284" width="698" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="piB-QK-9zh">

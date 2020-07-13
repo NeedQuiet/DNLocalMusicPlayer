@@ -17,7 +17,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="mzx-fj-5Mb">
                                 <rect key="frame" x="428" y="0.0" width="144" height="60"/>
                                 <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="38w-9S-N6N" userLabel="播放暂停" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="38w-9S-N6N" userLabel="播放暂停" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="51" y="9" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="ZzC-x9-Wko"/>
@@ -31,7 +31,7 @@
                                             <action selector="playButtonclick:" target="EFd-2V-VDr" id="HVb-TW-rof"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-zT-1RI" userLabel="上一曲" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-zT-1RI" userLabel="上一曲" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="9" y="22" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Nzy-zT-1RI" secondAttribute="height" multiplier="1:1" id="R5l-DD-rWc"/>
@@ -45,7 +45,7 @@
                                             <action selector="previousClick:" target="EFd-2V-VDr" id="jus-6A-HXp"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="XtM-NC-1rP" userLabel="下一曲" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="XtM-NC-1rP" userLabel="下一曲" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="119" y="22" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="16" id="bQa-ri-S5T"/>
@@ -71,7 +71,7 @@
                                     <constraint firstItem="XtM-NC-1rP" firstAttribute="width" secondItem="XtM-NC-1rP" secondAttribute="height" multiplier="1:1" id="xah-8i-7bW"/>
                                 </constraints>
                             </customView>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IA9-in-mjz" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IA9-in-mjz" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="954" y="22" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IA9-in-mjz" secondAttribute="height" multiplier="1:1" id="XmZ-Xc-Eem"/>
@@ -85,7 +85,7 @@
                                     <action selector="volumeButtonClick:" target="EFd-2V-VDr" id="QNq-vR-dLh"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MIz-8u-tvn" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MIz-8u-tvn" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="918" y="22" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MIz-8u-tvn" secondAttribute="height" multiplier="1:1" id="qgD-f2-zFC"/>
@@ -96,7 +96,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="GOH-4D-YMX" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="GOH-4D-YMX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="880" y="21" width="18" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="18" id="Sc7-CK-6gN"/>
@@ -110,7 +110,7 @@
                                     <action selector="playlistButtonClick:" target="EFd-2V-VDr" id="RcC-B6-P1W"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="joT-Zl-g1G" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="joT-Zl-g1G" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="840" y="20" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="9jZ-dg-17c"/>
@@ -124,7 +124,7 @@
                                     <action selector="playModeButtonClick:" target="EFd-2V-VDr" id="ig3-IP-10P"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xu-qcX" customClass="CustomButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xu-qcX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bGX-Xu-qcX" secondAttribute="height" multiplier="1:1" id="L6l-dI-WaZ"/>
@@ -138,19 +138,67 @@
                                     <action selector="albumButtonClick:" target="EFd-2V-VDr" id="Ood-uN-s1l"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gfQ-yZ-6CE" userLabel="titleButton" customClass="DNTitleButton" customModule="DN音乐" customModuleProvider="target">
+                                <rect key="frame" x="60" y="34" width="4" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="180" id="wat-W1-4Rs"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="left" state="on" imageScaling="proportionallyDown" inset="2" id="utF-Rh-31k">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name="HelveticaNeue"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="songTitleClick:" target="EFd-2V-VDr" id="NhQ-g3-XfJ"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UC5-8G-yog">
+                                <rect key="frame" x="64" y="33" width="11" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="-" id="nLf-2a-Iq4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4dH-5v-pby" customClass="DNTitleButton" customModule="DN音乐" customModuleProvider="target">
+                                <rect key="frame" x="75" y="34" width="4" height="14"/>
+                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="left" state="on" imageScaling="proportionallyDown" inset="2" id="SYP-kC-per">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="11" name="HelveticaNeue"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="songArtistClick:" target="EFd-2V-VDr" id="fAn-aU-kDF"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8bQ-DU-ISb">
+                                <rect key="frame" x="60" y="12" width="77" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="00:00 / 00:00" id="Ana-MJ-b7m">
+                                    <font key="font" metaFont="menu" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="joT-Zl-g1G" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="0re-FN-mor"/>
                             <constraint firstItem="MIz-8u-tvn" firstAttribute="leading" secondItem="GOH-4D-YMX" secondAttribute="trailing" constant="20" id="2bY-C2-4ef"/>
                             <constraint firstItem="bGX-Xu-qcX" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="6GP-P1-uqA"/>
+                            <constraint firstItem="UC5-8G-yog" firstAttribute="centerY" secondItem="gfQ-yZ-6CE" secondAttribute="centerY" id="6Yf-fF-e9F"/>
+                            <constraint firstItem="gfQ-yZ-6CE" firstAttribute="top" secondItem="bc9-2b-yiE" secondAttribute="top" constant="12" id="7eh-sF-SAK"/>
                             <constraint firstAttribute="trailing" secondItem="IA9-in-mjz" secondAttribute="trailing" constant="30" id="7fp-Yy-5ok"/>
                             <constraint firstItem="MIz-8u-tvn" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="8Ez-uX-N4H"/>
+                            <constraint firstItem="gfQ-yZ-6CE" firstAttribute="leading" secondItem="bGX-Xu-qcX" secondAttribute="trailing" constant="10" id="Aqs-r4-iMj"/>
+                            <constraint firstAttribute="bottom" secondItem="8bQ-DU-ISb" secondAttribute="bottom" constant="12" id="BJ1-di-fg4"/>
+                            <constraint firstItem="4dH-5v-pby" firstAttribute="leading" secondItem="UC5-8G-yog" secondAttribute="trailing" constant="2" id="DFV-Oc-wJJ"/>
                             <constraint firstAttribute="bottom" secondItem="mzx-fj-5Mb" secondAttribute="bottom" id="Ik4-r8-bpE"/>
+                            <constraint firstItem="UC5-8G-yog" firstAttribute="leading" secondItem="gfQ-yZ-6CE" secondAttribute="trailing" constant="2" id="Sij-YP-luh"/>
                             <constraint firstItem="bGX-Xu-qcX" firstAttribute="leading" secondItem="bc9-2b-yiE" secondAttribute="leading" constant="10" id="e6Q-FU-ZMr"/>
                             <constraint firstItem="GOH-4D-YMX" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="iOv-Ey-44f"/>
+                            <constraint firstItem="4dH-5v-pby" firstAttribute="centerY" secondItem="gfQ-yZ-6CE" secondAttribute="centerY" id="oV6-Tk-QN0"/>
                             <constraint firstItem="GOH-4D-YMX" firstAttribute="leading" secondItem="joT-Zl-g1G" secondAttribute="trailing" constant="20" id="tbv-lL-eqO"/>
                             <constraint firstItem="mzx-fj-5Mb" firstAttribute="centerX" secondItem="bc9-2b-yiE" secondAttribute="centerX" id="vMn-cB-9uL"/>
+                            <constraint firstItem="8bQ-DU-ISb" firstAttribute="leading" secondItem="gfQ-yZ-6CE" secondAttribute="leading" constant="2" id="vP1-vZ-qha"/>
                             <constraint firstItem="mzx-fj-5Mb" firstAttribute="top" secondItem="bc9-2b-yiE" secondAttribute="top" id="vp6-HI-RU2"/>
+                            <constraint firstItem="mzx-fj-5Mb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4dH-5v-pby" secondAttribute="trailing" constant="40" id="vyn-oK-t4F"/>
                             <constraint firstItem="IA9-in-mjz" firstAttribute="leading" secondItem="MIz-8u-tvn" secondAttribute="trailing" constant="20" id="x3i-ud-IN2"/>
                             <constraint firstItem="IA9-in-mjz" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="ywE-dC-63J"/>
                         </constraints>
@@ -158,9 +206,13 @@
                     <connections>
                         <outlet property="albumButton" destination="bGX-Xu-qcX" id="OcA-1K-C2x"/>
                         <outlet property="lyricButton" destination="MIz-8u-tvn" id="XLM-5C-TZt"/>
+                        <outlet property="partingLine" destination="UC5-8G-yog" id="LkB-GX-cx2"/>
                         <outlet property="playButton" destination="38w-9S-N6N" id="FRV-FA-87i"/>
                         <outlet property="playModeButton" destination="joT-Zl-g1G" id="JvN-1C-D5W"/>
                         <outlet property="playlistButton" destination="GOH-4D-YMX" id="6Mf-0e-5PF"/>
+                        <outlet property="songArtistButton" destination="4dH-5v-pby" id="1lh-RE-eL5"/>
+                        <outlet property="songTime" destination="8bQ-DU-ISb" id="3k8-p3-25A"/>
+                        <outlet property="songTitleButton" destination="gfQ-yZ-6CE" id="dbf-bV-vK8"/>
                         <outlet property="volumeButton" destination="IA9-in-mjz" id="yfb-gO-Cgc"/>
                     </connections>
                 </viewController>

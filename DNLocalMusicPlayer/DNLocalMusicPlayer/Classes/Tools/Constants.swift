@@ -7,14 +7,18 @@
 //
 
 import Foundation
+import Cocoa
 
-//enum BottomPVNotifications: String {
-//    case albumClick = "changePlayViewState"
-//    case playlistClick = "changeCurrentPlayListViewState"
-//}
+//MARK: - ************* 颜色 *************
+let kDefaultColor:NSColor = NSColor.init(r: 211, g: 211, b: 211)
+let kLightColor:NSColor = NSColor.init(r: 146, g: 146, b: 146)
+let kHighlightColor:NSColor = NSColor.init(r: 255, g: 255, b: 255)
 
+//MARK: - ************* 通知 *************
+//MARK: 播放模式改变
 let kSwitchPlayModeNotificationName: NSNotification.Name = NSNotification.Name(rawValue: "kSwitchPlayModeNotificationName")
 
+//MARK: - ************* 播控 *************
 //MARK: 上/下一曲
 enum DNPlayControlType: Int {
     case play_previous_song
