@@ -226,6 +226,6 @@ extension BottomPlayViewController {
         
         //TODO: 设置进度条
         songProgress = currentTime / totalTimeInterval * 100
-        print("当前进度: \(songProgress)%")
+//        print("当前进度: \(songProgress)%")
     }
 }

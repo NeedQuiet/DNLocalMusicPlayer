@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="l0I-KD-Eeo">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,20 +11,20 @@
             <objects>
                 <viewController id="l0I-KD-Eeo" customClass="PlayListViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Sl6-tp-E58">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="608"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="641"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Le-Yg-KSm">
-                                <rect key="frame" x="0.0" y="0.0" width="235" height="608"/>
-                                <clipView key="contentView" copiesOnScroll="NO" id="Pfa-KM-orS">
-                                    <rect key="frame" x="1" y="1" width="233" height="606"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Le-Yg-KSm">
+                                <rect key="frame" x="0.0" y="50" width="235" height="591"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Pfa-KM-orS">
+                                    <rect key="frame" x="1" y="1" width="233" height="589"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="AQs-e0-WUd" id="Kgo-U3-oxe">
-                                            <rect key="frame" x="0.0" y="0.0" width="233" height="606"/>
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="AQs-e0-WUd" id="Kgo-U3-oxe">
+                                            <rect key="frame" x="0.0" y="0.0" width="233" height="589"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="230" minWidth="16" maxWidth="1000" id="AQs-e0-WUd">
@@ -45,7 +46,7 @@
                                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iYN-ZR-hUU">
                                                                     <rect key="frame" x="0.0" y="1" width="230" height="14"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="HEADER CELL" id="sm8-3r-xh1">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Library" id="sm8-3r-xh1">
                                                                         <font key="font" metaFont="smallSystemBold"/>
                                                                         <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -68,7 +69,7 @@
                                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuL-oZ-hmT">
                                                                     <rect key="frame" x="25" y="0.0" width="205" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="fX0-5G-ali">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Playlist" id="fX0-5G-ali">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -83,9 +84,13 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="l0I-KD-Eeo" id="A0F-DU-tgM"/>
+                                                <outlet property="delegate" destination="l0I-KD-Eeo" id="eXc-1A-4NI"/>
+                                            </connections>
                                         </outlineView>
                                     </subviews>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="04e-Rp-bKR">
                                     <rect key="frame" x="1" y="509" width="218" height="15"/>
@@ -96,14 +101,29 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z4y-Gj-WLE">
+                                <rect key="frame" x="92" y="17" width="51" height="20"/>
+                                <buttonCell key="cell" type="smallSquare" title="添加歌单" bezelStyle="smallSquare" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6ye-8w-iiK">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu" size="11"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addPlaylist:" target="l0I-KD-Eeo" id="WLR-4W-afQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="1Le-Yg-KSm" firstAttribute="leading" secondItem="Sl6-tp-E58" secondAttribute="leading" id="6sY-OH-bAL"/>
                             <constraint firstItem="1Le-Yg-KSm" firstAttribute="top" secondItem="Sl6-tp-E58" secondAttribute="top" id="Nt1-Wi-4Gd"/>
-                            <constraint firstAttribute="bottom" secondItem="1Le-Yg-KSm" secondAttribute="bottom" id="Xnw-Ax-98B"/>
+                            <constraint firstAttribute="bottom" secondItem="1Le-Yg-KSm" secondAttribute="bottom" constant="50" id="Xnw-Ax-98B"/>
+                            <constraint firstItem="Z4y-Gj-WLE" firstAttribute="centerX" secondItem="Sl6-tp-E58" secondAttribute="centerX" id="aOb-gA-NhA"/>
+                            <constraint firstAttribute="bottom" secondItem="Z4y-Gj-WLE" secondAttribute="bottom" constant="18" id="s2c-YO-9hu"/>
                             <constraint firstAttribute="trailing" secondItem="1Le-Yg-KSm" secondAttribute="trailing" id="wWG-kZ-g56"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="outlineView" destination="Kgo-U3-oxe" id="QHM-G7-Bty"/>
+                    </connections>
                 </viewController>
                 <customObject id="hfk-fs-p0K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
