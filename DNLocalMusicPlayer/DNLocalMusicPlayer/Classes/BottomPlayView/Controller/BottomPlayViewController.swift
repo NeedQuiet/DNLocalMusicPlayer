@@ -183,7 +183,7 @@ extension BottomPlayViewController {
         }
         albumButton.image = image
         
-        songTitleButton.title = currentSong.album.count > 0 ? currentSong.album : ""
+        songTitleButton.title = currentSong.title.count > 0 ? currentSong.title : ""
         songArtistButton.title = currentSong.artist.count > 0 ? currentSong.artist : ""
         partingLine.isHidden = !(currentSong.artist.count > 0)
         

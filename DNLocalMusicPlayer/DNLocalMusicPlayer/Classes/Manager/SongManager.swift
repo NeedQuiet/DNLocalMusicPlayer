@@ -12,6 +12,7 @@ import RealmSwift
 
 final class SongManager:NSObject {
     static let share = SongManager()
+    
     @objc dynamic var itunesSongs:[Song] = []
 
     func importSongs() {
@@ -47,7 +48,10 @@ final class SongManager:NSObject {
             print("error loading iTunesLibrary: \(error)")
         }
     }
-    
+}
+
+extension SongManager {
+    //MARK: 查找iTunes本地歌曲
     func scanItunesSongs() {
         print("开始查找iTunes本地歌曲")
         let library = try! ITLibrary(apiVersion: "1.0")

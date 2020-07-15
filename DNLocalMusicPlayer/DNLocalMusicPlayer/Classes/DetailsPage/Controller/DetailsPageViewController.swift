@@ -12,6 +12,7 @@ import RealmSwift
 class DetailsPageViewController: BaseViewController {
     
     @objc dynamic var songs: [Song] = []
+    var playlist:Playlist = Playlist()
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var clipView: NSClipView!
     @IBOutlet weak var tableView: NSTableView!
@@ -29,12 +30,6 @@ extension DetailsPageViewController {
     func setupUI() {
         setBackgroundColor(r: 28, g: 28, b: 28)
         
-        let realm = try! Realm()
-        songs = realm.objects(Song.self).map { (song) in
-            return song
-        }
-        
-
         tableView.target = self
         tableView.doubleAction = #selector(tableViewDoubleClick(_:))
         tableView.allowsColumnReordering = false
@@ -66,11 +61,14 @@ extension DetailsPageViewController {
         _ = NotificationCenter.default.rx
             .notification(kSelectedPlaylistNotificationName, object: nil)
             .subscribe({ [unowned self] (event) in
-                if let object = event.element?.object as? [String : List<Song>] {
+                if let object = event.element?.object as? [String : Playlist] {
                     self.songs.removeAll()
-                    let songs = object["songs"]
-                    songs.map { (song) in
-                        self.songs.append(contentsOf: song)
+                    if let currentPlayingPlaylist = object["playlist"] {
+                        self.playlist = currentPlayingPlaylist
+                        let songs = currentPlayingPlaylist.songs
+                        for song in songs {
+                            self.songs.append(song)
+                        }
                     }
                     self.tableView.reloadData()
                 }
@@ -82,6 +80,10 @@ extension DetailsPageViewController {
 extension DetailsPageViewController {
     //MARK: tableView双击
     @objc private func tableViewDoubleClick(_ sender:AnyObject) {
+        // 如果当前正在播放的歌单，不是当前展示的歌单，那么在选中歌曲后，应当将当给 currentPlayingPlaylist 赋值为 currentShowPlaylist
+        if PlayerManager.share.currentShowPlaylist != PlayerManager.share.currentPlayingPlaylist {
+            PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
+        }
         let clickedRow = tableView.clickedRow
         playSong(withIndex: clickedRow)
     }

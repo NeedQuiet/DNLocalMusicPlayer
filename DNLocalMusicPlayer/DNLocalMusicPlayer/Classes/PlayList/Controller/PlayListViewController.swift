@@ -44,6 +44,10 @@ extension PlayListViewController {
     func setupUI() {
         setBackgroundColor(r: 24, g: 24, b: 24)
         outlineView.backgroundColor = NSColor.init(r: 24, g: 24, b: 24)
+        
+        let menu = NSMenu()
+        menu.delegate = self
+        outlineView.menu = menu
     }
 }
 
@@ -54,7 +58,7 @@ extension PlayListViewController {
         _ = SongManager.share.rx.observeWeakly(Song.self, "itunesSongs")
             .subscribe { [unowned self] (change) in
                 let itunesSongs = SongManager.share.itunesSongs
-                itunesSongs.map { (song)  in
+                _ = itunesSongs.map { (song)  in
                     self.iTunesPlaylist.songs.append(song)
                 }
                 self.outlineView.reloadData()
@@ -131,8 +135,8 @@ extension PlayListViewController: NSOutlineViewDelegate {
         let model = treeView.item(atRow: row)
         
         if let playlist = model as? Playlist { // playlist
-            PlayerManager.share.currentPlaylist = playlist.songs
-            NotificationCenter.default.post(name: kSelectedPlaylistNotificationName, object: ["songs":playlist.songs])
+            PlayerManager.share.currentShowPlaylist = playlist
+            NotificationCenter.default.post(name: kSelectedPlaylistNotificationName, object: ["playlist":playlist])
         } else { // header
             return
         }
@@ -146,6 +150,23 @@ extension PlayListViewController: NSOutlineViewDelegate {
     //MARK: 是否展示左侧箭头
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         return false
+    }
+}
+
+//MARK: - NSMenuDelegate
+extension PlayListViewController: NSMenuDelegate{
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        //获取右键选中的row
+        let row = outlineView.clickedRow
+        //根据相中的row得到对应的item
+        let item = outlineView.item(atRow: row)
+        if item is Playlist && row != 1{ // playlist
+            menu.removeAllItems()
+            menu.addItem(NSMenuItem(title: "重命名", action: #selector(renamePlaylist(_:)), keyEquivalent: ""))
+            menu.addItem(NSMenuItem(title: "删除歌单", action: #selector(deletePlaylist(_:)), keyEquivalent: ""))
+        } else {
+            menu.removeAllItems()
+        }
     }
 }
 
@@ -166,6 +187,18 @@ extension PlayListViewController {
             }
         }
         return false
+    }
+    
+    // 重命名歌单
+    @objc private func renamePlaylist( _ item:NSMenuItem) {
+        let row = outlineView.clickedRow
+        print(row)
+    }
+    
+    // 删除歌单
+    @objc private func deletePlaylist( _ item:NSMenuItem) {
+        let row = outlineView.clickedRow
+        print(row)
     }
 }
 

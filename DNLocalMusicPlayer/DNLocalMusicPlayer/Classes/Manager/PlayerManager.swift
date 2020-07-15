@@ -24,8 +24,16 @@ class PlayerManager: NSObject {
     var currentIndex: Int? = nil
     //MARK: 音量
     var volume: Float = 0.5
-    //MARK: 当前播放列表
-    var currentPlaylist: List<Song> = List()
+    //MARK: 当前正在播放的播放列表
+    var currentShowPlaylist: Playlist = Playlist() {
+        didSet {
+            if currentPlayingPlaylist.songs.isEmpty { // 在没有正在播放列表的情况下，就以当前展示列表复制
+                currentPlayingPlaylist = currentShowPlaylist
+            }
+        }
+    }
+    //MARK: 当前正在播放的播放列表
+    var currentPlayingPlaylist: Playlist = Playlist()
     //MARK: 播放模式
     var playmode: DNPlayMode = .play_mode_repeat_all
     
@@ -57,7 +65,7 @@ extension PlayerManager {
             }
         } else { // index有值：选中歌曲播放
             currentIndex = index
-            currentSong = currentPlaylist[currentIndex!]
+            currentSong = currentPlayingPlaylist.songs[currentIndex!]
             playCurrentSong()
         }
     }
@@ -101,14 +109,17 @@ extension PlayerManager {
 extension PlayerManager {
     //MARK: 判断是否有playlist
     private func checkPlaylistIsEmpty() -> Bool {
-        print("当前播放列表为空，中断操作！！")
-        return currentPlaylist.isEmpty
+        let isEmpty = currentPlayingPlaylist.songs.isEmpty
+        if isEmpty {
+            print("当前播放列表为空，中断操作！！")
+        }
+        return isEmpty
     }
     
     //MARK: 判断当前播放歌曲是否为空
     private func checkCurrentSongIsEmpty() -> Bool {
         if currentSong == nil {
-            currentSong = currentPlaylist[0]
+            currentSong = currentPlayingPlaylist.songs[0]
             currentIndex = 0
             return true
         }
@@ -131,19 +142,19 @@ extension PlayerManager {
         if checkCurrentSongIsEmpty() == false {
             var newIndex:Int = currentIndex!
             if playmode == .play_mode_shuffle{ // 随机播放
-                let random = arc4random_uniform(UInt32(currentPlaylist.count)) + 1
+                let random = arc4random_uniform(UInt32(currentPlayingPlaylist.songs.count)) + 1
                 newIndex = Int(random)
                 print("随机播放第\(newIndex)首")
             } else { // 列表循环 || 单曲循环
                 if type == .play_previous_song { // 上一曲
-                    newIndex = newIndex == 0 ? currentPlaylist.count - 1 : currentIndex! - 1
+                    newIndex = newIndex == 0 ? currentPlayingPlaylist.songs.count - 1 : currentIndex! - 1
                 } else { // 下一曲
-                    newIndex = newIndex < currentPlaylist.count - 1 ? currentIndex! + 1 : 0
+                    newIndex = newIndex < currentPlayingPlaylist.songs.count - 1 ? currentIndex! + 1 : 0
                 }
             }
             
             // 更新 currentSong 和 currentIndex
-            currentSong = currentPlaylist[newIndex]
+            currentSong = currentPlayingPlaylist.songs[newIndex]
             currentIndex = newIndex
         } else {
             // 如果CurrentSong为空，则说明是首次加载时直接点击的 上/下一曲，直接playCurrentSong 播放当前列表第一首
