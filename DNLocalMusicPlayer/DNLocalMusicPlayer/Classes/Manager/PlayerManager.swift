@@ -25,18 +25,18 @@ class PlayerManager: NSObject {
     //MARK: 音量
     var volume: Float = 0.5
     //MARK: 当前播放列表
-    var currentPlaylist: [Song] = []
+    var currentPlaylist: List<Song> = List()
     //MARK: 播放模式
     var playmode: DNPlayMode = .play_mode_repeat_all
     
     //MARK: - 声明周期
     override init() {
         super.init()
-        print("[PlayerManager] init!")
+//        print("[PlayerManager] init!")
     }
     
     deinit {
-        print("[PlayerManager] deinit!")
+//        print("[PlayerManager] deinit!")
     }
 }
 
@@ -44,6 +44,8 @@ class PlayerManager: NSObject {
 extension PlayerManager {
     //MARK: 播放
     func play(withIndex index: Int?) {
+        if checkPlaylistIsEmpty() { return }
+        
         _ = checkCurrentSongIsEmpty()
         
         if index == nil { // index没有值：底部bottomBar点击的播放
@@ -72,11 +74,13 @@ extension PlayerManager {
     
     //MARK: 上一曲
     func previous() {
+        if checkPlaylistIsEmpty() { return }
         playPreviousOfNextSong(withType: .play_previous_song)
     }
     
     //MARK: 下一曲
     func next() {
+        if checkPlaylistIsEmpty() { return }
         playPreviousOfNextSong(withType: .play_next_song)
     }
     
@@ -95,15 +99,14 @@ extension PlayerManager {
 
 //MARK: - Private
 extension PlayerManager {
+    //MARK: 判断是否有playlist
+    private func checkPlaylistIsEmpty() -> Bool {
+        print("当前播放列表为空，中断操作！！")
+        return currentPlaylist.isEmpty
+    }
+    
     //MARK: 判断当前播放歌曲是否为空
     private func checkCurrentSongIsEmpty() -> Bool {
-        if currentPlaylist.isEmpty {
-            let realm = try! Realm()
-            currentPlaylist = realm.objects(Song.self).map { (song) in
-                return song
-            }
-        }
-        
         if currentSong == nil {
             currentSong = currentPlaylist[0]
             currentIndex = 0

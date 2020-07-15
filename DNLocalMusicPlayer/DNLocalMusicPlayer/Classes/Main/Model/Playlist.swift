@@ -10,6 +10,6 @@ import Cocoa
 import RealmSwift
 
 class Playlist: Object {
-    dynamic var name:String = "Playlist"
-    let songs = List<Song>()
+    @objc dynamic var name:String = "Playlist"
+    var songs = List<Song>()
 }

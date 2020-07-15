@@ -17,6 +17,8 @@ let kHighlightColor:NSColor = NSColor.init(r: 255, g: 255, b: 255)
 //MARK: - ************* 通知 *************
 //MARK: 播放模式改变
 let kSwitchPlayModeNotificationName: NSNotification.Name = NSNotification.Name(rawValue: "kSwitchPlayModeNotificationName")
+//MARK: 选择Playlist
+let kSelectedPlaylistNotificationName: NSNotification.Name = NSNotification.Name(rawValue: "kSelectedPlaylistNotificationName")
 
 //MARK: - ************* 播控 *************
 //MARK: 上/下一曲

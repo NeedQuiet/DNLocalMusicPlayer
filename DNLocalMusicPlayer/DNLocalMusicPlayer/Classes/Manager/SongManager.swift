@@ -10,7 +10,9 @@ import Cocoa
 import iTunesLibrary
 import RealmSwift
 
-final class SongManager {
+final class SongManager:NSObject {
+    static let share = SongManager()
+    @objc dynamic var itunesSongs:[Song] = []
 
     func importSongs() {
         do {
@@ -32,7 +34,7 @@ final class SongManager {
                         && item.location != nil
                         && item.locationType == ITLibMediaItemLocationType.file
                 }).map { (songItem) -> Song in
-                    return Song(item: songItem)
+                    return Song(iTunesItem: songItem)
                 }
                 try! realm.write {
                     realm.add(itunrsSongs)
@@ -44,5 +46,20 @@ final class SongManager {
         } catch let error as NSError{
             print("error loading iTunesLibrary: \(error)")
         }
+    }
+    
+    func scanItunesSongs() {
+        print("开始查找iTunes本地歌曲")
+        let library = try! ITLibrary(apiVersion: "1.0")
+        let allItems = library.allMediaItems
+        let Songs = allItems.filter( { item -> Bool in
+            return item.mediaKind == ITLibMediaItemMediaKind.kindSong
+                && item.location != nil
+                && item.locationType == ITLibMediaItemLocationType.file
+        }).map { (songItem) -> Song in
+            return Song(iTunesItem: songItem)
+        }
+        print("已找到\(Songs.count)首歌曲")
+        itunesSongs = Songs
     }
 }

@@ -34,7 +34,7 @@ class Song: Object {
         }
     }
     
-    convenience init(item: ITLibMediaItem) {
+    convenience init(iTunesItem item: ITLibMediaItem) {
         self.init()
         self.title = item.title
         self.filePath = item.location?.path ?? ""

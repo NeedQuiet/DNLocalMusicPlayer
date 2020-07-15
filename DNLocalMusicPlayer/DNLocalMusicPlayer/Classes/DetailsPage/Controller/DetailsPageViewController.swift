@@ -20,6 +20,7 @@ class DetailsPageViewController: BaseViewController {
         super.viewDidLoad()
 
         setupUI()
+        setupKVO()
     }
 }
 
@@ -46,7 +47,7 @@ extension DetailsPageViewController {
     }
     
     @objc func change() {
-        print("change \(view.bounds) ")
+//        print("change \(view.bounds) ")
     }
     
     func addRightMenu() {
@@ -56,6 +57,24 @@ extension DetailsPageViewController {
         menu.addItem(NSMenuItem(title: "在Finder中显示", action: nil, keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "删除", action: nil, keyEquivalent: ""))
         tableView.menu = menu
+    }
+}
+
+//MARK: - KVO
+extension DetailsPageViewController {
+    func setupKVO() {
+        _ = NotificationCenter.default.rx
+            .notification(kSelectedPlaylistNotificationName, object: nil)
+            .subscribe({ [unowned self] (event) in
+                if let object = event.element?.object as? [String : List<Song>] {
+                    self.songs.removeAll()
+                    let songs = object["songs"]
+                    songs.map { (song) in
+                        self.songs.append(contentsOf: song)
+                    }
+                    self.tableView.reloadData()
+                }
+            })
     }
 }
 
