@@ -12,6 +12,8 @@ import RealmSwift
 class DetailsPageViewController: BaseViewController {
     
     @objc dynamic var songs: [Song] = []
+    @IBOutlet weak var scrollView: NSScrollView!
+    @IBOutlet weak var clipView: NSClipView!
     @IBOutlet weak var tableView: NSTableView!
     
     override func viewDidLoad() {
@@ -31,11 +33,20 @@ extension DetailsPageViewController {
             return song
         }
         
+
         tableView.target = self
         tableView.doubleAction = #selector(tableViewDoubleClick(_:))
         tableView.allowsColumnReordering = false
         
         addRightMenu()
+        
+        clipView.backgroundColor = NSColor.blue
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(change), name: NSWindow.didResizeNotification, object: nil)
+    }
+    
+    @objc func change() {
+        print("change \(view.bounds) ")
     }
     
     func addRightMenu() {
@@ -88,5 +99,9 @@ extension DetailsPageViewController: NSTableViewDataSource {
 }
 
 extension DetailsPageViewController: NSTableViewDelegate {
-    
+   //设置鼠标悬停在cell上显示的提示文本(没有效果呢？)
+    func tableView(_ tableView: NSTableView, toolTipFor cell: NSCell, rect: NSRectPointer, tableColumn: NSTableColumn?, row: Int, mouseLocation: NSPoint) -> String {
+        print("columnID： \(String(describing: tableColumn?.identifier) )")
+        return "ttttt"
+    }
 }
