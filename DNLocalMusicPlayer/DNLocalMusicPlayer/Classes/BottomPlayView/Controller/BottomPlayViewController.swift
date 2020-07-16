@@ -59,10 +59,10 @@ extension BottomPlayViewController {
         albumButton.setCornerRadius(radius: 4)
         
         songTitleButton.defaultColor = kDefaultColor
-        songTitleButton.hoverColor = kHighlightColor
+        songTitleButton.hoverColor = kWhiteHighlightColor
         
         songArtistButton.defaultColor = kLightColor
-        songArtistButton.hoverColor = kHighlightColor
+        songArtistButton.hoverColor = kWhiteHighlightColor
         
         partingLine.isHidden = true
     }

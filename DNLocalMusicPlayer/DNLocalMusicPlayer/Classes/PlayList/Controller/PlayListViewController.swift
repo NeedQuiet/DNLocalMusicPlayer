@@ -14,7 +14,7 @@ private enum headerType {
     case item_CustomPlaylist_type
 }
 
-class PlayListViewController: BaseViewController {
+class PlayListViewController: BaseViewController{
     private var headers:[[String: Any]] = [["name":"我的音乐","type":headerType.item_iTunesPlaylist_type],
                                            ["name":"创建的歌单","type":headerType.item_CustomPlaylist_type]]
     private lazy var iTunesPlaylist:Playlist = {
@@ -54,8 +54,9 @@ extension PlayListViewController {
 //MARK: - KVO
 extension PlayListViewController {
     func setupKVO() {
-        // 监听itunesSongs加载状态
-        _ = SongManager.share.rx.observeWeakly(Song.self, "itunesSongs")
+        //MARK: itunesSongs
+        _ = SongManager.share.rx
+            .observeWeakly([Song].self, "itunesSongs")
             .subscribe { [unowned self] (change) in
                 let itunesSongs = SongManager.share.itunesSongs
                 _ = itunesSongs.map { (song)  in
@@ -66,6 +67,13 @@ extension PlayListViewController {
                 self.outlineView.selectRowIndexes(IndexSet(integer: 1), byExtendingSelection: false)
                 
         }
+        
+        //MARK: custom_playlists
+        _ = SongManager.share.rx
+            .observeWeakly([Playlist].self, "playlists")
+            .subscribe({ [unowned self] (change) in
+                self.playlists = SongManager.share.playlists
+        })
     }
 }
 
@@ -160,12 +168,16 @@ extension PlayListViewController: NSMenuDelegate{
         let row = outlineView.clickedRow
         //根据相中的row得到对应的item
         let item = outlineView.item(atRow: row)
-        if item is Playlist && row != 1{ // playlist
-            menu.removeAllItems()
+        
+        menu.removeAllItems()
+        if row == 1 { // iTunes
+            menu.addItem(NSMenuItem(title: "播放", action: #selector(playPlaylist(_:)), keyEquivalent: ""))
+        } else if item is Playlist { // custom_playlist
+            menu.addItem(NSMenuItem(title: "播放", action: #selector(playPlaylist(_:)), keyEquivalent: ""))
             menu.addItem(NSMenuItem(title: "重命名", action: #selector(renamePlaylist(_:)), keyEquivalent: ""))
             menu.addItem(NSMenuItem(title: "删除歌单", action: #selector(deletePlaylist(_:)), keyEquivalent: ""))
         } else {
-            menu.removeAllItems()
+            
         }
     }
 }
@@ -188,24 +200,51 @@ extension PlayListViewController {
         }
         return false
     }
-    
-    // 重命名歌单
-    @objc private func renamePlaylist( _ item:NSMenuItem) {
+}
+
+//MARK: - Menu Method
+extension PlayListViewController {
+    // 播放歌单
+    @objc private func playPlaylist( _ item:NSMenuItem) {
         let row = outlineView.clickedRow
         print(row)
+    }
+    
+   // 重命名歌单
+    @objc private func renamePlaylist( _ item:NSMenuItem) {
+        let row = outlineView.clickedRow
+        if let item_playlist = outlineView.item(atRow: row) as? Playlist {
+            let alertView = DNAlertView.initialization()
+            alertView.setInfo(title: "重命名歌单", placeholderString: "请输入歌单标题", type: .textFieldType)
+            alertView.submitButton.title = "确认"
+            alertView.defaultString = item_playlist.name
+            alertView.show(target: self) { [unowned self] (string) in
+                // 此刻的item_playlist是浅copy，因此在realm那更新后，item_playlist的name也会改变
+                SongManager.share.renamePlaylist(item_playlist, string)
+                self.outlineView.reloadData()
+            }
+        }
     }
     
     // 删除歌单
     @objc private func deletePlaylist( _ item:NSMenuItem) {
         let row = outlineView.clickedRow
-        print(row)
+        if let item_playlist = outlineView.item(atRow: row) as? Playlist {
+            SongManager.share.removePlaylist(item_playlist)
+        }
     }
 }
 
-//MARK: 测试
+//MARK: - 测试
 extension PlayListViewController {
     @IBAction func addPlaylist(_ sender: Any) {
-        playlists.append(Playlist())
+        let alertView = DNAlertView.initialization()
+        alertView.setInfo(title: "新建歌单", placeholderString: "请输入新歌单标题", type: .textFieldType)
+        alertView.show(target: self) { (string) in
+            let newPlaylist = Playlist()
+            newPlaylist.name = string
+            SongManager.share.createPlaylist(newPlaylist)
+        }
     }
 }
 

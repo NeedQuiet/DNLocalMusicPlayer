@@ -12,7 +12,8 @@ import Cocoa
 //MARK: - ************* 颜色 *************
 let kDefaultColor:NSColor = NSColor.init(r: 211, g: 211, b: 211)
 let kLightColor:NSColor = NSColor.init(r: 146, g: 146, b: 146)
-let kHighlightColor:NSColor = NSColor.init(r: 255, g: 255, b: 255)
+let kWhiteHighlightColor:NSColor = NSColor.init(r: 255, g: 255, b: 255)
+let kRedHighlightColor:NSColor = NSColor.init(r: 222, g: 46, b: 46)
 
 //MARK: - ************* 通知 *************
 //MARK: 播放模式改变

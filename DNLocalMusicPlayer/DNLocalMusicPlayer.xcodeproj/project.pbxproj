@@ -117,6 +117,10 @@
 		F56F6A6D24B9C03F005D550A /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56F6A6C24B9C03F005D550A /* PlayerManager.swift */; };
 		F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58574EB24BC4EC800C7E957 /* Utility.swift */; };
 		F58AEC8F24BC6CF6007C0C75 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58AEC8E24BC6CF6007C0C75 /* Playlist.swift */; };
+		F58EF75F24C02424001E94FF /* DNAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF75E24C02424001E94FF /* DNAlertView.swift */; };
+		F58EF76324C02DC5001E94FF /* DNAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58EF76224C02DC5001E94FF /* DNAlertView.xib */; };
+		F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF76424C04A00001E94FF /* NSView-Extension.swift */; };
+		F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */; };
 		F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
@@ -242,6 +246,10 @@
 		F56F6A6C24B9C03F005D550A /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		F58574EB24BC4EC800C7E957 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		F58AEC8E24BC6CF6007C0C75 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		F58EF75E24C02424001E94FF /* DNAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNAlertView.swift; sourceTree = "<group>"; };
+		F58EF76224C02DC5001E94FF /* DNAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DNAlertView.xib; sourceTree = "<group>"; };
+		F58EF76424C04A00001E94FF /* NSView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView-Extension.swift"; sourceTree = "<group>"; };
+		F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField-Extension.swift"; sourceTree = "<group>"; };
 		F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleButton.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
@@ -339,7 +347,6 @@
 		F51F899124ADBA7A0066E920 /* BottomPlayView */ = {
 			isa = PBXGroup;
 			children = (
-				F51F899724ADBC1D0066E920 /* Model */,
 				F51F899824ADBC260066E920 /* View */,
 				F51F899924ADBC2D0066E920 /* Controller */,
 			);
@@ -353,13 +360,6 @@
 				F51F896E24AD87060066E920 /* Document.swift */,
 			);
 			path = Root;
-			sourceTree = "<group>";
-		};
-		F51F899724ADBC1D0066E920 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F51F899824ADBC260066E920 /* View */ = {
@@ -393,18 +393,10 @@
 		F51F899D24ADBD580066E920 /* PlayList */ = {
 			isa = PBXGroup;
 			children = (
-				F51F899E24ADBD660066E920 /* Model */,
 				F51F899F24ADBD6B0066E920 /* View */,
 				F51F89A024ADBD720066E920 /* Controller */,
 			);
 			path = PlayList;
-			sourceTree = "<group>";
-		};
-		F51F899E24ADBD660066E920 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F51F899F24ADBD6B0066E920 /* View */ = {
@@ -426,7 +418,6 @@
 		F51F89A324ADBE820066E920 /* DetailsPage */ = {
 			isa = PBXGroup;
 			children = (
-				F51F89A624ADBE9B0066E920 /* Model */,
 				F51F89A524ADBE960066E920 /* View */,
 				F51F89A424ADBE8C0066E920 /* Controller */,
 			);
@@ -450,13 +441,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		F51F89A624ADBE9B0066E920 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		F51F89AB24ADC06D0066E920 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +455,8 @@
 			isa = PBXGroup;
 			children = (
 				F51F89AD24ADC0A20066E920 /* NSColor-Extension.swift */,
+				F58EF76424C04A00001E94FF /* NSView-Extension.swift */,
+				F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -478,7 +464,6 @@
 		F51F89B524ADC8770066E920 /* Playview */ = {
 			isa = PBXGroup;
 			children = (
-				F51F89B824ADC88B0066E920 /* Model */,
 				F51F89B724ADC8880066E920 /* View */,
 				F51F89B624ADC8800066E920 /* Controller */,
 			);
@@ -499,13 +484,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		F51F89B824ADC88B0066E920 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F51F89C124AEDC380066E920 /* Resource */ = {
@@ -602,6 +580,8 @@
 				F5CFA52324B40748001D1343 /* DNBaseView.swift */,
 				F51C100624B3220B0079DD35 /* DNTitleBarView.swift */,
 				F51C100224B31CBC0079DD35 /* CustomWindow.swift */,
+				F58EF75E24C02424001E94FF /* DNAlertView.swift */,
+				F58EF76224C02DC5001E94FF /* DNAlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -671,7 +651,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "大宁";
 				TargetAttributes = {
 					F51F896624AD87060066E920 = {
@@ -744,6 +724,7 @@
 				F51F8A5724AEDC550066E920 /* MiniPlayerLyricsButton.tiff in Resources */,
 				F51F89A824ADBEC10066E920 /* DetailsPage.storyboard in Resources */,
 				F51F8A3B24AEDC550066E920 /* MiniPlayerPraiseButton.tiff in Resources */,
+				F58EF76324C02DC5001E94FF /* DNAlertView.xib in Resources */,
 				F51F8A1F24AEDC550066E920 /* MiniPlayerPlaylistClosurePressed.tiff in Resources */,
 				F51F8A3824AEDC550066E920 /* MiniPlayerPauseButton.tiff in Resources */,
 				F51F8A5024AEDC550066E920 /* MiniPlayerPlaylistButton.tiff in Resources */,
@@ -844,7 +825,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58EF75F24C02424001E94FF /* DNAlertView.swift in Sources */,
 				F51F89B224ADC2FB0066E920 /* PlayListViewController.swift in Sources */,
+				F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */,
 				F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */,
 				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
 				F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */,
@@ -864,6 +847,7 @@
 				F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
 				F55C3BC724B87E8700017FBD /* Song.swift in Sources */,
+				F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */,
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,
 				F51F896F24AD87060066E920 /* Document.swift in Sources */,
@@ -1020,7 +1004,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = N39B4MRZ3Y;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = DNLocalMusicPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1042,7 +1026,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = N39B4MRZ3Y;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = DNLocalMusicPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

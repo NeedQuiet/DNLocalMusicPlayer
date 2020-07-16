@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        SongManager.share.scanItunesSongs()
+        SongManager.share.startScanRealmData()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
