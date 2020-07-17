@@ -8,5 +8,5 @@ target 'DNLocalMusicPlayer' do
   # Pods for DNLocalMusicPlayer
   pod 'RxCocoa'
   pod 'RealmSwift'
-#  pod 'SnapKit'
+  pod 'SnapKit'
 end

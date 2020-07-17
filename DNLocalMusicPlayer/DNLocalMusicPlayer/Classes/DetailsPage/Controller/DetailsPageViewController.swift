@@ -8,12 +8,17 @@
 
 import Cocoa
 import RealmSwift
+import SnapKit
 
 private let kTitleColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTitleColumnID")
 private let kArtistColumnID = NSUserInterfaceItemIdentifier(rawValue: "kArtistColumnID")
 private let kAlbumColumnID = NSUserInterfaceItemIdentifier(rawValue: "kAlbumColumnID")
 private let kTimeColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTimeColumnID")
 private let rowHeight:CGFloat = 35
+private let titleColumnDefaultWidth:CGFloat = 300
+private let artistColumnDefaultWidth:CGFloat = 200
+private let albumColumnDefaultWidth:CGFloat = 200
+private let timeColumnDefaultWidth:CGFloat = 100
 
 class DetailsPageViewController: BaseViewController {
     
@@ -30,7 +35,9 @@ class DetailsPageViewController: BaseViewController {
         tableView.dataSource = self
         tableView.backgroundColor = NSColor(r: 28, g: 28, b: 28)
         tableView.doubleAction = #selector(tableViewDoubleClick(_:)) // 双击
-//        tableView.usesAlternatingRowBackgroundColors = true // 交错颜色
+        tableView.columnAutoresizingStyle = .uniformColumnAutoresizingStyle
+        tableView.allowsColumnReordering = false // 禁止header拖动排序
+        tableView.allowsColumnResizing = false
         // 设置默认行高
         tableView.rowSizeStyle = .custom
         tableView.rowHeight = rowHeight
@@ -46,7 +53,7 @@ class DetailsPageViewController: BaseViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         scrollView.frame = view.bounds
-        tableView.frame = NSRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 300)
+//        tableView.frame = NSRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 300)
     }
 }
 
@@ -63,27 +70,31 @@ extension DetailsPageViewController {
         titleColumn.title = "音乐标题"
         titleColumn.headerToolTip = "歌曲名"
         titleColumn.resizingMask = .userResizingMask
-        titleColumn.width = 300
+        titleColumn.width = titleColumnDefaultWidth
+        titleColumn.minWidth = 150
         let artistColumn = NSTableColumn.init(identifier: kArtistColumnID)
         artistColumn.title = "歌手"
         artistColumn.headerToolTip = "歌手"
         artistColumn.resizingMask = .userResizingMask
-        artistColumn.width = 200
+        artistColumn.width = artistColumnDefaultWidth
+        artistColumn.minWidth = 120
         let albumColumn = NSTableColumn.init(identifier: kAlbumColumnID)
         albumColumn.title = "专辑"
         albumColumn.headerToolTip = "专辑"
         albumColumn.resizingMask = .userResizingMask
-        albumColumn.width = 200
+        albumColumn.width = albumColumnDefaultWidth
+        albumColumn.minWidth = 120
         let timeColumn = NSTableColumn.init(identifier: kTimeColumnID)
         timeColumn.title = "时长"
         timeColumn.headerToolTip = "时长"
         timeColumn.resizingMask = .userResizingMask
-        timeColumn.width = 100
+        timeColumn.width = timeColumnDefaultWidth
+        albumColumn.minWidth = 60
         tableView.addTableColumn(titleColumn)
         tableView.addTableColumn(artistColumn)
         tableView.addTableColumn(albumColumn)
         tableView.addTableColumn(timeColumn)
-
+        
         scrollView.contentView.documentView = tableView
     }
 
@@ -121,7 +132,26 @@ extension DetailsPageViewController {
         _ = NotificationCenter.default.rx
             .notification(NSWindow.didResizeNotification, object: nil)
             .subscribe({ [unowned self] (event) in
+                // 改变scrollview宽度
                 self.scrollView.frame = self.view.bounds
+                // 改变column宽度
+                let scale:CGFloat = self.view.bounds.width / 800
+                for tableCoulumn in self.tableView.tableColumns {
+                    let defaultWidth:CGFloat
+                    switch tableCoulumn.identifier {
+                    case kTitleColumnID:
+                        defaultWidth = titleColumnDefaultWidth
+                    case kArtistColumnID:
+                        defaultWidth = artistColumnDefaultWidth
+                    case kAlbumColumnID:
+                        defaultWidth = albumColumnDefaultWidth
+                    case kTimeColumnID:
+                        defaultWidth = timeColumnDefaultWidth
+                    default:
+                        defaultWidth = titleColumnDefaultWidth
+                    }
+                    tableCoulumn.width = defaultWidth * scale
+                }
             })
     }
 }
@@ -165,7 +195,7 @@ extension DetailsPageViewController: NSTableViewDataSource {
         var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cellId"), owner: self)
         if cellView == nil {
             cellView = NSView.init()
-            let textField = NSTextField.init(frame: NSRect(x: 0, y: 10, width: tableColumn!.width, height: 15))
+            let textField = NSTextField()
             textField.isBezeled = false
             textField.isEditable = false
             textField.backgroundColor = NSColor.clear
@@ -184,6 +214,11 @@ extension DetailsPageViewController: NSTableViewDataSource {
                 textField.stringValue = songs[row].totalTime
             default:
                 textField.stringValue = ""
+            }
+            
+            textField.snp.makeConstraints { (make) in
+                make.left.right.equalTo(3)
+                make.top.bottom.equalTo(10)
             }
             
         }
