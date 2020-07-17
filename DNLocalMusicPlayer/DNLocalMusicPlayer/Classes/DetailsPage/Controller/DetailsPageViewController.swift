@@ -9,42 +9,84 @@
 import Cocoa
 import RealmSwift
 
+private let kTitleColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTitleColumnID")
+private let kArtistColumnID = NSUserInterfaceItemIdentifier(rawValue: "kArtistColumnID")
+private let kAlbumColumnID = NSUserInterfaceItemIdentifier(rawValue: "kAlbumColumnID")
+private let kTimeColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTimeColumnID")
+private let rowHeight:CGFloat = 35
+
 class DetailsPageViewController: BaseViewController {
     
     @objc dynamic var songs: [Song] = []
-    var playlist:Playlist = Playlist()
-    @IBOutlet weak var scrollView: NSScrollView!
-    @IBOutlet weak var clipView: NSClipView!
-    @IBOutlet weak var tableView: NSTableView!
+    private var playlist:Playlist = Playlist()
+    private lazy var scrollView: NSScrollView = { [unowned self] in
+        let scrollView = NSScrollView()
+        scrollView.hasVerticalScroller = true
+        return scrollView
+    }()
+    private lazy var tableView: NSTableView = { [unowned self] in
+        let tableView = NSTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = NSColor(r: 28, g: 28, b: 28)
+        tableView.doubleAction = #selector(tableViewDoubleClick(_:)) // 双击
+//        tableView.usesAlternatingRowBackgroundColors = true // 交错颜色
+        // 设置默认行高
+        tableView.rowSizeStyle = .custom
+        tableView.rowHeight = rowHeight
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupUI()
         setupKVO()
+        setupUI()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        scrollView.frame = view.bounds
+        tableView.frame = NSRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 300)
     }
 }
 
 //MARK: - UI设置
 extension DetailsPageViewController {
     func setupUI() {
-        setBackgroundColor(r: 28, g: 28, b: 28)
+        setBackgroundColor(r: 37, g: 37, b: 37)
         
-        tableView.target = self
-        tableView.doubleAction = #selector(tableViewDoubleClick(_:))
-        tableView.allowsColumnReordering = false
+        // scrollview
+        view.addSubview(scrollView)
         
-        addRightMenu()
-        
-        clipView.backgroundColor = NSColor.blue
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(change), name: NSWindow.didResizeNotification, object: nil)
+        // tableView
+        let titleColumn = NSTableColumn.init(identifier: kTitleColumnID)
+        titleColumn.title = "音乐标题"
+        titleColumn.headerToolTip = "歌曲名"
+        titleColumn.resizingMask = .userResizingMask
+        titleColumn.width = 300
+        let artistColumn = NSTableColumn.init(identifier: kArtistColumnID)
+        artistColumn.title = "歌手"
+        artistColumn.headerToolTip = "歌手"
+        artistColumn.resizingMask = .userResizingMask
+        artistColumn.width = 200
+        let albumColumn = NSTableColumn.init(identifier: kAlbumColumnID)
+        albumColumn.title = "专辑"
+        albumColumn.headerToolTip = "专辑"
+        albumColumn.resizingMask = .userResizingMask
+        albumColumn.width = 200
+        let timeColumn = NSTableColumn.init(identifier: kTimeColumnID)
+        timeColumn.title = "时长"
+        timeColumn.headerToolTip = "时长"
+        timeColumn.resizingMask = .userResizingMask
+        timeColumn.width = 100
+        tableView.addTableColumn(titleColumn)
+        tableView.addTableColumn(artistColumn)
+        tableView.addTableColumn(albumColumn)
+        tableView.addTableColumn(timeColumn)
+
+        scrollView.contentView.documentView = tableView
     }
-    
-    @objc func change() {
-//        print("change \(view.bounds) ")
-    }
-    
+
     func addRightMenu() {
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
@@ -58,6 +100,7 @@ extension DetailsPageViewController {
 //MARK: - KVO
 extension DetailsPageViewController {
     func setupKVO() {
+        // PlaylistView 选中歌单
         _ = NotificationCenter.default.rx
             .notification(kSelectedPlaylistNotificationName, object: nil)
             .subscribe({ [unowned self] (event) in
@@ -72,6 +115,13 @@ extension DetailsPageViewController {
                     }
                     self.tableView.reloadData()
                 }
+            })
+        
+        // 监听窗口size变化
+        _ = NotificationCenter.default.rx
+            .notification(NSWindow.didResizeNotification, object: nil)
+            .subscribe({ [unowned self] (event) in
+                self.scrollView.frame = self.view.bounds
             })
     }
 }
@@ -104,13 +154,47 @@ extension DetailsPageViewController {
 
 extension DetailsPageViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 35
+        return rowHeight
+    }
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return songs.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cellId"), owner: self)
+        if cellView == nil {
+            cellView = NSView.init()
+            let textField = NSTextField.init(frame: NSRect(x: 0, y: 10, width: tableColumn!.width, height: 15))
+            textField.isBezeled = false
+            textField.isEditable = false
+            textField.backgroundColor = NSColor.clear
+            textField.cell?.usesSingleLineMode = true
+            textField.lineBreakMode = .byTruncatingTail
+            cellView!.addSubview(textField)
+            
+            switch tableColumn?.identifier {
+            case kTitleColumnID:
+                textField.stringValue = songs[row].title
+            case kArtistColumnID:
+                textField.stringValue = songs[row].artist
+            case kAlbumColumnID:
+                textField.stringValue = songs[row].album
+            case kTimeColumnID:
+                textField.stringValue = songs[row].totalTime
+            default:
+                textField.stringValue = ""
+            }
+            
+        }
+        return cellView
     }
     
     
     //设置每行容器视图
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let tableRowView = DNTableRow()
+        tableRowView.index = row
 //        lineView.snp.makeConstraints { (make) in
 //            make.left.right.bottom.equalTo(0)
 //            make.height.equalTo(1)
