@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EFd-2V-VDr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EFd-2V-VDr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +17,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="mzx-fj-5Mb">
                                 <rect key="frame" x="428" y="0.0" width="144" height="60"/>
                                 <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="38w-9S-N6N" userLabel="播放暂停" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="38w-9S-N6N" userLabel="播放暂停" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="51" y="9" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="ZzC-x9-Wko"/>
@@ -31,7 +31,7 @@
                                             <action selector="playButtonclick:" target="EFd-2V-VDr" id="HVb-TW-rof"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-zT-1RI" userLabel="上一曲" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Nzy-zT-1RI" userLabel="上一曲" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="9" y="22" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Nzy-zT-1RI" secondAttribute="height" multiplier="1:1" id="R5l-DD-rWc"/>
@@ -45,7 +45,7 @@
                                             <action selector="previousClick:" target="EFd-2V-VDr" id="jus-6A-HXp"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="XtM-NC-1rP" userLabel="下一曲" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="XtM-NC-1rP" userLabel="下一曲" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                         <rect key="frame" x="119" y="22" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="16" id="bQa-ri-S5T"/>
@@ -71,7 +71,7 @@
                                     <constraint firstItem="XtM-NC-1rP" firstAttribute="width" secondItem="XtM-NC-1rP" secondAttribute="height" multiplier="1:1" id="xah-8i-7bW"/>
                                 </constraints>
                             </customView>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IA9-in-mjz" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IA9-in-mjz" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="954" y="22" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IA9-in-mjz" secondAttribute="height" multiplier="1:1" id="XmZ-Xc-Eem"/>
@@ -85,7 +85,7 @@
                                     <action selector="volumeButtonClick:" target="EFd-2V-VDr" id="QNq-vR-dLh"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MIz-8u-tvn" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MIz-8u-tvn" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="918" y="22" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MIz-8u-tvn" secondAttribute="height" multiplier="1:1" id="qgD-f2-zFC"/>
@@ -96,7 +96,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="GOH-4D-YMX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="GOH-4D-YMX" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="880" y="21" width="18" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="18" id="Sc7-CK-6gN"/>
@@ -110,7 +110,7 @@
                                     <action selector="playlistButtonClick:" target="EFd-2V-VDr" id="RcC-B6-P1W"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="joT-Zl-g1G" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="joT-Zl-g1G" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="840" y="20" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="9jZ-dg-17c"/>
@@ -124,7 +124,7 @@
                                     <action selector="playModeButtonClick:" target="EFd-2V-VDr" id="ig3-IP-10P"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xu-qcX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xu-qcX" customClass="DNDefaultButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bGX-Xu-qcX" secondAttribute="height" multiplier="1:1" id="L6l-dI-WaZ"/>

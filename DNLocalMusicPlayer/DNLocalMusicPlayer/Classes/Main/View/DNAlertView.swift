@@ -50,7 +50,6 @@ class DNAlertView: NSView {
     
     override class func awakeFromNib() {
         super.awakeFromNib()
-        print("awakeFromNib")
     }
 
     static func initialization() -> DNAlertView {

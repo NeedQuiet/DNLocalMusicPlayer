@@ -14,26 +14,39 @@ private let kTitleColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTitleColu
 private let kArtistColumnID = NSUserInterfaceItemIdentifier(rawValue: "kArtistColumnID")
 private let kAlbumColumnID = NSUserInterfaceItemIdentifier(rawValue: "kAlbumColumnID")
 private let kTimeColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTimeColumnID")
-private let rowHeight:CGFloat = 35
-private let titleColumnDefaultWidth:CGFloat = 300
-private let artistColumnDefaultWidth:CGFloat = 200
-private let albumColumnDefaultWidth:CGFloat = 200
-private let timeColumnDefaultWidth:CGFloat = 100
+private let rowHeight:CGFloat = 35 // 行高
+private let titleColumnDefaultWidth:CGFloat = 300 // 歌名列默认宽度
+private let artistColumnDefaultWidth:CGFloat = 200 // 歌手列默认宽度
+private let albumColumnDefaultWidth:CGFloat = 200 // 专辑列默认宽度
+private let timeColumnDefaultWidth:CGFloat = 100 // 时长列默认宽度
+private let kTableHedaerHeight:CGFloat = 30 // tableView的Header高度
+private let kViewHeaderHeight:CGFloat = 280 // 页面的Header高度
+private let kViewHeaderMarginTop:CGFloat = 20 // 页面的Header MarginTop
+private let kViewHeaderMarginTLeft:CGFloat = 30 // 页面的Header MarginLeft
+private let kViewFooterHeight:CGFloat = 30 // 页面Footer高度
+private let kDefaultBackColor = NSColor(r: 28, g: 28, b: 28)
 
 class DetailsPageViewController: BaseViewController {
     
     @objc dynamic var songs: [Song] = []
     private var playlist:Playlist = Playlist()
-    private lazy var scrollView: NSScrollView = { [unowned self] in
-        let scrollView = NSScrollView()
+    //MARK: 主体scrollview
+    //用来控制整个视图滚动
+    private lazy var mainScrollView: DNFippedScrollView = { [unowned self] in
+        let scrollView = DNFippedScrollView()
         scrollView.hasVerticalScroller = true
         return scrollView
     }()
+    //MARK: 主体scrollview的内容View
+    //用来添加子视图
+    var mainScrollContentView = DNFippedView()
+    
+    //MARK: tableView
     private lazy var tableView: NSTableView = { [unowned self] in
         let tableView = NSTableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = NSColor(r: 28, g: 28, b: 28)
+        tableView.backgroundColor = kDefaultBackColor
         tableView.doubleAction = #selector(tableViewDoubleClick(_:)) // 双击
         tableView.columnAutoresizingStyle = .uniformColumnAutoresizingStyle
         tableView.allowsColumnReordering = false // 禁止header拖动排序
@@ -44,6 +57,22 @@ class DetailsPageViewController: BaseViewController {
         return tableView
     }()
     
+    //MARK: TableView`s Back ScrollView
+    //用来装载tableView的ScrollView
+    private lazy var tableBackScrollView: FippedTableBackScrollView = { [unowned self] in
+        let scrollView = FippedTableBackScrollView()
+        scrollView.superScrollView = self.mainScrollView
+        return scrollView
+    }()
+    
+    //MARK: 页面Header
+    private lazy var viewHeader:DetailsViewHeaderView = {
+        let viewHeader = DetailsViewHeaderView.initialization()
+        mainScrollContentView.addSubview(viewHeader)
+        viewHeader.setupUI()
+        return viewHeader
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKVO()
@@ -52,18 +81,18 @@ class DetailsPageViewController: BaseViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        scrollView.frame = view.bounds
-//        tableView.frame = NSRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 300)
+        mainScrollView.frame = view.bounds
     }
 }
 
 //MARK: - UI设置
 extension DetailsPageViewController {
+    //MARK: 设置UI
     func setupUI() {
         setBackgroundColor(r: 37, g: 37, b: 37)
         
         // scrollview
-        view.addSubview(scrollView)
+        view.addSubview(mainScrollView)
         
         // tableView
         let titleColumn = NSTableColumn.init(identifier: kTitleColumnID)
@@ -94,10 +123,23 @@ extension DetailsPageViewController {
         tableView.addTableColumn(artistColumn)
         tableView.addTableColumn(albumColumn)
         tableView.addTableColumn(timeColumn)
+
+        mainScrollContentView.setBackgroundColor(color: kDefaultBackColor)
         
-        scrollView.contentView.documentView = tableView
+        // 1.将 tableView 设置为 tableBackScrollView 的 document
+        tableBackScrollView.contentView.documentView = tableView
+        // 2.将 tableBackScrollView 添加到 mainScrollContentView
+        mainScrollContentView.addSubview(tableBackScrollView)
+        // 3.将 mainScrollContentView 设置为 mainScrollView 的 document
+        mainScrollView.contentView.documentView = mainScrollContentView
+        
+        //MARK: tableView Header
+        let TableHeaderView = NSTableHeaderView()
+        TableHeaderView.frame.size.height = kTableHedaerHeight
+        tableView.headerView = TableHeaderView
     }
 
+    //MARK: 添加右键菜单
     func addRightMenu() {
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
@@ -125,6 +167,24 @@ extension DetailsPageViewController {
                         }
                     }
                     self.tableView.reloadData()
+                    self.refreshViewHeader()
+                    
+                    // 设置tableView及背景的frame
+                    if self.songs.count > 0 { // 有歌曲
+                        let viewSize = self.view.bounds.size
+                        let tableSize = self.tableView.bounds.size
+                        // 设置 tableView 的 frame
+                        self.tableView.frame = CGRect(x: 0, y: 0, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
+                        // 设置 mainScrollContentView 的 frame
+                        let frame = NSRect(x: 0, y: 0, width: viewSize.width, height: tableSize.height + kViewHeaderHeight + kTableHedaerHeight + kViewFooterHeight)
+                        self.mainScrollContentView.frame = frame
+                        // 设置 tableBackScrollView 的 frame
+                        self.tableBackScrollView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
+                        // 设置 HeaderView 的 frame
+                        self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
+                    } else {
+                         self.mainScrollContentView.frame = self.view.bounds
+                    }
                 }
             })
         
@@ -132,8 +192,17 @@ extension DetailsPageViewController {
         _ = NotificationCenter.default.rx
             .notification(NSWindow.didResizeNotification, object: nil)
             .subscribe({ [unowned self] (event) in
-                // 改变scrollview宽度
-                self.scrollView.frame = self.view.bounds
+                let viewBounds = self.view.bounds
+                // 设置 scrollview 宽度
+                self.mainScrollView.frame = viewBounds
+                // 设置 mainScrollContentView 宽度
+                self.mainScrollContentView.frame.size.width = viewBounds.width
+                // 设置 tableView 宽度
+                self.tableView.frame.size.width = viewBounds.width
+                // 设置 tableBackScrollView 宽度
+                self.tableBackScrollView.frame.size.width = viewBounds.width
+                // 设置 HeaderView 的 frame
+                self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewBounds.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
                 // 改变column宽度
                 let scale:CGFloat = self.view.bounds.width / 800
                 for tableCoulumn in self.tableView.tableColumns {
@@ -180,17 +249,42 @@ extension DetailsPageViewController {
             PlayerManager.share.play(withIndex: index)
         }
     }
+    
+    //MARK: 刷新Header
+    private func refreshViewHeader() {
+        if songs.count > 0 {
+            if let imageData = songs.first!.artworkData {
+                let image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
+                viewHeader.artworkImageView.image = NSImage(data: imageData) ?? image
+            }
+        }
+        
+        viewHeader.playlistNameLabel.stringValue = playlist.name
+        viewHeader.songNumLabel.stringValue = "歌曲数: \(songs.count)"
+    }
 }
 
 extension DetailsPageViewController: NSTableViewDataSource {
+    // MARK: 行高
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return rowHeight
     }
     
+    // MARK: 行数
     func numberOfRows(in tableView: NSTableView) -> Int {
         return songs.count
     }
-    
+
+    // MARK: 设置每行容器视图
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        let tableRowView = DNTableRow()
+        tableRowView.index = row
+        return tableRowView
+    }
+}
+
+extension DetailsPageViewController: NSTableViewDelegate {
+    // MARK: 设置每个Item的容器
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cellId"), owner: self)
         if cellView == nil {
@@ -224,24 +318,5 @@ extension DetailsPageViewController: NSTableViewDataSource {
         }
         return cellView
     }
-    
-    
-    //设置每行容器视图
-    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        let tableRowView = DNTableRow()
-        tableRowView.index = row
-//        lineView.snp.makeConstraints { (make) in
-//            make.left.right.bottom.equalTo(0)
-//            make.height.equalTo(1)
-//        }
-        return tableRowView
-    }
 }
 
-extension DetailsPageViewController: NSTableViewDelegate {
-   //设置鼠标悬停在cell上显示的提示文本(没有效果呢？)
-    func tableView(_ tableView: NSTableView, toolTipFor cell: NSCell, rect: NSRectPointer, tableColumn: NSTableColumn?, row: Int, mouseLocation: NSPoint) -> String {
-        print("columnID： \(String(describing: tableColumn?.identifier) )")
-        return "ttttt"
-    }
-}

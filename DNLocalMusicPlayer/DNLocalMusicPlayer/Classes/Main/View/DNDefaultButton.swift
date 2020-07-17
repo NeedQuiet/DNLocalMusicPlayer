@@ -1,5 +1,5 @@
 //
-//  DNButton.swift
+//  DNDefaultButton.swift
 //  DNLocalMusicPlayer
 //
 //  Created by 许一宁 on 2020/7/3.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class DNButton: NSButton {
+class DNDefaultButton: NSButton {
     private var hover: Bool = false
     var areaView:NSView = NSView()
     
@@ -25,7 +25,7 @@ class DNButton: NSButton {
 }
 
 //MARK: - 类拓展方法
-extension DNButton {
+extension DNDefaultButton {
     //MARK: 设置圆角
     func setCornerRadius (radius: CGFloat) {
         self.wantsLayer = true
@@ -35,7 +35,7 @@ extension DNButton {
 }
 
 //MARK: - 鼠标监听
-extension DNButton {
+extension DNDefaultButton {
     //MARK: NSTrackingArea对象并关联View
     func addTrackingAreaView() {
         areaView = NSView.init(frame: bounds)

@@ -26,4 +26,10 @@ extension NSView {
         self.layer?.cornerRadius = cornerRadius
         self.layer?.masksToBounds = true
     }
+    
+    func setBorder(_ width:CGFloat ,_ color:NSColor) {
+        self.wantsLayer = true
+        self.layer?.borderWidth = width
+        self.layer?.borderColor = color.cgColor
+    }
 }
