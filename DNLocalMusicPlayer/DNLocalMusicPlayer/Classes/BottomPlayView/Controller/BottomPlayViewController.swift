@@ -12,15 +12,15 @@ import RxCocoa
 class BottomPlayViewController: BaseViewController {
     
     //MARK: 专辑图
-    @IBOutlet weak var albumButton: DNDefaultButton!
+    @IBOutlet weak var albumButton: DNButton!
     //MARK: 播放模式
-    @IBOutlet weak var playModeButton: DNDefaultButton!
+    @IBOutlet weak var playModeButton: DNButton!
     //MARK: 播放列表
-    @IBOutlet weak var playlistButton: DNDefaultButton!
+    @IBOutlet weak var playlistButton: DNButton!
     //MARK: 歌词
-    @IBOutlet weak var lyricButton: DNDefaultButton!
+    @IBOutlet weak var lyricButton: DNButton!
     //MARK: 声音
-    @IBOutlet weak var volumeButton: DNDefaultButton!
+    @IBOutlet weak var volumeButton: DNButton!
     private lazy var volumePopover:NSPopover = {
         let popover = NSPopover()
         popover.contentViewController = VolumePopover.init()
@@ -29,7 +29,7 @@ class BottomPlayViewController: BaseViewController {
     }()
     
     //MARK: 播放暂停
-    @IBOutlet weak var playButton: DNDefaultButton!
+    @IBOutlet weak var playButton: DNButton!
     //MARK: 歌名
     @IBOutlet weak var songTitleButton: DNTitleButton!
     //MARK: 间隔线

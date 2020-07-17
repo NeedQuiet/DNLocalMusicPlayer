@@ -73,6 +73,13 @@ class DetailsPageViewController: BaseViewController {
         return viewHeader
     }()
     
+    //MARK: 无歌曲提示View
+    private lazy var noSongsView:DetailsNoSongsNoteView = {
+        let view = DetailsNoSongsNoteView.initialization()
+        mainScrollContentView.addSubview(view)
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKVO()
@@ -170,8 +177,11 @@ extension DetailsPageViewController {
                     self.refreshViewHeader()
                     
                     // 设置tableView及背景的frame
+                    let viewSize = self.view.bounds.size
+
                     if self.songs.count > 0 { // 有歌曲
-                        let viewSize = self.view.bounds.size
+                        self.noSongsView.isHidden = true
+                        self.tableBackScrollView.isHidden = false
                         let tableSize = self.tableView.bounds.size
                         // 设置 tableView 的 frame
                         self.tableView.frame = CGRect(x: 0, y: 0, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
@@ -183,7 +193,13 @@ extension DetailsPageViewController {
                         // 设置 HeaderView 的 frame
                         self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
                     } else {
-                         self.mainScrollContentView.frame = self.view.bounds
+                        self.mainScrollContentView.frame = self.view.bounds
+                        // 设置 HeaderView 的 frame
+                        self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
+                        self.tableBackScrollView.isHidden = true
+                        // 无歌曲提示
+                        self.noSongsView.isHidden = false
+                        self.noSongsView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: viewSize.width , height: viewSize.height - kViewHeaderHeight)
                     }
                 }
             })
@@ -202,7 +218,12 @@ extension DetailsPageViewController {
                 // 设置 tableBackScrollView 宽度
                 self.tableBackScrollView.frame.size.width = viewBounds.width
                 // 设置 HeaderView 的 frame
-                self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewBounds.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
+                self.viewHeader.frame.size.width = viewBounds.width - 2 * kViewHeaderMarginTLeft
+                if self.songs.count == 0 {
+                    // 无歌曲提示frame
+                    self.noSongsView.frame.size.width = viewBounds.width
+                }
+                
                 // 改变column宽度
                 let scale:CGFloat = self.view.bounds.width / 800
                 for tableCoulumn in self.tableView.tableColumns {
@@ -250,17 +271,32 @@ extension DetailsPageViewController {
         }
     }
     
-    //MARK: 刷新Header
+    //MARK: 刷新Header & NoSongsView
     private func refreshViewHeader() {
-        if songs.count > 0 {
-            if let imageData = songs.first!.artworkData {
-                let image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
-                viewHeader.artworkImageView.image = NSImage(data: imageData) ?? image
-            }
+        // HeaderView
+        let image:NSImage = NSImage(named: "default_artwork_image")!
+        if let imageData = songs.first?.artworkData {
+            viewHeader.artworkImageView.image = NSImage(data: imageData) ?? image
+        } else {
+            viewHeader.artworkImageView.image = image
         }
         
         viewHeader.playlistNameLabel.stringValue = playlist.name
         viewHeader.songNumLabel.stringValue = "歌曲数: \(songs.count)"
+        viewHeader.createTimeLabel.stringValue = "\(playlist.creatTime)创建"
+        viewHeader.playAllButton.isEnabled = songs.count > 0
+        viewHeader.addMusicButton.isEnabled = playlist.isCustomPlaylist
+        
+        // NoSongsView
+        if songs.count == 0 {
+            if playlist.isCustomPlaylist == false {
+                noSongsView.noteTitle.stringValue = "你的iTunes没有音乐"
+                noSongsView.noteBody.stringValue = "看来你平时从来不用iTunes听音乐 o(*￣︶￣*)o"
+            } else {
+                noSongsView.noteTitle.stringValue = "赶快去收藏你喜欢的音乐"
+                noSongsView.noteBody.stringValue = "点击“添加音乐”按钮，选择你喜欢的音乐，将音乐加入歌单！"
+            }
+        }
     }
 }
 

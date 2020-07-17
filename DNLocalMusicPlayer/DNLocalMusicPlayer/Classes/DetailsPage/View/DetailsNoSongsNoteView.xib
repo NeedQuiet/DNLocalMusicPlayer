@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="DetailsNoSongsNoteView" customModule="DN音乐" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="74v-nn-Qw6">
+                    <rect key="frame" x="165" y="196" width="150" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="赶快去收藏你喜欢的音乐" id="3fy-BT-Ugy">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ap5-Cc-iHd">
+                    <rect key="frame" x="74" y="161" width="333" height="15"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="点击“添加音乐”按钮，选择你喜欢的音乐，将音乐加入歌单！" id="yfY-rE-MgS">
+                        <font key="font" metaFont="label" size="12"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ap5-Cc-iHd" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="8lD-fj-tN2"/>
+                <constraint firstItem="ap5-Cc-iHd" firstAttribute="top" secondItem="74v-nn-Qw6" secondAttribute="bottom" constant="20" id="GVl-WI-iVd"/>
+                <constraint firstItem="74v-nn-Qw6" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="60" id="QQ5-CN-FQh"/>
+                <constraint firstItem="74v-nn-Qw6" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="c0j-6F-TN8"/>
+            </constraints>
+            <connections>
+                <outlet property="noteBody" destination="ap5-Cc-iHd" id="1vC-X9-TpI"/>
+                <outlet property="noteTitle" destination="74v-nn-Qw6" id="cmh-f6-AIk"/>
+            </connections>
+            <point key="canvasLocation" x="140" y="154"/>
+        </customView>
+    </objects>
+</document>

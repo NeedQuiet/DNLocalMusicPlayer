@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class DNTitleButton: DNDefaultButton {
+class DNTitleButton: DNButton {
     //MARK: 默认颜色
     var defaultColor:NSColor = NSColor.init(r: 115, g: 170, b: 224) {
         didSet {

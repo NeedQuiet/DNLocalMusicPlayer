@@ -39,7 +39,7 @@ class DNAlertView: NSView {
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var textfieldBackView: NSView!
     // 确认按钮
-    @IBOutlet weak var submitButton: NSButton!
+    @IBOutlet weak var submitButton: DNAlphaButton!
     // 关闭按钮
     @IBOutlet weak var closeButton: NSButton!
 
@@ -69,6 +69,7 @@ extension DNAlertView {
         messageLabel.stringValue = message!
         self.placeholderString = placeholderString
         self.type = type
+        setSubmitButtonEanbled(isEnabled: false)
         setupUI()
         setKVO()
     }
@@ -152,8 +153,6 @@ extension DNAlertView {
 extension DNAlertView: NSTextFieldDelegate {
     // textField 文字内容改变
     func controlTextDidChange(_ obj: Notification) {
-        let tf = obj.object as? NSTextField
-        print("controlTextDidChange,text:" + (tf?.stringValue ?? ""))
         setSubmitButtonEanbled(isEnabled: textField.stringValue.count > 0)
     }
 }

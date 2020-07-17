@@ -20,6 +20,7 @@ class PlayListViewController: BaseViewController{
     private lazy var iTunesPlaylist:Playlist = {
         let playlist = Playlist()
         playlist.name = "iTunes音乐"
+        playlist.isCustomPlaylist = false
         return playlist
     }()
     
@@ -238,11 +239,22 @@ extension PlayListViewController {
 //MARK: - 测试
 extension PlayListViewController {
     @IBAction func addPlaylist(_ sender: Any) {
+//        let formatter = DateComponentsFormatter()
+//        formatter.allowedUnits = [.year ,.month, .day]
+//        formatter.zeroFormattingBehavior = .pad
+//        let timeInterval = Date().timeIntervalSince1970
+//        let currentTimeString:String = "\(formatter.string(from: timeInterval)!)"
+
         let alertView = DNAlertView.initialization()
         alertView.setInfo(title: "新建歌单", placeholderString: "请输入新歌单标题", type: .textFieldType)
         alertView.show(target: self) { (string) in
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "yyyy-MM-dd"
+            let currentTimeString = dateFormat.string(from: Date())
+            
             let newPlaylist = Playlist()
             newPlaylist.name = string
+            newPlaylist.creatTime = currentTimeString
             SongManager.share.createPlaylist(newPlaylist)
         }
     }
