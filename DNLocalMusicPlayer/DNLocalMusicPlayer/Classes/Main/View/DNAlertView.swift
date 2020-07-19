@@ -105,9 +105,9 @@ extension DNAlertView {
         // 监听窗口size变化
         _ = NotificationCenter.default.rx
             .notification(NSWindow.didResizeNotification, object: nil)
-            .subscribe({ [unowned self] (event) in
-                if let windowView = self.superVC.view.window?.contentView {
-                    self.frame = NSRect(x: 0, y: 60, width: windowView.bounds.size.width, height: windowView.bounds.size.height - 60 - 50)
+            .subscribe({ [weak self] (event) in
+                if let windowView = self?.superVC.view.window?.contentView {
+                    self?.frame = NSRect(x: 0, y: 60, width: windowView.bounds.size.width, height: windowView.bounds.size.height - 60 - 50)
                 }
             })
     }

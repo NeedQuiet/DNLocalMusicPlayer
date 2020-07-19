@@ -68,6 +68,9 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="playallButtonClick:" target="c22-O7-iKe" id="SaB-8X-omV"/>
+                            </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="CjU-aj-jJN" customClass="DNAlphaButton" customModule="DN音乐" customModuleProvider="target">
                             <rect key="frame" x="150" y="95" width="100" height="30"/>
@@ -79,6 +82,9 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="addSongButtonClick:" target="c22-O7-iKe" id="olE-al-d19"/>
+                            </connections>
                         </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Va-ed-zis">
                             <rect key="frame" x="-2" y="56" width="56" height="14"/>

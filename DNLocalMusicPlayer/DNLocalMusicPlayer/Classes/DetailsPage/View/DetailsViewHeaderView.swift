@@ -8,6 +8,11 @@
 
 import Cocoa
 
+protocol DetailsViewHeaderViewDelegate : NSObjectProtocol {
+    func playAll()
+    func addSong()
+}
+
 class DetailsViewHeaderView: NSView {
     @IBOutlet weak var artworkImageView: NSImageView!
     @IBOutlet weak var logoBackView: NSView!
@@ -19,6 +24,7 @@ class DetailsViewHeaderView: NSView {
     @IBOutlet weak var songNumLabel: NSTextField!
     @IBOutlet weak var lineView: NSView!
     @IBOutlet weak var noteLabel: NSTextField!
+    weak var delegate:DetailsViewHeaderViewDelegate?
     
     
     override func draw(_ dirtyRect: NSRect) {
@@ -66,5 +72,20 @@ extension DetailsViewHeaderView {
         // 下划线
         lineView.setBackgroundColor(color: kLightColor)
         lineView.alphaValue = 0.2
+    }
+}
+
+//MARK: - IBAction
+extension DetailsViewHeaderView {
+    @IBAction func playallButtonClick(_ sender: Any) {
+        if delegate != nil {
+            delegate?.playAll()
+        }
+    }
+    
+    @IBAction func addSongButtonClick(_ sender: Any) {
+        if delegate != nil {
+            delegate?.addSong()
+        }
     }
 }

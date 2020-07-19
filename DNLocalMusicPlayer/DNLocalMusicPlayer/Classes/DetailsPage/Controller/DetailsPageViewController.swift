@@ -144,6 +144,9 @@ extension DetailsPageViewController {
         let TableHeaderView = NSTableHeaderView()
         TableHeaderView.frame.size.height = kTableHedaerHeight
         tableView.headerView = TableHeaderView
+        
+        //MARK: View Header
+        viewHeader.delegate = self
     }
 
     //MARK: 添加右键菜单
@@ -284,6 +287,7 @@ extension DetailsPageViewController {
         viewHeader.playlistNameLabel.stringValue = playlist.name
         viewHeader.songNumLabel.stringValue = "歌曲数: \(songs.count)"
         viewHeader.createTimeLabel.stringValue = "\(playlist.creatTime)创建"
+        viewHeader.createTimeLabel.isHidden = !playlist.isCustomPlaylist
         viewHeader.playAllButton.isEnabled = songs.count > 0
         viewHeader.addMusicButton.isEnabled = playlist.isCustomPlaylist
         
@@ -356,3 +360,41 @@ extension DetailsPageViewController: NSTableViewDelegate {
     }
 }
 
+//MARK: - DetailsViewHeaderViewDelegate
+extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
+    func playAll() {
+        PlayerManager.share.currentPlayingPlaylist = playlist
+        PlayerManager.share.play(withIndex: 0)
+    }
+    
+    func addSong() {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = true //是否允许多选file
+        openPanel.canChooseDirectories = false //是否能打开文件夹
+        openPanel.canCreateDirectories = false // 能不能创建文件夹
+        openPanel.canChooseFiles = true //是否能选择文件file
+        openPanel.allowedFileTypes = ["mp3","flac","wav"]
+//        openPanel.title = "选择歌曲或文件夹"
+        openPanel.beginSheetModal(for:self.view.window!) { (response) in
+            if response == .OK {
+                let songs = List<Song>()
+                for url in openPanel.urls {
+                    let song = Utility.getSongFromMusicFile(url.path)
+                    songs.append(song)
+                }
+                
+                if songs.count > 0 {
+                    let newPlaylist =  SongManager.share.addSongsTo(self.playlist, songs)
+                    self.songs.removeAll()
+                    self.playlist = newPlaylist
+                    let songs = newPlaylist.songs
+                    for song in songs {
+                        self.songs.append(song)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            openPanel.close()
+        }
+    }
+}

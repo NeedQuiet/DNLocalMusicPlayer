@@ -44,7 +44,6 @@ class Song: Object {
         if let artwork = item.artwork?.image {
             self.artworkData = artwork.tiffRepresentation // 转为Data存储
         }
-       
     }
     
     override class func ignoredProperties() -> [String] {
