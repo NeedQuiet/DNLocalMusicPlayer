@@ -101,7 +101,7 @@ extension PlayerManager {
         } else {
             playmode = .play_mode_shuffle
         }
-        NotificationCenter.default.post(name: kSwitchPlayModeNotificationName, object: nil)
+        NotificationCenter.default.post(name: kSwitchPlayModeNotification, object: nil)
     }
 }
 

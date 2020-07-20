@@ -165,7 +165,7 @@ extension DetailsPageViewController {
     func setupKVO() {
         // PlaylistView 选中歌单
         _ = NotificationCenter.default.rx
-            .notification(kSelectedPlaylistNotificationName, object: nil)
+            .notification(kSelectedPlaylistNotification, object: nil)
             .subscribe({ [unowned self] (event) in
                 if let object = event.element?.object as? [String : Playlist] {
                     self.songs.removeAll()
@@ -178,32 +178,7 @@ extension DetailsPageViewController {
                     }
                     self.tableView.reloadData()
                     self.refreshViewHeader()
-                    
-                    // 设置tableView及背景的frame
-                    let viewSize = self.view.bounds.size
-
-                    if self.songs.count > 0 { // 有歌曲
-                        self.noSongsView.isHidden = true
-                        self.tableBackScrollView.isHidden = false
-                        let tableSize = self.tableView.bounds.size
-                        // 设置 tableView 的 frame
-                        self.tableView.frame = CGRect(x: 0, y: 0, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
-                        // 设置 mainScrollContentView 的 frame
-                        let frame = NSRect(x: 0, y: 0, width: viewSize.width, height: tableSize.height + kViewHeaderHeight + kTableHedaerHeight + kViewFooterHeight)
-                        self.mainScrollContentView.frame = frame
-                        // 设置 tableBackScrollView 的 frame
-                        self.tableBackScrollView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
-                        // 设置 HeaderView 的 frame
-                        self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
-                    } else {
-                        self.mainScrollContentView.frame = self.view.bounds
-                        // 设置 HeaderView 的 frame
-                        self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
-                        self.tableBackScrollView.isHidden = true
-                        // 无歌曲提示
-                        self.noSongsView.isHidden = false
-                        self.noSongsView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: viewSize.width , height: viewSize.height - kViewHeaderHeight)
-                    }
+                    self.refreshDetailsView()
                 }
             })
         
@@ -302,6 +277,35 @@ extension DetailsPageViewController {
             }
         }
     }
+    
+    //MARK: - 刷新内容view，判断tableView | noSongView的frame
+    private func refreshDetailsView() {
+        // 设置tableView及背景的frame
+        let viewSize = self.view.bounds.size
+
+        if self.songs.count > 0 { // 有歌曲
+            self.noSongsView.isHidden = true
+            self.tableBackScrollView.isHidden = false
+            let tableSize = self.tableView.bounds.size
+            // 设置 tableView 的 frame
+            self.tableView.frame = CGRect(x: 0, y: 0, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
+            // 设置 mainScrollContentView 的 frame
+            let frame = NSRect(x: 0, y: 0, width: viewSize.width, height: tableSize.height + kViewHeaderHeight + kTableHedaerHeight + kViewFooterHeight)
+            self.mainScrollContentView.frame = frame
+            // 设置 tableBackScrollView 的 frame
+            self.tableBackScrollView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
+            // 设置 HeaderView 的 frame
+            self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
+        } else {
+            self.mainScrollContentView.frame = self.view.bounds
+            // 设置 HeaderView 的 frame
+            self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
+            self.tableBackScrollView.isHidden = true
+            // 无歌曲提示
+            self.noSongsView.isHidden = false
+            self.noSongsView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: viewSize.width , height: viewSize.height - kViewHeaderHeight)
+        }
+    }
 }
 
 extension DetailsPageViewController: NSTableViewDataSource {
@@ -385,13 +389,16 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
                 
                 if songs.count > 0 {
                     let newPlaylist =  SongManager.share.addSongsTo(self.playlist, songs)
-                    self.songs.removeAll()
-                    self.playlist = newPlaylist
-                    let songs = newPlaylist.songs
-                    for song in songs {
-                        self.songs.append(song)
+                    DispatchQueue.main.async {
+                        self.songs.removeAll()
+                        self.playlist = newPlaylist
+                        let songs = newPlaylist.songs
+                        for song in songs {
+                            self.songs.append(song)
+                        }
+                        self.tableView.reloadData()
+                        self.refreshDetailsView()
                     }
-                    self.tableView.reloadData()
                 }
             }
             openPanel.close()

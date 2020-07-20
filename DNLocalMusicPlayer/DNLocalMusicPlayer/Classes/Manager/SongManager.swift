@@ -13,7 +13,14 @@ import RealmSwift
 final class SongManager:NSObject {
     static let share = SongManager()
     
-    @objc dynamic var itunesSongs:[Song] = []
+    // iTunes 歌单
+    lazy var iTunesPlaylist:Playlist = {
+        let playlist = Playlist()
+        playlist.name = "iTunes音乐"
+        playlist.isCustomPlaylist = false
+        return playlist
+    }()
+    // 自定义的歌单
     @objc dynamic var playlists:[Playlist] = []
 }
 
@@ -28,11 +35,14 @@ extension SongManager {
             return item.mediaKind == ITLibMediaItemMediaKind.kindSong
                 && item.location != nil
                 && item.locationType == ITLibMediaItemLocationType.file
-        }).map { (songItem) -> Song in
+        }).map {(songItem) -> Song in
             return Song(iTunesItem: songItem)
         }
         print("已找到\(Songs.count)首iTunes本地歌曲")
-        itunesSongs = Songs
+        _ = Songs.map { (song)  in
+            iTunesPlaylist.songs.append(song)
+        }
+        NotificationCenter.default.post(name: kFinishGetItunesSongs, object: nil)
     }
     
     //MARK: 查找realm中的所有playlist
@@ -54,6 +64,11 @@ extension SongManager {
             }
         }
         return false
+    }
+    
+    //MARK: - 根据custom playlist数量重新获取应该展示或者播放的歌单
+    private func resetCurrentPlaylist() {
+        
     }
 }
 
@@ -78,9 +93,39 @@ extension SongManager {
     
     //MARK: 删除歌单
     func removePlaylist(_ playlist:Playlist) {
-        print("删除歌单：\(playlist.name)")
         if let index = playlists.firstIndex(of: playlist) {
+            // 删除前，要刷新当前的歌单展示问题
+            // 1 删除的是当前展示的歌单
+            if playlist == PlayerManager.share.currentShowPlaylist {
+                var newPlaylist = Playlist()
+                if index == 0 { // 如果删除的是第一个歌单
+                    if playlists.count > 1 {
+                        newPlaylist = playlists[1]
+                        print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示歌单：\(playlists[1].name)")
+                    } else {
+                        newPlaylist = iTunesPlaylist
+                        print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示iTunes歌单")
+                    }
+                } else {
+                    print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示歌单：\(playlists[0].name)")
+                    newPlaylist = playlists[0]
+                }
+                
+                PlayerManager.share.currentShowPlaylist = newPlaylist
+                NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":newPlaylist])
+            }
+            
+            // 2 删除的歌单是当前正在播放的歌单
+            if playlist == PlayerManager.share.currentPlayingPlaylist {
+                print("删除了当前`播放`的歌单：\(playlist.name) 清空当前播放歌单")
+                PlayerManager.share.currentPlayingPlaylist = Playlist()
+                PlayerManager.share.currentSong = Song()
+                PlayerManager.share.stop()
+            }
+            
+            
             playlists.remove(at: index)
+            print("删除歌单：\(playlist.name)")
         }
         
         let realm = try! Realm()

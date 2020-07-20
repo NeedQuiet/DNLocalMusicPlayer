@@ -8,6 +8,7 @@
 
 import Cocoa
 import RxCocoa
+import RealmSwift
 
 private enum headerType {
     case item_iTunesPlaylist_type
@@ -17,19 +18,7 @@ private enum headerType {
 class PlayListViewController: BaseViewController{
     private var headers:[[String: Any]] = [["name":"我的音乐","type":headerType.item_iTunesPlaylist_type],
                                            ["name":"创建的歌单","type":headerType.item_CustomPlaylist_type]]
-    private lazy var iTunesPlaylist:Playlist = {
-        let playlist = Playlist()
-        playlist.name = "iTunes音乐"
-        playlist.isCustomPlaylist = false
-        return playlist
-    }()
-    
-    private var playlists = [Playlist]() {
-        didSet {
-            outlineView.reloadData()
-        }
-    }
-    
+
     @IBOutlet weak var outlineView: NSOutlineView!
 
     override func viewDidLoad() {
@@ -55,25 +44,20 @@ extension PlayListViewController {
 //MARK: - KVO
 extension PlayListViewController {
     func setupKVO() {
-        //MARK: itunesSongs
-        _ = SongManager.share.rx
-            .observeWeakly([Song].self, "itunesSongs")
-            .subscribe { [unowned self] (change) in
-                let itunesSongs = SongManager.share.itunesSongs
-                _ = itunesSongs.map { (song)  in
-                    self.iTunesPlaylist.songs.append(song)
-                }
-                self.outlineView.reloadData()
-                // 默认选中 index：1（iTunes音乐）
-                self.outlineView.selectRowIndexes(IndexSet(integer: 1), byExtendingSelection: false)
-                
-        }
-        
+        //MARK: itunesPlaylist
+        _ = NotificationCenter.default.rx
+            .notification(kFinishGetItunesSongs, object: nil)
+            .subscribe({ (event) in
+            self.outlineView.reloadData()
+            // 默认选中 index：1（iTunes音乐）
+            self.outlineView.selectRowIndexes(IndexSet(integer: 1), byExtendingSelection: false)
+        })
+
         //MARK: custom_playlists
         _ = SongManager.share.rx
             .observeWeakly([Playlist].self, "playlists")
             .subscribe({ [unowned self] (change) in
-                self.playlists = SongManager.share.playlists
+                self.outlineView.reloadData()
         })
     }
 }
@@ -88,7 +72,7 @@ extension PlayListViewController: NSOutlineViewDataSource {
             if isItunesHeader(item: item) {
                 return 1 // 如果item是iTunes，那么下面的子节点，只返回一个
             }
-            return playlists.count // 其余的按照playlists数量显示
+            return SongManager.share.playlists.count // 其余的按照playlists数量显示
         }
     }
     
@@ -98,9 +82,9 @@ extension PlayListViewController: NSOutlineViewDataSource {
             return headers[index]
         } else {
             if isItunesHeader(item: item) {
-                return iTunesPlaylist
+                return SongManager.share.iTunesPlaylist
             }
-            return playlists[index]
+            return SongManager.share.playlists[index]
         }
     }
     
@@ -145,7 +129,7 @@ extension PlayListViewController: NSOutlineViewDelegate {
         
         if let playlist = model as? Playlist { // playlist
             PlayerManager.share.currentShowPlaylist = playlist
-            NotificationCenter.default.post(name: kSelectedPlaylistNotificationName, object: ["playlist":playlist])
+            NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":playlist])
         } else { // header
             return
         }

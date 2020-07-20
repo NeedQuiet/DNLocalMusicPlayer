@@ -150,7 +150,7 @@ extension BottomPlayViewController {
         
         //MARK: playMode
         _ = NotificationCenter.default.rx
-            .notification(kSwitchPlayModeNotificationName, object: nil)
+            .notification(kSwitchPlayModeNotification, object: nil)
             .subscribe{ [weak self] (event) in
                 let playMode:DNPlayMode = PlayerManager.share.playmode
                 if playMode == .play_mode_repeat_all {

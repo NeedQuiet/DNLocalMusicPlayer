@@ -16,10 +16,12 @@ let kWhiteHighlightColor:NSColor = NSColor.init(r: 255, g: 255, b: 255)
 let kRedHighlightColor:NSColor = NSColor.init(r: 222, g: 46, b: 46)
 
 //MARK: - ************* 通知 *************
+//MARK: iTunes歌曲读取完毕
+let kFinishGetItunesSongs: NSNotification.Name = NSNotification.Name(rawValue: "kFinishGetItunesSongs")
 //MARK: 播放模式改变
-let kSwitchPlayModeNotificationName: NSNotification.Name = NSNotification.Name(rawValue: "kSwitchPlayModeNotificationName")
+let kSwitchPlayModeNotification: NSNotification.Name = NSNotification.Name(rawValue: "kSwitchPlayModeNotification")
 //MARK: 选择Playlist
-let kSelectedPlaylistNotificationName: NSNotification.Name = NSNotification.Name(rawValue: "kSelectedPlaylistNotificationName")
+let kSelectedPlaylistNotification: NSNotification.Name = NSNotification.Name(rawValue: "kSelectedPlaylistNotification")
 
 //MARK: - ************* 播控 *************
 //MARK: 上/下一曲

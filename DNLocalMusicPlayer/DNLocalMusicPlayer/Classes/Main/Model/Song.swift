@@ -26,11 +26,16 @@ class Song: Object {
     @objc dynamic var artworkData: Data?
     
     
-    static let formatter = DateComponentsFormatter()
+    lazy var formatter: DateComponentsFormatter = {
+        let format = DateComponentsFormatter()
+        format.allowedUnits = [.minute, .second]
+        format.zeroFormattingBehavior = .pad
+        return format
+    }()
     //MARK: 时长 字符串
-    @objc dynamic var totalTime: String {
+    @objc dynamic var totalTime: String{
         get {
-            return Song.formatter.string(from: timeInterval)!
+            return formatter.string(from: timeInterval)!
         }
     }
     
@@ -47,6 +52,6 @@ class Song: Object {
     }
     
     override class func ignoredProperties() -> [String] {
-        return ["totalTime"]
+        return ["totalTime","formatter"]
     }
 }
