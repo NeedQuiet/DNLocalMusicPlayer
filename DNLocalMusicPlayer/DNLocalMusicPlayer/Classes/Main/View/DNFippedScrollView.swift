@@ -20,3 +20,10 @@ class DNFippedScrollView: NSScrollView {
         return true
     }
 }
+
+extension DNFippedScrollView {
+    //MARK: 滚动到顶部
+    func scrollToTop() {
+        self.contentView.scroll(to: NSPoint(x: 0, y: 0))
+    }
+}

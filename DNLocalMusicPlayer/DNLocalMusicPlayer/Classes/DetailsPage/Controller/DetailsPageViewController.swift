@@ -82,7 +82,7 @@ class DetailsPageViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupKVO()
+        setupKVOAndNotification()
         setupUI()
     }
     
@@ -160,9 +160,9 @@ extension DetailsPageViewController {
     }
 }
 
-//MARK: - KVO
+//MARK: - KVO & Notification
 extension DetailsPageViewController {
-    func setupKVO() {
+    func setupKVOAndNotification() {
         // PlaylistView 选中歌单
         _ = NotificationCenter.default.rx
             .notification(kSelectedPlaylistNotification, object: nil)
@@ -177,6 +177,7 @@ extension DetailsPageViewController {
                         }
                     }
                     self.tableView.reloadData()
+                    self.mainScrollView.scrollToTop()
                     self.refreshViewHeader()
                     self.refreshDetailsView()
                 }
