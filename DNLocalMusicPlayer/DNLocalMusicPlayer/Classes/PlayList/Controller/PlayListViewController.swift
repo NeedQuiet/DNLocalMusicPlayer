@@ -35,6 +35,7 @@ extension PlayListViewController {
         setBackgroundColor(r: 24, g: 24, b: 24)
         outlineView.backgroundColor = NSColor.init(r: 24, g: 24, b: 24)
         
+        //MARK: 右键菜单按钮
         let menu = NSMenu()
         menu.delegate = self
         outlineView.menu = menu

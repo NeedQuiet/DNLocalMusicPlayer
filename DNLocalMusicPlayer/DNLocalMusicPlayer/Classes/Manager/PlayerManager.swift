@@ -148,8 +148,8 @@ extension PlayerManager {
                 newIndex = Int(random)
                 print("随机播放第\(newIndex)首")
             } else { // 列表循环 || 单曲循环
-                if type == .play_previous_song { // 上一曲
-                    newIndex = newIndex == 0 ? currentPlayingPlaylist.songs.count - 1 : currentIndex! - 1
+                if type == .play_previous_song { // 上一曲 (删除index0的正在播放的歌曲，index会减为-1)
+                    newIndex = newIndex <= 0 ? currentPlayingPlaylist.songs.count - 1 : currentIndex! - 1
                 } else { // 下一曲
                     newIndex = newIndex < currentPlayingPlaylist.songs.count - 1 ? currentIndex! + 1 : 0
                 }

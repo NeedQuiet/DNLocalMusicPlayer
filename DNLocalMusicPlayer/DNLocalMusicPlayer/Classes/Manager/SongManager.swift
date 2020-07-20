@@ -146,7 +146,7 @@ extension SongManager {
     }
     
     //MARK: 给歌单添加歌曲
-    func addSongsTo(_ playlist:Playlist, _ songs:List<Song>) -> Playlist{
+    func addSongsTo(_ playlist:Playlist, _ songs:List<Song>, _ callback: @escaping (_ finish:Bool)->()) {
         let realm = try! Realm()
         try! realm.write {
             print("歌单'\(playlist.name)'添加歌曲：")
@@ -158,8 +158,29 @@ extension SongManager {
                     playlist.songs.insert(song, at: 0)
                 }
             }
-            print("添加结束")
         }
-        return playlist
+        callback(true)
+    }
+    
+    //MARK: 删除歌曲
+    func removeSongFrom(_ playlist:Playlist, _ withSong:Song,_ callback:@escaping (_ finish:Bool)->()) {
+       let realm = try! Realm()
+        try! realm.write {
+            print("歌单'\(playlist.name)'删除歌曲：")
+            if let index = playlist.songs.index(of: withSong), index >= 0{
+                print("删除：'\(withSong.title)'")
+                playlist.songs.remove(at: index)
+                //删除index0的正在播放的歌曲，index会减为-1
+                if playlist == PlayerManager.share.currentPlayingPlaylist {
+                    if withSong.filePath == PlayerManager.share.currentSong?.filePath {
+                        PlayerManager.share.currentIndex! -= 1
+                    }
+                }
+            } else {
+                print("歌曲'\(withSong.title)'不存在")
+                callback(false)
+            }
+        }
+        callback(true)
     }
 }

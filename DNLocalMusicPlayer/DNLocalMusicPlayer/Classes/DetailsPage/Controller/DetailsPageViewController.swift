@@ -97,6 +97,7 @@ extension DetailsPageViewController {
     //MARK: 设置UI
     func setupUI() {
         setBackgroundColor(r: 37, g: 37, b: 37)
+        addRightMenu()
 
         // scrollview
         view.addSubview(mainScrollView)
@@ -152,10 +153,7 @@ extension DetailsPageViewController {
     //MARK: 添加右键菜单
     func addRightMenu() {
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "收藏", action: nil, keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "在Finder中显示", action: nil, keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "删除", action: nil, keyEquivalent: ""))
+        menu.delegate = self
         tableView.menu = menu
     }
 }
@@ -176,10 +174,8 @@ extension DetailsPageViewController {
                             self.songs.append(song)
                         }
                     }
-                    self.tableView.reloadData()
+                    self.refreshUI()
                     self.mainScrollView.scrollToTop()
-                    self.refreshViewHeader()
-                    self.refreshDetailsView()
                 }
             })
         
@@ -245,16 +241,30 @@ extension DetailsPageViewController {
         playSong(withIndex: clickedRow)
     }
     
-    //MARK: Menu - 播放
-    @objc private func menuPlay() {
-        let clickedRow = tableView.clickedRow
-        playSong(withIndex: clickedRow)
-    }
-    
     //MARK: 播放歌曲
     private func playSong(withIndex index:Int) {
         if index != -1 {
             PlayerManager.share.play(withIndex: index)
+        }
+    }
+    
+    //MARK: 刷新UI
+    private func refreshUI() {
+        self.tableView.reloadData()
+        self.refreshViewHeader()
+        self.refreshDetailsView()
+    }
+    
+    //MARK: 根据playlist刷新页面
+    private func refreshDataSource(_ newPlaylist:Playlist){
+        DispatchQueue.main.async {
+            self.songs.removeAll()
+            self.playlist = newPlaylist
+            let songs = newPlaylist.songs
+            for song in songs {
+                self.songs.append(song)
+            }
+            self.refreshUI()
         }
     }
     
@@ -287,7 +297,7 @@ extension DetailsPageViewController {
         }
     }
     
-    //MARK: - 刷新内容view，判断tableView | noSongView的frame
+    //MARK: 刷新内容view，判断tableView | noSongView的frame
     private func refreshDetailsView() {
         // 设置tableView及背景的frame
         let viewSize = self.view.bounds.size
@@ -313,6 +323,39 @@ extension DetailsPageViewController {
             // 无歌曲提示
             self.noSongsView.isHidden = false
             self.noSongsView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: viewSize.width , height: viewSize.height - kViewHeaderHeight)
+        }
+    }
+    
+    //MARK: 检测是否为当前播放的歌曲
+    private func isCurrentPlayingSong(_ song:Song) -> Bool {
+        if playlist == PlayerManager.share.currentPlayingPlaylist {
+            if song.filePath == PlayerManager.share.currentSong?.filePath {
+                return true
+            }
+        }
+        return false
+    }
+    
+    //MARK: Menu - 播放
+    @objc private func menuPlay() {
+        let clickedRow = tableView.clickedRow
+        playSong(withIndex: clickedRow)
+    }
+    
+    //MARK: Show in finder
+    @objc private func showInFinder() {
+        let clickedRow = tableView.clickedRow
+        let song = songs[clickedRow]
+        let filePath = song.filePath
+        NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: filePath)])
+    }
+    
+    //MARK: 删除歌曲
+    @objc private func removeSong() {
+        let clickedRow = tableView.clickedRow
+        let song = songs[clickedRow]
+        SongManager.share.removeSongFrom(playlist, song) {[unowned self] (success) in
+            self.refreshDataSource(self.playlist)
         }
     }
 }
@@ -355,7 +398,7 @@ extension DetailsPageViewController: NSTableViewDelegate {
             switch tableColumn?.identifier {
             case kTitleColumnID:
                 textField.stringValue = song.title
-                if song.filePath == PlayerManager.share.currentSong?.filePath {
+                if isCurrentPlayingSong(song) {
                     textField.textColor = kRedHighlightColor
                 } else {
                     textField.textColor = kDefaultColor
@@ -404,17 +447,8 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
                 }
                 
                 if songs.count > 0 {
-                    let newPlaylist =  SongManager.share.addSongsTo(self.playlist, songs)
-                    DispatchQueue.main.async {
-                        self.songs.removeAll()
-                        self.playlist = newPlaylist
-                        let songs = newPlaylist.songs
-                        for song in songs {
-                            self.songs.append(song)
-                        }
-                        self.tableView.reloadData()
-                        self.refreshViewHeader()
-                        self.refreshDetailsView()
+                    SongManager.share.addSongsTo(self.playlist, songs) {[unowned self] (success) in
+                        self.refreshDataSource(self.playlist)
                     }
                 }
             }
@@ -422,3 +456,21 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
         }
     }
 }
+
+//MARK: - NSMenuDelegate
+extension DetailsPageViewController: NSMenuDelegate{
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.removeAllItems()
+        if playlist.isCustomPlaylist == true {
+            menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
+            menu.addItem(NSMenuItem(title: "收藏", action: nil, keyEquivalent: ""))
+            menu.addItem(NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: ""))
+            menu.addItem(NSMenuItem(title: "删除", action: #selector(removeSong), keyEquivalent: ""))
+        } else {
+            menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
+            menu.addItem(NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: ""))
+        }
+    }
+}
+
+
