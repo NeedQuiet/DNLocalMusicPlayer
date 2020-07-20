@@ -286,7 +286,7 @@ extension DetailsPageViewController {
         if self.songs.count > 0 { // 有歌曲
             self.noSongsView.isHidden = true
             self.tableBackScrollView.isHidden = false
-            let tableSize = self.tableView.bounds.size
+            let tableSize = NSSize(width: view.bounds.width, height: CGFloat(songs.count + 1) * rowHeight )
             // 设置 tableView 的 frame
             self.tableView.frame = CGRect(x: 0, y: 0, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
             // 设置 mainScrollContentView 的 frame

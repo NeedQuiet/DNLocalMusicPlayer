@@ -128,12 +128,20 @@ extension PlayerManager {
     
     //MARK: 播放currentSong
     private func playCurrentSong() {
-        print("播放: \(currentSong!.title)")
-        player = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: currentSong!.filePath))
-        player?.delegate = self
-        player?.volume = volume
-        isPlaying = true
-        player?.play()
+        do {
+//            let manager = FileManager.default
+//            let filePath = currentSong!.filePath
+//            let exist = manager.fileExists(atPath: filePath)
+            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: currentSong!.filePath))
+            player?.delegate = self
+            player?.volume = volume
+            isPlaying = true
+            player?.play()
+        } catch  {
+            print("播放失败")
+            stop()
+        }
+        
     }
     
     //MARK: 上/下一曲方法抽取
