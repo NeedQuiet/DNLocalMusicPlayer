@@ -97,7 +97,7 @@ extension DetailsPageViewController {
     //MARK: 设置UI
     func setupUI() {
         setBackgroundColor(r: 37, g: 37, b: 37)
-        
+
         // scrollview
         view.addSubview(mainScrollView)
         
@@ -139,7 +139,7 @@ extension DetailsPageViewController {
         mainScrollContentView.addSubview(tableBackScrollView)
         // 3.将 mainScrollContentView 设置为 mainScrollView 的 document
         mainScrollView.contentView.documentView = mainScrollContentView
-        
+
         //MARK: tableView Header
         let TableHeaderView = NSTableHeaderView()
         TableHeaderView.frame.size.height = kTableHedaerHeight
@@ -398,6 +398,7 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
                             self.songs.append(song)
                         }
                         self.tableView.reloadData()
+                        self.refreshViewHeader()
                         self.refreshDetailsView()
                     }
                 }

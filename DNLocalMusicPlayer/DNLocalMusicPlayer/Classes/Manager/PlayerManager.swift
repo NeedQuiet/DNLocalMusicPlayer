@@ -135,7 +135,7 @@ extension PlayerManager {
         player?.volume = volume
         isPlaying = true
         player?.play()
-        
+        print("播放: \(currentSong!.title)")
     }
     
     //MARK: 上/下一曲方法抽取
