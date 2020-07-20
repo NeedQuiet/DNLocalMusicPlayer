@@ -222,6 +222,14 @@ extension DetailsPageViewController {
                     tableCoulumn.width = defaultWidth * scale
                 }
             })
+        
+        //MARK: currentSong
+        _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
+            .subscribe({  [unowned self] (change) in
+                if (change.element != nil) {
+                    self.tableView.reloadData()
+                }
+        })
     }
 }
 
@@ -342,15 +350,22 @@ extension DetailsPageViewController: NSTableViewDelegate {
             textField.lineBreakMode = .byTruncatingTail
             cellView!.addSubview(textField)
             
+            let song = songs[row]
+            textField.textColor = kLightColor
             switch tableColumn?.identifier {
             case kTitleColumnID:
-                textField.stringValue = songs[row].title
+                textField.stringValue = song.title
+                if song.filePath == PlayerManager.share.currentSong?.filePath {
+                    textField.textColor = kRedHighlightColor
+                } else {
+                    textField.textColor = kDefaultColor
+                }
             case kArtistColumnID:
-                textField.stringValue = songs[row].artist
+                textField.stringValue = song.artist
             case kAlbumColumnID:
-                textField.stringValue = songs[row].album
+                textField.stringValue = song.album
             case kTimeColumnID:
-                textField.stringValue = songs[row].totalTime
+                textField.stringValue = song.totalTime
             default:
                 textField.stringValue = ""
             }
