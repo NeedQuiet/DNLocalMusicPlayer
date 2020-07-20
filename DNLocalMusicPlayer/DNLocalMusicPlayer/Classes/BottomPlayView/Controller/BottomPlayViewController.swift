@@ -8,6 +8,7 @@
 
 import Cocoa
 import RxCocoa
+import AVFoundation
 
 class BottomPlayViewController: BaseViewController {
     
@@ -219,7 +220,7 @@ extension BottomPlayViewController {
         }
         formatter.zeroFormattingBehavior = .pad
         
-        let currentTime:TimeInterval = player.currentTime
+        let currentTime:TimeInterval = CMTimeGetSeconds(player.currentItem!.currentTime())
         let currentTimeString:String = "\(formatter.string(from: currentTime)!)"
         let totalTime = currentSong.totalTime
         setTime(currentTime: currentTimeString, totalTime: totalTime)

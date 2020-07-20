@@ -9,6 +9,7 @@
 import Cocoa
 import AVFoundation
 import RealmSwift
+import RxCocoa
 
 class PlayerManager: NSObject {
     //MARK: - 属性定义
@@ -17,7 +18,7 @@ class PlayerManager: NSObject {
     //MARK: 播放状态
     @objc dynamic var isPlaying: Bool = false
     //MARK: player
-    @objc dynamic var player: AVAudioPlayer?
+    @objc dynamic var player: AVPlayer?
     //MARK: 当前歌曲
     @objc dynamic var currentSong: Song?
     //MARK: 当前播放索引
@@ -41,6 +42,7 @@ class PlayerManager: NSObject {
     override init() {
         super.init()
 //        print("[PlayerManager] init!")
+        notification()
     }
     
     deinit {
@@ -69,7 +71,7 @@ extension PlayerManager {
             playCurrentSong()
         }
     }
-    //MARK: 暂停"
+    //MARK: 暂停
     func pause() {
         isPlaying = false
         player?.pause()
@@ -77,7 +79,8 @@ extension PlayerManager {
     //MARK: 停止
     func stop() {
         isPlaying = false
-        player?.stop()
+        player?.pause()
+        currentSong = Song()
     }
     
     //MARK: 上一曲
@@ -128,19 +131,10 @@ extension PlayerManager {
     
     //MARK: 播放currentSong
     private func playCurrentSong() {
-        do {
-//            let manager = FileManager.default
-//            let filePath = currentSong!.filePath
-//            let exist = manager.fileExists(atPath: filePath)
-            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: currentSong!.filePath))
-            player?.delegate = self
-            player?.volume = volume
-            isPlaying = true
-            player?.play()
-        } catch  {
-            print("播放失败")
-            stop()
-        }
+        player = AVPlayer(playerItem: AVPlayerItem(url: URL(fileURLWithPath: currentSong!.filePath)))
+        player?.volume = volume
+        isPlaying = true
+        player?.play()
         
     }
     
@@ -171,19 +165,29 @@ extension PlayerManager {
     }
 }
 
-//MARK: - AVAudioPlayerDelegate
-extension PlayerManager:AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        print("音频播放完毕")
-        // 暂时按照列表循环处理
-        if playmode == .play_mode_repeat_one { // 单曲循环
-            play(withIndex: currentIndex)
-        } else { // 列表循环 || 随机播放
-            next()
-        }
-    }
-    
-    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
-        print("音频播放器解码错误 \(String(describing: error))")
+//MARK: - NSNotification
+extension PlayerManager {
+    func notification() {
+        //MARK: 播放结束
+        _ = NotificationCenter.default.rx
+            .notification(NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+            .subscribe({ [unowned self] (event) in
+                print("音频播放完毕")
+                // 暂时按照列表循环处理
+                if self.playmode == .play_mode_repeat_one { // 单曲循环
+                    self.play(withIndex: self.currentIndex)
+                } else { // 列表循环 || 随机播放
+                    self.next()
+                }
+        })
+        
+        //MARK: 播放失败
+        _ = NotificationCenter.default.rx
+            .notification(NSNotification.Name.AVPlayerItemFailedToPlayToEndTime, object: nil)
+            .subscribe({ [unowned self] (event) in
+                print("音频播放失败")
+                self.stop()
+        })
     }
 }
+    

@@ -119,7 +119,6 @@ extension SongManager {
             if playlist == PlayerManager.share.currentPlayingPlaylist {
                 print("删除了当前`播放`的歌单：\(playlist.name) 清空当前播放歌单")
                 PlayerManager.share.currentPlayingPlaylist = Playlist()
-                PlayerManager.share.currentSong = Song()
                 PlayerManager.share.stop()
             }
             
