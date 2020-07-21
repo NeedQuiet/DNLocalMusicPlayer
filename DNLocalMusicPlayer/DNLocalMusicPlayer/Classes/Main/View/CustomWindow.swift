@@ -21,7 +21,7 @@ class CustomWindow: NSWindow {
         // titlebar透明
         titlebarAppearsTransparent = true
         // 隐藏title
-//        titleVisibility = NSWindow.TitleVisibility.hidden
+        titleVisibility = NSWindow.TitleVisibility.hidden
         // 点击窗口背景支持鼠标拖动窗口
         isMovableByWindowBackground = true
         // 设置透明背景

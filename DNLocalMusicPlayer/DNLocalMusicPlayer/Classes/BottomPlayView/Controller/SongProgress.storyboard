@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="p6G-bF-gnY">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Song Progress View Controller-->
+        <scene sceneID="7vh-0D-97V">
+            <objects>
+                <viewController id="p6G-bF-gnY" customClass="SongProgressViewController" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="OOA-gX-Mz0">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sjr-NP-put">
+                                <rect key="frame" x="-2" y="-2" width="1004" height="19"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="FJ4-4t-C9Z"/>
+                                <connections>
+                                    <action selector="sliderClick:" target="p6G-bF-gnY" id="D3B-nt-72F"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="sjr-NP-put" firstAttribute="centerY" secondItem="OOA-gX-Mz0" secondAttribute="centerY" id="HNZ-gO-dKO"/>
+                            <constraint firstItem="sjr-NP-put" firstAttribute="leading" secondItem="OOA-gX-Mz0" secondAttribute="leading" id="OJ4-wL-onD"/>
+                            <constraint firstAttribute="trailing" secondItem="sjr-NP-put" secondAttribute="trailing" id="TeJ-AS-dcF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressSlider" destination="sjr-NP-put" id="pzv-qi-8ZM"/>
+                    </connections>
+                </viewController>
+                <customObject id="zei-Xl-jcj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="151" y="1645"/>
+        </scene>
+    </scenes>
+</document>

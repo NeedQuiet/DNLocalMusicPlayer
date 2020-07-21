@@ -37,6 +37,10 @@ class PlayerManager: NSObject {
     var currentPlayingPlaylist: Playlist = Playlist()
     //MARK: 播放模式
     var playmode: DNPlayMode = .play_mode_repeat_all
+    //MARK: 当前播放进度
+    @objc dynamic var currentProgress: Double = 0
+    //用来控制observe是否刷新进度，防止闪烁
+    var canObservProgress:Bool = true
     
     //MARK: - 声明周期
     override init() {
@@ -106,6 +110,16 @@ extension PlayerManager {
         }
         NotificationCenter.default.post(name: kSwitchPlayModeNotification, object: nil)
     }
+    
+    //MARK: 更改进度
+    func seekToProgress(_ progress:Double) {
+        guard let currentSong = self.currentSong else { return }
+        canObservProgress = false
+        let seconds = currentSong.timeInterval * progress / 100
+        player?.seek(to: CMTime(seconds: seconds, preferredTimescale: 1), completionHandler: {[unowned self] (result) in
+            self.canObservProgress = true
+        })
+    }
 }
 
 //MARK: - Private
@@ -134,6 +148,7 @@ extension PlayerManager {
         player = AVPlayer(playerItem: AVPlayerItem(url: URL(fileURLWithPath: currentSong!.filePath)))
         player?.volume = volume
         isPlaying = true
+        self.addTimeObserver()
         player?.play()
         print("播放: \(currentSong!.title)")
     }
@@ -144,9 +159,9 @@ extension PlayerManager {
         if checkCurrentSongIsEmpty() == false {
             var newIndex:Int = currentIndex!
             if playmode == .play_mode_shuffle{ // 随机播放
-                let random = arc4random_uniform(UInt32(currentPlayingPlaylist.songs.count)) + 1
+                let random = arc4random_uniform(UInt32(currentPlayingPlaylist.songs.count))
                 newIndex = Int(random)
-                print("随机播放第\(newIndex)首")
+                print("随机播放第\(newIndex + 1)首")
             } else { // 列表循环 || 单曲循环
                 if type == .play_previous_song { // 上一曲 (删除index0的正在播放的歌曲，index会减为-1)
                     newIndex = newIndex <= 0 ? currentPlayingPlaylist.songs.count - 1 : currentIndex! - 1
@@ -187,6 +202,19 @@ extension PlayerManager {
             .subscribe({ [unowned self] (event) in
                 print("音频播放失败")
                 self.stop()
+        })
+    }
+    
+    //MARK: 监听播放进度
+    func addTimeObserver() {
+        // 每次添加不需要remove，会直接覆盖
+        canObservProgress = true
+        player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main, using: {[unowned self] (time) in
+            if (self.canObservProgress == false) { return }
+            let currentTime:TimeInterval = CMTimeGetSeconds(time)
+            let totalTimeInterval = self.currentSong?.timeInterval ?? 0
+            let songProgress:Double = currentTime / totalTimeInterval * 100
+            self.currentProgress = songProgress
         })
     }
 }

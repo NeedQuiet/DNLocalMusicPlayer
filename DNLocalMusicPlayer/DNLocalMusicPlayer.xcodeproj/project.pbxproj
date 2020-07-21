@@ -135,6 +135,8 @@
 		F5DC90A224C6BFC300FFB4FB /* WindowTitleBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */; };
 		F5DC90A424C6C26000FFB4FB /* WindowTitileBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */; };
 		F5DC90A624C6E55000FFB4FB /* CustomAlbumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */; };
+		F5DC90AE24C6F29800FFB4FB /* SongProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5DC90AD24C6F29800FFB4FB /* SongProgress.storyboard */; };
+		F5DC90B024C6F2BA00FFB4FB /* SongProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90AF24C6F2BA00FFB4FB /* SongProgressViewController.swift */; };
 		F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -275,6 +277,8 @@
 		F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WindowTitleBar.storyboard; sourceTree = "<group>"; };
 		F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTitileBar.swift; sourceTree = "<group>"; };
 		F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlbumButton.swift; sourceTree = "<group>"; };
+		F5DC90AD24C6F29800FFB4FB /* SongProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SongProgress.storyboard; sourceTree = "<group>"; };
+		F5DC90AF24C6F2BA00FFB4FB /* SongProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongProgressViewController.swift; sourceTree = "<group>"; };
 		F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -396,6 +400,8 @@
 		F51F899924ADBC2D0066E920 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F5DC90AD24C6F29800FFB4FB /* SongProgress.storyboard */,
+				F5DC90AF24C6F2BA00FFB4FB /* SongProgressViewController.swift */,
 				F51F899424ADBB480066E920 /* BottomPlayView.storyboard */,
 				F51F89B324ADC3470066E920 /* BottomPlayViewController.swift */,
 				F560F99324AF3730008FC9C9 /* VolumePopover.swift */,
@@ -740,6 +746,7 @@
 				F51F8A4024AEDC550066E920 /* MiniPlayerDislikeButtonPressed.tiff in Resources */,
 				F51F8A3A24AEDC550066E920 /* MiniPlayerFastForwardButtonSelected.tiff in Resources */,
 				F51F8A2324AEDC550066E920 /* MiniPlayerDeleteButtonPressed.tiff in Resources */,
+				F5DC90AE24C6F29800FFB4FB /* SongProgress.storyboard in Resources */,
 				F51F8A4F24AEDC550066E920 /* MiniPlayerPlaylistButtonDark.tiff in Resources */,
 				F51F8A5424AEDC550066E920 /* MiniPlayerPraiseButtonPressed.tiff in Resources */,
 				F5DC90A224C6BFC300FFB4FB /* WindowTitleBar.storyboard in Resources */,
@@ -909,6 +916,7 @@
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,
 				F51F896F24AD87060066E920 /* Document.swift in Sources */,
+				F5DC90B024C6F2BA00FFB4FB /* SongProgressViewController.swift in Sources */,
 				F5BE353B24C19100007A1D5C /* FippedTableBackScrollView.swift in Sources */,
 				F5BE353724C186EC007A1D5C /* DNFippedScrollView.swift in Sources */,
 				F51C100724B3220B0079DD35 /* DNTitleBarView.swift in Sources */,

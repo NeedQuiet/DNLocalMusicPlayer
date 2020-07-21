@@ -37,11 +37,7 @@ class BottomPlayViewController: BaseViewController {
     @IBOutlet weak var songArtistButton: DNTitleButton!
     //MARK: 歌曲时间
     @IBOutlet weak var songTime: NSTextField!
-    
-    //MARK: 播放进度
-    var songTimer:Timer?
-    var songProgress: Double = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -139,12 +135,16 @@ extension BottomPlayViewController {
                 if let isPlaying = change.element {
                     if isPlaying == true {
                         self.playButton.image = NSImage.init(named: "MiniPlayerPauseButton")
-                        self.startTimer()
                     } else {
                         self.playButton.image = NSImage.init(named: "MiniPlayerPlayButton")
-                        self.stopTimer()
                     }
                 }
+        }
+        
+        //MARK: currentProgress
+        _ = PlayerManager.share.rx.observeWeakly(Double.self, "currentProgress")
+            .subscribe { [unowned self] (change) in
+                self.updateProgress()
         }
         
         //MARK: playMode
@@ -194,18 +194,7 @@ extension BottomPlayViewController {
         songTime.stringValue = "\(currentTime) / \(totalTime)"
     }
     
-    //MARK: 时间 & 进度刷新
-    private func startTimer() {
-        stopTimer()
-        songTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
-    }
-    
-    private func stopTimer() {
-        songTimer?.invalidate()
-        songTimer = nil
-    }
-    
-    @objc private func updateProgress() {
+    private func updateProgress() {
         guard let currentSong = PlayerManager.share.currentSong else { return }
         guard let player = PlayerManager.share.player else { return }
         // 设置时间label
@@ -222,9 +211,5 @@ extension BottomPlayViewController {
         let currentTimeString:String = "\(formatter.string(from: currentTime)!)"
         let totalTime = currentSong.totalTime
         setTime(currentTime: currentTimeString, totalTime: totalTime)
-        
-        //TODO: 设置进度条
-        songProgress = currentTime / totalTimeInterval * 100
-//        print("当前进度: \(songProgress)%")
     }
 }

@@ -205,13 +205,25 @@
                                     <constraint firstItem="6GE-Ub-N20" firstAttribute="top" secondItem="fBY-6m-chA" secondAttribute="bottom" id="saR-S2-Cdz"/>
                                 </constraints>
                             </customView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="J6q-Oz-1jd">
+                                <rect key="frame" x="0.0" y="53" width="1000" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="msg-fp-9Wa"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="B7g-hM-lZP" kind="embed" id="uLg-jv-kvL"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="hoG-12-vUS" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="7uo-CX-Jil"/>
+                            <constraint firstAttribute="trailing" secondItem="J6q-Oz-1jd" secondAttribute="trailing" id="M84-u0-Fgo"/>
                             <constraint firstItem="pZJ-vF-4Gn" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="P9h-lO-790"/>
                             <constraint firstAttribute="trailing" secondItem="pZJ-vF-4Gn" secondAttribute="trailing" id="QHD-6l-6gM"/>
                             <constraint firstAttribute="trailing" secondItem="hoG-12-vUS" secondAttribute="trailing" id="WF1-QP-0Xi"/>
                             <constraint firstItem="pZJ-vF-4Gn" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="XT7-bN-TSy"/>
+                            <constraint firstAttribute="bottom" secondItem="J6q-Oz-1jd" secondAttribute="bottom" constant="53" id="XjH-ws-0gx"/>
+                            <constraint firstItem="J6q-Oz-1jd" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="e6n-2y-Cr1"/>
                             <constraint firstAttribute="bottom" secondItem="hoG-12-vUS" secondAttribute="bottom" id="q8y-wC-LHc"/>
                             <constraint firstItem="hoG-12-vUS" firstAttribute="top" secondItem="pZJ-vF-4Gn" secondAttribute="bottom" id="yaF-bF-94x"/>
                         </constraints>
@@ -239,7 +251,7 @@
                 <controllerPlaceholder storyboardName="BottomPlayView" id="koE-aN-Kxk" sceneMemberID="viewController"/>
                 <customObject id="9Un-71-qtD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249" y="1402"/>
+            <point key="canvasLocation" x="341" y="1402"/>
         </scene>
         <!--PlayList-->
         <scene sceneID="lst-Pk-cVb">
@@ -255,7 +267,7 @@
                 <controllerPlaceholder storyboardName="DetailsPage" id="PB8-CA-7Aw" sceneMemberID="viewController"/>
                 <customObject id="zZM-ZY-BcN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1402"/>
+            <point key="canvasLocation" x="21" y="1402"/>
         </scene>
         <!--PlayView-->
         <scene sceneID="jab-CH-xVq">
@@ -280,6 +292,14 @@
                 <customObject id="UCq-eB-8TH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="754" y="578"/>
+        </scene>
+        <!--SongProgress-->
+        <scene sceneID="RND-ge-L6o">
+            <objects>
+                <controllerPlaceholder storyboardName="SongProgress" id="B7g-hM-lZP" sceneMemberID="viewController"/>
+                <customObject id="95g-QG-Qlf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165" y="1402"/>
         </scene>
     </scenes>
 </document>
