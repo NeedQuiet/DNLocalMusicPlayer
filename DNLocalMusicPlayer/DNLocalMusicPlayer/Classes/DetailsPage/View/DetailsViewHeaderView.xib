@@ -37,7 +37,7 @@
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4kH-Ql-5G0">
                                     <rect key="frame" x="7" y="3" width="27" height="14"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="歌单" id="kJO-oT-JeL">
-                                        <font key="font" metaFont="controlContent" size="11"/>
+                                        <font key="font" metaFont="menu" size="11"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
@@ -64,7 +64,7 @@
                                 <constraint firstAttribute="width" constant="140" id="NB0-GF-Hnc"/>
                                 <constraint firstAttribute="height" constant="30" id="fta-k7-55V"/>
                             </constraints>
-                            <buttonCell key="cell" type="square" title="播放全部" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="mMQ-de-Di8">
+                            <buttonCell key="cell" type="square" title="播放全部" bezelStyle="shadowlessSquare" image="play_item" imagePosition="leading" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="mMQ-de-Di8">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -89,7 +89,7 @@
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Va-ed-zis">
                             <rect key="frame" x="-2" y="56" width="56" height="14"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="歌曲数：0" id="JFA-4q-Pgv">
-                                <font key="font" metaFont="controlContent" size="11"/>
+                                <font key="font" metaFont="menu" size="11"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -155,5 +155,6 @@
     </objects>
     <resources>
         <image name="default_artwork_image" width="194" height="194"/>
+        <image name="play_item" width="64" height="64"/>
     </resources>
 </document>

@@ -10,18 +10,24 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-
-
+    var mainWindow: NSWindow!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         SongManager.share.startScanRealmData()
+        mainWindow = NSApplication.shared.windows[0]
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
+}
 
-
+extension AppDelegate: NSWindowDelegate {
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            mainWindow.makeKeyAndOrderFront(nil)
+        }
+        return false
+    }
 }
 

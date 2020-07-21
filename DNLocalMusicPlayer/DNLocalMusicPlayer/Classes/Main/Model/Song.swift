@@ -24,7 +24,7 @@ class Song: Object {
     @objc dynamic var album: String = ""
     //MARK: 专辑图data
     @objc dynamic var artworkData: Data?
-    
+
     
     lazy var formatter: DateComponentsFormatter = {
         let format = DateComponentsFormatter()

@@ -71,60 +71,64 @@
                                     <constraint firstItem="XtM-NC-1rP" firstAttribute="width" secondItem="XtM-NC-1rP" secondAttribute="height" multiplier="1:1" id="xah-8i-7bW"/>
                                 </constraints>
                             </customView>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IA9-in-mjz" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
-                                <rect key="frame" x="954" y="22" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="IA9-in-mjz" secondAttribute="height" multiplier="1:1" id="XmZ-Xc-Eem"/>
-                                    <constraint firstAttribute="width" constant="16" id="nMk-cb-lMl"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerVolumeButtonPressedDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Xuh-8I-6uP">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="volumeButtonClick:" target="EFd-2V-VDr" id="QNq-vR-dLh"/>
-                                </connections>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MIz-8u-tvn" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
-                                <rect key="frame" x="918" y="22" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="MIz-8u-tvn" secondAttribute="height" multiplier="1:1" id="qgD-f2-zFC"/>
-                                    <constraint firstAttribute="width" constant="16" id="rKg-a8-2xv"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerLyricsButtonDisabledDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="yLf-rW-Rou">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="GOH-4D-YMX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
-                                <rect key="frame" x="880" y="21" width="18" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="18" id="Sc7-CK-6gN"/>
-                                    <constraint firstAttribute="width" secondItem="GOH-4D-YMX" secondAttribute="height" multiplier="1:1" id="XyR-k1-rNv"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="CurrentPlaylist_Default" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="w1d-Ig-wah">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="playlistButtonClick:" target="EFd-2V-VDr" id="RcC-B6-P1W"/>
-                                </connections>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="joT-Zl-g1G" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
-                                <rect key="frame" x="840" y="20" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="9jZ-dg-17c"/>
-                                    <constraint firstAttribute="width" secondItem="joT-Zl-g1G" secondAttribute="height" multiplier="1:1" id="hjJ-eX-oVs"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TouchBarPlayModeRepeatAll" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Hou-B9-b7d">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="playModeButtonClick:" target="EFd-2V-VDr" id="ig3-IP-10P"/>
-                                </connections>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xu-qcX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                            <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="25" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xow-Eb-Ts4">
+                                <rect key="frame" x="866" y="20" width="104" height="20"/>
+                                <subviews>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="joT-Zl-g1G" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="9jZ-dg-17c"/>
+                                            <constraint firstAttribute="width" secondItem="joT-Zl-g1G" secondAttribute="height" multiplier="1:1" id="hjJ-eX-oVs"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="TouchBarPlayModeRepeatAll" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Hou-B9-b7d">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="playModeButtonClick:" target="EFd-2V-VDr" id="ig3-IP-10P"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="GOH-4D-YMX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                        <rect key="frame" x="45" y="1" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="Sc7-CK-6gN"/>
+                                            <constraint firstAttribute="width" secondItem="GOH-4D-YMX" secondAttribute="height" multiplier="1:1" id="XyR-k1-rNv"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="CurrentPlaylist_Default" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="w1d-Ig-wah">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="playlistButtonClick:" target="EFd-2V-VDr" id="RcC-B6-P1W"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="IA9-in-mjz" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                        <rect key="frame" x="88" y="2" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="IA9-in-mjz" secondAttribute="height" multiplier="1:1" id="XmZ-Xc-Eem"/>
+                                            <constraint firstAttribute="width" constant="16" id="nMk-cb-lMl"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerVolumeButtonPressedDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Xuh-8I-6uP">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="volumeButtonClick:" target="EFd-2V-VDr" id="QNq-vR-dLh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xu-qcX" customClass="CustomAlbumButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bGX-Xu-qcX" secondAttribute="height" multiplier="1:1" id="L6l-dI-WaZ"/>
@@ -179,33 +183,26 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="joT-Zl-g1G" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="0re-FN-mor"/>
-                            <constraint firstItem="MIz-8u-tvn" firstAttribute="leading" secondItem="GOH-4D-YMX" secondAttribute="trailing" constant="20" id="2bY-C2-4ef"/>
+                            <constraint firstItem="Xow-Eb-Ts4" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="3un-iD-KJW"/>
                             <constraint firstItem="bGX-Xu-qcX" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="6GP-P1-uqA"/>
                             <constraint firstItem="UC5-8G-yog" firstAttribute="centerY" secondItem="gfQ-yZ-6CE" secondAttribute="centerY" id="6Yf-fF-e9F"/>
                             <constraint firstItem="gfQ-yZ-6CE" firstAttribute="top" secondItem="bc9-2b-yiE" secondAttribute="top" constant="12" id="7eh-sF-SAK"/>
-                            <constraint firstAttribute="trailing" secondItem="IA9-in-mjz" secondAttribute="trailing" constant="30" id="7fp-Yy-5ok"/>
-                            <constraint firstItem="MIz-8u-tvn" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="8Ez-uX-N4H"/>
                             <constraint firstItem="gfQ-yZ-6CE" firstAttribute="leading" secondItem="bGX-Xu-qcX" secondAttribute="trailing" constant="10" id="Aqs-r4-iMj"/>
                             <constraint firstAttribute="bottom" secondItem="8bQ-DU-ISb" secondAttribute="bottom" constant="12" id="BJ1-di-fg4"/>
                             <constraint firstItem="4dH-5v-pby" firstAttribute="leading" secondItem="UC5-8G-yog" secondAttribute="trailing" constant="2" id="DFV-Oc-wJJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Xow-Eb-Ts4" secondAttribute="trailing" constant="30" id="ELI-rY-Nn1"/>
                             <constraint firstAttribute="bottom" secondItem="mzx-fj-5Mb" secondAttribute="bottom" id="Ik4-r8-bpE"/>
                             <constraint firstItem="UC5-8G-yog" firstAttribute="leading" secondItem="gfQ-yZ-6CE" secondAttribute="trailing" constant="2" id="Sij-YP-luh"/>
                             <constraint firstItem="bGX-Xu-qcX" firstAttribute="leading" secondItem="bc9-2b-yiE" secondAttribute="leading" constant="10" id="e6Q-FU-ZMr"/>
-                            <constraint firstItem="GOH-4D-YMX" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="iOv-Ey-44f"/>
                             <constraint firstItem="4dH-5v-pby" firstAttribute="centerY" secondItem="gfQ-yZ-6CE" secondAttribute="centerY" id="oV6-Tk-QN0"/>
-                            <constraint firstItem="GOH-4D-YMX" firstAttribute="leading" secondItem="joT-Zl-g1G" secondAttribute="trailing" constant="20" id="tbv-lL-eqO"/>
                             <constraint firstItem="mzx-fj-5Mb" firstAttribute="centerX" secondItem="bc9-2b-yiE" secondAttribute="centerX" id="vMn-cB-9uL"/>
                             <constraint firstItem="8bQ-DU-ISb" firstAttribute="leading" secondItem="gfQ-yZ-6CE" secondAttribute="leading" constant="2" id="vP1-vZ-qha"/>
                             <constraint firstItem="mzx-fj-5Mb" firstAttribute="top" secondItem="bc9-2b-yiE" secondAttribute="top" id="vp6-HI-RU2"/>
                             <constraint firstItem="mzx-fj-5Mb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4dH-5v-pby" secondAttribute="trailing" constant="40" id="vyn-oK-t4F"/>
-                            <constraint firstItem="IA9-in-mjz" firstAttribute="leading" secondItem="MIz-8u-tvn" secondAttribute="trailing" constant="20" id="x3i-ud-IN2"/>
-                            <constraint firstItem="IA9-in-mjz" firstAttribute="centerY" secondItem="bc9-2b-yiE" secondAttribute="centerY" id="ywE-dC-63J"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="albumButton" destination="bGX-Xu-qcX" id="OcA-1K-C2x"/>
-                        <outlet property="lyricButton" destination="MIz-8u-tvn" id="XLM-5C-TZt"/>
                         <outlet property="partingLine" destination="UC5-8G-yog" id="LkB-GX-cx2"/>
                         <outlet property="playButton" destination="38w-9S-N6N" id="FRV-FA-87i"/>
                         <outlet property="playModeButton" destination="joT-Zl-g1G" id="JvN-1C-D5W"/>
@@ -223,7 +220,6 @@
     <resources>
         <image name="CurrentPlaylist_Default" width="32" height="32"/>
         <image name="MiniPlayerFastForwardButton" width="10" height="10"/>
-        <image name="MiniPlayerLyricsButtonDisabledDark" width="16" height="16"/>
         <image name="MiniPlayerMiniAlbumDefault" width="38" height="38"/>
         <image name="MiniPlayerPlayButton" width="29" height="29"/>
         <image name="MiniPlayerRewindButton" width="10" height="10"/>

@@ -14,6 +14,7 @@ class Utility: NSObject {
 }
 
 extension Utility {
+    //MARK: 解析歌曲
     static func getSongFromMusicFile( _ filePath:String) -> Song{
         let url = URL(fileURLWithPath: filePath)
         var asset = AVURLAsset(url: url, options: [AVURLAssetPreferPreciseDurationAndTimingKey : true])
@@ -47,6 +48,11 @@ extension Utility {
 //                print("key: \(String(describing: key)), value \(String(describing: metadata.value))")
             }
         }
+        
+//        for metadata:AVMetadataItem in asset.metadata {
+//            let key = metadata.commonKey?.rawValue
+//            print("key: \(String(describing: key)), value \(String(describing: metadata.value))")
+//        }
         
 //        asset.loadValuesAsynchronously(forKeys: ["tracks","availableMetadataFormats"]) {
 //            let status = asset.statusOfValue(forKey: "availableMetadataFormats", error: nil)
@@ -95,10 +101,22 @@ extension Utility {
 
         return songInfo
     }
+    
+    //MARK: 获取歌词
+    static func getMusicLyrics(withFilePath filePath:String) -> String {
+        let url = URL(fileURLWithPath: filePath)
+        var asset = AVURLAsset(url: url, options: [AVURLAssetPreferPreciseDurationAndTimingKey : true])
+        if !asset.isPlayable {
+            asset = AVURLAsset(url: url)
+        }
+        let lyrics = asset.lyrics ?? ""
+        return lyrics
+    }
 }
 
 //MARK: - Private
 extension Utility {
+    //MARK: 根据路径获取文件名
     private static func getFileNameWithURL(_ url:URL) -> String {
         let lastPathComponent = url.lastPathComponent
         var fileName:String = lastPathComponent

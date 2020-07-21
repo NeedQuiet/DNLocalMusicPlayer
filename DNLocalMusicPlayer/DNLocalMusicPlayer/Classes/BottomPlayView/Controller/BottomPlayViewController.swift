@@ -13,13 +13,11 @@ import AVFoundation
 class BottomPlayViewController: BaseViewController {
     
     //MARK: 专辑图
-    @IBOutlet weak var albumButton: DNButton!
+    @IBOutlet weak var albumButton: CustomAlbumButton!
     //MARK: 播放模式
     @IBOutlet weak var playModeButton: DNButton!
     //MARK: 播放列表
     @IBOutlet weak var playlistButton: DNButton!
-    //MARK: 歌词
-    @IBOutlet weak var lyricButton: DNButton!
     //MARK: 声音
     @IBOutlet weak var volumeButton: DNButton!
     private lazy var volumePopover:NSPopover = {

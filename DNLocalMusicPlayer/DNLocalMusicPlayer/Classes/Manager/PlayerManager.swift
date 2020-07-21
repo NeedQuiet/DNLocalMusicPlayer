@@ -46,7 +46,7 @@ class PlayerManager: NSObject {
     }
     
     deinit {
-//        print("[PlayerManager] deinit!")
+        print("[PlayerManager] deinit!")
     }
 }
 

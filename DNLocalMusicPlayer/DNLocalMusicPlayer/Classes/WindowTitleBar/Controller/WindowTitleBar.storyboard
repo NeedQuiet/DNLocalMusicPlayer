@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="SGk-86-cRy">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Titile Bar-->
+        <scene sceneID="Cwe-fW-ON8">
+            <objects>
+                <viewController id="SGk-86-cRy" customClass="WindowTitileBar" customModule="DN音乐" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="GMK-pY-yfM">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C5M-hT-eoJ">
+                                <rect key="frame" x="953" y="17" width="29" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="mini" id="ycU-kk-V6T">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fym-Pb-Lev">
+                                <rect key="frame" x="911" y="17" width="31" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="设置" id="HlO-Vs-ves">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DzV-5p-t98">
+                                <rect key="frame" x="867" y="17" width="31" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="搜索" id="Hoi-yF-HIV">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="2cR-1m-MtY" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                <rect key="frame" x="72" y="17" width="24" height="33"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="down_arrow" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Rr8-0q-Sri">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closeButtonClick:" target="SGk-86-cRy" id="yPK-4T-Hd5"/>
+                                </connections>
+                            </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="EhO-VT-sLu">
+                                <rect key="frame" x="0.0" y="0.0" width="72" height="50"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="EhO-VT-sLu" secondAttribute="bottom" id="Cgw-UB-VuJ"/>
+                            <constraint firstItem="EhO-VT-sLu" firstAttribute="top" secondItem="GMK-pY-yfM" secondAttribute="top" id="DrJ-2h-uHc"/>
+                            <constraint firstItem="2cR-1m-MtY" firstAttribute="top" secondItem="GMK-pY-yfM" secondAttribute="top" id="NRc-Pe-Ycu"/>
+                            <constraint firstAttribute="bottom" secondItem="2cR-1m-MtY" secondAttribute="bottom" constant="17" id="To5-EK-W3m"/>
+                            <constraint firstItem="2cR-1m-MtY" firstAttribute="leading" secondItem="GMK-pY-yfM" secondAttribute="leading" constant="72" id="ZT4-7U-Hbl"/>
+                            <constraint firstItem="2cR-1m-MtY" firstAttribute="leading" secondItem="EhO-VT-sLu" secondAttribute="trailing" id="iy5-AV-7zS"/>
+                            <constraint firstItem="EhO-VT-sLu" firstAttribute="leading" secondItem="GMK-pY-yfM" secondAttribute="leading" id="klK-VW-Vh3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="2cR-1m-MtY" id="xVC-cd-w9f"/>
+                        <outlet property="controlContainer" destination="EhO-VT-sLu" id="gJT-Ia-NpN"/>
+                    </connections>
+                </viewController>
+                <customObject id="w2A-Zh-3de" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1126" y="535"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="down_arrow" width="24" height="24"/>
+    </resources>
+</document>

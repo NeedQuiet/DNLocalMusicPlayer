@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sLl-I7-xVb">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sLl-I7-xVb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -125,19 +125,31 @@
                                                     <font key="font" metaFont="label" size="12"/>
                                                 </buttonCell>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3HF-fH-mfg">
-                                                <rect key="frame" x="114" y="255" width="58" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" title="暂无歌词" id="pQx-wQ-o27">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="IMw-Hv-4Fe">
+                                                <rect key="frame" x="0.0" y="130" width="450" height="300"/>
+                                                <subviews>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3HF-fH-mfg">
+                                                        <rect key="frame" x="-2" y="0.0" width="314" height="300"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" id="pQx-wQ-o27">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="3HF-fH-mfg" firstAttribute="top" secondItem="IMw-Hv-4Fe" secondAttribute="top" id="F8Y-Sl-hQ6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="3HF-fH-mfg" secondAttribute="trailing" constant="140" id="SpL-kW-o7r"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3HF-fH-mfg" secondAttribute="bottom" id="Z5B-XP-AyI"/>
+                                                    <constraint firstItem="3HF-fH-mfg" firstAttribute="leading" secondItem="IMw-Hv-4Fe" secondAttribute="leading" id="f0F-r4-aEL"/>
+                                                    <constraint firstAttribute="width" constant="450" id="mmj-A5-WFo"/>
+                                                </constraints>
+                                            </customView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="8Py-LL-gtJ" firstAttribute="top" secondItem="RMO-sJ-MA1" secondAttribute="bottom" constant="20" id="2g8-7n-maG"/>
                                             <constraint firstItem="dyZ-vl-BxI" firstAttribute="centerY" secondItem="At0-pB-nYK" secondAttribute="centerY" id="69A-ox-RCv"/>
+                                            <constraint firstItem="IMw-Hv-4Fe" firstAttribute="leading" secondItem="gK2-lK-Emq" secondAttribute="leading" id="FPN-s6-rfw"/>
                                             <constraint firstItem="RMO-sJ-MA1" firstAttribute="top" secondItem="gK2-lK-Emq" secondAttribute="top" constant="40" id="Hzx-t3-1fX"/>
                                             <constraint firstItem="c2n-lm-ffK" firstAttribute="centerY" secondItem="BIq-I2-q4L" secondAttribute="centerY" id="Jwj-dG-2MS"/>
                                             <constraint firstItem="xJN-Pj-oi1" firstAttribute="leading" secondItem="8Py-LL-gtJ" secondAttribute="trailing" constant="5" id="QNB-Rl-y1c"/>
@@ -155,10 +167,12 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="560" id="FPz-V6-6GZ"/>
+                                    <constraint firstItem="IMw-Hv-4Fe" firstAttribute="bottom" secondItem="1wG-1A-k6v" secondAttribute="bottom" id="PW3-48-1Yp"/>
                                     <constraint firstItem="gK2-lK-Emq" firstAttribute="leading" secondItem="3ty-k7-KCb" secondAttribute="trailing" id="S66-4X-Syc"/>
                                     <constraint firstItem="gK2-lK-Emq" firstAttribute="top" secondItem="m3t-TU-Ysg" secondAttribute="top" id="SIV-Ft-gDb"/>
                                     <constraint firstAttribute="trailing" secondItem="gK2-lK-Emq" secondAttribute="trailing" id="do1-gg-3ej"/>
                                     <constraint firstItem="3ty-k7-KCb" firstAttribute="leading" secondItem="m3t-TU-Ysg" secondAttribute="leading" id="eZh-sp-cvq"/>
+                                    <constraint firstItem="IMw-Hv-4Fe" firstAttribute="top" secondItem="1wG-1A-k6v" secondAttribute="top" id="h60-gq-CuN"/>
                                     <constraint firstAttribute="bottom" secondItem="gK2-lK-Emq" secondAttribute="bottom" id="hbr-ip-02T"/>
                                     <constraint firstAttribute="width" constant="1000" id="pDZ-o4-Bnj"/>
                                     <constraint firstItem="3ty-k7-KCb" firstAttribute="top" secondItem="m3t-TU-Ysg" secondAttribute="top" id="wSd-ss-Sh9"/>
@@ -178,6 +192,7 @@
                         <outlet property="artworkBackView" destination="3V9-Eg-LI2" id="fI2-Va-BJA"/>
                         <outlet property="artworkImageView" destination="8Cj-BJ-oqT" id="jge-8w-HPH"/>
                         <outlet property="fromButton" destination="dyZ-vl-BxI" id="idq-PI-zcf"/>
+                        <outlet property="lyrics" destination="pQx-wQ-o27" id="mxm-G3-IZn"/>
                         <outlet property="songTitle" destination="RMO-sJ-MA1" id="jLW-Fu-rgg"/>
                     </connections>
                 </viewController>

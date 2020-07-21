@@ -11,7 +11,6 @@ import RxCocoa
 
 class MainViewController: NSViewController {
     //MARK: 结构
-    @IBOutlet weak var titleBarView: NSView!
     @IBOutlet weak var mainContainerView: NSView!
     
     //MARK: PlayView
@@ -42,17 +41,17 @@ extension MainViewController {
     func setupKVO() {
         //MARK: 监听 WindowManager.share.playViewIsShow
         _ = WindowManager.share.rx.observeWeakly(Bool.self, "playViewIsShow")
-            .subscribe { [weak self] (change) in
+            .subscribe { [unowned self] (change) in
             if let playViewIsShow = change.element {
-                self?.showPlayView(show: playViewIsShow!)
+                self.showPlayView(show: playViewIsShow!)
             }
         }
         
         //MARK: 监听 WindowManager.share.currentPlaylistIsShow
         _ = WindowManager.share.rx.observeWeakly(Bool.self, "currentPlaylistIsShow")
-            .subscribe({  [weak self] (change) in
+            .subscribe({  [unowned self] (change) in
             if let currentPlaylistIsShow = change.element {
-                self?.showCurrentPlayListView(show: currentPlaylistIsShow!)
+                self.showCurrentPlayListView(show: currentPlaylistIsShow!)
             }
         })
     }

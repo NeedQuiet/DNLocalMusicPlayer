@@ -60,6 +60,12 @@ extension DetailsViewHeaderView {
         playAllButton.setBackgroundColor(color: kRedHighlightColor)
         playAllButton.setCornerRadius(15)
         playAllButton.contentTintColor = kWhiteHighlightColor
+        /*
+         alignmentRect瞎调的，猜测：
+            x：正数向右左动，负数想右移动，猜测数值为常规像素的2倍
+            width/height: 数值越大图片越小
+         */
+        playAllButton.image?.alignmentRect = NSRect(x: -40, y: 0, width: 64, height: 64)
 
         // 添加歌曲按钮
         addMusicButton.setCornerRadius(15)

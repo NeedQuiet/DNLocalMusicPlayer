@@ -90,6 +90,10 @@ class DetailsPageViewController: BaseViewController {
         super.viewWillAppear()
         mainScrollView.frame = view.bounds
     }
+    
+    deinit {
+        print("[PlayerManager] deinit!")
+    }
 }
 
 //MARK: - UI设置
@@ -161,10 +165,10 @@ extension DetailsPageViewController {
 //MARK: - KVO & Notification
 extension DetailsPageViewController {
     func setupKVOAndNotification() {
-        // PlaylistView 选中歌单
+        //MARK: PlaylistView 选中歌单
         _ = NotificationCenter.default.rx
             .notification(kSelectedPlaylistNotification, object: nil)
-            .subscribe({ [unowned self] (event) in
+            .subscribe({[unowned self] (event) in
                 if let object = event.element?.object as? [String : Playlist] {
                     self.songs.removeAll()
                     if let currentPlayingPlaylist = object["playlist"] {
@@ -179,10 +183,10 @@ extension DetailsPageViewController {
                 }
             })
         
-        // 监听窗口size变化
+        //MARK: 监听窗口size变化
         _ = NotificationCenter.default.rx
             .notification(NSWindow.didResizeNotification, object: nil)
-            .subscribe({ [unowned self] (event) in
+            .subscribe({[unowned self] (event) in
                 let viewBounds = self.view.bounds
                 // 设置 scrollview 宽度
                 self.mainScrollView.frame = viewBounds
@@ -221,7 +225,7 @@ extension DetailsPageViewController {
         
         //MARK: currentSong
         _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
-            .subscribe({  [unowned self] (change) in
+            .subscribe({[unowned self] (change) in
                 if (change.element != nil) {
                     self.tableView.reloadData()
                 }

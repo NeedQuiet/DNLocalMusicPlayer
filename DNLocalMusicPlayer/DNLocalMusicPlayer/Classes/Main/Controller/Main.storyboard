@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -96,7 +96,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv" customClass="CustomWindow" customModule="DN音乐" customModuleProvider="target">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ckk-yw-fiv" customClass="CustomWindow" customModule="DN音乐" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -125,36 +125,19 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="pZJ-vF-4Gn" userLabel="WindowTitleBar" customClass="DNTitleBarView" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="620" width="1000" height="50"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Id-Sp-uWh">
-                                        <rect key="frame" x="953" y="17" width="29" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="mini" id="d9L-og-ewQ">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jUR-2V-ZFK">
-                                        <rect key="frame" x="898" y="17" width="31" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="设置" id="Npl-hq-kyG">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLf-dN-udT">
-                                        <rect key="frame" x="833" y="17" width="44" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="搜索框" id="sIj-UM-3AU">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="1JJ-JE-9eQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="50"/>
+                                        <connections>
+                                            <segue destination="BB9-Kx-dh1" kind="embed" id="WFE-3l-xLa"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="1JJ-JE-9eQ" secondAttribute="trailing" id="55Q-ki-Zn5"/>
                                     <constraint firstAttribute="height" constant="50" id="K93-b2-sRy"/>
+                                    <constraint firstItem="1JJ-JE-9eQ" firstAttribute="leading" secondItem="pZJ-vF-4Gn" secondAttribute="leading" id="KRm-zf-pIH"/>
+                                    <constraint firstItem="1JJ-JE-9eQ" firstAttribute="top" secondItem="pZJ-vF-4Gn" secondAttribute="top" id="Pu0-NR-IlZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="1JJ-JE-9eQ" secondAttribute="bottom" id="XAi-nQ-qWz"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="hoG-12-vUS" customClass="DNBaseView" customModule="DN音乐" customModuleProvider="target">
@@ -245,7 +228,6 @@
                         <outlet property="mainContainerView" destination="hoG-12-vUS" id="r5n-sZ-MUk"/>
                         <outlet property="playViewContainerView" destination="fBY-6m-chA" id="3Sx-3f-8mK"/>
                         <outlet property="playViewTop" destination="3nc-45-7Ep" id="SJp-b7-w0Z"/>
-                        <outlet property="titleBarView" destination="pZJ-vF-4Gn" id="Rvk-na-88c"/>
                     </connections>
                 </viewController>
             </objects>
@@ -281,7 +263,7 @@
                 <controllerPlaceholder storyboardName="PlayView" id="Ea8-0Z-Sdg" sceneMemberID="viewController"/>
                 <customObject id="boC-gB-bkR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="975" y="816"/>
+            <point key="canvasLocation" x="734" y="1098"/>
         </scene>
         <!--CurrentPlaylist-->
         <scene sceneID="FIh-Bh-vlK">
@@ -289,7 +271,15 @@
                 <controllerPlaceholder storyboardName="CurrentPlaylist" id="Uyy-mr-Bt4" sceneMemberID="viewController"/>
                 <customObject id="duM-Yg-GSy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957" y="766"/>
+            <point key="canvasLocation" x="752" y="893"/>
+        </scene>
+        <!--WindowTitleBar-->
+        <scene sceneID="Orr-94-Uvf">
+            <objects>
+                <controllerPlaceholder storyboardName="WindowTitleBar" id="BB9-Kx-dh1" sceneMemberID="viewController"/>
+                <customObject id="UCq-eB-8TH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="578"/>
         </scene>
     </scenes>
 </document>

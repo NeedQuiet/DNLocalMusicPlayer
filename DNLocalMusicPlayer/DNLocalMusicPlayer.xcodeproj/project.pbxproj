@@ -132,6 +132,9 @@
 		F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAE88424C18587003901F5 /* DNFippedView.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
+		F5DC90A224C6BFC300FFB4FB /* WindowTitleBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */; };
+		F5DC90A424C6C26000FFB4FB /* WindowTitileBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */; };
+		F5DC90A624C6E55000FFB4FB /* CustomAlbumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */; };
 		F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +272,9 @@
 		F5CAE88424C18587003901F5 /* DNFippedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNFippedView.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
+		F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WindowTitleBar.storyboard; sourceTree = "<group>"; };
+		F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTitileBar.swift; sourceTree = "<group>"; };
+		F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlbumButton.swift; sourceTree = "<group>"; };
 		F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -339,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				F5EE566D24B6CBFA00CE9ABC /* Manager */,
+				F5DC909F24C6BF7500FFB4FB /* WindowTitleBar */,
 				F51F899024ADBA620066E920 /* Main */,
 				F51F899D24ADBD580066E920 /* PlayList */,
 				F51F89A324ADBE820066E920 /* DetailsPage */,
@@ -381,6 +388,7 @@
 		F51F899824ADBC260066E920 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -636,6 +644,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F5DC909F24C6BF7500FFB4FB /* WindowTitleBar */ = {
+			isa = PBXGroup;
+			children = (
+				F5DC90A024C6BFA000FFB4FB /* Controller */,
+			);
+			path = WindowTitleBar;
+			sourceTree = "<group>";
+		};
+		F5DC90A024C6BFA000FFB4FB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */,
+				F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		F5EE566D24B6CBFA00CE9ABC /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +742,7 @@
 				F51F8A2324AEDC550066E920 /* MiniPlayerDeleteButtonPressed.tiff in Resources */,
 				F51F8A4F24AEDC550066E920 /* MiniPlayerPlaylistButtonDark.tiff in Resources */,
 				F51F8A5424AEDC550066E920 /* MiniPlayerPraiseButtonPressed.tiff in Resources */,
+				F5DC90A224C6BFC300FFB4FB /* WindowTitleBar.storyboard in Resources */,
 				F51F8A3D24AEDC550066E920 /* MiniPlayerNormalModeButton.tiff in Resources */,
 				F51F8A4B24AEDC550066E920 /* MiniPlayerDislikeButtonPressedDark.tiff in Resources */,
 				F51F8A1824AEDC550066E920 /* MiniPlayerFastForwardButtonDisabled.tiff in Resources */,
@@ -866,7 +892,9 @@
 				F51F896B24AD87060066E920 /* AppDelegate.swift in Sources */,
 				F5BE354324C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift in Sources */,
 				F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */,
+				F5DC90A624C6E55000FFB4FB /* CustomAlbumButton.swift in Sources */,
 				F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */,
+				F5DC90A424C6C26000FFB4FB /* WindowTitileBar.swift in Sources */,
 				F58AEC8F24BC6CF6007C0C75 /* Playlist.swift in Sources */,
 				F56F6A6D24B9C03F005D550A /* PlayerManager.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,

@@ -18,6 +18,7 @@ class PlayViewController: BaseViewController {
     @IBOutlet weak var albumButton: DNTitleButton!
     @IBOutlet weak var artistButton: DNTitleButton!
     @IBOutlet weak var fromButton: DNTitleButton!
+    @IBOutlet weak var lyrics: NSTextFieldCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +67,7 @@ extension PlayViewController {
     func setupKVO() {
         //MARK: currentSong
         _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
-            .subscribe({  [unowned self] (change) in
+            .subscribe({ (change) in
                 if let currentSong = change.element {
                     guard currentSong != nil else {  return }
                     self.refreshUI(withSong: currentSong!)
@@ -76,7 +77,7 @@ extension PlayViewController {
         
         //MARK: isPlaying
         _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
-            .subscribe { [unowned self] (change) in
+            .subscribe { (change) in
                 if let isPlaying = change.element {
                     let layer = self.artworkBackView.layer
                     if isPlaying == true {
@@ -102,6 +103,7 @@ extension PlayViewController {
         songTitle.stringValue = currentSong.title.count > 0 ? currentSong.title : "无"
         albumButton.title = currentSong.album.count > 0 ? currentSong.album : "无"
         artistButton.title = currentSong.artist.count > 0 ? currentSong.artist : "无"
+        lyrics.stringValue = Utility.getMusicLyrics(withFilePath: currentSong.filePath)
     }
     
     //MARK: 创建并开始动画
