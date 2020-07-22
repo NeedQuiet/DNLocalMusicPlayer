@@ -42,7 +42,8 @@ class BottomPlayViewController: BaseViewController {
         super.viewDidLoad()
         // Do view setup here.
         setupUI()
-        setupKVOAndNotication()
+        setupKVO()
+        setupNotification()
     }
 }
 
@@ -128,7 +129,7 @@ extension BottomPlayViewController {
 
 //MARK: - KVO & Notification
 extension BottomPlayViewController {
-    func setupKVOAndNotication() {
+    func setupKVO() {
         //MARK: isPlaying
         _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
             .subscribe { [unowned self] (change) in
@@ -144,9 +145,24 @@ extension BottomPlayViewController {
         //MARK: currentProgress
         _ = PlayerManager.share.rx.observeWeakly(Double.self, "currentProgress")
             .subscribe { [unowned self] (change) in
-                self.updateProgress()
+                if let currentProgress = change.element {
+                    self.updateProgress(currentProgress!)
+                }
         }
         
+
+        //MARK: currentSong
+        _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
+            .subscribe({  [unowned self] (change) in
+                if let currentSong = change.element {
+                    guard currentSong != nil else {  return }
+                    self.refreshUI(withSong: currentSong!)
+                }
+        })
+    }
+    
+    //MARK: Notification
+    func setupNotification() {
         //MARK: playMode
         _ = NotificationCenter.default.rx
             .notification(kSwitchPlayModeNotification, object: nil)
@@ -161,13 +177,27 @@ extension BottomPlayViewController {
                 }
         }
         
-        //MARK: currentSong
-        _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
-            .subscribe({  [unowned self] (change) in
-                if let currentSong = change.element {
-                    guard currentSong != nil else {  return }
-                    self.refreshUI(withSong: currentSong!)
+        //MARK: 开始拖动
+        _ = NotificationCenter.default.rx
+            .notification(SliderNotification.startTracking, object: nil)
+            .subscribe({ (event) in
+                PlayerManager.share.canObservProgress = false
+        })
+        
+        //MARK: 开始中
+        _ = NotificationCenter.default.rx
+            .notification(SliderNotification.continueTracking, object: nil)
+            .subscribe({[unowned self] (event) in
+                if let doubleValue = event.element?.object as? Double {
+                    self.updateProgress(doubleValue)
                 }
+        })
+        
+        //MARK: 结束拖动
+        _ = NotificationCenter.default.rx
+            .notification(SliderNotification.stopTracking, object: nil)
+            .subscribe({ (event) in
+            PlayerManager.share.canObservProgress = true
         })
     }
 }
@@ -193,10 +223,9 @@ extension BottomPlayViewController {
     private func setTime(currentTime:String = "00:00" ,totalTime:String = "00:00") {
         songTime.stringValue = "\(currentTime) / \(totalTime)"
     }
-    
-    private func updateProgress() {
+    //MARK: 刷新时间
+    private func updateProgress(_ progress:Double) {
         guard let currentSong = PlayerManager.share.currentSong else { return }
-        guard let player = PlayerManager.share.player else { return }
         // 设置时间label
         let totalTimeInterval = currentSong.timeInterval
         let formatter = DateComponentsFormatter()
@@ -207,7 +236,8 @@ extension BottomPlayViewController {
         }
         formatter.zeroFormattingBehavior = .pad
         
-        let currentTime:TimeInterval = CMTimeGetSeconds(player.currentItem!.currentTime())
+//        let currentTime:TimeInterval = CMTimeGetSeconds(player.currentItem!.currentTime())
+        let currentTime:TimeInterval = totalTimeInterval * progress / 100
         let currentTimeString:String = "\(formatter.string(from: currentTime)!)"
         let totalTime = currentSong.totalTime
         setTime(currentTime: currentTimeString, totalTime: totalTime)

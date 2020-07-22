@@ -22,6 +22,12 @@ let kFinishGetItunesSongs: NSNotification.Name = NSNotification.Name(rawValue: "
 let kSwitchPlayModeNotification: NSNotification.Name = NSNotification.Name(rawValue: "kSwitchPlayModeNotification")
 //MARK: 选择Playlist
 let kSelectedPlaylistNotification: NSNotification.Name = NSNotification.Name(rawValue: "kSelectedPlaylistNotification")
+//MARK: 进度条拖动
+struct SliderNotification {
+    static let startTracking: NSNotification.Name = NSNotification.Name(rawValue: "kSliderStartTracking")
+    static let continueTracking: NSNotification.Name = NSNotification.Name(rawValue: "kSliderContinueTracking")
+    static let stopTracking: NSNotification.Name = NSNotification.Name(rawValue: "kSliderStopTracking")
+}
 
 //MARK: - ************* 播控 *************
 //MARK: 上/下一曲

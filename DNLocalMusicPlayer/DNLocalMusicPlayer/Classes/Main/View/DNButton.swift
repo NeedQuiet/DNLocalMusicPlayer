@@ -45,14 +45,17 @@ extension DNButton {
     }
     //MARK: 鼠标Hover
     override func mouseEntered(with event: NSEvent) {
+        super.mouseEntered(with: event)
         NSCursor.pointingHand.set()
     }
     //MARK: 鼠标离开
     override func mouseExited(with event: NSEvent) {
+        super.mouseExited(with: event)
         NSCursor.arrow.set()
     }
     // 点击后，状态会刷新，此时如不做更改会默认改回指针状态
     override func cursorUpdate(with event: NSEvent) {
+        super.cursorUpdate(with: event)
         NSCursor.pointingHand.set()
     }
 }

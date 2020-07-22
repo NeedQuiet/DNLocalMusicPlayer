@@ -137,6 +137,8 @@
 		F5DC90A624C6E55000FFB4FB /* CustomAlbumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */; };
 		F5DC90AE24C6F29800FFB4FB /* SongProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5DC90AD24C6F29800FFB4FB /* SongProgress.storyboard */; };
 		F5DC90B024C6F2BA00FFB4FB /* SongProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90AF24C6F2BA00FFB4FB /* SongProgressViewController.swift */; };
+		F5DC90B224C705B200FFB4FB /* DNProgressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90B124C705B200FFB4FB /* DNProgressSlider.swift */; };
+		F5DC90B424C70B1E00FFB4FB /* DNProgressSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90B324C70B1E00FFB4FB /* DNProgressSliderCell.swift */; };
 		F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -279,6 +281,8 @@
 		F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlbumButton.swift; sourceTree = "<group>"; };
 		F5DC90AD24C6F29800FFB4FB /* SongProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SongProgress.storyboard; sourceTree = "<group>"; };
 		F5DC90AF24C6F2BA00FFB4FB /* SongProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongProgressViewController.swift; sourceTree = "<group>"; };
+		F5DC90B124C705B200FFB4FB /* DNProgressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNProgressSlider.swift; sourceTree = "<group>"; };
+		F5DC90B324C70B1E00FFB4FB /* DNProgressSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNProgressSliderCell.swift; sourceTree = "<group>"; };
 		F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -393,6 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */,
+				F5DC90B124C705B200FFB4FB /* DNProgressSlider.swift */,
+				F5DC90B324C70B1E00FFB4FB /* DNProgressSliderCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -897,8 +903,10 @@
 				F51F89AA24ADBF600066E920 /* DetailsPageViewController.swift in Sources */,
 				F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */,
 				F51F896B24AD87060066E920 /* AppDelegate.swift in Sources */,
+				F5DC90B424C70B1E00FFB4FB /* DNProgressSliderCell.swift in Sources */,
 				F5BE354324C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift in Sources */,
 				F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */,
+				F5DC90B224C705B200FFB4FB /* DNProgressSlider.swift in Sources */,
 				F5DC90A624C6E55000FFB4FB /* CustomAlbumButton.swift in Sources */,
 				F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */,
 				F5DC90A424C6C26000FFB4FB /* WindowTitileBar.swift in Sources */,

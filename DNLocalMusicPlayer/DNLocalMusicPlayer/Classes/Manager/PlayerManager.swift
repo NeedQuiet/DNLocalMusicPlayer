@@ -116,7 +116,8 @@ extension PlayerManager {
         guard let currentSong = self.currentSong else { return }
         canObservProgress = false
         let seconds = currentSong.timeInterval * progress / 100
-        player?.seek(to: CMTime(seconds: seconds, preferredTimescale: 1), completionHandler: {[unowned self] (result) in
+        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1
+        player?.seek(to: CMTime(seconds: seconds, preferredTimescale: timeScale), completionHandler: {[unowned self] (result) in
             self.canObservProgress = true
         })
     }

@@ -13,9 +13,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sjr-NP-put">
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sjr-NP-put" customClass="DNProgressSlider" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="-2" y="-2" width="1004" height="19"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="FJ4-4t-C9Z"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="FJ4-4t-C9Z" customClass="DNProgressSliderCell" customModule="DN音乐" customModuleProvider="target"/>
                                 <connections>
                                     <action selector="sliderClick:" target="p6G-bF-gnY" id="D3B-nt-72F"/>
                                 </connections>

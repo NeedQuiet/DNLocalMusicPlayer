@@ -10,7 +10,7 @@ import Cocoa
 import RxCocoa
 
 class SongProgressViewController: NSViewController {
-    @IBOutlet weak var progressSlider: NSSlider!
+    @IBOutlet weak var progressSlider: DNProgressSlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,17 +37,21 @@ extension SongProgressViewController {
                     self.progressSlider.doubleValue = currentProgress!
                 }
         }
+        
+        //MARK: currentSong
+        _ = PlayerManager.share.rx.observeWeakly(Song.self, "currentSong")
+            .subscribe({  [unowned self] (change) in
+                if let currentSong = change.element {
+                    self.progressSlider.isEnabled = currentSong != nil
+                }
+        })
     }
 }
 
 //MARK: - Action
 extension SongProgressViewController {
     @IBAction func sliderClick(_ sender: Any) {
-        if PlayerManager.share.currentSong != nil{
-            let progress = progressSlider.doubleValue
-            PlayerManager.share.seekToProgress(progress)
-        } else {
-            self.progressSlider.doubleValue = 0
-        }
+        let progress = progressSlider.doubleValue
+        PlayerManager.share.seekToProgress(progress)
     }
 }
