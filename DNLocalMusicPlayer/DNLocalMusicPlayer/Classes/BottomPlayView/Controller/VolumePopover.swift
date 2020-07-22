@@ -62,7 +62,5 @@ extension VolumePopover: DNSliderCellDelegate{
         let volume = Float(volumeSlider.doubleValue / 100)
         PlayerManager.share.changeVolume(volume)
         isTrackingVolume = false
-        UserDefaults.standard.setValue(volume, forKey: kUserDefaultsKey_Volume)
-        UserDefaults.standard.synchronize()
     }
 }

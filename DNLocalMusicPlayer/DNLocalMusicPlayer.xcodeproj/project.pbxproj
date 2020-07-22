@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		377C9925EFA6FE0876C78D74 /* Pods_DNLocalMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */; };
+		F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51A3BA424C850B100F49E10 /* UserDefaultsManager.swift */; };
 		F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C100224B31CBC0079DD35 /* CustomWindow.swift */; };
 		F51C100724B3220B0079DD35 /* DNTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C100624B3220B0079DD35 /* DNTitleBarView.swift */; };
 		F51F896B24AD87060066E920 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F896A24AD87060066E920 /* AppDelegate.swift */; };
@@ -147,6 +148,7 @@
 		0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DNLocalMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00D5D51D60A5E837DCC0F81 /* Pods-DNLocalMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		C98DC77936359675D8B9A143 /* Pods-DNLocalMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
+		F51A3BA424C850B100F49E10 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F51C100224B31CBC0079DD35 /* CustomWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWindow.swift; sourceTree = "<group>"; };
 		F51C100624B3220B0079DD35 /* DNTitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleBarView.swift; sourceTree = "<group>"; };
 		F51F896724AD87060066E920 /* DN音乐.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DN音乐.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -682,6 +684,7 @@
 				F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */,
 				F56F6A6C24B9C03F005D550A /* PlayerManager.swift */,
 				F55C3BC424B87E4C00017FBD /* SongManager.swift */,
+				F51A3BA424C850B100F49E10 /* UserDefaultsManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				F51F89B224ADC2FB0066E920 /* PlayListViewController.swift in Sources */,
 				F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */,
 				F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */,
+				F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */,
 				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
 				F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */,
 				F51F89AE24ADC0A20066E920 /* NSColor-Extension.swift in Sources */,

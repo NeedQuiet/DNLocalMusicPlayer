@@ -44,3 +44,5 @@ enum DNPlayMode: Int {
 let kUserDefaultsKey_Volume:String = "kUserDefaultsKey_Volume"
 //MARK: 播放模式
 let kUserDefaultsKey_PlayMode:String = "kUserDefaultsKey_PlayMode"
+//MARK: 选中的歌单Index
+let kSelectedPlaylistIndex:String = "kSelectedPlaylistIndex"

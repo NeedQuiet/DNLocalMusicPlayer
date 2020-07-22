@@ -54,6 +54,7 @@ extension SongManager {
             return piaylist
         }
         print("已找到\(playlists.count)个自定义歌单")
+        UserDefaultsManager.share.getSeletedPlaylistIndex()
     }
     
     //MARK: 根据歌曲地址判断歌曲是否重复

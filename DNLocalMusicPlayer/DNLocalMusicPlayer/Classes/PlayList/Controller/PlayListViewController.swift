@@ -50,8 +50,6 @@ extension PlayListViewController {
             .notification(kFinishGetItunesSongs, object: nil)
             .subscribe({ (event) in
             self.outlineView.reloadData()
-            // 默认选中 index：1（iTunes音乐）
-            self.outlineView.selectRowIndexes(IndexSet(integer: 1), byExtendingSelection: false)
         })
 
         //MARK: custom_playlists
@@ -59,6 +57,22 @@ extension PlayListViewController {
             .observeWeakly([Playlist].self, "playlists")
             .subscribe({ [unowned self] (change) in
                 self.outlineView.reloadData()
+        })
+        
+        _ = UserDefaultsManager.share.rx
+            .observeWeakly(Int.self, "playlistSelectedIndex")
+            .subscribe({ (event) in
+                if let index = event.element{
+                    var playlist:Playlist
+                    if index == -1 {
+                        // 选中 index：1（iTunes音乐）
+                        playlist = SongManager.share.iTunesPlaylist
+                    } else {
+                        playlist = SongManager.share.playlists[index!]
+                    }
+                    PlayerManager.share.currentShowPlaylist = playlist
+                    NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":playlist])
+                }
         })
     }
 }
@@ -131,6 +145,11 @@ extension PlayListViewController: NSOutlineViewDelegate {
         if let playlist = model as? Playlist { // playlist
             PlayerManager.share.currentShowPlaylist = playlist
             NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":playlist])
+            if playlist.isCustomPlaylist {
+                UserDefaultsManager.share.setPlaylistSelectedIndex(row - 3)
+            } else {
+                UserDefaultsManager.share.setPlaylistSelectedIndex(-1)
+            }
         } else { // header
             return
         }

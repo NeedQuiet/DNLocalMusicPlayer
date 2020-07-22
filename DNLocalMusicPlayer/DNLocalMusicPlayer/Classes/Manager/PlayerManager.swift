@@ -109,8 +109,7 @@ extension PlayerManager {
             playmode = .play_mode_shuffle
         }
         NotificationCenter.default.post(name: kSwitchPlayModeNotification, object: nil)
-        UserDefaults.standard.setValue(playmode.rawValue, forKey: kUserDefaultsKey_PlayMode)
-        UserDefaults.standard.synchronize()
+        UserDefaultsManager.share.setPlayMode(playmode.rawValue)
     }
     
     //MARK: 更改进度
@@ -128,6 +127,7 @@ extension PlayerManager {
     func changeVolume(_ volume:Float){
         self.volume = volume
         player?.volume = volume
+        UserDefaultsManager.share.setVolume(volume)
     }
 }
 
@@ -135,13 +135,10 @@ extension PlayerManager {
 extension PlayerManager {
     //MARK: 初始化各个属性
     private func initializationProperties() {
-        if let volume = UserDefaults.standard.value(forKey: "kUserDefaultsKey_Volume") as? Float {
-            self.volume = volume
-        }
-        
-        if let playModeValue = UserDefaults.standard.value(forKey: "kUserDefaultsKey_PlayMode") as? Int {
-            self.playmode = DNPlayMode(rawValue: playModeValue)!
-        }
+        // 音量
+        self.volume = UserDefaultsManager.share.getVolume()
+        // 播放模式
+        self.playmode = UserDefaultsManager.share.getPlayMode()
     }
     
     //MARK: 判断是否有playlist

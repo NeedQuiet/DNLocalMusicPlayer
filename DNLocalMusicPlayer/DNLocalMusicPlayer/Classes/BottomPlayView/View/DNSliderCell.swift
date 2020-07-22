@@ -9,8 +9,11 @@
 import Cocoa
 
 @objc protocol DNSliderCellDelegate {
+    // 开始拖动
     @objc optional func startTracking(doubleValue:Double ,sender:DNSliderCell)
+    // 正在拖动
     @objc optional func continueTracking(doubleValue:Double ,sender:DNSliderCell)
+    // 拖动结束 & 点击结束
     @objc optional func stopTracking(doubleValue:Double ,sender:DNSliderCell)
 }
 
@@ -136,7 +139,7 @@ extension DNSliderCell {
         return super.continueTracking(last: lastPoint, current: currentPoint, in: controlView)
     }
     
-    //MARK: 结束拖动
+    //MARK: 结束拖动 & 点击结束
     override func stopTracking(last lastPoint: NSPoint, current stopPoint: NSPoint, in controlView: NSView, mouseIsUp flag: Bool) {
         delegate?.stopTracking?(doubleValue: doubleValue, sender: self)
         super.stopTracking(last: lastPoint, current: stopPoint, in: controlView, mouseIsUp: flag)
