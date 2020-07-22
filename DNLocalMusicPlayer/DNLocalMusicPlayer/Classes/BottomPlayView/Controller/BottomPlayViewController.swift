@@ -61,6 +61,7 @@ extension BottomPlayViewController {
         songArtistButton.hoverColor = kWhiteHighlightColor
         
         partingLine.isHidden = true
+        updatePlayMode()
     }
 }
 
@@ -167,14 +168,7 @@ extension BottomPlayViewController {
         _ = NotificationCenter.default.rx
             .notification(kSwitchPlayModeNotification, object: nil)
             .subscribe{ [weak self] (event) in
-                let playMode:DNPlayMode = PlayerManager.share.playmode
-                if playMode == .play_mode_repeat_all {
-                    self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeRepeatAll")
-                } else if playMode == .play_mode_repeat_one{
-                    self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeRepeatOne")
-                } else {
-                    self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeShuffle")
-                }
+                self?.updatePlayMode()
         }
 
         //MARK: 进度条拖动中
@@ -227,5 +221,17 @@ extension BottomPlayViewController {
         let currentTimeString:String = "\(formatter.string(from: currentTime)!)"
         let totalTime = currentSong.totalTime
         setTime(currentTime: currentTimeString, totalTime: totalTime)
+    }
+    
+    //MARK: 刷新播放模式
+    private func updatePlayMode() {
+        let playMode:DNPlayMode = PlayerManager.share.playmode
+        if playMode == .play_mode_repeat_all {
+            self.playModeButton.image = NSImage.init(named: "TouchBarPlayModeRepeatAll")
+        } else if playMode == .play_mode_repeat_one{
+            self.playModeButton.image = NSImage.init(named: "TouchBarPlayModeRepeatOne")
+        } else {
+            self.playModeButton.image = NSImage.init(named: "TouchBarPlayModeShuffle")
+        }
     }
 }

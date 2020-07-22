@@ -45,11 +45,7 @@ class PlayerManager: NSObject {
     //MARK: - 声明周期
     override init() {
         super.init()
-        print("[PlayerManager] init!")
-        if let volume = UserDefaults.standard.value(forKey: "kUserDefaultsKey_Volume") as? Float {
-            self.volume = volume
-        }
-        
+        initializationProperties()
         notification()
     }
     
@@ -113,6 +109,8 @@ extension PlayerManager {
             playmode = .play_mode_shuffle
         }
         NotificationCenter.default.post(name: kSwitchPlayModeNotification, object: nil)
+        UserDefaults.standard.setValue(playmode.rawValue, forKey: kUserDefaultsKey_PlayMode)
+        UserDefaults.standard.synchronize()
     }
     
     //MARK: 更改进度
@@ -135,6 +133,17 @@ extension PlayerManager {
 
 //MARK: - Private
 extension PlayerManager {
+    //MARK: 初始化各个属性
+    private func initializationProperties() {
+        if let volume = UserDefaults.standard.value(forKey: "kUserDefaultsKey_Volume") as? Float {
+            self.volume = volume
+        }
+        
+        if let playModeValue = UserDefaults.standard.value(forKey: "kUserDefaultsKey_PlayMode") as? Int {
+            self.playmode = DNPlayMode(rawValue: playModeValue)!
+        }
+    }
+    
     //MARK: 判断是否有playlist
     private func checkPlaylistIsEmpty() -> Bool {
         let isEmpty = currentPlayingPlaylist.songs.isEmpty

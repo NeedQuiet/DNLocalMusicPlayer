@@ -34,10 +34,13 @@ enum DNPlayControlType: Int {
 
 //MARK: 播放模式
 enum DNPlayMode: Int {
-    case play_mode_repeat_all
-    case play_mode_repeat_one
-    case play_mode_shuffle
+    case play_mode_repeat_all = 0
+    case play_mode_repeat_one = 1
+    case play_mode_shuffle = 2
 }
 
 //MARK: - ************* UserDefaults的Key *************
+//MARK: 音量
 let kUserDefaultsKey_Volume:String = "kUserDefaultsKey_Volume"
+//MARK: 播放模式
+let kUserDefaultsKey_PlayMode:String = "kUserDefaultsKey_PlayMode"
