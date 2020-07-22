@@ -1,25 +1,27 @@
 //
-//  DNProgressSlider.swift
+//  DNSlider.swift
 //  DNLocalMusicPlayer
 //
-//  Created by 许一宁 on 2020/7/21.
+//  Created by 许一宁 on 2020/7/22.
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
 import Cocoa
 
-class DNProgressSlider: NSSlider {
-    var trackingArea:NSTrackingArea?
+class DNSlider: NSSlider {
+    private var trackingArea:NSTrackingArea?
     // 是否显示knob
     var shouKnob:Bool = false
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+
         // Drawing code here.
     }
+    
 }
 
-extension DNProgressSlider {
+extension DNSlider {
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         if trackingArea != nil {

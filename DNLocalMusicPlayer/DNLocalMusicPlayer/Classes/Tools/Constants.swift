@@ -22,12 +22,8 @@ let kFinishGetItunesSongs: NSNotification.Name = NSNotification.Name(rawValue: "
 let kSwitchPlayModeNotification: NSNotification.Name = NSNotification.Name(rawValue: "kSwitchPlayModeNotification")
 //MARK: 选择Playlist
 let kSelectedPlaylistNotification: NSNotification.Name = NSNotification.Name(rawValue: "kSelectedPlaylistNotification")
-//MARK: 进度条拖动
-struct SliderNotification {
-    static let startTracking: NSNotification.Name = NSNotification.Name(rawValue: "kSliderStartTracking")
-    static let continueTracking: NSNotification.Name = NSNotification.Name(rawValue: "kSliderContinueTracking")
-    static let stopTracking: NSNotification.Name = NSNotification.Name(rawValue: "kSliderStopTracking")
-}
+//MARK: 歌曲进度条拖动
+let kProgressContinueTracking: NSNotification.Name = NSNotification.Name(rawValue: "kProgressSliderContinueTracking")
 
 //MARK: - ************* 播控 *************
 //MARK: 上/下一曲
@@ -42,3 +38,6 @@ enum DNPlayMode: Int {
     case play_mode_repeat_one
     case play_mode_shuffle
 }
+
+//MARK: - ************* UserDefaults的Key *************
+let kUserDefaultsKey_Volume:String = "kUserDefaultsKey_Volume"

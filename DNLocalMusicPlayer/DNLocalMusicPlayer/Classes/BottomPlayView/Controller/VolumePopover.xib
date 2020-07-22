@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="VolumePopover" customModule="DN音乐" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="volumeSlider" destination="2fA-GP-GsN" id="obJ-wc-J63"/>
+                <outlet property="volumeSliderCell" destination="hcb-Tj-hZr" id="nlm-vf-r6A"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="30" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="40" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <point key="canvasLocation" x="-60" y="138.5"/>
+            <subviews>
+                <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-GP-GsN" customClass="DNVolumeSlider" customModule="DN音乐" customModuleProvider="target">
+                    <rect key="frame" x="11" y="2" width="19" height="95"/>
+                    <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="hcb-Tj-hZr" customClass="DNSliderCell" customModule="DN音乐" customModuleProvider="target"/>
+                </slider>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="2fA-GP-GsN" secondAttribute="bottom" constant="5" id="U0S-5D-cPS"/>
+                <constraint firstItem="2fA-GP-GsN" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="5" id="rDe-cG-e0i"/>
+                <constraint firstItem="2fA-GP-GsN" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="zVl-yA-H2e"/>
+            </constraints>
+            <point key="canvasLocation" x="-60" y="138"/>
         </customView>
     </objects>
 </document>

@@ -10,15 +10,14 @@ import Cocoa
 import RxCocoa
 
 class SongProgressViewController: NSViewController {
-    @IBOutlet weak var progressSlider: DNProgressSlider!
-    
+    @IBOutlet weak var progressSlider: DNSlider!
+    @IBOutlet weak var progressSliderCell: DNSliderCell!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         setupUI()
         setupKVO()
     }
-
 }
 
 //MARK: - UI配置
@@ -27,6 +26,8 @@ extension SongProgressViewController {
     func setupUI () {
         progressSlider.minValue = 0
         progressSlider.maxValue = 100
+        progressSliderCell.needControlKnobHidden = true
+        progressSliderCell.delegate = self
     }
     //MARK: KVO
     func setupKVO() {
@@ -48,9 +49,23 @@ extension SongProgressViewController {
     }
 }
 
-//MARK: - Action
-extension SongProgressViewController {
-    @IBAction func sliderClick(_ sender: Any) {
+//MARK: - DNSliderCellDelegate
+extension SongProgressViewController: DNSliderCellDelegate{
+    //MARK: 开始拖动
+    func startTracking(doubleValue:Double ,sender:DNSliderCell) {
+        PlayerManager.share.canObservProgress = false
+    }
+    
+    //MARK: 拖动中
+    func continueTracking(doubleValue:Double ,sender:DNSliderCell) {
+        NotificationCenter.default.post(name: kProgressContinueTracking, object: doubleValue)
+    }
+    
+    //MARK: 结束拖动 & 点击结束
+    func stopTracking(doubleValue:Double ,sender:DNSliderCell) {
+        // 先设置canObservProgress，防止抖动
+        PlayerManager.share.canObservProgress = true
+        // seek
         let progress = progressSlider.doubleValue
         PlayerManager.share.seekToProgress(progress)
     }

@@ -176,28 +176,14 @@ extension BottomPlayViewController {
                     self?.playModeButton.image = NSImage.init(named: "TouchBarPlayModeShuffle")
                 }
         }
-        
-        //MARK: 开始拖动
+
+        //MARK: 进度条拖动中
         _ = NotificationCenter.default.rx
-            .notification(SliderNotification.startTracking, object: nil)
-            .subscribe({ (event) in
-                PlayerManager.share.canObservProgress = false
-        })
-        
-        //MARK: 开始中
-        _ = NotificationCenter.default.rx
-            .notification(SliderNotification.continueTracking, object: nil)
+            .notification(kProgressContinueTracking, object: nil)
             .subscribe({[unowned self] (event) in
                 if let doubleValue = event.element?.object as? Double {
                     self.updateProgress(doubleValue)
                 }
-        })
-        
-        //MARK: 结束拖动
-        _ = NotificationCenter.default.rx
-            .notification(SliderNotification.stopTracking, object: nil)
-            .subscribe({ (event) in
-            PlayerManager.share.canObservProgress = true
         })
     }
 }

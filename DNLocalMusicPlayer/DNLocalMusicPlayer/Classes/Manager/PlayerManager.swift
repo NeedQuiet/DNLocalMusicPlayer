@@ -24,7 +24,7 @@ class PlayerManager: NSObject {
     //MARK: 当前播放索引
     var currentIndex: Int? = nil
     //MARK: 音量
-    var volume: Float = 0.5
+    @objc dynamic var volume: Float = 1
     //MARK: 当前正在播放的播放列表
     var currentShowPlaylist: Playlist = Playlist() {
         didSet {
@@ -45,7 +45,11 @@ class PlayerManager: NSObject {
     //MARK: - 声明周期
     override init() {
         super.init()
-//        print("[PlayerManager] init!")
+        print("[PlayerManager] init!")
+        if let volume = UserDefaults.standard.value(forKey: "kUserDefaultsKey_Volume") as? Float {
+            self.volume = volume
+        }
+        
         notification()
     }
     
@@ -120,6 +124,12 @@ extension PlayerManager {
         player?.seek(to: CMTime(seconds: seconds, preferredTimescale: timeScale), completionHandler: {[unowned self] (result) in
             self.canObservProgress = true
         })
+    }
+    
+    //MARK: 改变音量
+    func changeVolume(_ volume:Float){
+        self.volume = volume
+        player?.volume = volume
     }
 }
 
