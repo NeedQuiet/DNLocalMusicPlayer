@@ -143,9 +143,7 @@ extension PlayListViewController: NSOutlineViewDelegate {
         let model = treeView.item(atRow: row)
         
         if let playlist = model as? Playlist { // playlist
-            PlayerManager.share.currentShowPlaylist = playlist
-            NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":playlist])
-            if playlist.isCustomPlaylist {
+            if playlist.isCustomPlaylist { // 直接设置PlaylistSelectedIndex会触发本页面kvo，然后kSelectedPlaylistNotification
                 UserDefaultsManager.share.setPlaylistSelectedIndex(row - 3)
             } else {
                 UserDefaultsManager.share.setPlaylistSelectedIndex(-1)

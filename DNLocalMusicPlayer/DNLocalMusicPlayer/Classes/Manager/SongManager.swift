@@ -97,23 +97,33 @@ extension SongManager {
         if let index = playlists.firstIndex(of: playlist) {
             // 删除前，要刷新当前的歌单展示问题
             // 1 删除的是当前展示的歌单
+            var newPlaylistSelectedIndex:Int = UserDefaultsManager.share.playlistSelectedIndex
             if playlist == PlayerManager.share.currentShowPlaylist {
                 var newPlaylist = Playlist()
                 if index == 0 { // 如果删除的是第一个歌单
                     if playlists.count > 1 {
                         newPlaylist = playlists[1]
                         print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示歌单：\(playlists[1].name)")
+                        newPlaylistSelectedIndex = 0
                     } else {
                         newPlaylist = iTunesPlaylist
                         print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示iTunes歌单")
+                        newPlaylistSelectedIndex = -1
                     }
                 } else {
                     print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示歌单：\(playlists[0].name)")
                     newPlaylist = playlists[0]
+                    newPlaylistSelectedIndex = 0
                 }
                 
                 PlayerManager.share.currentShowPlaylist = newPlaylist
                 NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":newPlaylist])
+            } else {
+                // 此事 playlists.count 肯定大于1，不然删除的就是当前歌单了
+                let selectedIndex = UserDefaultsManager.share.playlistSelectedIndex
+                if index < selectedIndex { // 如果删除的歌单在选中歌单上面，那选中歌单Index-1
+                    newPlaylistSelectedIndex = selectedIndex  - 1
+                }
             }
             
             // 2 删除的歌单是当前正在播放的歌单
@@ -126,6 +136,8 @@ extension SongManager {
             
             playlists.remove(at: index)
             print("删除歌单：\(playlist.name)")
+            // 删除歌单后再设置，方便Playlsit刷新
+            UserDefaultsManager.share.setPlaylistSelectedIndex(newPlaylistSelectedIndex)
         }
         
         let realm = try! Realm()
