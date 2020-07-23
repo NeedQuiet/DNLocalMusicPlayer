@@ -22,7 +22,11 @@ class PlayerManager: NSObject {
     //MARK: 当前歌曲
     @objc dynamic var currentSong: Song?
     //MARK: 当前播放索引
-    var currentIndex: Int? = nil
+    var currentIndex: Int? = nil {
+        didSet {
+            UserDefaultsManager.share.setSongSelectedIndex(currentIndex)
+        }
+    }
     //MARK: 音量
     @objc dynamic var volume: Float = 1
     //MARK: 当前正在播放的播放列表
@@ -34,7 +38,18 @@ class PlayerManager: NSObject {
         }
     }
     //MARK: 当前正在播放的播放列表
-    var currentPlayingPlaylist: Playlist = Playlist()
+    var currentPlayingPlaylist: Playlist = Playlist() {
+        didSet {
+            if currentPlayingPlaylist.isCustomPlaylist {
+                if let index = SongManager.share.playlists.firstIndex(of: currentPlayingPlaylist) {
+                    UserDefaultsManager.share.setPlayingPlaylistIndex(index)
+                }
+            } else {
+                // 设置为-1，代表iTunes
+                UserDefaultsManager.share.setPlayingPlaylistIndex(-1)
+            }
+        }
+    }
     //MARK: 播放模式
     var playmode: DNPlayMode = .play_mode_repeat_all
     //MARK: 当前播放进度

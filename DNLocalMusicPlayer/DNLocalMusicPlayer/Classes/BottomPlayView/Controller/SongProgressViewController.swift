@@ -35,7 +35,12 @@ extension SongProgressViewController {
         _ = PlayerManager.share.rx.observeWeakly(Double.self, "currentProgress")
             .subscribe { [unowned self] (change) in
                 if let currentProgress = change.element {
-                    self.progressSlider.doubleValue = currentProgress!
+                    // 如果 currentProgress 为无穷大(currentSong为空)
+                    if currentProgress == Double.infinity {
+                        self.progressSlider.doubleValue = 0
+                    } else {
+                        self.progressSlider.doubleValue = currentProgress!
+                    }
                 }
         }
         

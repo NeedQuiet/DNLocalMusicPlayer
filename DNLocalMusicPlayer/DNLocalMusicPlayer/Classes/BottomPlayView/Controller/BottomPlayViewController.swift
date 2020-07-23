@@ -206,6 +206,10 @@ extension BottomPlayViewController {
     //MARK: 刷新时间
     private func updateProgress(_ progress:Double) {
         guard let currentSong = PlayerManager.share.currentSong else { return }
+        
+        // 如果 currentProgress 为无穷大(currentSong为空)
+        if progress == Double.infinity { return }
+        
         // 设置时间label
         let totalTimeInterval = currentSong.timeInterval
         let formatter = DateComponentsFormatter()

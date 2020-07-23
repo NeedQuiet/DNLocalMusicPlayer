@@ -10,9 +10,13 @@ import Foundation
 import Cocoa
 
 //MARK: - ************* 颜色 *************
+//MARK: 默认颜色
 let kDefaultColor:NSColor = NSColor.init(r: 211, g: 211, b: 211)
+//MARK: 浅色颜色
 let kLightColor:NSColor = NSColor.init(r: 146, g: 146, b: 146)
+//MARK: 纯白色高亮色
 let kWhiteHighlightColor:NSColor = NSColor.init(r: 255, g: 255, b: 255)
+//MARK: 红色高亮
 let kRedHighlightColor:NSColor = NSColor.init(r: 222, g: 46, b: 46)
 
 //MARK: - ************* 通知 *************
@@ -39,10 +43,12 @@ enum DNPlayMode: Int {
     case play_mode_shuffle = 2
 }
 
-//MARK: - ************* UserDefaults的Key *************
+//MARK: - ************* UserDefaults *************
 //MARK: 音量
 let kUserDefaultsKey_Volume:String = "kUserDefaultsKey_Volume"
 //MARK: 播放模式
 let kUserDefaultsKey_PlayMode:String = "kUserDefaultsKey_PlayMode"
-//MARK: 选中的歌单Index
-let kSelectedPlaylistIndex:String = "kSelectedPlaylistIndex"
+//MARK: 播放的歌单Index
+let kPlaylingPlaylistIndex:String = "kPlaylingPlaylistIndex"
+//MARK: 选中歌曲的Index
+let kSelectedSongIndex:String = "kSelectedSongIndex"

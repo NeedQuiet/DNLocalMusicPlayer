@@ -54,7 +54,40 @@ extension SongManager {
             return piaylist
         }
         print("已找到\(playlists.count)个自定义歌单")
-        UserDefaultsManager.share.getSeletedPlaylistIndex()
+        //MARK: 获取记录的播放的Playlist
+        let playingPlaylistIndex = UserDefaultsManager.share.checkSeletedPlaylistIndex()
+        
+        if playingPlaylistIndex == -1 { // 如果存储的为-1，那么就展示 iTunesPlaylist
+            PlayerManager.share.currentShowPlaylist = iTunesPlaylist
+            NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":iTunesPlaylist])
+        }
+        
+        var currentPlaylist = iTunesPlaylist
+        if playingPlaylistIndex != -1 {
+            // 如果存储的不是-1，那么就展示 currentPlaylist
+            currentPlaylist = playlists[playingPlaylistIndex]
+            PlayerManager.share.currentShowPlaylist = currentPlaylist
+            NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":currentPlaylist])
+        }
+        
+        //MARK: 获取记录的选择的Song
+        if let songSelectedIndex = UserDefaultsManager.share.getSongSelectedIndex() { // songSelectedIndex 不为空
+            // 给currentIndex赋值
+            PlayerManager.share.currentIndex = songSelectedIndex
+            // 获取记录的播放列表
+            PlayerManager.share.currentPlayingPlaylist = currentPlaylist
+            print("已找到记录歌单：` \(currentPlaylist.name)`")
+            // 如果当前播放列表的 歌曲数量-1 大于 songSelectedIndex
+            if currentPlaylist.songs.count - 1 >= songSelectedIndex {
+                // 根据 songSelectedIndex 获取 Song
+                let currentPlayingSong = currentPlaylist.songs[songSelectedIndex]
+                // 给 currentSong 赋值
+                print("已找到记录歌曲：` \(currentPlayingSong.title)`")
+                PlayerManager.share.currentSong = currentPlayingSong
+            } else {
+                UserDefaultsManager.share.setSongSelectedIndex(nil)
+            }
+        }
     }
     
     //MARK: 根据歌曲地址判断歌曲是否重复
@@ -97,47 +130,52 @@ extension SongManager {
         if let index = playlists.firstIndex(of: playlist) {
             // 删除前，要刷新当前的歌单展示问题
             // 1 删除的是当前展示的歌单
-            var newPlaylistSelectedIndex:Int = UserDefaultsManager.share.playlistSelectedIndex
             if playlist == PlayerManager.share.currentShowPlaylist {
                 var newPlaylist = Playlist()
                 if index == 0 { // 如果删除的是第一个歌单
                     if playlists.count > 1 {
                         newPlaylist = playlists[1]
                         print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示歌单：\(playlists[1].name)")
-                        newPlaylistSelectedIndex = 0
                     } else {
                         newPlaylist = iTunesPlaylist
                         print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示iTunes歌单")
-                        newPlaylistSelectedIndex = -1
                     }
                 } else {
                     print("删除了当前`展示`的歌单：\(playlist.name) ,即将展示歌单：\(playlists[0].name)")
                     newPlaylist = playlists[0]
-                    newPlaylistSelectedIndex = 0
                 }
                 
                 PlayerManager.share.currentShowPlaylist = newPlaylist
                 NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":newPlaylist])
-            } else {
-                // 此事 playlists.count 肯定大于1，不然删除的就是当前歌单了
-                let selectedIndex = UserDefaultsManager.share.playlistSelectedIndex
-                if index < selectedIndex { // 如果删除的歌单在选中歌单上面，那选中歌单Index-1
-                    newPlaylistSelectedIndex = selectedIndex  - 1
-                }
             }
             
             // 2 删除的歌单是当前正在播放的歌单
             if playlist == PlayerManager.share.currentPlayingPlaylist {
-                print("删除了当前`播放`的歌单：\(playlist.name) 清空当前播放歌单")
-                PlayerManager.share.currentPlayingPlaylist = Playlist()
+                print("删除了当前`播放`的歌单：\(playlist.name)")
+                // 设置当前播放歌单为 iTunesPlaylist，并展示
+                PlayerManager.share.currentPlayingPlaylist = iTunesPlaylist
+                PlayerManager.share.currentShowPlaylist = iTunesPlaylist
+                NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":iTunesPlaylist])
+                // 停止播放
                 PlayerManager.share.stop()
+                // 本地化存储
+                UserDefaultsManager.share.setPlayingPlaylistIndex(-1)
+                UserDefaultsManager.share.setSongSelectedIndex(nil)
+            } else {
+                // 此时 playlists.count 肯定大于1，不然删除的就是当前播放歌单了
+                var newPlayingPlaylistIndex:Int = UserDefaultsManager.share.playingPlaylistIndex
+                let selectedIndex = UserDefaultsManager.share.playingPlaylistIndex
+                if index < selectedIndex { // 如果删除的歌单在选中歌单上面，那选中歌单Index-1
+                    newPlayingPlaylistIndex = selectedIndex  - 1
+                }
+                // 本地化存储当前播放歌单Index
+                UserDefaultsManager.share.setPlayingPlaylistIndex(newPlayingPlaylistIndex)
             }
-            
-            
+
             playlists.remove(at: index)
             print("删除歌单：\(playlist.name)")
             // 删除歌单后再设置，方便Playlsit刷新
-            UserDefaultsManager.share.setPlaylistSelectedIndex(newPlaylistSelectedIndex)
+            
         }
         
         let realm = try! Realm()
@@ -183,10 +221,18 @@ extension SongManager {
             if let index = playlist.songs.index(of: withSong), index >= 0{
                 print("删除：'\(withSong.title)'")
                 playlist.songs.remove(at: index)
-                //删除index0的正在播放的歌曲，index会减为-1
                 if playlist == PlayerManager.share.currentPlayingPlaylist {
-                    if withSong.filePath == PlayerManager.share.currentSong?.filePath {
+                    // 如果删除的是当前播放的歌曲，那么 currentIndex - 1（即使删除index为0也无所谓，currentIndex会变成-1）
+                    if withSong.filePath == PlayerManager.share.currentSong?.filePath { // 删除的是当前播放的歌曲
                         PlayerManager.share.currentIndex! -= 1
+                    } else { // 删除当前播放列表其他歌曲
+                        if index < PlayerManager.share.currentIndex! {
+                            /*
+                                如果删除歌曲index 小于当前播放歌曲的index
+                                也就是说如果删除的歌曲在当前播放歌曲上面，那么currentIndex要减1
+                             */
+                            PlayerManager.share.currentIndex! -= 1
+                        }
                     }
                 }
             } else {

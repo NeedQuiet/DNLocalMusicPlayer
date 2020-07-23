@@ -20,7 +20,8 @@ class PlayListViewController: BaseViewController{
                                            ["name":"创建的歌单","type":headerType.item_CustomPlaylist_type]]
 
     @IBOutlet weak var outlineView: NSOutlineView!
-
+    @IBOutlet weak var createPlaylistButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -39,6 +40,9 @@ extension PlayListViewController {
         let menu = NSMenu()
         menu.delegate = self
         outlineView.menu = menu
+        
+        // 防止重复点击
+        createPlaylistButton.ignoresMultiClick = true
     }
 }
 
@@ -57,22 +61,6 @@ extension PlayListViewController {
             .observeWeakly([Playlist].self, "playlists")
             .subscribe({ [unowned self] (change) in
                 self.outlineView.reloadData()
-        })
-        
-        _ = UserDefaultsManager.share.rx
-            .observeWeakly(Int.self, "playlistSelectedIndex")
-            .subscribe({ (event) in
-                if let index = event.element{
-                    var playlist:Playlist
-                    if index == -1 {
-                        // 选中 index：1（iTunes音乐）
-                        playlist = SongManager.share.iTunesPlaylist
-                    } else {
-                        playlist = SongManager.share.playlists[index!]
-                    }
-                    PlayerManager.share.currentShowPlaylist = playlist
-                    NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":playlist])
-                }
         })
     }
 }
@@ -143,11 +131,8 @@ extension PlayListViewController: NSOutlineViewDelegate {
         let model = treeView.item(atRow: row)
         
         if let playlist = model as? Playlist { // playlist
-            if playlist.isCustomPlaylist { // 直接设置PlaylistSelectedIndex会触发本页面kvo，然后kSelectedPlaylistNotification
-                UserDefaultsManager.share.setPlaylistSelectedIndex(row - 3)
-            } else {
-                UserDefaultsManager.share.setPlaylistSelectedIndex(-1)
-            }
+            PlayerManager.share.currentShowPlaylist = playlist
+            NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":playlist])
         } else { // header
             return
         }
@@ -241,12 +226,6 @@ extension PlayListViewController {
 //MARK: - 测试
 extension PlayListViewController {
     @IBAction func addPlaylist(_ sender: Any) {
-//        let formatter = DateComponentsFormatter()
-//        formatter.allowedUnits = [.year ,.month, .day]
-//        formatter.zeroFormattingBehavior = .pad
-//        let timeInterval = Date().timeIntervalSince1970
-//        let currentTimeString:String = "\(formatter.string(from: timeInterval)!)"
-
         let alertView = DNAlertView.initialization()
         alertView.setInfo(title: "新建歌单", placeholderString: "请输入新歌单标题", type: .textFieldType)
         alertView.show(target: self) { (string) in
