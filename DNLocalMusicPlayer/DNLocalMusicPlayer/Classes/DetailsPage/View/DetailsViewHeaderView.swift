@@ -11,6 +11,7 @@ import Cocoa
 protocol DetailsViewHeaderViewDelegate : NSObjectProtocol {
     func playAll()
     func addSong()
+    func renamePlaylist()
 }
 
 class DetailsViewHeaderView: NSView {
@@ -24,6 +25,8 @@ class DetailsViewHeaderView: NSView {
     @IBOutlet weak var songNumLabel: NSTextField!
     @IBOutlet weak var lineView: NSView!
     @IBOutlet weak var noteLabel: NSTextField!
+    @IBOutlet weak var renameButton: DNButton!
+    
     weak var delegate:DetailsViewHeaderViewDelegate?
     
     
@@ -52,6 +55,10 @@ extension DetailsViewHeaderView {
         
         // 歌单名
         playlistNameLabel.textColor = kDefaultColor
+        
+        // rename
+        renameButton.defaultImage = NSImage(named: "edit_default")
+        renameButton.highlightImage = NSImage(named: "edit_highlight")
 
         // 专辑图
         artworkImageView.setCornerRadius(8)
@@ -72,6 +79,9 @@ extension DetailsViewHeaderView {
         addMusicButton.setBorder(1, kLightColor)
         addMusicButton.contentTintColor = kDefaultColor
         
+        // 歌曲数量
+        songNumLabel.textColor = kLightColor
+        
         // 歌曲列表Label
         noteLabel.textColor = kRedHighlightColor
         
@@ -84,14 +94,14 @@ extension DetailsViewHeaderView {
 //MARK: - IBAction
 extension DetailsViewHeaderView {
     @IBAction func playallButtonClick(_ sender: Any) {
-        if delegate != nil {
-            delegate?.playAll()
-        }
+        delegate?.playAll()
     }
     
     @IBAction func addSongButtonClick(_ sender: Any) {
-        if delegate != nil {
-            delegate?.addSong()
-        }
+        delegate?.addSong()
+    }
+    
+    @IBAction func renameButtonPressed(_ sender: Any) {
+        delegate?.renamePlaylist()
     }
 }

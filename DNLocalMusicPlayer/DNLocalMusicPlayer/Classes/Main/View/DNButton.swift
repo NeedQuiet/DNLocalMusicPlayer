@@ -11,6 +11,8 @@ import Cocoa
 class DNButton: NSButton {
     private var hover: Bool = false
     var areaView:NSView = NSView()
+    var defaultImage:NSImage?
+    var highlightImage:NSImage?
     
     override func draw(_ dirtyRect: NSRect) {
         // 禁用点击高亮
@@ -47,11 +49,17 @@ extension DNButton {
     override func mouseEntered(with event: NSEvent) {
         super.mouseEntered(with: event)
         NSCursor.pointingHand.set()
+        if highlightImage != nil {
+            self.image = highlightImage
+        }
     }
     //MARK: 鼠标离开
     override func mouseExited(with event: NSEvent) {
         super.mouseExited(with: event)
         NSCursor.arrow.set()
+        if defaultImage != nil {
+            self.image = defaultImage
+        }
     }
     // 点击后，状态会刷新，此时如不做更改会默认改回指针状态
     override func cursorUpdate(with event: NSEvent) {

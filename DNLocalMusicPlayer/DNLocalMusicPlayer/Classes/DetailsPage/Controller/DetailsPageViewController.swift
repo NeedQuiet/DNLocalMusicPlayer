@@ -283,11 +283,12 @@ extension DetailsPageViewController {
         }
         
         viewHeader.playlistNameLabel.stringValue = playlist.name
-        viewHeader.songNumLabel.stringValue = "歌曲数: \(songs.count)"
+        viewHeader.songNumLabel.stringValue = "\(songs.count)"
         viewHeader.createTimeLabel.stringValue = "\(playlist.creatTime)创建"
         viewHeader.createTimeLabel.isHidden = !playlist.isCustomPlaylist
         viewHeader.playAllButton.isEnabled = songs.count > 0
         viewHeader.addMusicButton.isEnabled = playlist.isCustomPlaylist
+        viewHeader.renameButton.isHidden = !playlist.isCustomPlaylist
         
         // NoSongsView
         if songs.count == 0 {
@@ -457,6 +458,19 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
                 }
             }
             openPanel.close()
+        }
+    }
+    
+    func renamePlaylist() {
+        let alertView = DNAlertView.initialization()
+        alertView.setInfo(title: "重命名歌单", placeholderString: "请输入歌单标题", type: .textFieldType)
+        alertView.submitButton.title = "确认"
+        alertView.defaultString = playlist.name
+        alertView.show(target: self) { [unowned self] (string) in
+            // 此刻的item_playlist是浅copy，因此在realm那更新后，item_playlist的name也会改变
+            SongManager.share.renamePlaylist(self.playlist, string)
+            self.refreshViewHeader()
+            NotificationCenter.default.post(name: kRefreshPlaylistView, object: nil)
         }
     }
 }

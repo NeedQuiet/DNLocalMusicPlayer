@@ -26,7 +26,7 @@ class PlayListViewController: BaseViewController{
         super.viewDidLoad()
         setupUI()
         outlineView.expandItem(nil, expandChildren: true)
-        setupKVO()
+        setupKVOAndNotifi()
     }
 }
 
@@ -46,10 +46,10 @@ extension PlayListViewController {
     }
 }
 
-//MARK: - KVO
+//MARK: - KVO & Notification
 extension PlayListViewController {
-    func setupKVO() {
-        //MARK: itunesPlaylist
+    func setupKVOAndNotifi() {
+        //MARK: itunesPlaylistN
         _ = NotificationCenter.default.rx
             .notification(kFinishGetItunesSongs, object: nil)
             .subscribe({ (event) in
@@ -61,6 +61,13 @@ extension PlayListViewController {
             .observeWeakly([Playlist].self, "playlists")
             .subscribe({ [unowned self] (change) in
                 self.outlineView.reloadData()
+        })
+        
+        //MARK: itunesPlaylistN
+        _ = NotificationCenter.default.rx
+            .notification(kRefreshPlaylistView, object: nil)
+            .subscribe({ (event) in
+            self.outlineView.reloadData()
         })
     }
 }

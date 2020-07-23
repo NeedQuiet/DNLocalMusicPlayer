@@ -28,6 +28,8 @@ let kSwitchPlayModeNotification: NSNotification.Name = NSNotification.Name(rawVa
 let kSelectedPlaylistNotification: NSNotification.Name = NSNotification.Name(rawValue: "kSelectedPlaylistNotification")
 //MARK: 歌曲进度条拖动
 let kProgressContinueTracking: NSNotification.Name = NSNotification.Name(rawValue: "kProgressSliderContinueTracking")
+//MARK: 通知刷新Playlist
+let kRefreshPlaylistView: NSNotification.Name = NSNotification.Name(rawValue: "kRefreshPlaylistView")
 
 //MARK: - ************* 播控 *************
 //MARK: 上/下一曲

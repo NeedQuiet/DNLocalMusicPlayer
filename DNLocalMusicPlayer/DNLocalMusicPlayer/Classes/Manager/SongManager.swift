@@ -76,13 +76,13 @@ extension SongManager {
             PlayerManager.share.currentIndex = songSelectedIndex
             // 获取记录的播放列表
             PlayerManager.share.currentPlayingPlaylist = currentPlaylist
-            print("已找到记录歌单：` \(currentPlaylist.name)`")
+            print("已找到记录歌单：'\(currentPlaylist.name)'")
             // 如果当前播放列表的 歌曲数量-1 大于 songSelectedIndex
             if currentPlaylist.songs.count - 1 >= songSelectedIndex {
                 // 根据 songSelectedIndex 获取 Song
                 let currentPlayingSong = currentPlaylist.songs[songSelectedIndex]
                 // 给 currentSong 赋值
-                print("已找到记录歌曲：` \(currentPlayingSong.title)`")
+                print("已找到记录歌曲：'\(currentPlayingSong.title)'")
                 PlayerManager.share.currentSong = currentPlayingSong
             } else {
                 UserDefaultsManager.share.setSongSelectedIndex(nil)

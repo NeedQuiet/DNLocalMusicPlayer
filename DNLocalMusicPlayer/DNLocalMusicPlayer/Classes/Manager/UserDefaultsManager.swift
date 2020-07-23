@@ -41,7 +41,6 @@ extension UserDefaultsManager {
     func checkSeletedPlaylistIndex() -> Int {
         if let playlistIndex = UserDefaults.standard.value(forKey: kPlaylingPlaylistIndex) as? Int {
             playingPlaylistIndex = playlistIndex
-            print("checkSeletedPlaylistIndex \(playlistIndex)")
         }
         return playingPlaylistIndex
     }
@@ -50,7 +49,6 @@ extension UserDefaultsManager {
         if let songIndex = UserDefaults.standard.value(forKey: kSelectedSongIndex) as? Int {
             songSelectedIndex = songIndex
         }
-        print("getSongSelectedIndex : \(String(describing: songSelectedIndex))")
         return songSelectedIndex
     }
 }
