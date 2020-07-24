@@ -19,13 +19,12 @@ class PlayListViewController: BaseViewController{
     private var headers:[[String: Any]] = [["name":"我的音乐","type":headerType.item_iTunesPlaylist_type],
                                            ["name":"创建的歌单","type":headerType.item_CustomPlaylist_type]]
 
-    @IBOutlet weak var outlineView: NSOutlineView!
+    @IBOutlet weak var outlineView: DNOutlineView!
     @IBOutlet weak var createPlaylistButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        outlineView.expandItem(nil, expandChildren: true)
         setupKVOAndNotifi()
     }
 }
@@ -35,6 +34,8 @@ extension PlayListViewController {
     func setupUI() {
         setBackgroundColor(r: 24, g: 24, b: 24)
         outlineView.backgroundColor = NSColor.init(r: 24, g: 24, b: 24)
+        outlineView.expandItem(nil, expandChildren: true) // 展开
+        outlineView.enclosingScrollView?.borderType = .noBorder
         
         //MARK: 右键菜单按钮
         let menu = NSMenu()

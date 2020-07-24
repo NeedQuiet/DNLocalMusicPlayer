@@ -36,10 +36,14 @@ class DNTableRow: NSTableRowView {
         setCellBackgrouColor(dirtyRect)
     }
     
-    // 画选中背景
+    // 选中的Row
     override func drawSelection(in dirtyRect: NSRect) {
-        backgroundColor = selectedRowColor
-        setCellBackgrouColor(dirtyRect)
+        /*
+            发现单击选中后，mouseEntered/mouseExited等监听都会失效；
+            所以强制置为false，刷新row，会去执行drawBackground
+            (单击选中会进这里，双击选中后，进入这里一次后会自动设为false)
+         */
+        isSelected = false
     }
     
     // 鼠标进入
@@ -51,7 +55,9 @@ class DNTableRow: NSTableRowView {
     // 鼠标移出
     override func mouseExited(with event: NSEvent) {
         isHover = false
-        backgroundColor = NSColor.clear
+        if !isSelected {
+            backgroundColor = NSColor.clear
+        }
     }
     
     // 鼠标运动区域刷新
@@ -82,3 +88,4 @@ extension DNTableRow {
         path.fill()
     }
 }
+ 

@@ -10,16 +10,25 @@ import Cocoa
 
 private let kScrollerDefaultColor = NSColor(r: 48, g: 48, b: 48)
 private let kScrollerHighColor = NSColor(r: 56, g: 56, b: 56)
-
+private let backgroundColor = NSColor(r: 28, g: 28, b: 28)
 class DNScroller: NSScroller {
     // 鼠标运动区域
     var trackingArea:NSTrackingArea?
     // 滚动条颜色
-    var scrollerColor:NSColor = kScrollerDefaultColor
+    var knobBackColor:NSColor = kScrollerDefaultColor
+    
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+//        self.wantsLayer = true
+//        self.layer?.backgroundColor = backgroundColor.cgColor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
     }
     
     override func drawKnob() {
@@ -27,8 +36,17 @@ class DNScroller: NSScroller {
         
         let knobRext = NSInsetRect(self.rect(for: .knob), 3, 0)
         let bezierPath = NSBezierPath(roundedRect: knobRext, xRadius: knobRext.width / 2, yRadius: knobRext.width / 2)
-        scrollerColor.setFill()
+        knobBackColor.setFill()
         bezierPath.fill()
+    }
+    
+    
+//    override class func scrollerWidth(for controlSize: NSControl.ControlSize, scrollerStyle: NSScroller.Style) -> CGFloat {
+//        return 10
+//    }
+    
+    override func drawPageBorder(with borderSize: NSSize) {
+        
     }
     
     // 刷新鼠标运动区域
@@ -52,13 +70,11 @@ class DNScroller: NSScroller {
     
     // 鼠标进入
     override func mouseEntered(with event: NSEvent) {
-        print("mouseEntered")
-        scrollerColor = kScrollerHighColor
+        knobBackColor = kScrollerHighColor
     }
     
     // 鼠标移出
     override func mouseExited(with event: NSEvent) {
-        print("mouseExited")
-        scrollerColor = kScrollerDefaultColor
+        knobBackColor = kScrollerDefaultColor
     }
 }

@@ -34,8 +34,10 @@ class DetailsPageViewController: BaseViewController {
     //用来控制整个视图滚动
     private lazy var mainScrollView: DNFippedScrollView = { [unowned self] in
         let scrollView = DNFippedScrollView()
+        scrollView.borderType = .noBorder
         scrollView.hasVerticalScroller = true
         scrollView.verticalScroller = DNScroller()
+        scrollView.verticalScroller?.setBorder(0, NSColor.clear)
         return scrollView
     }()
     //MARK: 主体scrollview的内容View
@@ -43,8 +45,8 @@ class DetailsPageViewController: BaseViewController {
     var mainScrollContentView = DNFippedView()
     
     //MARK: tableView
-    private lazy var tableView: NSTableView = { [unowned self] in
-        let tableView = NSTableView()
+    private lazy var tableView: DNTableView = { [unowned self] in
+        let tableView = DNTableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = kDefaultBackColor
@@ -243,6 +245,9 @@ extension DetailsPageViewController {
             PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
         }
         let clickedRow = tableView.clickedRow
+//        let rowView = tableView.rowView(atRow: clickedRow, makeIfNecessary: true) as? DNTableRow
+//        rowView?.isSelected = true
+//        rowView?.backgroundColor = selectedRowColor
         playSong(withIndex: clickedRow)
     }
     
@@ -387,6 +392,7 @@ extension DetailsPageViewController: NSTableViewDataSource {
             tableRowView.isSelectedRow = false
         }
         tableRowView.index = row
+        tableRowView.focusRingType = .none
         return tableRowView
     }
 }

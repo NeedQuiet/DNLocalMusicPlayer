@@ -109,6 +109,9 @@
 		F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* DNButton.swift */; };
 		F52ABDEC24BD98E400D093C4 /* DNTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ABDEB24BD98E400D093C4 /* DNTableRow.swift */; };
 		F544015424CAB57700B12458 /* DNScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015324CAB57700B12458 /* DNScroller.swift */; };
+		F544015624CAC50400B12458 /* DNMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015524CAC50400B12458 /* DNMenu.swift */; };
+		F544015824CAC7C400B12458 /* DNTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015724CAC7C400B12458 /* DNTableView.swift */; };
+		F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015924CAF17100B12458 /* DNOutlineView.swift */; };
 		F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC424B87E4C00017FBD /* SongManager.swift */; };
 		F55C3BC724B87E8700017FBD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC624B87E8700017FBD /* Song.swift */; };
 		F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99324AF3730008FC9C9 /* VolumePopover.swift */; };
@@ -255,6 +258,9 @@
 		F51F8A6124AEF8670066E920 /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
 		F52ABDEB24BD98E400D093C4 /* DNTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTableRow.swift; sourceTree = "<group>"; };
 		F544015324CAB57700B12458 /* DNScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNScroller.swift; sourceTree = "<group>"; };
+		F544015524CAC50400B12458 /* DNMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMenu.swift; sourceTree = "<group>"; };
+		F544015724CAC7C400B12458 /* DNTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTableView.swift; sourceTree = "<group>"; };
+		F544015924CAF17100B12458 /* DNOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNOutlineView.swift; sourceTree = "<group>"; };
 		F55C3BC424B87E4C00017FBD /* SongManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongManager.swift; sourceTree = "<group>"; };
 		F55C3BC624B87E8700017FBD /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		F560F99324AF3730008FC9C9 /* VolumePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumePopover.swift; sourceTree = "<group>"; };
@@ -359,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				F5EE566D24B6CBFA00CE9ABC /* Manager */,
+				F544015B24CAF1DF00B12458 /* CustomBaseItem */,
 				F5DC909F24C6BF7500FFB4FB /* WindowTitleBar */,
 				F51F899024ADBA620066E920 /* Main */,
 				F51F899D24ADBD580066E920 /* PlayList */,
@@ -623,19 +630,29 @@
 		F51F8A6024AEF8400066E920 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F51F8A6124AEF8670066E920 /* DNButton.swift */,
-				F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */,
-				F5BE354024C1AC8B007A1D5C /* DNAlphaButton.swift */,
-				F5CFA52324B40748001D1343 /* DNBaseView.swift */,
 				F51C100624B3220B0079DD35 /* DNTitleBarView.swift */,
 				F51C100224B31CBC0079DD35 /* CustomWindow.swift */,
 				F58EF75E24C02424001E94FF /* DNAlertView.swift */,
 				F58EF76224C02DC5001E94FF /* DNAlertView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F544015B24CAF1DF00B12458 /* CustomBaseItem */ = {
+			isa = PBXGroup;
+			children = (
+				F51F8A6124AEF8670066E920 /* DNButton.swift */,
+				F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */,
+				F5BE354024C1AC8B007A1D5C /* DNAlphaButton.swift */,
+				F5CFA52324B40748001D1343 /* DNBaseView.swift */,
 				F5CAE88424C18587003901F5 /* DNFippedView.swift */,
 				F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */,
 				F544015324CAB57700B12458 /* DNScroller.swift */,
+				F544015524CAC50400B12458 /* DNMenu.swift */,
+				F544015724CAC7C400B12458 /* DNTableView.swift */,
+				F544015924CAF17100B12458 /* DNOutlineView.swift */,
 			);
-			path = View;
+			path = CustomBaseItem;
 			sourceTree = "<group>";
 		};
 		F560F99724AF3B78008FC9C9 /* CurrentPlaylist */ = {
@@ -905,9 +922,12 @@
 				F51F89B224ADC2FB0066E920 /* PlayListViewController.swift in Sources */,
 				F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */,
 				F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */,
+				F544015624CAC50400B12458 /* DNMenu.swift in Sources */,
 				F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */,
 				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
+				F544015824CAC7C400B12458 /* DNTableView.swift in Sources */,
 				F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */,
+				F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */,
 				F51F89AE24ADC0A20066E920 /* NSColor-Extension.swift in Sources */,
 				F52ABDEC24BD98E400D093C4 /* DNTableRow.swift in Sources */,
 				F51F89AA24ADBF600066E920 /* DetailsPageViewController.swift in Sources */,
