@@ -1,5 +1,5 @@
 //
-//  DNTableRow.swift
+//  DetailsTableRow.swift
 //  DNLocalMusicPlayer
 //
 //  Created by 许一宁 on 2020/7/14.
@@ -12,7 +12,7 @@ private let singleRowColor = NSColor(r: 28, g: 28, b: 28)
 private let doubleRowColor = NSColor(r: 31, g: 31, b: 31)
 private let selectedRowColor = NSColor(r: 38, g: 38, b: 38)
 
-class DNTableRow: NSTableRowView {
+class DetailsTableRow: NSTableRowView {
     // 鼠标运动区域
     var trackingArea:NSTrackingArea?
     // 行数
@@ -80,7 +80,7 @@ class DNTableRow: NSTableRowView {
     }
 }
 
-extension DNTableRow {
+extension DetailsTableRow {
     //MARK: 设置背景色
     private func setCellBackgrouColor(_ rect:NSRect) {
         backgroundColor.setFill() // 用背景色填充

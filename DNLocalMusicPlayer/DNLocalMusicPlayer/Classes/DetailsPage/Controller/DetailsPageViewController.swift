@@ -19,7 +19,7 @@ private let titleColumnDefaultWidth:CGFloat = 300 // 歌名列默认宽度
 private let artistColumnDefaultWidth:CGFloat = 200 // 歌手列默认宽度
 private let albumColumnDefaultWidth:CGFloat = 200 // 专辑列默认宽度
 private let timeColumnDefaultWidth:CGFloat = 100 // 时长列默认宽度
-private let kTableHedaerHeight:CGFloat = 30 // tableView的Header高度
+private let kTableHedaerHeight:CGFloat = 35 // tableView的Header高度
 private let kViewHeaderHeight:CGFloat = 280 // 页面的Header高度
 private let kViewHeaderMarginTop:CGFloat = 20 // 页面的Header MarginTop
 private let kViewHeaderMarginTLeft:CGFloat = 30 // 页面的Header MarginLeft
@@ -152,6 +152,12 @@ extension DetailsPageViewController {
         let TableHeaderView = NSTableHeaderView()
         TableHeaderView.frame.size.height = kTableHedaerHeight
         tableView.headerView = TableHeaderView
+        _ = self.tableView.tableColumns.map { (tableColumn) in
+            let columnTitle = tableColumn.headerCell.stringValue
+            let myCell = DetailsTableHeaderCell.init(textCell: columnTitle)
+            myCell.identifierString = tableColumn.identifier.rawValue
+            tableColumn.headerCell = myCell
+        }
         
         //MARK: View Header
         viewHeader.delegate = self
@@ -245,9 +251,6 @@ extension DetailsPageViewController {
             PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
         }
         let clickedRow = tableView.clickedRow
-//        let rowView = tableView.rowView(atRow: clickedRow, makeIfNecessary: true) as? DNTableRow
-//        rowView?.isSelected = true
-//        rowView?.backgroundColor = selectedRowColor
         playSong(withIndex: clickedRow)
     }
     
@@ -384,7 +387,7 @@ extension DetailsPageViewController: NSTableViewDataSource {
 
     // MARK: 设置每行容器视图
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        let tableRowView = DNTableRow()
+        let tableRowView = DetailsTableRow()
         let song = songs[row]
         if isCurrentPlayingSong(song) {
             tableRowView.isSelectedRow = true
