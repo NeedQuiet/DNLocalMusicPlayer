@@ -35,6 +35,7 @@ class DetailsPageViewController: BaseViewController {
     private lazy var mainScrollView: DNFippedScrollView = { [unowned self] in
         let scrollView = DNFippedScrollView()
         scrollView.hasVerticalScroller = true
+        scrollView.verticalScroller = DNScroller()
         return scrollView
     }()
     //MARK: 主体scrollview的内容View
@@ -468,11 +469,13 @@ extension DetailsPageViewController: NSTableViewDelegate {
 
 //MARK: - DetailsViewHeaderViewDelegate
 extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
+    //MARK: 播放全部点击
     func playAll() {
         PlayerManager.share.currentPlayingPlaylist = playlist
         PlayerManager.share.play(withIndex: 0)
     }
     
+    //MARK: 添加歌曲点击
     func addSong() {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = true //是否允许多选file
@@ -499,6 +502,7 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
         }
     }
     
+    //MARK: 重命名歌单
     func renamePlaylist() {
         let alertView = DNAlertView.initialization()
         alertView.setInfo(title: "重命名歌单", placeholderString: "请输入歌单标题", type: .textFieldType)

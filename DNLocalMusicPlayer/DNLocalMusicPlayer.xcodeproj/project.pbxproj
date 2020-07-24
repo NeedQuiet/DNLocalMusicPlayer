@@ -108,6 +108,7 @@
 		F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */; };
 		F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* DNButton.swift */; };
 		F52ABDEC24BD98E400D093C4 /* DNTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ABDEB24BD98E400D093C4 /* DNTableRow.swift */; };
+		F544015424CAB57700B12458 /* DNScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015324CAB57700B12458 /* DNScroller.swift */; };
 		F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC424B87E4C00017FBD /* SongManager.swift */; };
 		F55C3BC724B87E8700017FBD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC624B87E8700017FBD /* Song.swift */; };
 		F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99324AF3730008FC9C9 /* VolumePopover.swift */; };
@@ -253,6 +254,7 @@
 		F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressed.tiff; sourceTree = "<group>"; };
 		F51F8A6124AEF8670066E920 /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
 		F52ABDEB24BD98E400D093C4 /* DNTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTableRow.swift; sourceTree = "<group>"; };
+		F544015324CAB57700B12458 /* DNScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNScroller.swift; sourceTree = "<group>"; };
 		F55C3BC424B87E4C00017FBD /* SongManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongManager.swift; sourceTree = "<group>"; };
 		F55C3BC624B87E8700017FBD /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		F560F99324AF3730008FC9C9 /* VolumePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumePopover.swift; sourceTree = "<group>"; };
@@ -631,6 +633,7 @@
 				F58EF76224C02DC5001E94FF /* DNAlertView.xib */,
 				F5CAE88424C18587003901F5 /* DNFippedView.swift */,
 				F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */,
+				F544015324CAB57700B12458 /* DNScroller.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */,
 				F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
+				F544015424CAB57700B12458 /* DNScroller.swift in Sources */,
 				F5DC90C024C8137300FFB4FB /* DNSlider.swift in Sources */,
 				F55C3BC724B87E8700017FBD /* Song.swift in Sources */,
 				F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */,
