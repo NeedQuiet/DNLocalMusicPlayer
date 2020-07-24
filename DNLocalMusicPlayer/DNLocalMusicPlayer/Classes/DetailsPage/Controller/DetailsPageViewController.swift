@@ -14,7 +14,7 @@ private let kTitleColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTitleColu
 private let kArtistColumnID = NSUserInterfaceItemIdentifier(rawValue: "kArtistColumnID")
 private let kAlbumColumnID = NSUserInterfaceItemIdentifier(rawValue: "kAlbumColumnID")
 private let kTimeColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTimeColumnID")
-private let rowHeight:CGFloat = 35 // 行高
+private let rowHeight:CGFloat = 30 // 行高
 private let titleColumnDefaultWidth:CGFloat = 300 // 歌名列默认宽度
 private let artistColumnDefaultWidth:CGFloat = 200 // 歌手列默认宽度
 private let albumColumnDefaultWidth:CGFloat = 200 // 专辑列默认宽度
@@ -118,19 +118,19 @@ extension DetailsPageViewController {
         artistColumn.headerToolTip = "歌手"
         artistColumn.resizingMask = .userResizingMask
         artistColumn.width = artistColumnDefaultWidth
-        artistColumn.minWidth = 120
+        artistColumn.minWidth = 110
         let albumColumn = NSTableColumn.init(identifier: kAlbumColumnID)
         albumColumn.title = "专辑"
         albumColumn.headerToolTip = "专辑"
         albumColumn.resizingMask = .userResizingMask
         albumColumn.width = albumColumnDefaultWidth
-        albumColumn.minWidth = 120
+        albumColumn.minWidth = 110
         let timeColumn = NSTableColumn.init(identifier: kTimeColumnID)
         timeColumn.title = "时长"
         timeColumn.headerToolTip = "时长"
         timeColumn.resizingMask = .userResizingMask
         timeColumn.width = timeColumnDefaultWidth
-        albumColumn.minWidth = 60
+        albumColumn.minWidth = 80
         tableView.addTableColumn(titleColumn)
         tableView.addTableColumn(artistColumn)
         tableView.addTableColumn(albumColumn)
@@ -379,6 +379,12 @@ extension DetailsPageViewController: NSTableViewDataSource {
     // MARK: 设置每行容器视图
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let tableRowView = DNTableRow()
+        let song = songs[row]
+        if isCurrentPlayingSong(song) {
+            tableRowView.isSelectedRow = true
+        } else {
+            tableRowView.isSelectedRow = false
+        }
         tableRowView.index = row
         return tableRowView
     }
@@ -390,38 +396,70 @@ extension DetailsPageViewController: NSTableViewDelegate {
         var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cellId"), owner: self)
         if cellView == nil {
             cellView = NSView.init()
-            let textField = NSTextField()
-            textField.isBezeled = false
-            textField.isEditable = false
-            textField.backgroundColor = NSColor.clear
-            textField.cell?.usesSingleLineMode = true
-            textField.lineBreakMode = .byTruncatingTail
-            cellView!.addSubview(textField)
             
+            let textLabel = NSTextField()
+            textLabel.isBezeled = false
+            textLabel.isEditable = false
+            textLabel.backgroundColor = NSColor.clear
+            textLabel.cell?.usesSingleLineMode = true
+            textLabel.lineBreakMode = .byTruncatingTail
+            cellView!.addSubview(textLabel)
+            
+            // 此行歌曲
             let song = songs[row]
-            textField.textColor = kLightColor
+            // 根据cell ID 区分是row的哪一列
             switch tableColumn?.identifier {
-            case kTitleColumnID:
-                textField.stringValue = song.title
+            case kTitleColumnID: // 标题列
+                textLabel.stringValue = song.title
                 if isCurrentPlayingSong(song) {
-                    textField.textColor = kRedHighlightColor
+                    textLabel.textColor = kRedHighlightColor
                 } else {
-                    textField.textColor = kDefaultColor
+                    textLabel.textColor = kDefaultColor
                 }
-            case kArtistColumnID:
-                textField.stringValue = song.artist
-            case kAlbumColumnID:
-                textField.stringValue = song.album
-            case kTimeColumnID:
-                textField.stringValue = song.totalTime
+            case kArtistColumnID: // 歌手列
+                textLabel.stringValue = song.artist
+                textLabel.textColor = kLightColor
+            case kAlbumColumnID: // 专辑列
+                textLabel.stringValue = song.album
+                textLabel.textColor = kLightColor
+            case kTimeColumnID: // 时长列
+                textLabel.stringValue = song.totalTime
+                textLabel.textColor = kLightestColor
             default:
-                textField.stringValue = ""
+                textLabel.stringValue = ""
             }
             
-            textField.snp.makeConstraints { (make) in
-                make.left.right.equalTo(3)
-                make.top.bottom.equalTo(10)
+            // 标题列前追加 Row index
+            if tableColumn?.identifier ==  kTitleColumnID{
+                let indexRowLabel = NSTextField()
+                indexRowLabel.isBezeled = false
+                indexRowLabel.isEditable = false
+                indexRowLabel.backgroundColor = NSColor.clear
+                indexRowLabel.alignment = .right
+                indexRowLabel.textColor = kLightColor
+                indexRowLabel.stringValue = String(format: "%02d", row + 1)
+                cellView!.addSubview(indexRowLabel)
+                
+                indexRowLabel.snp.makeConstraints { (make) in
+                    make.left.equalTo(0)
+                    make.centerY.equalTo(0)
+                    make.width.equalTo(45)
+                }
+                
+                textLabel.snp.makeConstraints { (make) in
+                    make.left.equalTo(indexRowLabel.snp.right).offset(15)
+                    make.right.equalTo(3)
+                    make.centerY.equalTo(0)
+                }
+                
+            } else {
+                textLabel.snp.makeConstraints { (make) in
+                    make.left.right.equalTo(3)
+                    make.centerY.equalTo(0)
+                }
             }
+            
+            
             
         }
         return cellView

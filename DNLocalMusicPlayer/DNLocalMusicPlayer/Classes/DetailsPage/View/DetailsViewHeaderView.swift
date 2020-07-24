@@ -59,6 +59,9 @@ extension DetailsViewHeaderView {
         // rename
         renameButton.defaultImage = NSImage(named: "edit_default")
         renameButton.highlightImage = NSImage(named: "edit_highlight")
+        
+        // 创建时间
+        createTimeLabel.textColor = kLightColor
 
         // 专辑图
         artworkImageView.setCornerRadius(8)
