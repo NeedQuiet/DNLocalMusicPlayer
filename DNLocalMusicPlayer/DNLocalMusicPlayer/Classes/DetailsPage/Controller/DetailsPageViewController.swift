@@ -15,6 +15,7 @@ private let kArtistColumnID = NSUserInterfaceItemIdentifier(rawValue: "kArtistCo
 private let kAlbumColumnID = NSUserInterfaceItemIdentifier(rawValue: "kAlbumColumnID")
 private let kTimeColumnID = NSUserInterfaceItemIdentifier(rawValue: "kTimeColumnID")
 private let rowHeight:CGFloat = 30 // 行高
+private let kRowBorderWidth:CGFloat = 2 // 发现实际上row的高度会上下加1
 private let titleColumnDefaultWidth:CGFloat = 300 // 歌名列默认宽度
 private let artistColumnDefaultWidth:CGFloat = 200 // 歌手列默认宽度
 private let albumColumnDefaultWidth:CGFloat = 200 // 专辑列默认宽度
@@ -72,6 +73,12 @@ class DetailsPageViewController: BaseViewController {
     private lazy var viewHeader:DetailsViewHeaderView = {
         let viewHeader = DetailsViewHeaderView.initialization()
         mainScrollContentView.addSubview(viewHeader)
+        viewHeader.snp.makeConstraints { (make) in
+            make.left.equalTo(mainScrollContentView.snp.left).offset(kViewHeaderMarginTLeft)
+            make.right.equalTo(mainScrollContentView.snp.right).offset(kViewHeaderMarginTLeft)
+            make.top.equalTo(mainScrollContentView.snp.top).offset(kViewHeaderMarginTop)
+            make.height.equalTo(kViewHeaderHeight - kViewHeaderMarginTop)
+        }
         viewHeader.setupUI()
         return viewHeader
     }()
@@ -91,7 +98,10 @@ class DetailsPageViewController: BaseViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        mainScrollView.frame = view.bounds
+//        mainScrollView.frame = view.bounds
+        mainScrollView.snp.makeConstraints { (make) in
+            make.top.bottom.left.right.equalTo(0)
+        }
     }
     
     deinit {
@@ -196,19 +206,23 @@ extension DetailsPageViewController {
         _ = NotificationCenter.default.rx
             .notification(NSWindow.didResizeNotification, object: nil)
             .subscribe({[unowned self] (event) in
+                // 此时Details页的尺寸
                 let viewBounds = self.view.bounds
-                // 设置 scrollview 宽度
-                self.mainScrollView.frame = viewBounds
-                // 设置 mainScrollContentView 宽度
-                self.mainScrollContentView.frame.size.width = viewBounds.width
-                // 设置 tableView 宽度
+                // 设置 tableView 的 size
                 self.tableView.frame.size.width = viewBounds.width
-                // 设置 tableBackScrollView 宽度
-                self.tableBackScrollView.frame.size.width = viewBounds.width
-                // 设置 HeaderView 的 frame
-                self.viewHeader.frame.size.width = viewBounds.width - 2 * kViewHeaderMarginTLeft
+                var tableSize = NSSize(width: viewBounds.width, height:kTableHedaerHeight +  CGFloat(self.songs.count) * (rowHeight + kRowBorderWidth) + kViewFooterHeight)
+                let tableViewMinHeight = viewBounds.height - kViewHeaderHeight
+                if tableSize.height < tableViewMinHeight {
+                    tableSize.height = tableViewMinHeight
+                    self.tableView.frame.size.height = tableViewMinHeight
+                }
+                // 设置 tableBackScrollView 的 size
+                self.tableBackScrollView.frame.size = NSSize(width: viewBounds.width, height: tableSize.height)
+                // 设置 mainScrollContentView 的 size
+                self.mainScrollContentView.frame.size = NSSize(width: viewBounds.width, height: kViewHeaderHeight + tableSize.height)
+                
+                // 无歌曲提示页frame
                 if self.songs.count == 0 {
-                    // 无歌曲提示frame
                     self.noSongsView.frame.size.width = viewBounds.width
                 }
                 
@@ -314,21 +328,24 @@ extension DetailsPageViewController {
     //MARK: 刷新内容view，判断tableView | noSongView的frame
     private func refreshDetailsView() {
         // 设置tableView及背景的frame
-        let viewSize = self.view.bounds.size
+        let viewSize = view.bounds.size
 
-        if self.songs.count > 0 { // 有歌曲
-            self.noSongsView.isHidden = true
-            self.tableBackScrollView.isHidden = false
-            let tableSize = NSSize(width: view.bounds.width, height: CGFloat(songs.count + 1) * rowHeight )
+        if songs.count > 0 { // 有歌曲
+            noSongsView.isHidden = true
+            tableBackScrollView.isHidden = false
+            var tableSize = NSSize(width: view.bounds.width, height:kTableHedaerHeight + CGFloat(songs.count) * (rowHeight + kRowBorderWidth) + kViewFooterHeight)
+            let tableViewMinHeight = viewSize.height - kViewHeaderHeight
+            if tableSize.height < tableViewMinHeight {
+                tableSize.height = tableViewMinHeight
+            }
+            
             // 设置 tableView 的 frame
-            self.tableView.frame = CGRect(x: 0, y: 0, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
-            // 设置 mainScrollContentView 的 frame
-            let frame = NSRect(x: 0, y: 0, width: viewSize.width, height: tableSize.height + kViewHeaderHeight + kTableHedaerHeight + kViewFooterHeight)
-            self.mainScrollContentView.frame = frame
+            tableView.frame = CGRect(x: 0, y: 0, width: tableSize.width, height: tableSize.height)
             // 设置 tableBackScrollView 的 frame
-            self.tableBackScrollView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: tableSize.width, height: tableSize.height + kTableHedaerHeight)
-            // 设置 HeaderView 的 frame
-            self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
+            tableBackScrollView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: tableSize.width, height: tableSize.height)
+            // 设置 mainScrollContentView 的 frame
+            let frame = NSRect(x: 0, y: 0, width: viewSize.width, height: kViewHeaderHeight + tableBackScrollView.frame.height)
+            mainScrollContentView.frame = frame
         } else {
             self.mainScrollContentView.frame = self.view.bounds
             // 设置 HeaderView 的 frame
