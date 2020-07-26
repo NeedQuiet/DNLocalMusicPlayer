@@ -70,17 +70,21 @@ extension PlayListViewController {
         _ = NotificationCenter.default.rx
             .notification(kRefreshPlaylistView, object: nil)
             .subscribe({ (event) in
-            self.outlineView.reloadData()
+                self.outlineView.reloadData()
         })
         
         //MARK: 选中歌单
         _ = NotificationCenter.default.rx
             .notification(kSelectedPlaylistNotification, object: nil)
             .subscribe({[unowned self] (event) in
-                if let object = event.element?.object as? [String : Playlist] {
-                    self.outlineView.reloadData()
-                }
+                self.outlineView.reloadData()
         })
+        
+        //MARK: isPlaying
+        _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
+            .subscribe { [unowned self] (change) in
+                self.outlineView.reloadData()
+        }
     }
 }
 
@@ -170,8 +174,12 @@ extension PlayListViewController: NSOutlineViewDelegate {
                 itemCellView = PlaylistItemCellView()
                 if let playlist = item as? Playlist {
                     itemCellView?.playlistNameLabel.stringValue = playlist.name
+                    // 是否是当前展示的歌单
                     let hasSelected = playlist == PlayerManager.share.currentShowPlaylist
                     itemCellView?.setSeleted(hasSelected)
+                    // 是否是当前播放的歌单
+                    let isCurrentPlayingPlaylist = playlist == PlayerManager.share.currentPlayingPlaylist
+                    itemCellView?.isCurrentPlayingPlaylist(isCurrentPlayingPlaylist)
                 }
             }
             

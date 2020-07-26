@@ -253,6 +253,12 @@ extension DetailsPageViewController {
                     self.tableView.reloadData()
                 }
         })
+        
+        //MARK: isPlaying
+        _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
+            .subscribe { [unowned self] (change) in
+                self.tableView.reloadData()
+        }
     }
 }
 
@@ -456,38 +462,55 @@ extension DetailsPageViewController: NSTableViewDelegate {
                 textLabel.stringValue = ""
             }
             
-            // 标题列前追加 Row index
+            // 标题列
             if tableColumn?.identifier ==  kTitleColumnID{
-                let indexRowLabel = NSTextField()
-                indexRowLabel.isBezeled = false
-                indexRowLabel.isEditable = false
-                indexRowLabel.backgroundColor = NSColor.clear
-                indexRowLabel.alignment = .right
-                indexRowLabel.textColor = kLightColor
-                indexRowLabel.stringValue = String(format: "%02d", row + 1)
-                cellView!.addSubview(indexRowLabel)
-                
-                indexRowLabel.snp.makeConstraints { (make) in
-                    make.left.equalTo(0)
-                    make.centerY.equalTo(0)
-                    make.width.equalTo(45)
+                // 如果是当前播放歌曲，前面展示播放状态
+                if isCurrentPlayingSong(song) {
+                    let playStateImageView = NSImageView()
+                    let imageName = PlayerManager.share.isPlaying ? "yinliangda" : "yinliangxiao"
+                    playStateImageView.image = NSImage(named: imageName)
+                    cellView!.addSubview(playStateImageView)
+                    // 播放状态imageView 约束
+                    playStateImageView.snp.makeConstraints({ (make) in
+                        make.left.equalTo(29)
+                        make.centerY.equalTo(0)
+                        make.width.height.equalTo(16)
+                    })
+                    // 歌曲名 约束
+                    textLabel.snp.makeConstraints { (make) in
+                        make.left.equalTo(playStateImageView.snp.right).offset(15)
+                        make.right.equalTo(3)
+                        make.centerY.equalTo(0)
+                    }
+                } else {
+                    // 如果不是，前面展示index
+                    let indexRowLabel = NSTextField()
+                    indexRowLabel.isBezeled = false
+                    indexRowLabel.isEditable = false
+                    indexRowLabel.backgroundColor = NSColor.clear
+                    indexRowLabel.alignment = .right
+                    indexRowLabel.textColor = kLightColor
+                    indexRowLabel.stringValue = String(format: "%02d", row + 1)
+                    cellView!.addSubview(indexRowLabel)
+                    // index 约束
+                    indexRowLabel.snp.makeConstraints { (make) in
+                        make.left.equalTo(0)
+                        make.centerY.equalTo(0)
+                        make.width.equalTo(45)
+                    }
+                    // 歌曲名 约束
+                    textLabel.snp.makeConstraints { (make) in
+                        make.left.equalTo(indexRowLabel.snp.right).offset(15)
+                        make.right.equalTo(3)
+                        make.centerY.equalTo(0)
+                    }
                 }
-                
-                textLabel.snp.makeConstraints { (make) in
-                    make.left.equalTo(indexRowLabel.snp.right).offset(15)
-                    make.right.equalTo(3)
-                    make.centerY.equalTo(0)
-                }
-                
             } else {
                 textLabel.snp.makeConstraints { (make) in
                     make.left.right.equalTo(3)
                     make.centerY.equalTo(0)
                 }
             }
-            
-            
-            
         }
         return cellView
     }

@@ -12,7 +12,10 @@ import SnapKit
 class PlaylistItemCellView: NSTableCellView {
     //MARK: 歌单名
     var playlistNameLabel = NSTextField()
+    //MARK: 歌单图片
     var playlistImageView:NSImageView?
+    //MARK: 正在播放图片
+    var playStateImageView:NSImageView?
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -31,6 +34,7 @@ class PlaylistItemCellView: NSTableCellView {
 
 extension PlaylistItemCellView {
     func setupUI() {
+        // 歌单图片
         playlistImageView = NSImageView()
         playlistImageView?.image = NSImage(named: "playlist_default")
         addSubview(playlistImageView!)
@@ -39,6 +43,7 @@ extension PlaylistItemCellView {
             make.width.height.equalTo(20)
         })
         
+        // 歌单名
         playlistNameLabel.isBezeled = false // 边框
         playlistNameLabel.isEditable = false
         playlistNameLabel.backgroundColor = NSColor.clear
@@ -47,9 +52,20 @@ extension PlaylistItemCellView {
         playlistNameLabel.lineBreakMode = .byTruncatingTail
         addSubview(playlistNameLabel)
         playlistNameLabel.snp.makeConstraints { (make) in
-            make.right.centerY.equalTo(0)
+            make.centerY.equalTo(0)
             make.left.equalTo(playlistImageView!.snp.right).offset(5)
+            make.right.greaterThanOrEqualTo(0)
         }
+        
+        // 播放状态图片
+        playStateImageView = NSImageView()
+        playStateImageView?.isHidden = true
+        addSubview(playStateImageView!)
+        playStateImageView?.snp.makeConstraints({ (make) in
+            make.centerY.equalTo(0)
+            make.right.equalTo(-2)
+            make.width.height.equalTo(16)
+        })
     }
     
     func setSeleted(_ seleted:Bool) {
@@ -59,6 +75,16 @@ extension PlaylistItemCellView {
         } else {
             playlistNameLabel.textColor = kDefaultColor
             playlistImageView?.image = NSImage(named: "playlist_default")
+        }
+    }
+    
+    func isCurrentPlayingPlaylist(_ isplayingPlaylist:Bool) {
+        if isplayingPlaylist == true {
+            playStateImageView?.isHidden = false
+            let imageName = PlayerManager.share.isPlaying ? "yinliangda" : "yinliangxiao"
+            playStateImageView?.image = NSImage(named: imageName)
+        } else {
+            playStateImageView?.isHidden = true
         }
     }
 }
