@@ -6,6 +6,11 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+/**
+   翻转了坐标系的NSScrollView
+        - 支持翻滚到顶部
+*/
+
 import Cocoa
 
 class DNFippedScrollView: NSScrollView {

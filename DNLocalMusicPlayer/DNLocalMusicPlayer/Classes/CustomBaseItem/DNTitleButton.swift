@@ -6,6 +6,10 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+/**
+   继承自DNButton，hover的时候可以改变button上的文字颜色
+*/
+
 import Cocoa
 
 class DNTitleButton: DNButton {

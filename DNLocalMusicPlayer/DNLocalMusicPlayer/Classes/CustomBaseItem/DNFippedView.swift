@@ -6,6 +6,10 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+/**
+   翻转了坐标系的NSView
+*/
+
 import Cocoa
 
 class DNFippedView: NSView {

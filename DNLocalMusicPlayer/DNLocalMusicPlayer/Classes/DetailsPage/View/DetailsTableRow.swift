@@ -12,13 +12,9 @@ private let singleRowColor = NSColor(r: 28, g: 28, b: 28)
 private let doubleRowColor = NSColor(r: 31, g: 31, b: 31)
 private let selectedRowColor = NSColor(r: 38, g: 38, b: 38)
 
-class DetailsTableRow: NSTableRowView {
-    // 鼠标运动区域
-    var trackingArea:NSTrackingArea?
+class DetailsTableRow: DNCustomTableRow {
     // 行数
     var index:Int = 0
-    // 鼠标是否悬停
-    var isHover:Bool = false
     // 是否是选中的行
     var isSelectedRow: Bool = false
     
@@ -48,44 +44,7 @@ class DetailsTableRow: NSTableRowView {
     
     // 鼠标进入
     override func mouseEntered(with event: NSEvent) {
+        super.mouseEntered(with: event)
         backgroundColor = selectedRowColor
-        isHover = true
-    }
-    
-    // 鼠标移出
-    override func mouseExited(with event: NSEvent) {
-        isHover = false
-        if !isSelected {
-            backgroundColor = NSColor.clear
-        }
-    }
-    
-    // 鼠标运动区域刷新
-    override func updateTrackingAreas() {
-        if trackingArea != nil{
-            self.removeTrackingArea(trackingArea!)
-        }
-        
-        trackingArea = NSTrackingArea.init(rect: bounds, options: [.inVisibleRect, .activeInKeyWindow, .mouseEnteredAndExited], owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea!)
-        
-        var mouseLocation:NSPoint = self.window?.mouseLocationOutsideOfEventStream ?? NSPoint.zero
-        mouseLocation = self.convert(mouseLocation, from: nil)
-        if NSPointInRect(mouseLocation, bounds) {
-            self.mouseEntered(with: NSEvent())
-        } else {
-            self.mouseExited(with: NSEvent())
-        }
-        super.updateTrackingAreas()
     }
 }
-
-extension DetailsTableRow {
-    //MARK: 设置背景色
-    private func setCellBackgrouColor(_ rect:NSRect) {
-        backgroundColor.setFill() // 用背景色填充
-        let path = NSBezierPath.init(roundedRect: rect, xRadius: 0, yRadius: 0)
-        path.fill()
-    }
-}
- 

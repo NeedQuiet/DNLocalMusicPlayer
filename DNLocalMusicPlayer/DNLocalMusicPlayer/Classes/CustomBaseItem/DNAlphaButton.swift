@@ -6,6 +6,10 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+/**
+   继承自DNButton，hover的时候会有个浅白色遮罩层
+*/
+
 import Cocoa
 
 class DNAlphaButton: DNButton {

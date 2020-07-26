@@ -15,13 +15,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Le-Yg-KSm">
-                                <rect key="frame" x="0.0" y="50" width="235" height="591"/>
+                                <rect key="frame" x="0.0" y="10" width="235" height="631"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Pfa-KM-orS">
-                                    <rect key="frame" x="1" y="1" width="233" height="589"/>
+                                    <rect key="frame" x="1" y="1" width="233" height="629"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="AQs-e0-WUd" id="Kgo-U3-oxe" customClass="DNOutlineView" customModule="DN音乐" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="233" height="589"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="233" height="629"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="unemphasizedSelectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -38,50 +38,6 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                    <prototypeCellViews>
-                                                        <tableCellView identifier="HeaderCell" id="uPJ-ve-pKq">
-                                                            <rect key="frame" x="1" y="1" width="230" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iYN-ZR-hUU">
-                                                                    <rect key="frame" x="0.0" y="1" width="230" height="14"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Libraryxxx" id="sm8-3r-xh1">
-                                                                        <font key="font" metaFont="smallSystemBold"/>
-                                                                        <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                            </subviews>
-                                                            <connections>
-                                                                <outlet property="textField" destination="iYN-ZR-hUU" id="sv9-Zw-FbH"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                        <tableCellView identifier="DataCell" id="V7J-dI-4cp">
-                                                            <rect key="frame" x="1" y="20" width="230" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHh-0t-fxR">
-                                                                    <rect key="frame" x="3" y="0.0" width="17" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" imageScaling="proportionallyDown" image="NSActionTemplate" id="juN-pk-BMz"/>
-                                                                </imageView>
-                                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuL-oZ-hmT">
-                                                                    <rect key="frame" x="25" y="0.0" width="205" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Playlist" id="fX0-5G-ali">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                            </subviews>
-                                                            <connections>
-                                                                <outlet property="imageView" destination="dHh-0t-fxR" id="bLO-uH-NZv"/>
-                                                                <outlet property="textField" destination="fuL-oZ-hmT" id="ipP-0x-ilD"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                    </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
@@ -101,28 +57,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z4y-Gj-WLE">
-                                <rect key="frame" x="92" y="17" width="51" height="20"/>
-                                <buttonCell key="cell" type="smallSquare" title="添加歌单" bezelStyle="smallSquare" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6ye-8w-iiK">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu" size="11"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="addPlaylist:" target="l0I-KD-Eeo" id="WLR-4W-afQ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="1Le-Yg-KSm" firstAttribute="leading" secondItem="Sl6-tp-E58" secondAttribute="leading" id="6sY-OH-bAL"/>
                             <constraint firstItem="1Le-Yg-KSm" firstAttribute="top" secondItem="Sl6-tp-E58" secondAttribute="top" id="Nt1-Wi-4Gd"/>
-                            <constraint firstAttribute="bottom" secondItem="1Le-Yg-KSm" secondAttribute="bottom" constant="50" id="Xnw-Ax-98B"/>
-                            <constraint firstItem="Z4y-Gj-WLE" firstAttribute="centerX" secondItem="Sl6-tp-E58" secondAttribute="centerX" id="aOb-gA-NhA"/>
-                            <constraint firstAttribute="bottom" secondItem="Z4y-Gj-WLE" secondAttribute="bottom" constant="18" id="s2c-YO-9hu"/>
+                            <constraint firstAttribute="bottom" secondItem="1Le-Yg-KSm" secondAttribute="bottom" constant="10" id="Xnw-Ax-98B"/>
                             <constraint firstAttribute="trailing" secondItem="1Le-Yg-KSm" secondAttribute="trailing" id="wWG-kZ-g56"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="createPlaylistButton" destination="Z4y-Gj-WLE" id="QXS-s2-302"/>
                         <outlet property="outlineView" destination="Kgo-U3-oxe" id="QHM-G7-Bty"/>
                     </connections>
                 </viewController>
@@ -131,7 +74,4 @@
             <point key="canvasLocation" x="-466.5" y="1423.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
-    </resources>
 </document>

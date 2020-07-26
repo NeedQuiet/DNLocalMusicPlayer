@@ -6,6 +6,10 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+/**
+    一个自定义的scroller滑动条
+ */
+
 import Cocoa
 
 private let kScrollerDefaultColor = NSColor(r: 48, g: 48, b: 48)

@@ -109,7 +109,6 @@
 		F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* DNButton.swift */; };
 		F52ABDEC24BD98E400D093C4 /* DetailsTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */; };
 		F544015424CAB57700B12458 /* DNScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015324CAB57700B12458 /* DNScroller.swift */; };
-		F544015624CAC50400B12458 /* DNMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015524CAC50400B12458 /* DNMenu.swift */; };
 		F544015824CAC7C400B12458 /* DNTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015724CAC7C400B12458 /* DNTableView.swift */; };
 		F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015924CAF17100B12458 /* DNOutlineView.swift */; };
 		F544015F24CAF3D800B12458 /* DetailsTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015E24CAF3D800B12458 /* DetailsTableHeaderCell.swift */; };
@@ -127,6 +126,10 @@
 		F58EF76324C02DC5001E94FF /* DNAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58EF76224C02DC5001E94FF /* DNAlertView.xib */; };
 		F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF76424C04A00001E94FF /* NSView-Extension.swift */; };
 		F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */; };
+		F5A844EE24CC85D400A65AD7 /* PlaylistHeaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844ED24CC85D400A65AD7 /* PlaylistHeaderCellView.swift */; };
+		F5A844F024CC937400A65AD7 /* PlaylistTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844EF24CC937400A65AD7 /* PlaylistTableRow.swift */; };
+		F5A844F224CD35FB00A65AD7 /* PlaylistItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844F124CD35FB00A65AD7 /* PlaylistItemCellView.swift */; };
+		F5A844F424CD4E4400A65AD7 /* DNCustomTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */; };
 		F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */; };
 		F5BE353724C186EC007A1D5C /* DNFippedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */; };
 		F5BE353B24C19100007A1D5C /* FippedTableBackScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353A24C19100007A1D5C /* FippedTableBackScrollView.swift */; };
@@ -259,7 +262,6 @@
 		F51F8A6124AEF8670066E920 /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
 		F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableRow.swift; sourceTree = "<group>"; };
 		F544015324CAB57700B12458 /* DNScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNScroller.swift; sourceTree = "<group>"; };
-		F544015524CAC50400B12458 /* DNMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMenu.swift; sourceTree = "<group>"; };
 		F544015724CAC7C400B12458 /* DNTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTableView.swift; sourceTree = "<group>"; };
 		F544015924CAF17100B12458 /* DNOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNOutlineView.swift; sourceTree = "<group>"; };
 		F544015E24CAF3D800B12458 /* DetailsTableHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableHeaderCell.swift; sourceTree = "<group>"; };
@@ -278,6 +280,10 @@
 		F58EF76224C02DC5001E94FF /* DNAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DNAlertView.xib; sourceTree = "<group>"; };
 		F58EF76424C04A00001E94FF /* NSView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView-Extension.swift"; sourceTree = "<group>"; };
 		F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField-Extension.swift"; sourceTree = "<group>"; };
+		F5A844ED24CC85D400A65AD7 /* PlaylistHeaderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHeaderCellView.swift; sourceTree = "<group>"; };
+		F5A844EF24CC937400A65AD7 /* PlaylistTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableRow.swift; sourceTree = "<group>"; };
+		F5A844F124CD35FB00A65AD7 /* PlaylistItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemCellView.swift; sourceTree = "<group>"; };
+		F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNCustomTableRow.swift; sourceTree = "<group>"; };
 		F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleButton.swift; sourceTree = "<group>"; };
 		F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNFippedScrollView.swift; sourceTree = "<group>"; };
 		F5BE353A24C19100007A1D5C /* FippedTableBackScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FippedTableBackScrollView.swift; sourceTree = "<group>"; };
@@ -454,6 +460,9 @@
 		F51F899F24ADBD6B0066E920 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F5A844EF24CC937400A65AD7 /* PlaylistTableRow.swift */,
+				F5A844ED24CC85D400A65AD7 /* PlaylistHeaderCellView.swift */,
+				F5A844F124CD35FB00A65AD7 /* PlaylistItemCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -651,9 +660,9 @@
 				F5CAE88424C18587003901F5 /* DNFippedView.swift */,
 				F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */,
 				F544015324CAB57700B12458 /* DNScroller.swift */,
-				F544015524CAC50400B12458 /* DNMenu.swift */,
 				F544015724CAC7C400B12458 /* DNTableView.swift */,
 				F544015924CAF17100B12458 /* DNOutlineView.swift */,
+				F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */,
 			);
 			path = CustomBaseItem;
 			sourceTree = "<group>";
@@ -926,7 +935,6 @@
 				F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */,
 				F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */,
 				F544015F24CAF3D800B12458 /* DetailsTableHeaderCell.swift in Sources */,
-				F544015624CAC50400B12458 /* DNMenu.swift in Sources */,
 				F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */,
 				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
 				F544015824CAC7C400B12458 /* DNTableView.swift in Sources */,
@@ -936,6 +944,7 @@
 				F52ABDEC24BD98E400D093C4 /* DetailsTableRow.swift in Sources */,
 				F51F89AA24ADBF600066E920 /* DetailsPageViewController.swift in Sources */,
 				F5DC90BE24C8118F00FFB4FB /* DNSliderCell.swift in Sources */,
+				F5A844F224CD35FB00A65AD7 /* PlaylistItemCellView.swift in Sources */,
 				F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */,
 				F5DC90BA24C80FD700FFB4FB /* DNVolumeSlider.swift in Sources */,
 				F51F896B24AD87060066E920 /* AppDelegate.swift in Sources */,
@@ -952,18 +961,21 @@
 				F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */,
 				F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
+				F5A844F024CC937400A65AD7 /* PlaylistTableRow.swift in Sources */,
 				F544015424CAB57700B12458 /* DNScroller.swift in Sources */,
 				F5DC90C024C8137300FFB4FB /* DNSlider.swift in Sources */,
 				F55C3BC724B87E8700017FBD /* Song.swift in Sources */,
 				F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */,
 				F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */,
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
+				F5A844EE24CC85D400A65AD7 /* PlaylistHeaderCellView.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,
 				F51F896F24AD87060066E920 /* Document.swift in Sources */,
 				F5DC90B024C6F2BA00FFB4FB /* SongProgressViewController.swift in Sources */,
 				F5BE353B24C19100007A1D5C /* FippedTableBackScrollView.swift in Sources */,
 				F5BE353724C186EC007A1D5C /* DNFippedScrollView.swift in Sources */,
 				F51C100724B3220B0079DD35 /* DNTitleBarView.swift in Sources */,
+				F5A844F424CD4E4400A65AD7 /* DNCustomTableRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

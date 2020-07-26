@@ -6,6 +6,10 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+/**
+   可以隐藏NSMenu右键点击后cell上的边框
+*/
+
 import Cocoa
 
 class DNTableView: NSTableView {

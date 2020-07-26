@@ -6,6 +6,10 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+/**
+   自定义的NSButton， 用来跟踪鼠标 Entered / Exited
+*/
+
 import Cocoa
 
 class DNButton: NSButton {
@@ -24,6 +28,14 @@ class DNButton: NSButton {
         super.awakeFromNib()
         addTrackingAreaView()
     }
+    
+    convenience init(image:NSImage?) {
+        self.init()
+        self.bezelStyle = .rounded
+        self.isBordered = false
+        self.image = image
+    }
+
 }
 
 //MARK: - 类拓展方法
@@ -40,11 +52,16 @@ extension DNButton {
 extension DNButton {
     //MARK: NSTrackingArea对象并关联View
     func addTrackingAreaView() {
-        areaView = NSView.init(frame: bounds)
-        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: bounds, options: [.mouseEnteredAndExited,.activeInKeyWindow], owner: areaView, userInfo: nil)
+        addTrackingAreaView(withFrame: bounds)
+    }
+    
+    func addTrackingAreaView(withFrame frame:NSRect) {
+        areaView = NSView.init(frame: frame)
+        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: frame, options: [.mouseEnteredAndExited,.activeInKeyWindow], owner: areaView, userInfo: nil)
         areaView.addTrackingArea(trackingArea)
         self.addSubview(areaView)
     }
+    
     //MARK: 鼠标Hover
     override func mouseEntered(with event: NSEvent) {
         super.mouseEntered(with: event)

@@ -9,18 +9,23 @@
 import Cocoa
 import RxCocoa
 import RealmSwift
+import SnapKit
 
 private enum headerType {
     case item_iTunesPlaylist_type
     case item_CustomPlaylist_type
 }
 
+private let kHeaderCell = NSUserInterfaceItemIdentifier(rawValue: "kHeaderCell")
+private let kItemCell = NSUserInterfaceItemIdentifier(rawValue: "kItemCell")
+private let kHeaderHeight:CGFloat = 30
+private let kCellHeight:CGFloat = 35
+
 class PlayListViewController: BaseViewController{
     private var headers:[[String: Any]] = [["name":"我的音乐","type":headerType.item_iTunesPlaylist_type],
                                            ["name":"创建的歌单","type":headerType.item_CustomPlaylist_type]]
 
     @IBOutlet weak var outlineView: DNOutlineView!
-    @IBOutlet weak var createPlaylistButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +46,13 @@ extension PlayListViewController {
         let menu = NSMenu()
         menu.delegate = self
         outlineView.menu = menu
-        
-        // 防止重复点击
-        createPlaylistButton.ignoresMultiClick = true
     }
 }
 
 //MARK: - KVO & Notification
 extension PlayListViewController {
     func setupKVOAndNotifi() {
-        //MARK: itunesPlaylistN
+        //MARK: itunesPlaylist
         _ = NotificationCenter.default.rx
             .notification(kFinishGetItunesSongs, object: nil)
             .subscribe({ (event) in
@@ -64,11 +66,20 @@ extension PlayListViewController {
                 self.outlineView.reloadData()
         })
         
-        //MARK: itunesPlaylistN
+        //MARK: 改歌单名时刷新监听
         _ = NotificationCenter.default.rx
             .notification(kRefreshPlaylistView, object: nil)
             .subscribe({ (event) in
             self.outlineView.reloadData()
+        })
+        
+        //MARK: 选中歌单
+        _ = NotificationCenter.default.rx
+            .notification(kSelectedPlaylistNotification, object: nil)
+            .subscribe({[unowned self] (event) in
+                if let object = event.element?.object as? [String : Playlist] {
+                    self.outlineView.reloadData()
+                }
         })
     }
 }
@@ -114,20 +125,57 @@ extension PlayListViewController: NSOutlineViewDataSource {
 }
 
 extension PlayListViewController: NSOutlineViewDelegate {
+    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+        if isHeader(item: item) {
+            return kHeaderHeight
+        } else {
+            
+        }
+        return kCellHeight
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, rowViewForItem item: Any) -> NSTableRowView? {
+        let row = PlaylistTableRow()
+        if isHeader(item: item) {
+            row.isPlaylist = false
+        } else {
+            if let playlist = item as? Playlist {
+                row.hasSelected = playlist == PlayerManager.share.currentShowPlaylist
+            }
+        }
+        return row
+    }
+    
     //MARK: 内容显示
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         if isHeader(item: item){
-            let headerView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HeaderCell"), owner: self) as? NSTableCellView
-            if let headerItem = item as? [String: Any] {
-                 headerView?.textField?.stringValue = headerItem["name"] as! String
+            var headerCellView = outlineView.makeView(withIdentifier: kHeaderCell, owner: self) as? PlaylistHeaderCellView
+            
+            if headerCellView == nil {
+                headerCellView = PlaylistHeaderCellView()
+                if let headerItem = item as? [String: Any] {
+                    headerCellView?.playlistTypeLabel.stringValue = headerItem["name"] as! String
+                    if headerItem["type"] as! headerType == headerType.item_CustomPlaylist_type{
+                        headerCellView?.addCreatePlaylistButton({ [unowned self] in
+                            self.addPlaylist()
+                        })
+                    }
+                }
             }
-            return headerView
+
+            return headerCellView
         } else {
-            let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DataCell"), owner: self) as? NSTableCellView
-            if let playlist = item as? Playlist {
-                view?.textField?.stringValue = playlist.name
+            var itemCellView = outlineView.makeView(withIdentifier: kItemCell, owner: self) as? PlaylistItemCellView
+            if itemCellView == nil {
+                itemCellView = PlaylistItemCellView()
+                if let playlist = item as? Playlist {
+                    itemCellView?.playlistNameLabel.stringValue = playlist.name
+                    let hasSelected = playlist == PlayerManager.share.currentShowPlaylist
+                    itemCellView?.setSeleted(hasSelected)
+                }
             }
-            return view
+            
+            return itemCellView
         }
     }
     
@@ -196,6 +244,21 @@ extension PlayListViewController {
         }
         return false
     }
+    
+    private func addPlaylist() {
+        let alertView = DNAlertView.initialization()
+        alertView.setInfo(title: "新建歌单", placeholderString: "请输入新歌单标题", type: .textFieldType)
+        alertView.show(target: self) { (string) in
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "yyyy-MM-dd"
+            let currentTimeString = dateFormat.string(from: Date())
+            
+            let newPlaylist = Playlist()
+            newPlaylist.name = string
+            newPlaylist.creatTime = currentTimeString
+            SongManager.share.createPlaylist(newPlaylist)
+        }
+    }
 }
 
 //MARK: - Menu Method
@@ -227,24 +290,6 @@ extension PlayListViewController {
         let row = outlineView.clickedRow
         if let item_playlist = outlineView.item(atRow: row) as? Playlist {
             SongManager.share.removePlaylist(item_playlist)
-        }
-    }
-}
-
-//MARK: - 测试
-extension PlayListViewController {
-    @IBAction func addPlaylist(_ sender: Any) {
-        let alertView = DNAlertView.initialization()
-        alertView.setInfo(title: "新建歌单", placeholderString: "请输入新歌单标题", type: .textFieldType)
-        alertView.show(target: self) { (string) in
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "yyyy-MM-dd"
-            let currentTimeString = dateFormat.string(from: Date())
-            
-            let newPlaylist = Playlist()
-            newPlaylist.name = string
-            newPlaylist.creatTime = currentTimeString
-            SongManager.share.createPlaylist(newPlaylist)
         }
     }
 }

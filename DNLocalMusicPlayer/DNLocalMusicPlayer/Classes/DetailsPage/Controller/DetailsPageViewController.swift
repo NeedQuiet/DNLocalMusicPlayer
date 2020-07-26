@@ -425,7 +425,7 @@ extension DetailsPageViewController: NSTableViewDelegate {
             cellView = NSView.init()
             
             let textLabel = NSTextField()
-            textLabel.isBezeled = false
+            textLabel.isBezeled = false // 边框
             textLabel.isEditable = false
             textLabel.backgroundColor = NSColor.clear
             textLabel.cell?.usesSingleLineMode = true
