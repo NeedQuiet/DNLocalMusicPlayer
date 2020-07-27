@@ -9,7 +9,6 @@
 import Cocoa
 
 class DetailsTableHeaderCell: NSTableHeaderCell {
-    var identifierString:String = ""
 
     override init(textCell string: String) {
         super.init(textCell: string)
@@ -34,9 +33,11 @@ class DetailsTableHeaderCell: NSTableHeaderCell {
         var titleRect = self.titleRect(forBounds: cellFrame)
         titleRect.origin.x += 5
         titleRect.origin.y += 9
-        if identifierString == "kTitleColumnID" {
+              
+        if stringValue == "音乐标题" {
             titleRect.origin.x += 45 + 12
         }
+        
         self.attributedStringValue.draw(in: titleRect)
     }
 }

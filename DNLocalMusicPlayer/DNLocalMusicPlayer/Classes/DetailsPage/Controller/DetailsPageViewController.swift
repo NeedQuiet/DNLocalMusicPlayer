@@ -165,12 +165,15 @@ extension DetailsPageViewController {
         _ = self.tableView.tableColumns.map { (tableColumn) in
             let columnTitle = tableColumn.headerCell.stringValue
             let myCell = DetailsTableHeaderCell.init(textCell: columnTitle)
-            myCell.identifierString = tableColumn.identifier.rawValue
             tableColumn.headerCell = myCell
         }
         
         //MARK: View Header
         viewHeader.delegate = self
+        
+        noSongsView.isHidden = true
+        tableBackScrollView.isHidden = true
+        viewHeader.isHidden = true
     }
 
     //MARK: 添加右键菜单
@@ -335,8 +338,8 @@ extension DetailsPageViewController {
     private func refreshDetailsView() {
         // 设置tableView及背景的frame
         let viewSize = view.bounds.size
-
-        if songs.count > 0 { // 有歌曲
+        viewHeader.isHidden = false
+        if songs.count > 0 {// 有歌曲
             noSongsView.isHidden = true
             tableBackScrollView.isHidden = false
             var tableSize = NSSize(width: view.bounds.width, height:kTableHedaerHeight + CGFloat(songs.count) * (rowHeight + kRowBorderWidth) + kViewFooterHeight)
@@ -352,10 +355,8 @@ extension DetailsPageViewController {
             // 设置 mainScrollContentView 的 frame
             let frame = NSRect(x: 0, y: 0, width: viewSize.width, height: kViewHeaderHeight + tableBackScrollView.frame.height)
             mainScrollContentView.frame = frame
-        } else {
+        } else { // 无歌曲
             self.mainScrollContentView.frame = self.view.bounds
-            // 设置 HeaderView 的 frame
-            self.viewHeader.frame = CGRect(x: kViewHeaderMarginTLeft, y: kViewHeaderMarginTop, width: viewSize.width - 2 * kViewHeaderMarginTLeft, height: kViewHeaderHeight - kViewHeaderMarginTop)
             self.tableBackScrollView.isHidden = true
             // 无歌曲提示
             self.noSongsView.isHidden = false
