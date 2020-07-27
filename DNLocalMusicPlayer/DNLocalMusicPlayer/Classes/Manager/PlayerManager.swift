@@ -38,7 +38,7 @@ class PlayerManager: NSObject {
         }
     }
     //MARK: 当前正在播放的播放列表
-    var currentPlayingPlaylist: Playlist = Playlist() {
+    @objc dynamic var currentPlayingPlaylist: Playlist = Playlist() {
         didSet {
             if currentPlayingPlaylist.isCustomPlaylist {
                 if let index = SongManager.share.playlists.firstIndex(of: currentPlayingPlaylist) {

@@ -143,7 +143,7 @@ extension DetailsPageViewController {
         timeColumn.headerToolTip = "时长"
         timeColumn.resizingMask = .userResizingMask
         timeColumn.width = timeColumnDefaultWidth
-        albumColumn.minWidth = 80
+        timeColumn.minWidth = 80
         tableView.addTableColumn(titleColumn)
         tableView.addTableColumn(artistColumn)
         tableView.addTableColumn(albumColumn)
@@ -398,6 +398,7 @@ extension DetailsPageViewController {
     }
 }
 
+//MARK: - NSTableViewDataSource & NSTableViewDelegate
 extension DetailsPageViewController: NSTableViewDataSource {
     // MARK: 行高
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {

@@ -131,6 +131,7 @@
 		F5A844F224CD35FB00A65AD7 /* PlaylistItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844F124CD35FB00A65AD7 /* PlaylistItemCellView.swift */; };
 		F5A844F424CD4E4400A65AD7 /* DNCustomTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */; };
 		F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */; };
+		F5B47F9424CEA19C00C8FC18 /* CurrentPLTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B47F9324CEA19C00C8FC18 /* CurrentPLTableRow.swift */; };
 		F5BE353724C186EC007A1D5C /* DNFippedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */; };
 		F5BE353B24C19100007A1D5C /* FippedTableBackScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353A24C19100007A1D5C /* FippedTableBackScrollView.swift */; };
 		F5BE353D24C1A120007A1D5C /* DetailsViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353C24C1A120007A1D5C /* DetailsViewHeaderView.swift */; };
@@ -285,6 +286,7 @@
 		F5A844F124CD35FB00A65AD7 /* PlaylistItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemCellView.swift; sourceTree = "<group>"; };
 		F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNCustomTableRow.swift; sourceTree = "<group>"; };
 		F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleButton.swift; sourceTree = "<group>"; };
+		F5B47F9324CEA19C00C8FC18 /* CurrentPLTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPLTableRow.swift; sourceTree = "<group>"; };
 		F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNFippedScrollView.swift; sourceTree = "<group>"; };
 		F5BE353A24C19100007A1D5C /* FippedTableBackScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FippedTableBackScrollView.swift; sourceTree = "<group>"; };
 		F5BE353C24C1A120007A1D5C /* DetailsViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewHeaderView.swift; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 		F560F99724AF3B78008FC9C9 /* CurrentPlaylist */ = {
 			isa = PBXGroup;
 			children = (
+				F5B47F9224CEA17500C8FC18 /* View */,
 				F560F99824AF3BA9008FC9C9 /* Controller */,
 			);
 			path = CurrentPlaylist;
@@ -691,6 +694,14 @@
 				F58AEC8E24BC6CF6007C0C75 /* Playlist.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F5B47F9224CEA17500C8FC18 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F5B47F9324CEA19C00C8FC18 /* CurrentPLTableRow.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F5DC909F24C6BF7500FFB4FB /* WindowTitleBar */ = {
@@ -969,6 +980,7 @@
 				F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */,
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
 				F5A844EE24CC85D400A65AD7 /* PlaylistHeaderCellView.swift in Sources */,
+				F5B47F9424CEA19C00C8FC18 /* CurrentPLTableRow.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,
 				F51F896F24AD87060066E920 /* Document.swift in Sources */,
 				F5DC90B024C6F2BA00FFB4FB /* SongProgressViewController.swift in Sources */,

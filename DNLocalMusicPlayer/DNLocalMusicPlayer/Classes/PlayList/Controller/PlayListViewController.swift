@@ -40,7 +40,7 @@ extension PlayListViewController {
         setBackgroundColor(r: 24, g: 24, b: 24)
         outlineView.backgroundColor = NSColor.init(r: 24, g: 24, b: 24)
         outlineView.expandItem(nil, expandChildren: true) // 展开
-        outlineView.enclosingScrollView?.borderType = .noBorder
+        outlineView.enclosingScrollView?.borderType = .noBorder // 边框
         
         //MARK: 右键菜单按钮
         let menu = NSMenu()

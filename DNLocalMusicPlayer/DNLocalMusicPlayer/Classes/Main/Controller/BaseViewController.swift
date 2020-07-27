@@ -16,7 +16,15 @@ class BaseViewController: NSViewController {
     }
     
     func setBackgroundColor (r : CGFloat, g : CGFloat, b : CGFloat) {
+        setColor(NSColor.init(r: r, g: g, b: b))
+    }
+    
+    func setBackgroundColor (_ color:NSColor) {
+        setColor(color)
+    }
+    
+    func setColor(_ color:NSColor) {
         self.view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.init(r: r, g: g, b: b).cgColor
+        view.layer?.backgroundColor = color.cgColor
     }
 }
