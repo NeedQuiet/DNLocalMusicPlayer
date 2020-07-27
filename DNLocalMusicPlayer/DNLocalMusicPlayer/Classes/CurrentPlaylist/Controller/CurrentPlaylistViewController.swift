@@ -211,6 +211,10 @@ extension CurrentPlaylistViewController {
     @objc private func tableViewDoubleClick(_ sender:AnyObject) {
         let clickedRow = tableView.clickedRow
         
+        if clickedRow == -1  {
+            return // 此时可能点击tableview 空白处
+        }
+        
         // 如果重复点击，那就 播放/暂停
         if UserDefaultsManager.share.songSelectedIndex ==  clickedRow{
             if PlayerManager.share.isPlaying {
@@ -228,3 +232,4 @@ extension CurrentPlaylistViewController {
         PlayerManager.share.play(withIndex: clickedRow) // 播放clickedRow
     }
 }
+

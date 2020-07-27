@@ -58,8 +58,9 @@ class DNAlertView: NSView {
         return topLevelObjects!.first(where: { $0 is DNAlertView }) as! DNAlertView
     }
     
-    // 重写mouseDown方法，防止鼠标点击穿透至下一层
+    // 重写mouse方法，防止鼠标事件穿透至下一层
     override func mouseDown(with event: NSEvent) {}
+    override func rightMouseDown(with event: NSEvent) {}
 }
 
 extension DNAlertView {

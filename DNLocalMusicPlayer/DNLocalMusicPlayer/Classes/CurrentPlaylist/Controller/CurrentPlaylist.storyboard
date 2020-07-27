@@ -13,6 +13,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="420" height="560"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="tzy-p6-Cc8" customClass="DNTrackingView" customModule="DN音乐" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="420" height="560"/>
+                            </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kbU-1G-1eA">
                                 <rect key="frame" x="13" y="526" width="70" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="播放列表" id="MFa-2G-msQ">
@@ -163,13 +166,17 @@
                             </scrollView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tzy-p6-Cc8" secondAttribute="trailing" id="5as-bp-vjp"/>
                             <constraint firstItem="kbU-1G-1eA" firstAttribute="leading" secondItem="myx-6B-5zd" secondAttribute="leading" constant="15" id="7Pm-Mm-gnD"/>
+                            <constraint firstAttribute="bottom" secondItem="tzy-p6-Cc8" secondAttribute="bottom" id="Axl-EC-Rei"/>
                             <constraint firstItem="tpX-WM-9lQ" firstAttribute="top" secondItem="JSj-9O-e8J" secondAttribute="bottom" constant="15" id="DWX-8u-hC1"/>
                             <constraint firstItem="kbU-1G-1eA" firstAttribute="top" secondItem="myx-6B-5zd" secondAttribute="top" constant="15" id="FcC-8G-tuB"/>
                             <constraint firstAttribute="bottom" secondItem="reP-Yf-ne7" secondAttribute="bottom" id="IdE-lf-eyE"/>
                             <constraint firstItem="JSj-9O-e8J" firstAttribute="top" secondItem="kbU-1G-1eA" secondAttribute="bottom" constant="15" id="PT6-49-gRd"/>
                             <constraint firstItem="tpX-WM-9lQ" firstAttribute="centerX" secondItem="myx-6B-5zd" secondAttribute="centerX" id="Ric-p6-o4A"/>
                             <constraint firstItem="reP-Yf-ne7" firstAttribute="top" secondItem="tpX-WM-9lQ" secondAttribute="bottom" id="WtY-BU-Dwi"/>
+                            <constraint firstItem="tzy-p6-Cc8" firstAttribute="leading" secondItem="myx-6B-5zd" secondAttribute="leading" id="YKV-eq-NFl"/>
+                            <constraint firstItem="tzy-p6-Cc8" firstAttribute="top" secondItem="myx-6B-5zd" secondAttribute="top" id="c6o-PG-J9i"/>
                             <constraint firstAttribute="trailing" secondItem="reP-Yf-ne7" secondAttribute="trailing" id="iXA-en-MA2"/>
                             <constraint firstItem="reP-Yf-ne7" firstAttribute="leading" secondItem="myx-6B-5zd" secondAttribute="leading" id="muZ-2B-K1E"/>
                             <constraint firstItem="tpX-WM-9lQ" firstAttribute="leading" secondItem="kbU-1G-1eA" secondAttribute="leading" id="oS4-aw-0xY"/>

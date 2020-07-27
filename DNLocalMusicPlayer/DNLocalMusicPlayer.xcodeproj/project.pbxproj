@@ -132,6 +132,7 @@
 		F5A844F424CD4E4400A65AD7 /* DNCustomTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */; };
 		F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */; };
 		F5B47F9424CEA19C00C8FC18 /* CurrentPLTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B47F9324CEA19C00C8FC18 /* CurrentPLTableRow.swift */; };
+		F5B47F9C24CEC04C00C8FC18 /* DNTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B47F9B24CEC04C00C8FC18 /* DNTrackingView.swift */; };
 		F5BE353724C186EC007A1D5C /* DNFippedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */; };
 		F5BE353B24C19100007A1D5C /* FippedTableBackScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353A24C19100007A1D5C /* FippedTableBackScrollView.swift */; };
 		F5BE353D24C1A120007A1D5C /* DetailsViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE353C24C1A120007A1D5C /* DetailsViewHeaderView.swift */; };
@@ -287,6 +288,7 @@
 		F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNCustomTableRow.swift; sourceTree = "<group>"; };
 		F5ACF75E24BBF2A9000A41E1 /* DNTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleButton.swift; sourceTree = "<group>"; };
 		F5B47F9324CEA19C00C8FC18 /* CurrentPLTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPLTableRow.swift; sourceTree = "<group>"; };
+		F5B47F9B24CEC04C00C8FC18 /* DNTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTrackingView.swift; sourceTree = "<group>"; };
 		F5BE353624C186EC007A1D5C /* DNFippedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNFippedScrollView.swift; sourceTree = "<group>"; };
 		F5BE353A24C19100007A1D5C /* FippedTableBackScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FippedTableBackScrollView.swift; sourceTree = "<group>"; };
 		F5BE353C24C1A120007A1D5C /* DetailsViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewHeaderView.swift; sourceTree = "<group>"; };
@@ -665,6 +667,7 @@
 				F544015724CAC7C400B12458 /* DNTableView.swift */,
 				F544015924CAF17100B12458 /* DNOutlineView.swift */,
 				F5A844F324CD4E4400A65AD7 /* DNCustomTableRow.swift */,
+				F5B47F9B24CEC04C00C8FC18 /* DNTrackingView.swift */,
 			);
 			path = CustomBaseItem;
 			sourceTree = "<group>";
@@ -941,6 +944,7 @@
 			files = (
 				F5BE353D24C1A120007A1D5C /* DetailsViewHeaderView.swift in Sources */,
 				F58EF75F24C02424001E94FF /* DNAlertView.swift in Sources */,
+				F5B47F9C24CEC04C00C8FC18 /* DNTrackingView.swift in Sources */,
 				F5BE354124C1AC8B007A1D5C /* DNAlphaButton.swift in Sources */,
 				F51F89B224ADC2FB0066E920 /* PlayListViewController.swift in Sources */,
 				F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */,
