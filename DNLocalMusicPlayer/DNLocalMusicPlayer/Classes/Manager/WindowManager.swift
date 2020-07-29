@@ -14,6 +14,7 @@ class WindowManager: NSObject {
     //MARK: 播放详情页是否展示
     @objc dynamic var playViewIsShow:Bool = false
     
+    //MARK: currentplaylist是否展示
     @objc dynamic var currentPlaylistIsShow:Bool = false
     
     private override init(){

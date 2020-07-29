@@ -33,6 +33,10 @@ class DNAlphaButton: DNButton {
     
     //MARK: 鼠标Hover
     override func mouseEntered(with event: NSEvent) {
+        if WindowManager.share.currentPlaylistIsShow ||
+            WindowManager.share.playViewIsShow {
+            return
+        };
         super.mouseEntered(with: event)
         if isEnabled {
             alphaView?.isHidden = false
@@ -40,6 +44,10 @@ class DNAlphaButton: DNButton {
     }
     //MARK: 鼠标离开
     override func mouseExited(with event: NSEvent) {
+        if WindowManager.share.currentPlaylistIsShow ||
+            WindowManager.share.playViewIsShow {
+            return
+        };
         super.mouseExited(with: event)
         alphaView?.isHidden = true
     }

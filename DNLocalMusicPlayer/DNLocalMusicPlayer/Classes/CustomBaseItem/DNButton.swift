@@ -57,7 +57,7 @@ extension DNButton {
     
     func addTrackingAreaView(withFrame frame:NSRect) {
         areaView = NSView.init(frame: frame)
-        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: frame, options: [.mouseEnteredAndExited,.activeInKeyWindow], owner: areaView, userInfo: nil)
+        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: frame, options: [.inVisibleRect, .mouseEnteredAndExited,.activeInKeyWindow], owner: areaView, userInfo: nil)
         areaView.addTrackingArea(trackingArea)
         self.addSubview(areaView)
     }

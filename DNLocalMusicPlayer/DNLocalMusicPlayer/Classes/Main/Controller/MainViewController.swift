@@ -21,6 +21,7 @@ class MainViewController: NSViewController {
     //MARK: CurrentPlaylist
     @IBOutlet weak var currentPlaylistContainerView: NSView!
     private var showCurrentPlaylist: Bool = false
+    var currentPlaylistView: NSView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +100,9 @@ extension MainViewController {
     //MARK: 配置 currentPlaylistView
     func setupCurrentPlayListContainerView() {
         currentPlaylistContainerView.isHidden = true
+        
+        let test = testViewController()
+        self.addChild(test)
     }
     
     //MARK: 显示/隐藏 currentPlaylist

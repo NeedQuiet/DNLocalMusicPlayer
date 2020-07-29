@@ -71,7 +71,9 @@ extension PlayViewController {
                 if let currentSong = change.element {
                     guard currentSong != nil else {  return }
                     self.refreshUI(withSong: currentSong!)
-                    self.setupAndStartAnimation()
+                    if PlayerManager.share.isPlaying {
+                        self.setupAndStartAnimation()
+                    }
                 }
         })
         

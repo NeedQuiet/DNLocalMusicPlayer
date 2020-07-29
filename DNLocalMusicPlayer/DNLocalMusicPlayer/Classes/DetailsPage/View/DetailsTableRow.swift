@@ -44,7 +44,20 @@ class DetailsTableRow: DNCustomTableRow {
     
     // 鼠标进入
     override func mouseEntered(with event: NSEvent) {
+        if WindowManager.share.currentPlaylistIsShow ||
+            WindowManager.share.playViewIsShow {
+            return
+        };
         super.mouseEntered(with: event)
         backgroundColor = selectedRowColor
+    }
+    
+    // 鼠标移出
+    override func mouseExited(with event: NSEvent) {
+        if WindowManager.share.currentPlaylistIsShow ||
+            WindowManager.share.playViewIsShow {
+            return
+        };
+        super.mouseExited(with: event)
     }
 }

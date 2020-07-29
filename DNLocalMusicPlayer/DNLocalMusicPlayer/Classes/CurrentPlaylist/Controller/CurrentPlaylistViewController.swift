@@ -34,12 +34,35 @@ class CurrentPlaylistViewController: BaseViewController {
     // 当前歌单
     private var playlist:Playlist = Playlist()
     
+    var area:NSTrackingArea!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         setupUI()
         setupKVO()
     }
+    
+    deinit {
+        self.view.removeTrackingArea(area)
+    }
+}
+
+//MARK - 鼠标跟踪
+extension CurrentPlaylistViewController {
+    override func viewDidLayout() {
+        super.viewDidLayout()
+        if area != nil { self.view.removeTrackingArea(area) }
+        area = NSTrackingArea.init(rect: NSRect.zero, options:[.inVisibleRect, .activeInKeyWindow, .mouseEnteredAndExited], owner: self, userInfo: nil)
+        self.view.addTrackingArea(area)
+    }
+    
+    override func mouseDown(with event: NSEvent) {}
+    override func rightMouseDown(with event: NSEvent) {}
+    
+    //TODO: 目前拦截不掉底部detailsTableView，以后想办法处理
+    override func mouseEntered(with event: NSEvent) {}
+    override func mouseExited(with event: NSEvent) {}
 }
 
 //MARK: - UI配置相关
