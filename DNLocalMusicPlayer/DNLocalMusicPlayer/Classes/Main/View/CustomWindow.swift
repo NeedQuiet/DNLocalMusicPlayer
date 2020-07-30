@@ -57,7 +57,7 @@ class CustomWindow: NSWindow {
         }
     }
     
-    override func sendEvent(_ event: NSEvent) {
-        super.sendEvent(event)
-    }
+//    override func sendEvent(_ event: NSEvent) {
+//        super.sendEvent(event)
+//    }
 }

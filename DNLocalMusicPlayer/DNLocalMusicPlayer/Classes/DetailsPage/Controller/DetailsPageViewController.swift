@@ -26,6 +26,7 @@ private let kViewHeaderMarginTop:CGFloat = 20 // 页面的Header MarginTop
 private let kViewHeaderMarginTLeft:CGFloat = 30 // 页面的Header MarginLeft
 private let kViewFooterHeight:CGFloat = 30 // 页面Footer高度
 private let kDefaultBackColor = NSColor(r: 28, g: 28, b: 28)
+private let allowedFileTypes = ["mp3", "flac", "wav", "m4a"] // 允许添加的文件格式
 
 class DetailsPageViewController: BaseViewController {
     
@@ -46,6 +47,7 @@ class DetailsPageViewController: BaseViewController {
     var mainScrollContentView = DNFippedView()
     
     //MARK: tableView
+    let NSFilenamesPboardTypeTemp = NSPasteboard.PasteboardType("NSFilenamesPboardType")
     private lazy var tableView: DNTableView = { [unowned self] in
         let tableView = DNTableView()
         tableView.delegate = self
@@ -58,6 +60,7 @@ class DetailsPageViewController: BaseViewController {
         // 设置默认行高
         tableView.rowSizeStyle = .custom
         tableView.rowHeight = rowHeight
+        tableView.registerForDraggedTypes([NSFilenamesPboardTypeTemp])
         return tableView
     }()
     
@@ -193,9 +196,9 @@ extension DetailsPageViewController {
             .subscribe({[unowned self] (event) in
                 if let object = event.element?.object as? [String : Playlist] {
                     self.songs.removeAll()
-                    if let currentPlayingPlaylist = object["playlist"] {
-                        self.playlist = currentPlayingPlaylist
-                        let songs = currentPlayingPlaylist.songs
+                    if let currentShowPlaylist = object["playlist"] {
+                        self.playlist = currentShowPlaylist
+                        let songs = currentShowPlaylist.songs
                         for song in songs {
                             self.songs.append(song)
                         }
@@ -533,7 +536,7 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
         openPanel.canChooseDirectories = false //是否能打开文件夹
         openPanel.canCreateDirectories = false // 能不能创建文件夹
         openPanel.canChooseFiles = true //是否能选择文件file
-        openPanel.allowedFileTypes = ["mp3","flac","wav"]
+        openPanel.allowedFileTypes = allowedFileTypes
 //        openPanel.title = "选择歌曲或文件夹"
         openPanel.beginSheetModal(for:self.view.window!) { (response) in
             if response == .OK {
@@ -585,3 +588,50 @@ extension DetailsPageViewController: NSMenuDelegate{
 }
 
 
+//MARK: - 拖拽
+extension DetailsPageViewController {
+    //设置响应，建立属性面板
+    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+        print("writeRowsWith")
+        // 拖拽排序相关，暂时定false
+        return false
+    }
+    // 响应处理，替换数据（文件拖入时，列表的状态和鼠标的变化）
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        if let pathArray = getPathArrayByFilenamesType(info) { // 根据 validateDropInfo 获取 拖入文件的路径数组
+            let supportFormat = allowedFileTypes // 根据文件格式判断是否允许拖入
+            for path in pathArray { // 遍历文件
+                let url = URL(fileURLWithPath: path)
+                if supportFormat.contains(url.pathExtension) {
+                    return .copy // 如果符合格式就copy
+                }
+            }
+        }
+        return NSDragOperation.init(rawValue: 0) // 什么都不执行
+    }
+    
+    // UI效果上是否允许拖入，false 文件就自动飘回去，true 文件松手就在列表上消失
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        if let pathArray = getPathArrayByFilenamesType(info) {
+            let songs = List<Song>()
+            for path in pathArray {
+                let song:Song = Utility.getSongFromMusicFile(path)
+                songs.append(song)
+            }
+            SongManager.share.addSongsTo(playlist, songs, index: row) { (success) in
+                self.refreshDataSource(self.playlist)
+            }
+            return true
+        }
+        return false
+    }
+    
+    private func getPathArrayByFilenamesType(_ acceptDrop:NSDraggingInfo) -> [String]? {
+        let pasteBoard = acceptDrop.draggingPasteboard
+        if pasteBoard.types?.contains(NSFilenamesPboardTypeTemp) != nil{
+            let pathArray = pasteBoard.propertyList(forType: NSFilenamesPboardTypeTemp) as? [String]
+            return pathArray
+        }
+        return nil
+    }
+}

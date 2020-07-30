@@ -197,16 +197,16 @@ extension SongManager {
     }
     
     //MARK: 给歌单添加歌曲
-    func addSongsTo(_ playlist:Playlist, _ songs:List<Song>, _ callback: @escaping (_ finish:Bool)->()) {
+    func addSongsTo(_ playlist:Playlist, _ songs:List<Song>, index:Int? = 0,_ callback: @escaping (_ finish:Bool)->()) {
         let realm = try! Realm()
         try! realm.write {
             print("歌单'\(playlist.name)'添加歌曲：")
-            for song in songs {
+            for song in songs.reversed() {
                 if checkSongIsExist(song: song, inSongs: playlist.songs) {
                     print("歌曲'\(song.title)'已存在")
                 } else {
                     print("添加：'\(song.title)'")
-                    playlist.songs.insert(song, at: 0)
+                    playlist.songs.insert(song, at: index!)
                 }
             }
         }
