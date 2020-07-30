@@ -201,12 +201,25 @@ extension SongManager {
         let realm = try! Realm()
         try! realm.write {
             print("歌单'\(playlist.name)'添加歌曲：")
+            var addCount = 0 // 成功添加的歌曲数量
             for song in songs.reversed() {
                 if checkSongIsExist(song: song, inSongs: playlist.songs) {
                     print("歌曲'\(song.title)'已存在")
                 } else {
                     print("添加：'\(song.title)'")
                     playlist.songs.insert(song, at: index!)
+                    addCount += 1
+                }
+            }
+            // 如果添加歌曲的歌单是当前正在播放的歌单
+            if playlist == PlayerManager.share.currentPlayingPlaylist {
+                if var currentPlayingIndex = PlayerManager.share.currentIndex {
+                    // 如果在当前播放歌曲的index上面添加
+                    if index! <= currentPlayingIndex {
+                        // currentIndex自增addCount
+                        currentPlayingIndex += addCount
+                        PlayerManager.share.currentIndex = currentPlayingIndex
+                    }
                 }
             }
         }
