@@ -49,13 +49,13 @@ extension DNCustomTableRow {
         trackingArea = NSTrackingArea.init(rect: bounds, options: [.inVisibleRect, .activeInKeyWindow, .mouseEnteredAndExited], owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea!)
         
-//        var mouseLocation:NSPoint = self.window?.mouseLocationOutsideOfEventStream ?? NSPoint.zero
-//        mouseLocation = self.convert(mouseLocation, from: nil)
-//        if NSPointInRect(mouseLocation, bounds) {
-//            self.mouseEntered(with: NSEvent())
-//        } else {
-//            self.mouseExited(with: NSEvent())
-//        }
+        var mouseLocation:NSPoint = self.window?.mouseLocationOutsideOfEventStream ?? NSPoint.zero
+        mouseLocation = self.convert(mouseLocation, from: nil)
+        if NSPointInRect(mouseLocation, bounds) {
+            self.mouseEntered(with: NSEvent())
+        } else {
+            self.mouseExited(with: NSEvent())
+        }
         super.updateTrackingAreas()
     }
 }
