@@ -100,9 +100,6 @@ extension MainViewController {
     //MARK: 配置 currentPlaylistView
     func setupCurrentPlayListContainerView() {
         currentPlaylistContainerView.isHidden = true
-        
-        let test = testViewController()
-        self.addChild(test)
     }
     
     //MARK: 显示/隐藏 currentPlaylist

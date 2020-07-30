@@ -21,8 +21,8 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ap5-Cc-iHd">
-                    <rect key="frame" x="74" y="161" width="333" height="15"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="点击“添加音乐”按钮，选择你喜欢的音乐，将音乐加入歌单！" id="yfY-rE-MgS">
+                    <rect key="frame" x="49" y="161" width="382" height="15"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="点击“添加音乐”按钮，或者直接拖入你喜欢的音乐，将音乐加入歌单！" id="yfY-rE-MgS">
                         <font key="font" metaFont="label" size="12"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

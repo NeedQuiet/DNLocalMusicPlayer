@@ -56,3 +56,9 @@ let kUserDefaultsKey_PlayMode:String = "kUserDefaultsKey_PlayMode"
 let kPlaylingPlaylistIndex:String = "kPlaylingPlaylistIndex"
 //MARK: 选中歌曲的Index
 let kSelectedSongIndex:String = "kSelectedSongIndex"
+
+//MARK: - ************* 歌曲添加 *************
+//MARK: 允许添加的文件格式
+let allowedFileTypes = ["mp3", "flac", "wav", "m4a"]
+//MARK: 拖入歌曲的PboardType
+let NSFilenamesPboardTypeTemp = NSPasteboard.PasteboardType("NSFilenamesPboardType")

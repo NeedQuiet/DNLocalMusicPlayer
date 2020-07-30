@@ -26,7 +26,6 @@ private let kViewHeaderMarginTop:CGFloat = 20 // 页面的Header MarginTop
 private let kViewHeaderMarginTLeft:CGFloat = 30 // 页面的Header MarginLeft
 private let kViewFooterHeight:CGFloat = 30 // 页面Footer高度
 private let kDefaultBackColor = NSColor(r: 28, g: 28, b: 28)
-private let allowedFileTypes = ["mp3", "flac", "wav", "m4a"] // 允许添加的文件格式
 
 class DetailsPageViewController: BaseViewController {
     
@@ -47,7 +46,6 @@ class DetailsPageViewController: BaseViewController {
     var mainScrollContentView = DNFippedView()
     
     //MARK: tableView
-    let NSFilenamesPboardTypeTemp = NSPasteboard.PasteboardType("NSFilenamesPboardType")
     private lazy var tableView: DNTableView = { [unowned self] in
         let tableView = DNTableView()
         tableView.delegate = self
@@ -416,6 +414,7 @@ extension DetailsPageViewController: NSTableViewDataSource {
     // MARK: 设置每行容器视图
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let tableRowView = DetailsTableRow()
+        tableView.draggingDestinationFeedbackStyle = .none
         let song = songs[row]
         if isCurrentPlayingSong(song) {
             tableRowView.isSelectedRow = true
@@ -521,6 +520,45 @@ extension DetailsPageViewController: NSTableViewDelegate {
     }
 }
 
+//MARK: - 拖拽
+extension DetailsPageViewController {
+    //设置响应，建立属性面板
+    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+        print("writeRowsWith")
+        // 拖拽排序相关，暂时定false
+        return false
+    }
+    // 响应处理，替换数据（文件拖入时，列表的状态和鼠标的变化）
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        if let pathArray = Utility.getPathArrayByFilenamesType(info) { // 根据 validateDropInfo 获取 拖入文件的路径数组
+            let supportFormat = allowedFileTypes // 根据文件格式判断是否允许拖入
+            for path in pathArray { // 遍历文件
+                let url = URL(fileURLWithPath: path)
+                if supportFormat.contains(url.pathExtension) {
+                    return .copy // 如果符合格式就copy
+                }
+            }
+        }
+        return NSDragOperation.init(rawValue: 0) // 什么都不执行
+    }
+    
+    // UI效果上是否允许拖入，false 文件就自动飘回去，true 文件松手就在列表上消失
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        if let pathArray = Utility.getPathArrayByFilenamesType(info) {
+            let songs = List<Song>()
+            for path in pathArray {
+                let song:Song = Utility.getSongFromMusicFile(path)
+                songs.append(song)
+            }
+            SongManager.share.addSongsTo(playlist, songs, index: row) { (success) in
+                self.refreshDataSource(self.playlist)
+            }
+            return true
+        }
+        return false
+    }
+}
+
 //MARK: - DetailsViewHeaderViewDelegate
 extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
     //MARK: 播放全部点击
@@ -584,54 +622,5 @@ extension DetailsPageViewController: NSMenuDelegate{
             menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
             menu.addItem(NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: ""))
         }
-    }
-}
-
-
-//MARK: - 拖拽
-extension DetailsPageViewController {
-    //设置响应，建立属性面板
-    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        print("writeRowsWith")
-        // 拖拽排序相关，暂时定false
-        return false
-    }
-    // 响应处理，替换数据（文件拖入时，列表的状态和鼠标的变化）
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
-        if let pathArray = getPathArrayByFilenamesType(info) { // 根据 validateDropInfo 获取 拖入文件的路径数组
-            let supportFormat = allowedFileTypes // 根据文件格式判断是否允许拖入
-            for path in pathArray { // 遍历文件
-                let url = URL(fileURLWithPath: path)
-                if supportFormat.contains(url.pathExtension) {
-                    return .copy // 如果符合格式就copy
-                }
-            }
-        }
-        return NSDragOperation.init(rawValue: 0) // 什么都不执行
-    }
-    
-    // UI效果上是否允许拖入，false 文件就自动飘回去，true 文件松手就在列表上消失
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
-        if let pathArray = getPathArrayByFilenamesType(info) {
-            let songs = List<Song>()
-            for path in pathArray {
-                let song:Song = Utility.getSongFromMusicFile(path)
-                songs.append(song)
-            }
-            SongManager.share.addSongsTo(playlist, songs, index: row) { (success) in
-                self.refreshDataSource(self.playlist)
-            }
-            return true
-        }
-        return false
-    }
-    
-    private func getPathArrayByFilenamesType(_ acceptDrop:NSDraggingInfo) -> [String]? {
-        let pasteBoard = acceptDrop.draggingPasteboard
-        if pasteBoard.types?.contains(NSFilenamesPboardTypeTemp) != nil{
-            let pathArray = pasteBoard.propertyList(forType: NSFilenamesPboardTypeTemp) as? [String]
-            return pathArray
-        }
-        return nil
     }
 }

@@ -32,7 +32,6 @@ class PlayerManager: NSObject {
     //MARK: 当前正在播放的播放列表
     var currentShowPlaylist: Playlist = Playlist() {
         didSet {
-             print("currentShowPlaylist change")
             if currentPlayingPlaylist.songs.isEmpty { // 在没有正在播放列表的情况下，就以当前展示列表复制
                 currentPlayingPlaylist = currentShowPlaylist
             }
@@ -41,7 +40,6 @@ class PlayerManager: NSObject {
     //MARK: 当前正在播放的播放列表
     @objc dynamic var currentPlayingPlaylist: Playlist = Playlist() {
         didSet {
-            print("currentPlayingPlaylist change")
             if currentPlayingPlaylist.isCustomPlaylist {
                 if let index = SongManager.share.playlists.firstIndex(of: currentPlayingPlaylist) {
                     UserDefaultsManager.share.setPlayingPlaylistIndex(index)

@@ -139,8 +139,6 @@
 		F5BE354124C1AC8B007A1D5C /* DNAlphaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE354024C1AC8B007A1D5C /* DNAlphaButton.swift */; };
 		F5BE354324C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE354224C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift */; };
 		F5BE354524C1BFA2007A1D5C /* DetailsNoSongsNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5BE354424C1BFA2007A1D5C /* DetailsNoSongsNoteView.xib */; };
-		F5C0FA1C24D17F740007C0EF /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C0FA1A24D17F740007C0EF /* testViewController.swift */; };
-		F5C0FA1D24D17F740007C0EF /* testViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C0FA1B24D17F740007C0EF /* testViewController.xib */; };
 		F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAE88424C18587003901F5 /* DNFippedView.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
@@ -296,8 +294,6 @@
 		F5BE354024C1AC8B007A1D5C /* DNAlphaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNAlphaButton.swift; sourceTree = "<group>"; };
 		F5BE354224C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNoSongsNoteView.swift; sourceTree = "<group>"; };
 		F5BE354424C1BFA2007A1D5C /* DetailsNoSongsNoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsNoSongsNoteView.xib; sourceTree = "<group>"; };
-		F5C0FA1A24D17F740007C0EF /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
-		F5C0FA1B24D17F740007C0EF /* testViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testViewController.xib; sourceTree = "<group>"; };
 		F5CAE88424C18587003901F5 /* DNFippedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNFippedView.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
@@ -495,8 +491,6 @@
 			children = (
 				F51F89A724ADBEC10066E920 /* DetailsPage.storyboard */,
 				F51F89A924ADBF600066E920 /* DetailsPageViewController.swift */,
-				F5C0FA1A24D17F740007C0EF /* testViewController.swift */,
-				F5C0FA1B24D17F740007C0EF /* testViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -838,7 +832,6 @@
 				F51F8A3024AEDC550066E920 /* MiniPlayerPraiseButtonPressedDark.tiff in Resources */,
 				F51F8A4724AEDC550066E920 /* MiniPlayerDeleteButtonDisabledDark.tiff in Resources */,
 				F51F8A3324AEDC550066E920 /* MiniPlayerFastForwardButton.tiff in Resources */,
-				F5C0FA1D24D17F740007C0EF /* testViewController.xib in Resources */,
 				F51F8A1224AEDC550066E920 /* MiniPlayerLargeAlbumDefault.tiff in Resources */,
 				F5BE353F24C1A160007A1D5C /* DetailsViewHeaderView.xib in Resources */,
 				F51F8A5724AEDC550066E920 /* MiniPlayerLyricsButton.tiff in Resources */,
@@ -954,7 +947,6 @@
 				F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */,
 				F544015F24CAF3D800B12458 /* DetailsTableHeaderCell.swift in Sources */,
 				F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */,
-				F5C0FA1C24D17F740007C0EF /* testViewController.swift in Sources */,
 				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
 				F544015824CAC7C400B12458 /* DNTableView.swift in Sources */,
 				F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */,

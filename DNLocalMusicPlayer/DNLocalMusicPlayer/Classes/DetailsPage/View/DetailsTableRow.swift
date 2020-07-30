@@ -20,7 +20,7 @@ class DetailsTableRow: DNCustomTableRow {
     
     // 画背景色
     override func drawBackground(in dirtyRect: NSRect) {
-        if isHover || isSelectedRow {
+        if isHover || isSelectedRow{
             backgroundColor = selectedRowColor
         } else {
             if index % 2 == 0 {
@@ -31,6 +31,9 @@ class DetailsTableRow: DNCustomTableRow {
         }
         setCellBackgrouColor(dirtyRect)
     }
+    
+    // 拖拽时row的背景色，重写则不加颜色，以isHover为主
+    override func drawDraggingDestinationFeedback(in dirtyRect: NSRect) {}
     
     // 选中的Row
     override func drawSelection(in dirtyRect: NSRect) {
