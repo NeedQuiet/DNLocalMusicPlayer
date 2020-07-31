@@ -99,7 +99,6 @@ class DetailsPageViewController: BaseViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-//        mainScrollView.frame = view.bounds
         mainScrollView.snp.makeConstraints { (make) in
             make.top.bottom.left.right.equalTo(0)
         }
@@ -414,7 +413,7 @@ extension DetailsPageViewController: NSTableViewDataSource {
     // MARK: 设置每行容器视图
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let tableRowView = DetailsTableRow()
-        tableView.draggingDestinationFeedbackStyle = .none
+//        tableView.draggingDestinationFeedbackStyle = .none
         let song = songs[row]
         if isCurrentPlayingSong(song) {
             tableRowView.isSelectedRow = true

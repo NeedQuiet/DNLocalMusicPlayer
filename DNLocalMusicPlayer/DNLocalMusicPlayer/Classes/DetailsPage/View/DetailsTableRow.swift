@@ -34,17 +34,7 @@ class DetailsTableRow: DNCustomTableRow {
     
     // 拖拽时row的背景色，重写则不加颜色，以isHover为主
     override func drawDraggingDestinationFeedback(in dirtyRect: NSRect) {}
-    
-    // 选中的Row
-    override func drawSelection(in dirtyRect: NSRect) {
-        /*
-            发现单击选中后，mouseEntered/mouseExited等监听都会失效；
-            所以强制置为false，刷新row，会去执行drawBackground
-            (单击选中会进这里，双击选中后，进入这里一次后会自动设为false)
-         */
-        isSelected = false
-    }
-    
+
     // 鼠标进入
     override func mouseEntered(with event: NSEvent) {
         if WindowManager.share.currentPlaylistIsShow ||

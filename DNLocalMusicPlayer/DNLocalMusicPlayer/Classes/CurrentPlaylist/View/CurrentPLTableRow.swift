@@ -35,11 +35,6 @@ class CurrentPLTableRow: DNCustomTableRow {
         setCellBackgrouColor(dirtyRect)
     }
     
-    // 选中的Row
-    override func drawSelection(in dirtyRect: NSRect) {
-        isSelected = false
-    }
-    
     // 鼠标进入
     override func mouseEntered(with event: NSEvent) {
         super.mouseEntered(with: event)

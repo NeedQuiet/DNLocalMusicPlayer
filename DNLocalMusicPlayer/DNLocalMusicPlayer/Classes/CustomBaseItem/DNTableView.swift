@@ -20,7 +20,16 @@ class DNTableView: NSTableView {
 
     // 禁止右键cell 边框
     override func addSubview(_ view: NSView) {
-        if view.className != "NSMenuHighlightView" {
+        if view.className == "NSMenuHighlightView" { // 右键后cell上的线
+            return
+        } else if view.className == "NSDraggingDestinationView" { // 拖动文件后，cell上的线
+            let newLineView = NSView()
+            newLineView.frame = view.bounds
+            newLineView.wantsLayer = true
+            newLineView.layer?.backgroundColor = kRedHighlightColor.cgColor
+            view.addSubview(newLineView)
+            super.addSubview(view)
+        } else {
             super.addSubview(view)
         }
     }
