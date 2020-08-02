@@ -23,6 +23,7 @@ class DNTableView: NSTableView {
         if view.className == "NSMenuHighlightView" { // 右键后cell上的线
             return
         } else if view.className == "NSDraggingDestinationView" { // 拖动文件后，cell上的线
+            // 发现无法修改view的背景色，无奈只能覆盖一个color view，以后发现更好的修改方式再改
             let newLineView = NSView()
             newLineView.frame = view.bounds
             newLineView.wantsLayer = true

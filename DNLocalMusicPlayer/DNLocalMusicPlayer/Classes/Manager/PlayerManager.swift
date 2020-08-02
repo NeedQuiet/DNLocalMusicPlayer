@@ -131,9 +131,11 @@ extension PlayerManager {
     func seekToProgress(_ progress:Double) {
         guard let currentSong = self.currentSong else { return }
         canObservProgress = false
+        currentProgress = progress
         let seconds = currentSong.timeInterval * progress / 100
         let timeScale = player?.currentItem?.asset.duration.timescale ?? 1
-        player?.seek(to: CMTime(seconds: seconds, preferredTimescale: timeScale), completionHandler: {[unowned self] (result) in
+        let time = CMTime(seconds: seconds, preferredTimescale: timeScale)
+        player?.seek(to: time, completionHandler: {[unowned self] (result) in
             self.canObservProgress = true
         })
     }
@@ -241,12 +243,13 @@ extension PlayerManager {
     func addTimeObserver() {
         // 每次添加不需要remove，会直接覆盖
         canObservProgress = true
-        player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main, using: {[unowned self] (time) in
+        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1
+        player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: timeScale), queue: DispatchQueue.main, using: {[unowned self] (time) in
             if (self.canObservProgress == false) { return }
             let currentTime:TimeInterval = CMTimeGetSeconds(time)
             let totalTimeInterval = self.currentSong?.timeInterval ?? 0
             let songProgress:Double = currentTime / totalTimeInterval * 100
-            self.currentProgress = songProgress
+            self.currentProgress = min(songProgress,100)
         })
     }
 }

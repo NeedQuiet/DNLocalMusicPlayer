@@ -92,13 +92,11 @@ extension CurrentPlaylistViewController {
 extension CurrentPlaylistViewController {
     //MARK: PlaylistView 选中歌单
     func setupKVO() {
+        //MARK: currentPlayingPlaylist
         _ = PlayerManager.share.rx
             .observeWeakly(Playlist.self, "currentPlayingPlaylist")
             .subscribe {[unowned self] (event) in
-                let currentPlaylist = PlayerManager.share.currentPlayingPlaylist
-                self.songsNum.stringValue = "总\(currentPlaylist.songs.count)首"
-                self.playlist = currentPlaylist
-                self.tableView.reloadData()
+                self.refreshUIWithCurrentPlayingPlaylist()
         }
         
         //MARK: currentSong
@@ -111,9 +109,16 @@ extension CurrentPlaylistViewController {
         
         //MARK: isPlaying
         _ = PlayerManager.share.rx.observeWeakly(Bool.self, "isPlaying")
-            .subscribe { [unowned self] (change) in
+            .subscribe {[unowned self] (change) in
                 self.tableView.reloadData()
         }
+        
+        //MARK: kRefreshCurrentPlaylistView
+        _ = NotificationCenter.default.rx
+            .notification(kRefreshCurrentPlaylistView)
+            .subscribe({[unowned self] (event) in
+                self.refreshUIWithCurrentPlayingPlaylist()
+        })
     }
 }
 
@@ -253,6 +258,13 @@ extension CurrentPlaylistViewController {
             PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
         }
         PlayerManager.share.play(withIndex: clickedRow) // 播放clickedRow
+    }
+    
+    func refreshUIWithCurrentPlayingPlaylist() {
+        let currentPlaylist = PlayerManager.share.currentPlayingPlaylist
+        self.songsNum.stringValue = "总\(currentPlaylist.songs.count)首"
+        self.playlist = currentPlaylist
+        self.tableView.reloadData()
     }
 }
 

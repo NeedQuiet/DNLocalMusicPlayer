@@ -116,8 +116,8 @@ extension Utility {
     //MARK: 根据拖入的数据，返回文件的Path数组
     static func getPathArrayByFilenamesType(_ acceptDrop:NSDraggingInfo) -> [String]? {
         let pasteBoard = acceptDrop.draggingPasteboard
-        if pasteBoard.types?.contains(NSFilenamesPboardTypeTemp) != nil{
-            let pathArray = pasteBoard.propertyList(forType: NSFilenamesPboardTypeTemp) as? [String]
+        if pasteBoard.types?.contains(kDrapInPasteboardType) != nil{
+            let pathArray = pasteBoard.propertyList(forType: kDrapInPasteboardType) as? [String]
             return pathArray
         }
         return nil

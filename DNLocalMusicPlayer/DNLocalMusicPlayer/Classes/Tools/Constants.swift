@@ -32,6 +32,8 @@ let kSelectedPlaylistNotification: NSNotification.Name = NSNotification.Name(raw
 let kProgressContinueTracking: NSNotification.Name = NSNotification.Name(rawValue: "kProgressSliderContinueTracking")
 //MARK: 通知刷新Playlist
 let kRefreshPlaylistView: NSNotification.Name = NSNotification.Name(rawValue: "kRefreshPlaylistView")
+//MARK: 通知刷新CurrentPlaylistView
+let kRefreshCurrentPlaylistView: NSNotification.Name = NSNotification.Name(rawValue: "kRefreshCurrentPlaylistView")
 
 //MARK: - ************* 播控 *************
 //MARK: 上/下一曲
@@ -60,5 +62,7 @@ let kSelectedSongIndex:String = "kSelectedSongIndex"
 //MARK: - ************* 歌曲添加 *************
 //MARK: 允许添加的文件格式
 let allowedFileTypes = ["mp3", "flac", "wav", "m4a"]
-//MARK: 拖入歌曲的PboardType
-let NSFilenamesPboardTypeTemp = NSPasteboard.PasteboardType("NSFilenamesPboardType")
+//MARK: 拖入歌曲的PasteboardType
+let kDrapInPasteboardType = NSPasteboard.PasteboardType("NSFilenamesPboardType")
+//MARK: 拖拽歌曲排序的PasteboardType
+let kDrapSortPasteboardType = NSPasteboard.PasteboardType.string

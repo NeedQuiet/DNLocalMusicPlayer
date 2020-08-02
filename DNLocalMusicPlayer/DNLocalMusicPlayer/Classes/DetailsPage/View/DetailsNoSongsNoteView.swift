@@ -13,8 +13,7 @@ class DetailsNoSongsNoteView: NSView {
 
     @IBOutlet weak var noteTitle: NSTextField!
     @IBOutlet weak var noteBody: NSTextField!
-    let NSFilenamesPboardTypeTemp = NSPasteboard.PasteboardType("NSFilenamesPboardType")
-    
+
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
@@ -36,7 +35,7 @@ extension DetailsNoSongsNoteView {
         noteTitle.textColor = kDefaultColor
         noteBody.textColor = kLightColor
         
-        self.registerForDraggedTypes([NSFilenamesPboardTypeTemp])
+        self.registerForDraggedTypes([kDrapInPasteboardType])
     }
 }
 

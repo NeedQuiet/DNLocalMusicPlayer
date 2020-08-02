@@ -228,7 +228,7 @@ extension SongManager {
     
     //MARK: 删除歌曲
     func removeSongFrom(_ playlist:Playlist, _ withSong:Song,_ callback:@escaping (_ finish:Bool)->()) {
-       let realm = try! Realm()
+        let realm = try! Realm()
         try! realm.write {
             print("歌单'\(playlist.name)'删除歌曲：")
             if let index = playlist.songs.index(of: withSong), index >= 0{
@@ -241,8 +241,8 @@ extension SongManager {
                     } else { // 删除当前播放列表其他歌曲
                         if index < PlayerManager.share.currentIndex! {
                             /*
-                                如果删除歌曲index 小于当前播放歌曲的index
-                                也就是说如果删除的歌曲在当前播放歌曲上面，那么currentIndex要减1
+                             如果删除歌曲index 小于当前播放歌曲的index
+                             也就是说如果删除的歌曲在当前播放歌曲上面，那么currentIndex要减1
                              */
                             PlayerManager.share.currentIndex! -= 1
                         }
@@ -251,6 +251,50 @@ extension SongManager {
             } else {
                 print("歌曲'\(withSong.title)'不存在")
                 callback(false)
+            }
+        }
+        callback(true)
+    }
+    
+    // 拖拽歌曲排序
+    func dragSongWith(_ playlist:Playlist, _ from:Int, _ to:Int, _ callback:@escaping (_ finish:Bool)->()) {
+        let realm = try! Realm()
+        try! realm.write {
+            let songs = playlist.songs
+            let fromSong = songs[from] // 获取拖拽歌曲
+            songs.insert(fromSong, at: to) // 将歌曲插入到指定位置
+            // 删除原index歌曲
+            if to > from {
+                songs.remove(at: from)
+            } else {
+                songs.remove(at: from + 1)
+//                newIndex -= 1`
+            }
+            playlist.songs = songs
+            
+            let newIndex = songs.index(of: fromSong)!
+            // 处理currentSong index 逻辑
+            // 如果是当前播放的歌单
+            if playlist == PlayerManager.share.currentPlayingPlaylist {
+                // 如果是当前播放额歌曲
+                let currentIndex = PlayerManager.share.currentIndex!
+                if fromSong.filePath == PlayerManager.share.currentSong?.filePath {
+                    // 直接更改即可
+                    PlayerManager.share.currentIndex = newIndex
+                } else {
+                    // 如果不是当前播放额歌曲
+                    if from < currentIndex {
+                        // 如果原始位置小于当前播放歌曲
+                        if newIndex > currentIndex { // 并且移动后的坐标大于currentIndex
+                           PlayerManager.share.currentIndex = currentIndex - 1
+                        }
+                    } else {
+                        // 如果原始位置大于当前播放歌曲
+                        if newIndex < currentIndex { // 并且移动后的坐标小于currentIndex
+                            PlayerManager.share.currentIndex = currentIndex + 1
+                        }
+                    }
+                }
             }
         }
         callback(true)
