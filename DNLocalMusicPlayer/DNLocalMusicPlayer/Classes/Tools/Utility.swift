@@ -10,12 +10,13 @@ import Cocoa
 import AVFoundation
 
 class Utility: NSObject {
-    
+    static var test = 0
 }
 
 extension Utility {
     //MARK: 解析歌曲
     static func getSongFromMusicFile( _ filePath:String) -> Song{
+        test = test + 1
         let url = URL(fileURLWithPath: filePath)
         var asset = AVURLAsset(url: url, options: [AVURLAssetPreferPreciseDurationAndTimingKey : true])
         if !asset.isPlayable {

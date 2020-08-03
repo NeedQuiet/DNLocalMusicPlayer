@@ -396,6 +396,16 @@ extension DetailsPageViewController {
             self.refreshDataSource(self.playlist)
         }
     }
+    
+    //MARK: 根据拖拽的数据返回坐标
+    func getIndexWithDropInfo(_ info:NSDraggingInfo) -> Int? {
+        if let rowData = info.draggingPasteboard.data(forType: kDrapSortPasteboardType){
+            if let rowIndexes:NSIndexSet = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(rowData) as? NSIndexSet {
+                return rowIndexes.firstIndex
+            }
+        }
+        return nil
+    }
 }
 
 //MARK: - NSTableViewDataSource & NSTableViewDelegate
@@ -523,15 +533,30 @@ extension DetailsPageViewController: NSTableViewDelegate {
 extension DetailsPageViewController {
     //设置响应，建立属性面板
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+        if playlist.isCustomPlaylist == false{
+            return false
+        }
+        
         let indexSetData = try? NSKeyedArchiver.archivedData(withRootObject: rowIndexes, requiringSecureCoding: false)
         pboard.declareTypes([kDrapSortPasteboardType], owner: self)
         pboard.setData(indexSetData, forType: kDrapSortPasteboardType)
+        
+//        // 可以将拖拽歌曲的信息暂存，如果需使用可以用pboard.string(forType: kDrapSortPasteboardType)来取
+//        if let row = rowIndexes.first {
+//            let song = songs[row]
+//            pboard.setString(song.filePath, forType: kDrapSortPasteboardType)
+//        }
+        
         return true
     }
-    // 响应处理，替换数据（文件拖入时，列表的状态和鼠标的变化）
+    // 响应处理：替换数据（文件拖入时，列表的状态和鼠标的变化）
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        if playlist.isCustomPlaylist == false{
+            return NSDragOperation.init(rawValue: 0)
+        }
+        
         if dropOperation == .above {
-            if info.draggingPasteboard.data(forType: kDrapSortPasteboardType) != nil {
+            if getIndexWithDropInfo(info) != nil{
                 // 内部拖拽排序
                 return .move
             } else {
@@ -550,24 +575,20 @@ extension DetailsPageViewController {
         return NSDragOperation.init(rawValue: 0) // 什么都不执行
     }
     
-    // UI效果上是否允许拖入，false 文件就自动飘回去，true 文件松手就在列表上消失
+    // 结束拖拽：UI效果上是否允许拖入，false 文件就自动飘回去，true 文件松手就在列表上消失
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
-        
-        if let rowData = info.draggingPasteboard.data(forType: kDrapSortPasteboardType) {
+        if let dragRow = getIndexWithDropInfo(info) {
             // 内部拖拽排序
-            if let rowIndexes:NSIndexSet = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(rowData) as? NSIndexSet {
-                let dragRow = rowIndexes.firstIndex
-                if dragRow == row || dragRow == row - 1 {
-                    return false
-                } else {
-                    SongManager.share.dragSongWith(playlist, dragRow, row) {[unowned self] (result) in
-                        self.refreshDataSource(self.playlist)
-                        if self.playlist == PlayerManager.share.currentPlayingPlaylist {
-                            NotificationCenter.default.post(name: kRefreshCurrentPlaylistView, object: nil)
-                        }
+            if dragRow == row || dragRow == row - 1 {
+                return false
+            } else {
+                SongManager.share.dragSongWith(playlist, dragRow, row) {[unowned self] (result) in
+                    self.refreshDataSource(self.playlist)
+                    if self.playlist == PlayerManager.share.currentPlayingPlaylist {
+                        NotificationCenter.default.post(name: kRefreshCurrentPlaylistView, object: nil)
                     }
-                    return true
                 }
+                return true
             }
         } else {
             // 从外部拖入的文件

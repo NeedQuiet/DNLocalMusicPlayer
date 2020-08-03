@@ -64,5 +64,5 @@ let kSelectedSongIndex:String = "kSelectedSongIndex"
 let allowedFileTypes = ["mp3", "flac", "wav", "m4a"]
 //MARK: 拖入歌曲的PasteboardType
 let kDrapInPasteboardType = NSPasteboard.PasteboardType("NSFilenamesPboardType")
-//MARK: 拖拽歌曲排序的PasteboardType
+//MARK: 拖拽歌曲/歌单排序的PasteboardType
 let kDrapSortPasteboardType = NSPasteboard.PasteboardType.string

@@ -49,7 +49,7 @@ extension SongManager {
     private func scanPlaylists() {
         let realm = try! Realm()
         print(realm.configuration.fileURL ?? "")
-        let result = realm.objects(Playlist.self)
+        let result = realm.objects(Playlist.self).sorted(byKeyPath: "index", ascending: true)
         playlists = result.map { (piaylist) in
             return piaylist
         }
@@ -60,6 +60,12 @@ extension SongManager {
         if playingPlaylistIndex == -1 { // 如果存储的为-1，那么就展示 iTunesPlaylist
             PlayerManager.share.currentShowPlaylist = iTunesPlaylist
             NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":iTunesPlaylist])
+        }
+        
+        if playlists.count == 0 {
+            PlayerManager.share.currentShowPlaylist = iTunesPlaylist
+            NotificationCenter.default.post(name: kSelectedPlaylistNotification, object: ["playlist":iTunesPlaylist])
+            return
         }
         
         var currentPlaylist = iTunesPlaylist
@@ -256,7 +262,7 @@ extension SongManager {
         callback(true)
     }
     
-    // 拖拽歌曲排序
+    //MARK: 拖拽歌曲排序
     func dragSongWith(_ playlist:Playlist, _ from:Int, _ to:Int, _ callback:@escaping (_ finish:Bool)->()) {
         let realm = try! Realm()
         try! realm.write {
@@ -297,6 +303,57 @@ extension SongManager {
                 }
             }
         }
+        callback(true)
+    }
+    
+    //MARK: 拖拽歌单排序
+    func dragPlaylistWith(_ id:String, _ to:Int, _ callback:@escaping (_ finish:Bool)->()) {
+        // 获取拖拽的歌曲
+        var fromIndex:Int = 0
+        for (index, playlist) in playlists.enumerated() {
+            if id == playlist.id {
+                fromIndex = index
+                break;
+            }
+        }
+        
+        let drag:Playlist = playlists[fromIndex]
+        
+        if fromIndex == to || fromIndex == to - 1{
+            callback(false) // 相当于原地不动
+            return
+        }
+        
+        let realm = try! Realm()
+        try! realm.write {
+            if fromIndex > to { // 向上拖拽
+                for playlist in playlists[to..<fromIndex] {
+                    playlist.index += 1
+                }
+                drag.index = to
+            } else { // 向下拖拽
+                for playlist in playlists[(fromIndex+1)..<to] {
+                    playlist.index -= 1
+                }
+                
+                if to == playlists.count { // 尾部
+                    drag.index = playlists.last!.index + 1 // 直接取最后一个playlist的index + 1
+                } else {
+                    drag.index = playlists[to].index - 1 // 去to对应playlist的index - 1
+                }
+            }
+        }
+        
+
+        let result = realm.objects(Playlist.self).sorted(byKeyPath: "index", ascending: true)
+        playlists = result.map { (piaylist) in
+            return piaylist
+        }
+        
+        if drag.id == PlayerManager.share.currentPlayingPlaylist.id {
+            PlayerManager.share.currentPlayingPlaylist = drag // 为了执行didset方法，更新Userdefault
+        }
+        
         callback(true)
     }
 }

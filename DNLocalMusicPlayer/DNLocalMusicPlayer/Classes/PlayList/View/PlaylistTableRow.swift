@@ -22,7 +22,7 @@ class PlaylistTableRow: DNCustomTableRow {
 
     // 画背景色
     override func drawBackground(in dirtyRect: NSRect) {
-        if hasSelected || isHover{
+        if isPlaylist && (hasSelected || isHover) {
             backgroundColor = selectedRowColor
         } else {
             backgroundColor = defaultRowColor

@@ -41,7 +41,8 @@ extension PlayListViewController {
         outlineView.backgroundColor = NSColor.init(r: 24, g: 24, b: 24)
         outlineView.expandItem(nil, expandChildren: true) // 展开
         outlineView.enclosingScrollView?.borderType = .noBorder // 边框
-        
+        outlineView.registerForDraggedTypes([kDrapSortPasteboardType])
+        outlineView.draggingDestinationFeedbackStyle = .gap
         //MARK: 右键菜单按钮
         let menu = NSMenu()
         menu.delegate = self
@@ -89,6 +90,7 @@ extension PlayListViewController {
 }
 
 //MARK: - NSOutlineViewDataSource & NSOutlineViewDelegate
+//MARK: NSOutlineViewDataSource
 extension PlayListViewController: NSOutlineViewDataSource {
     //MARK: 根据特征分别返回header 和 data的数量
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -128,6 +130,7 @@ extension PlayListViewController: NSOutlineViewDataSource {
 //    }
 }
 
+//MARK: NSOutlineViewDelegate
 extension PlayListViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         if isHeader(item: item) {
@@ -204,11 +207,63 @@ extension PlayListViewController: NSOutlineViewDelegate {
 
     //MARK: item是否可以点击
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        return true
+        return !isHeader(item: item)
     }
     
     //MARK: 是否展示左侧箭头
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
+        return false
+    }
+}
+//MARK: 拖拽
+extension PlayListViewController {
+    // copy至剪切板
+    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+        // 如果只自定义歌单，则允许将item信息copy至剪切板
+        if let playlist = item as? Playlist, playlist.isCustomPlaylist {
+            let pbItem = NSPasteboardItem()
+            pbItem.setString(playlist.id, forType: kDrapSortPasteboardType)
+            return pbItem
+        }
+        return nil
+    }
+    // 第二种写法
+//    func outlineView(_ outlineView: NSOutlineView, writeItems items: [Any], to pasteboard: NSPasteboard) -> Bool {
+//        // 如果只自定义歌单，则允许将item信息copy至剪切板
+//        if let playlist = items.first as? Playlist, playlist.isCustomPlaylist {
+//            pasteboard.declareTypes([kDrapSortPasteboardType], owner: self)
+//            pasteboard.setString(playlist.id, forType: kDrapSortPasteboardType)
+//            return true
+//        }
+//        return true
+//    }
+    
+     // 响应处理
+    func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+        if index >= 0 && item != nil {
+            if let header = item as? [String : Any] {
+                // 如果拖拽的是itunes的section，则不允许拖动
+                if header["type"] as? headerType == headerType.item_iTunesPlaylist_type {
+                    return NSDragOperation.init(rawValue: 0)
+                }
+            }
+            
+            return .move
+        }
+
+        return NSDragOperation.init(rawValue: 0) // 什么都不执行
+    }
+    
+    // 结束拖拽
+    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+        let pb = info.draggingPasteboard
+        // details页面write时没有设置string，而是设置的data，所以不会进这里
+        if let playlistID = pb.string(forType: kDrapSortPasteboardType) {
+            SongManager.share.dragPlaylistWith(playlistID, index) {[unowned self] (result) in
+                self.outlineView.reloadData()
+            }
+            return true
+        }
         return false
     }
 }
@@ -228,8 +283,6 @@ extension PlayListViewController: NSMenuDelegate{
             menu.addItem(NSMenuItem(title: "播放", action: #selector(playPlaylist(_:)), keyEquivalent: ""))
             menu.addItem(NSMenuItem(title: "重命名", action: #selector(renamePlaylist(_:)), keyEquivalent: ""))
             menu.addItem(NSMenuItem(title: "删除歌单", action: #selector(deletePlaylist(_:)), keyEquivalent: ""))
-        } else {
-            
         }
     }
 }
@@ -264,6 +317,7 @@ extension PlayListViewController {
             let newPlaylist = Playlist()
             newPlaylist.name = string
             newPlaylist.creatTime = currentTimeString
+            newPlaylist.index = newPlaylist.incrementaIndex()
             SongManager.share.createPlaylist(newPlaylist)
         }
     }
