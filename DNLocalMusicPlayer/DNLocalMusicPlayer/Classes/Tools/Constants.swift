@@ -13,7 +13,7 @@ import Cocoa
 //MARK: 默认颜色
 let kDefaultColor:NSColor = NSColor.init(r: 162, g: 162, b: 162)
 //MARK: 浅色颜色
-let kLightColor:NSColor = NSColor.init(r: 116, g: 116, b: 116)
+let kLightColor:NSColor = NSColor.init(r: 120, g: 120, b: 120)
 //MARK: 最浅的颜色
 let kLightestColor:NSColor = NSColor.init(r: 64, g: 64, b: 64)
 //MARK: 纯白色高亮色

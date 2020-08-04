@@ -18,7 +18,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         SongManager.share.startScanRealmData()
-        mainWindow = NSApplication.shared.windows[0]
+        let windows = NSApplication.shared.windows
+        if windows.count > 0 {
+            mainWindow = windows[0]
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

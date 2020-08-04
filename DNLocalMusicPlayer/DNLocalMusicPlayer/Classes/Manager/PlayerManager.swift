@@ -40,14 +40,7 @@ class PlayerManager: NSObject {
     //MARK: 当前正在播放的播放列表
     @objc dynamic var currentPlayingPlaylist: Playlist = Playlist() {
         didSet {
-            if currentPlayingPlaylist.isCustomPlaylist {
-                if let index = SongManager.share.playlists.firstIndex(of: currentPlayingPlaylist) {
-                    UserDefaultsManager.share.setPlayingPlaylistIndex(index)
-                }
-            } else {
-                // 设置为-1，代表iTunes
-                UserDefaultsManager.share.setPlayingPlaylistIndex(-1)
-            }
+            didSetCurrentPlayingPlaylist()
         }
     }
     //MARK: 播放模式
@@ -66,6 +59,21 @@ class PlayerManager: NSObject {
     
     deinit {
         print("[PlayerManager] deinit!")
+    }
+}
+
+//MARK: - UI相关
+extension PlayerManager {
+    // 更新本地UserDefaults里的PlayingPlaylistIndex
+    func didSetCurrentPlayingPlaylist() {
+        if currentPlayingPlaylist.isCustomPlaylist {
+            if let index = SongManager.share.playlists.firstIndex(of: currentPlayingPlaylist) {
+                UserDefaultsManager.share.setPlayingPlaylistIndex(index)
+            }
+        } else {
+            // 设置为-1，代表iTunes
+            UserDefaultsManager.share.setPlayingPlaylistIndex(-1)
+        }
     }
 }
 

@@ -350,10 +350,8 @@ extension SongManager {
             return piaylist
         }
         
-        if drag.id == PlayerManager.share.currentPlayingPlaylist.id {
-            PlayerManager.share.currentPlayingPlaylist = drag // 为了执行didset方法，更新Userdefault
-        }
-        
+        PlayerManager.share.didSetCurrentPlayingPlaylist()//更新Userdefault
+
         callback(true)
     }
 }

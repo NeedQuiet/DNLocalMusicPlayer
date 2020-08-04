@@ -108,6 +108,7 @@
 		F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */; };
 		F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* DNButton.swift */; };
 		F52ABDEC24BD98E400D093C4 /* DetailsTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */; };
+		F5405F1424D9117B00CA4D34 /* EachLineLrcItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5405F1324D9117B00CA4D34 /* EachLineLrcItem.swift */; };
 		F544015424CAB57700B12458 /* DNScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015324CAB57700B12458 /* DNScroller.swift */; };
 		F544015824CAC7C400B12458 /* DNTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015724CAC7C400B12458 /* DNTableView.swift */; };
 		F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015924CAF17100B12458 /* DNOutlineView.swift */; };
@@ -262,6 +263,7 @@
 		F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressed.tiff; sourceTree = "<group>"; };
 		F51F8A6124AEF8670066E920 /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
 		F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableRow.swift; sourceTree = "<group>"; };
+		F5405F1324D9117B00CA4D34 /* EachLineLrcItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachLineLrcItem.swift; sourceTree = "<group>"; };
 		F544015324CAB57700B12458 /* DNScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNScroller.swift; sourceTree = "<group>"; };
 		F544015724CAC7C400B12458 /* DNTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTableView.swift; sourceTree = "<group>"; };
 		F544015924CAF17100B12458 /* DNOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNOutlineView.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 		F51F89B524ADC8770066E920 /* Playview */ = {
 			isa = PBXGroup;
 			children = (
+				F56206DF24D9067D0041337C /* Model */,
 				F51F89B724ADC8880066E920 /* View */,
 				F51F89B624ADC8800066E920 /* Controller */,
 			);
@@ -685,6 +688,14 @@
 				F560F99B24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		F56206DF24D9067D0041337C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5405F1324D9117B00CA4D34 /* EachLineLrcItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F56F6A6B24B9ADC8005D550A /* Model */ = {
@@ -966,6 +977,7 @@
 				F5DC90A424C6C26000FFB4FB /* WindowTitileBar.swift in Sources */,
 				F58AEC8F24BC6CF6007C0C75 /* Playlist.swift in Sources */,
 				F56F6A6D24B9C03F005D550A /* PlayerManager.swift in Sources */,
+				F5405F1424D9117B00CA4D34 /* EachLineLrcItem.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,
 				F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */,
 				F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */,

@@ -38,7 +38,8 @@ class DetailsPageViewController: BaseViewController {
         scrollView.borderType = .noBorder
         scrollView.hasVerticalScroller = true
         scrollView.verticalScroller = DNScroller()
-        scrollView.verticalScroller?.setBorder(0, NSColor.clear)
+//        scrollView.verticalScroller?.setBorder(0, NSColor.clear)
+//        scrollView.scrollerStyle = .overlay
         return scrollView
     }()
     //MARK: 主体scrollview的内容View
