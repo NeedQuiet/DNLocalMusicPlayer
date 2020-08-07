@@ -378,7 +378,6 @@
 			children = (
 				F5EE566D24B6CBFA00CE9ABC /* Manager */,
 				F544015B24CAF1DF00B12458 /* CustomBaseItem */,
-				F5DC909F24C6BF7500FFB4FB /* WindowTitleBar */,
 				F51F899024ADBA620066E920 /* Main */,
 				F51F899D24ADBD580066E920 /* PlayList */,
 				F51F89A324ADBE820066E920 /* DetailsPage */,
@@ -447,6 +446,8 @@
 			children = (
 				F51F899B24ADBC920066E920 /* Main.storyboard */,
 				F5CFA52124B342B1001D1343 /* MainViewController.swift */,
+				F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */,
+				F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -713,23 +714,6 @@
 				F5B47F9324CEA19C00C8FC18 /* CurrentPLTableRow.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		F5DC909F24C6BF7500FFB4FB /* WindowTitleBar */ = {
-			isa = PBXGroup;
-			children = (
-				F5DC90A024C6BFA000FFB4FB /* Controller */,
-			);
-			path = WindowTitleBar;
-			sourceTree = "<group>";
-		};
-		F5DC90A024C6BFA000FFB4FB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */,
-				F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		F5EE566D24B6CBFA00CE9ABC /* Manager */ = {

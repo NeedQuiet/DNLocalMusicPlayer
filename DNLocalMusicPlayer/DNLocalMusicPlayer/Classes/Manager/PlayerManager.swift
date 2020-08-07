@@ -98,6 +98,15 @@ extension PlayerManager {
             playCurrentSong()
         }
     }
+    func play(withSong song:Song) {
+        currentSong = song
+        if let index = currentPlayingPlaylist.songs.firstIndex(of:song) {
+            currentIndex = index
+        }
+        playCurrentSong()
+    }
+    
+    
     //MARK: 暂停
     func pause() {
         isPlaying = false

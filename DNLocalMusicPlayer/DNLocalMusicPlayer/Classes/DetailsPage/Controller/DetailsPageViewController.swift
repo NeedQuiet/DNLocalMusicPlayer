@@ -395,10 +395,24 @@ extension DetailsPageViewController {
         return false
     }
     
-    //MARK: Menu - 播放
+    //MARK: ****************** Menu ******************
+    //MARK: 播放
     @objc private func menuPlay() {
+        if PlayerManager.share.currentShowPlaylist != PlayerManager.share.currentPlayingPlaylist {
+            PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
+        }
         let clickedRow = tableView.clickedRow
-        playSong(withIndex: clickedRow)
+        let selectedSong:Song
+        
+        if searchResultSongs.count > 0 {
+            selectedSong = searchResultSongs[clickedRow]
+        } else {
+            selectedSong = songs[clickedRow]
+        }
+        
+        if clickedRow != -1 {
+            PlayerManager.share.play(withSong: selectedSong)
+        }
     }
     
     //MARK: Show in finder

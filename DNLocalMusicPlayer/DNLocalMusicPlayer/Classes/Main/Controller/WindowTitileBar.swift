@@ -19,7 +19,7 @@ class WindowTitileBar: NSViewController {
         // Do view setup here.
         setupUI()
         setupKVOAndNotifi()
-        self.view.window?.title = "aaaa"
+        self.view.window?.title = ""
     }
 }
 
