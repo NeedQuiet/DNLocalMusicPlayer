@@ -123,6 +123,10 @@ extension Utility {
         }
         return nil
     }
+    
+    static func songExists(_ song:Song) -> Bool {
+        return FileManager.default.fileExists(atPath: song.filePath)
+    }
 }
 
 //MARK: - Private

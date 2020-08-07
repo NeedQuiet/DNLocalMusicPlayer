@@ -13,15 +13,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C5M-hT-eoJ">
-                                <rect key="frame" x="953" y="17" width="29" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="mini" id="ycU-kk-V6T">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="2cR-1m-MtY" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
                                 <rect key="frame" x="72" y="17" width="24" height="33"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="down_arrow" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Rr8-0q-Sri">
@@ -35,12 +26,25 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="EhO-VT-sLu">
                                 <rect key="frame" x="0.0" y="0.0" width="72" height="50"/>
                             </customView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="zHb-p4-bVv" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                                <rect key="frame" x="965" y="10" width="15" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="BId-ix-8tk"/>
+                                    <constraint firstAttribute="height" constant="30" id="kOF-cl-qWt"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="changeToMiniMode" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="KWR-jH-OJS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="EhO-VT-sLu" secondAttribute="bottom" id="Cgw-UB-VuJ"/>
                             <constraint firstItem="EhO-VT-sLu" firstAttribute="top" secondItem="GMK-pY-yfM" secondAttribute="top" id="DrJ-2h-uHc"/>
+                            <constraint firstAttribute="trailing" secondItem="zHb-p4-bVv" secondAttribute="trailing" constant="20" id="FI8-KP-oe2"/>
                             <constraint firstItem="2cR-1m-MtY" firstAttribute="top" secondItem="GMK-pY-yfM" secondAttribute="top" id="NRc-Pe-Ycu"/>
                             <constraint firstAttribute="bottom" secondItem="2cR-1m-MtY" secondAttribute="bottom" constant="17" id="To5-EK-W3m"/>
+                            <constraint firstItem="zHb-p4-bVv" firstAttribute="centerY" secondItem="GMK-pY-yfM" secondAttribute="centerY" id="VYd-te-yde"/>
                             <constraint firstItem="2cR-1m-MtY" firstAttribute="leading" secondItem="GMK-pY-yfM" secondAttribute="leading" constant="72" id="ZT4-7U-Hbl"/>
                             <constraint firstItem="2cR-1m-MtY" firstAttribute="leading" secondItem="EhO-VT-sLu" secondAttribute="trailing" id="iy5-AV-7zS"/>
                             <constraint firstItem="EhO-VT-sLu" firstAttribute="leading" secondItem="GMK-pY-yfM" secondAttribute="leading" id="klK-VW-Vh3"/>
@@ -57,6 +61,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="changeToMiniMode" width="32" height="32"/>
         <image name="down_arrow" width="24" height="24"/>
     </resources>
 </document>

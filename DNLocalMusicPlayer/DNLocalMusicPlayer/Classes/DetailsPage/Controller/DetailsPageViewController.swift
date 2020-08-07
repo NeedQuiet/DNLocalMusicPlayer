@@ -275,19 +275,27 @@ extension DetailsPageViewController {
 extension DetailsPageViewController {
     //MARK: tableView双击
     @objc private func tableViewDoubleClick(_ sender:AnyObject) {
+        let clickedRow = tableView.clickedRow
+        if clickedRow == -1 {
+            return
+        }
+        
+        let song = songs[clickedRow]
+        if !Utility.songExists(song) {
+            tableView.reloadData()
+            return
+        }
+        
         // 如果当前正在播放的歌单，不是当前展示的歌单，那么在选中歌曲后，应当将当给 currentPlayingPlaylist 赋值为 currentShowPlaylist
         if PlayerManager.share.currentShowPlaylist != PlayerManager.share.currentPlayingPlaylist {
             PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
         }
-        let clickedRow = tableView.clickedRow
         playSong(withIndex: clickedRow)
     }
     
     //MARK: 播放歌曲
     private func playSong(withIndex index:Int) {
-        if index != -1 {
-            PlayerManager.share.play(withIndex: index)
-        }
+        PlayerManager.share.play(withIndex: index)
     }
     
     //MARK: 刷新UI
@@ -454,7 +462,7 @@ extension DetailsPageViewController: NSTableViewDelegate {
         var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cellId"), owner: self)
         if cellView == nil {
             cellView = NSView.init()
-            
+
             let textLabel = NSTextField()
             textLabel.isBezeled = false // 边框
             textLabel.isEditable = false
@@ -487,6 +495,11 @@ extension DetailsPageViewController: NSTableViewDelegate {
                 textColor = kLightestColor
             default:
                 text = ""
+            }
+            
+            // 判断文件是否存在
+            if !Utility.songExists(song) {
+                textColor = kLightestColor
             }
             
             let colorTitle = NSMutableAttributedString(string: text)
@@ -529,6 +542,9 @@ extension DetailsPageViewController: NSTableViewDelegate {
                     indexRowLabel.backgroundColor = NSColor.clear
                     indexRowLabel.alignment = .right
                     indexRowLabel.textColor = kLightColor
+                    if !Utility.songExists(song) {
+                        indexRowLabel.textColor = kLightestColor
+                    }
                     indexRowLabel.stringValue = String(format: "%02d", row + 1)
                     cellView!.addSubview(indexRowLabel)
                     // index 约束
@@ -711,9 +727,21 @@ extension DetailsPageViewController: NSMenuDelegate{
         
         menu.removeAllItems()
         
-        let playItem = NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: "")
-        let collection = NSMenuItem(title: "收藏", action: #selector(collectionClick), keyEquivalent: "")
-        let show = NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: "")
+        var playAction:Selector? = #selector(menuPlay)
+        var collectionAction:Selector? = #selector(collectionClick)
+        var showAction:Selector? = #selector(showInFinder)
+        
+        let songExists = Utility.songExists(songs[tableView.clickedRow])
+        if !songExists {
+            tableView.reloadData()
+            playAction = nil
+            collectionAction = nil
+            showAction = nil
+        }
+
+        let playItem = NSMenuItem(title: "播放", action: playAction, keyEquivalent: "")
+        let collection = NSMenuItem(title: "收藏", action: collectionAction, keyEquivalent: "")
+        let show = NSMenuItem(title: "在Finder中显示", action: showAction, keyEquivalent: "")
         let delete = NSMenuItem(title: "删除", action: #selector(removeSong), keyEquivalent: "")
 
         if playlist.isCustomPlaylist == true {
@@ -729,10 +757,11 @@ extension DetailsPageViewController: NSMenuDelegate{
             menu.addItem(collection)
             menu.addItem(show)
         }
-        
-        let collectionSubItems = NSMenu(title: "歌单列表")
-        makePlaylistsFor(collectionSubItems)
-        menu.setSubmenu(collectionSubItems, for: collection)
+        if songExists {
+            let collectionSubItems = NSMenu(title: "歌单列表")
+            makePlaylistsFor(collectionSubItems)
+            menu.setSubmenu(collectionSubItems, for: collection)
+        }
     }
 }
 

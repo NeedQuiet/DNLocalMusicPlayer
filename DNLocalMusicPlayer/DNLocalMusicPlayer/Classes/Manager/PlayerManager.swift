@@ -86,6 +86,11 @@ extension PlayerManager {
         _ = checkCurrentSongIsEmpty()
         
         if index == nil { // index没有值：底部bottomBar点击的播放
+            if let currentSong = self.currentSong {
+                if !Utility.songExists(currentSong) {
+                    return
+                }
+            }
             if player == nil { // player为空：播放第0首
                 playCurrentSong()
             } else { // 不为空：是从pause状态，恢复为play状态，直接play即可
@@ -117,6 +122,7 @@ extension PlayerManager {
         isPlaying = false
         player?.pause()
         currentSong = Song()
+        currentProgress = 0
     }
     
     //MARK: 上一曲
@@ -196,6 +202,12 @@ extension PlayerManager {
     
     //MARK: 播放currentSong
     private func playCurrentSong() {
+        if !Utility.songExists(currentSong!) {
+            currentProgress = 0
+            isPlaying = false
+            player?.pause()
+            return
+        }
         player = AVPlayer(playerItem: AVPlayerItem(url: URL(fileURLWithPath: currentSong!.filePath)))
         player?.volume = volume
         isPlaying = true
@@ -262,11 +274,20 @@ extension PlayerManager {
         canObservProgress = true
         let timeScale = player?.currentItem?.asset.duration.timescale ?? 1
         player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: timeScale), queue: DispatchQueue.main, using: {[unowned self] (time) in
+            if let currentSong = self.currentSong {
+                if !Utility.songExists(currentSong) {
+                    return
+                }
+            }
             if (self.canObservProgress == false) { return }
             let currentTime:TimeInterval = CMTimeGetSeconds(time)
             let totalTimeInterval = self.currentSong?.timeInterval ?? 0
             let songProgress:Double = currentTime / totalTimeInterval * 100
-            self.currentProgress = min(songProgress,100)
+            if songProgress == Double.infinity {
+                self.currentProgress = 0
+            } else {
+                self.currentProgress = min(songProgress,100)
+            }
         })
     }
 }
