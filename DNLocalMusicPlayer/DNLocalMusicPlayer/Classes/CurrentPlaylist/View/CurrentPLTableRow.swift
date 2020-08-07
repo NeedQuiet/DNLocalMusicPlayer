@@ -8,16 +8,21 @@
 
 import Cocoa
 
-private let singleRowColor = NSColor(r: 44, g: 44, b: 44)
-private let doubleRowColor = NSColor(r: 41, g: 41, b: 41)
-private let selectedRowColor = NSColor(r: 38, g: 38, b: 38)
-private let hoverRowColor = NSColor(r: 47, g: 47, b: 47)
-
 class CurrentPLTableRow: DNCustomTableRow {
     // 行数
     var index:Int = 0
     // 是否是选中的行
     var isSelectedRow: Bool = false
+    
+    // 单数行背景色
+    var singleRowColor = NSColor(r: 44, g: 44, b: 44)
+    // 双数行背景色
+    var doubleRowColor = NSColor(r: 41, g: 41, b: 41)
+    // 选中行背景色
+    var selectedRowColor = NSColor(r: 38, g: 38, b: 38)
+    // hover行背景色
+    var hoverRowColor = NSColor(r: 47, g: 47, b: 47)
+    
     
     // 画背景色
     override func drawBackground(in dirtyRect: NSRect) {
