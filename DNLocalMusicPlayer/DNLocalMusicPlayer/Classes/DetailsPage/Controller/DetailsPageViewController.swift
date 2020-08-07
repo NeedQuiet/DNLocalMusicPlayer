@@ -198,7 +198,7 @@ extension DetailsPageViewController {
             .subscribe({[unowned self] (event) in
                 if let object = event.element?.object as? [String : Playlist] {
                     self.songs.removeAll()
-                    self.searchResultSongs.removeAll()
+                    self.clearSearch()
                     if let currentShowPlaylist = object["playlist"] {
                         self.playlist = currentShowPlaylist
                         let songs = currentShowPlaylist.songs
@@ -302,7 +302,7 @@ extension DetailsPageViewController {
     private func refreshDataSource(_ newPlaylist:Playlist){
         DispatchQueue.main.async {
             self.songs.removeAll()
-            self.searchResultSongs.removeAll()
+            self.clearSearch()
             self.playlist = newPlaylist
             let songs = newPlaylist.songs
             for song in songs {
@@ -395,41 +395,6 @@ extension DetailsPageViewController {
         return false
     }
     
-    //MARK: ****************** Menu ******************
-    //MARK: 播放
-    @objc private func menuPlay() {
-        if PlayerManager.share.currentShowPlaylist != PlayerManager.share.currentPlayingPlaylist {
-            PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
-        }
-        let clickedRow = tableView.clickedRow
-        let selectedSong:Song
-        
-        if searchResultSongs.count > 0 {
-            selectedSong = searchResultSongs[clickedRow]
-        } else {
-            selectedSong = songs[clickedRow]
-        }
-        
-        PlayerManager.share.play(withSong: selectedSong)
-    }
-    
-    //MARK: Show in finder
-    @objc private func showInFinder() {
-        let clickedRow = tableView.clickedRow
-        let song = getSongsOnDisplay()[clickedRow]
-        let filePath = song.filePath
-        NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: filePath)])
-    }
-    
-    //MARK: 删除歌曲
-    @objc private func removeSong() {
-        let clickedRow = tableView.clickedRow
-        let song = getSongsOnDisplay()[clickedRow]
-        SongManager.share.removeSongFrom(playlist, song) {[unowned self] (success) in
-            self.refreshDataSource(self.playlist)
-        }
-    }
-    
     //MARK: 根据拖拽的数据返回坐标
     func getIndexWithDropInfo(_ info:NSDraggingInfo) -> Int? {
         if let rowData = info.draggingPasteboard.data(forType: kDrapSortPasteboardType){
@@ -443,6 +408,15 @@ extension DetailsPageViewController {
     //MARK: 获取本页需要展示的歌曲数组
     func getSongsOnDisplay() -> [Song] {
         return searchResultSongs.count > 0 ? searchResultSongs : songs
+    }
+    
+    //MARK: 清空搜索的内容
+    func clearSearch() {
+        searchKey = ""
+        searchResultSongs.removeAll()
+        if viewHeader.searchField.stringValue.count > 0 {
+            viewHeader.searchField.stringValue = ""
+        }
     }
 }
 
@@ -629,8 +603,7 @@ extension DetailsPageViewController {
     
     // 结束拖拽：UI效果上是否允许拖入，false 文件就自动飘回去，true 文件松手就在列表上消失
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
-        if let dragRow = getIndexWithDropInfo(info) {
-            // 内部拖拽排序
+        if let dragRow = getIndexWithDropInfo(info) { // 内部拖拽排序
             if dragRow == row || dragRow == row - 1 {
                 return false
             } else {
@@ -642,8 +615,7 @@ extension DetailsPageViewController {
                 }
                 return true
             }
-        } else {
-            // 从外部拖入的文件
+        } else { // 从外部拖入的文件
             if let pathArray = Utility.getPathArrayByFilenamesType(info) {
                 let songs = List<Song>()
                 for path in pathArray {
@@ -724,9 +696,7 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
     
     //MARK: 清空搜索
     func clearSearchField() {
-        //TODO: 隐藏 无搜索结果 提示页
-        searchKey = ""
-        searchResultSongs.removeAll()
+        clearSearch()
         tableView.reloadData()
         refreshUI()
     }
@@ -742,7 +712,7 @@ extension DetailsPageViewController: NSMenuDelegate{
         menu.removeAllItems()
         
         let playItem = NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: "")
-        let collection = NSMenuItem(title: "收藏", action: nil, keyEquivalent: "")
+        let collection = NSMenuItem(title: "收藏", action: #selector(collectionClick), keyEquivalent: "")
         let show = NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: "")
         let delete = NSMenuItem(title: "删除", action: #selector(removeSong), keyEquivalent: "")
 
@@ -755,7 +725,72 @@ extension DetailsPageViewController: NSMenuDelegate{
             menu.addItem(delete)
         } else {
             menu.addItem(playItem)
+            menu.addItem(NSMenuItem.separator()) // 分割线
+            menu.addItem(collection)
             menu.addItem(show)
         }
+        
+        let collectionSubItems = NSMenu(title: "歌单列表")
+        makePlaylistsFor(collectionSubItems)
+        menu.setSubmenu(collectionSubItems, for: collection)
+    }
+}
+
+//MARK: - Menu点击
+extension DetailsPageViewController {
+    //MARK: 播放
+    @objc private func menuPlay() {
+        if PlayerManager.share.currentShowPlaylist != PlayerManager.share.currentPlayingPlaylist {
+            PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
+        }
+        let clickedRow = tableView.clickedRow
+        let selectedSong:Song
+        
+        if searchResultSongs.count > 0 {
+            selectedSong = searchResultSongs[clickedRow]
+        } else {
+            selectedSong = songs[clickedRow]
+        }
+        
+        PlayerManager.share.play(withSong: selectedSong)
+    }
+    
+    //MARK: Show in finder
+    @objc private func showInFinder() {
+        let clickedRow = tableView.clickedRow
+        let song = getSongsOnDisplay()[clickedRow]
+        let filePath = song.filePath
+        NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: filePath)])
+    }
+    
+    //MARK: 删除歌曲
+    @objc private func removeSong() {
+        let clickedRow = tableView.clickedRow
+        let song = getSongsOnDisplay()[clickedRow]
+        SongManager.share.removeSongFrom(playlist, song) {[unowned self] (success) in
+            self.refreshDataSource(self.playlist)
+        }
+    }
+    
+    //MARK: 收藏
+    @objc private func collectionClick() {}
+    //MARK: 展示歌单
+    private func makePlaylistsFor(_ menu:NSMenu) {
+        let playlists = SongManager.share.playlists
+        for (index , playlist) in playlists.enumerated() {
+            let playlistItem = NSMenuItem(title: playlist.name, action: #selector(playlistMenuClick(_:)), keyEquivalent: "")
+            playlistItem.tag = 100 + index
+            menu.addItem(playlistItem)
+        }
+    }
+    //MARK: 把歌曲添加到右键的歌单里
+    @objc private func playlistMenuClick(_ item:NSMenuItem) {
+        let playlistIndex = item.tag - 100 // index
+        let playlist = SongManager.share.playlists[playlistIndex] // 选中的歌单
+        let clickedRow = tableView.clickedRow // 选中的cell
+        let song = getSongsOnDisplay()[clickedRow] // 获取选中歌曲
+        let songs = List<Song>()
+        songs.append(song)
+        SongManager.share.addSongsTo(playlist, songs, index: 0) { (success) in }
     }
 }
