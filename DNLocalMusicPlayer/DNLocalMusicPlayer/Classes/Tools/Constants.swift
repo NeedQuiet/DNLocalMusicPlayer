@@ -20,6 +20,8 @@ let kLightestColor:NSColor = NSColor.init(r: 64, g: 64, b: 64)
 let kWhiteHighlightColor:NSColor = NSColor.init(r: 255, g: 255, b: 255)
 //MARK: 红色高亮
 let kRedHighlightColor:NSColor = NSColor.init(r: 222, g: 46, b: 46)
+//MARK: 搜索高亮
+let kSearchHighColor:NSColor = NSColor.init(r: 115, g: 169, b: 224)
 
 //MARK: - ************* 通知 *************
 //MARK: iTunes歌曲读取完毕

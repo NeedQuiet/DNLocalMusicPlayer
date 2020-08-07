@@ -410,9 +410,7 @@ extension DetailsPageViewController {
             selectedSong = songs[clickedRow]
         }
         
-        if clickedRow != -1 {
-            PlayerManager.share.play(withSong: selectedSong)
-        }
+        PlayerManager.share.play(withSong: selectedSong)
     }
     
     //MARK: Show in finder
@@ -442,7 +440,7 @@ extension DetailsPageViewController {
         return nil
     }
     
-    //MARK: 获取本页需要展示的歌曲
+    //MARK: 获取本页需要展示的歌曲数组
     func getSongsOnDisplay() -> [Song] {
         return searchResultSongs.count > 0 ? searchResultSongs : songs
     }
@@ -493,27 +491,41 @@ extension DetailsPageViewController: NSTableViewDelegate {
             
             // 此行歌曲
             let song = getSongsOnDisplay()[row]
+            var text:String
+            var textColor:NSColor = kDefaultColor
             // 根据cell ID 区分是row的哪一列
             switch tableColumn?.identifier {
             case kTitleColumnID: // 标题列
-                textLabel.stringValue = song.title
+                text = song.title
                 if isCurrentPlayingSong(song) {
-                    textLabel.textColor = kRedHighlightColor
+                    textColor = kRedHighlightColor
                 } else {
-                    textLabel.textColor = kDefaultColor
+                    textColor = kDefaultColor
                 }
             case kArtistColumnID: // 歌手列
-                textLabel.stringValue = song.artist
-                textLabel.textColor = kLightColor
+                text = song.artist
+                textColor = kLightColor
             case kAlbumColumnID: // 专辑列
-                textLabel.stringValue = song.album
-                textLabel.textColor = kLightColor
+                text = song.album
+                textColor = kLightColor
             case kTimeColumnID: // 时长列
-                textLabel.stringValue = song.totalTime
-                textLabel.textColor = kLightestColor
+                text = song.totalTime
+                textColor = kLightestColor
             default:
-                textLabel.stringValue = ""
+                text = ""
             }
+            
+            let colorTitle = NSMutableAttributedString(string: text)
+            colorTitle.addAttributes([.foregroundColor : textColor], range: NSRange(location: 0, length: text.count))
+            
+            if searchKey.count > 0 {
+                let rangeArray = text.rangesOfString(searchKey, ignoreCase: true)
+                for range in rangeArray {
+                     colorTitle.addAttributes([.foregroundColor : kSearchHighColor], range: range)
+                }
+            }
+            
+            textLabel.attributedStringValue = colorTitle
             
             // 标题列
             if tableColumn?.identifier ==  kTitleColumnID{
@@ -723,15 +735,27 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
 //MARK: - NSMenuDelegate
 extension DetailsPageViewController: NSMenuDelegate{
     func menuNeedsUpdate(_ menu: NSMenu) {
+        if tableView.clickedRow == -1 {// 右键空白区域
+            return
+        }
+        
         menu.removeAllItems()
+        
+        let playItem = NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: "")
+        let collection = NSMenuItem(title: "收藏", action: nil, keyEquivalent: "")
+        let show = NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: "")
+        let delete = NSMenuItem(title: "删除", action: #selector(removeSong), keyEquivalent: "")
+
         if playlist.isCustomPlaylist == true {
-            menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
-            menu.addItem(NSMenuItem(title: "收藏", action: nil, keyEquivalent: ""))
-            menu.addItem(NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: ""))
-            menu.addItem(NSMenuItem(title: "删除", action: #selector(removeSong), keyEquivalent: ""))
+            menu.addItem(playItem)
+            menu.addItem(NSMenuItem.separator()) // 分割线
+            menu.addItem(collection)
+            menu.addItem(show)
+            menu.addItem(NSMenuItem.separator())
+            menu.addItem(delete)
         } else {
-            menu.addItem(NSMenuItem(title: "播放", action: #selector(menuPlay), keyEquivalent: ""))
-            menu.addItem(NSMenuItem(title: "在Finder中显示", action: #selector(showInFinder), keyEquivalent: ""))
+            menu.addItem(playItem)
+            menu.addItem(show)
         }
     }
 }
