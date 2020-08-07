@@ -153,11 +153,20 @@ extension PlayViewController {
         albumButton.title = currentSong.album.count > 0 ? currentSong.album : "无"
         artistButton.title = currentSong.artist.count > 0 ? currentSong.artist : "无"
         let lyrics = Utility.getMusicLyrics(withFilePath: currentSong.filePath)
+        // 清理各数组状态
+        clearState()
+        // 歌词长度大于0，则解析歌词
         if lyrics.count > 0 {
-            // 歌词长度大于0
-            lrcArray = []
             analysisLyrics(lyrics:lyrics)
         }
+    }
+    
+    //MARK: 清理状态
+    private func clearState() {
+        lrcArray.removeAll()
+        lrcLabelArray.removeAll()
+        tempLRCTime.removeAll()
+        lrcScrollView.documentView = nil
     }
     
     //MARK: 创建并开始动画
@@ -236,11 +245,9 @@ extension PlayViewController {
         let num = lrcArray.count
         // 即将添加到scrollView上的documentView
         let documentView = DNFippedView(frame: NSRect(x: 0, y: 0, width: width, height: CGFloat(num) * kLRCLineHeight))
-        // 清空lrcLabel/tempLRCTime数组
-        lrcLabelArray.removeAll()
-        tempLRCTime.removeAll()
+        
+        // 创建歌词label
         for index in 0..<lrcArray.count {
-            // 创建歌词label
             let eachLineLrc = lrcArray[index]
             let lrcLabel = NSTextField(frame: NSRect(x: 0, y: CGFloat(index) * kLRCLineHeight, width: width, height: kLRCLineHeight))
             lrcLabel.stringValue = eachLineLrc.lrc

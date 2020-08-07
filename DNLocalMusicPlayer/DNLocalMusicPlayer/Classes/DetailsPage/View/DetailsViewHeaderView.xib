@@ -9,7 +9,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="DetailsViewHeaderView" customModule="DN音乐" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="720" height="260"/>
+            <rect key="frame" x="0.0" y="0.0" width="734" height="260"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ca-UH-MMY">
@@ -21,7 +21,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="default_artwork_image" id="HLh-Kz-Ntr"/>
                 </imageView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="U1r-Ve-sWz">
-                    <rect key="frame" x="230" y="60" width="460" height="200"/>
+                    <rect key="frame" x="230" y="60" width="474" height="200"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zbv-Pw-TYY">
                             <rect key="frame" x="43" y="172" width="70" height="23"/>
@@ -146,7 +146,7 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="9g7-pm-MQf" userLabel="line">
-                    <rect key="frame" x="0.0" y="0.0" width="720" height="1"/>
+                    <rect key="frame" x="0.0" y="0.0" width="734" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="Rum-TF-u1Q"/>
                     </constraints>
@@ -159,12 +159,25 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dia-uk-roI">
+                    <rect key="frame" x="534" y="4" width="130" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="130" id="3Bk-68-MgQ"/>
+                    </constraints>
+                    <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="搜索歌单音乐" usesSingleLineMode="YES" bezelStyle="round" id="laA-75-iLP">
+                        <font key="font" metaFont="label" size="12"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </searchFieldCell>
+                </searchField>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="9g7-pm-MQf" secondAttribute="bottom" id="4pg-bM-xui"/>
                 <constraint firstItem="9g7-pm-MQf" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="DMa-Wz-oyG"/>
                 <constraint firstItem="4ca-UH-MMY" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="L6d-rA-g4d"/>
                 <constraint firstItem="U1r-Ve-sWz" firstAttribute="bottom" secondItem="4ca-UH-MMY" secondAttribute="bottom" id="Ohy-Vr-BVK"/>
+                <constraint firstItem="dia-uk-roI" firstAttribute="trailing" secondItem="U1r-Ve-sWz" secondAttribute="trailing" constant="-40" id="be0-ZW-KfL"/>
+                <constraint firstItem="dia-uk-roI" firstAttribute="centerY" secondItem="Glr-7W-2Xe" secondAttribute="centerY" id="e1B-Qu-YbN"/>
                 <constraint firstItem="U1r-Ve-sWz" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="eES-io-I5M"/>
                 <constraint firstItem="Glr-7W-2Xe" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ej7-Ti-69T"/>
                 <constraint firstAttribute="trailing" secondItem="U1r-Ve-sWz" secondAttribute="trailing" constant="30" id="fti-Ru-KNI"/>
@@ -184,9 +197,10 @@
                 <outlet property="playAllButton" destination="0DZ-nj-CM9" id="1OR-bq-rdN"/>
                 <outlet property="playlistNameLabel" destination="Zbv-Pw-TYY" id="kZ6-Ke-S5E"/>
                 <outlet property="renameButton" destination="6SG-f2-MrX" id="TzO-xj-O9J"/>
+                <outlet property="searchField" destination="dia-uk-roI" id="1np-5r-bst"/>
                 <outlet property="songNumLabel" destination="CPq-m9-IAN" id="OmV-64-B4Q"/>
             </connections>
-            <point key="canvasLocation" x="190" y="123"/>
+            <point key="canvasLocation" x="126" y="124"/>
         </customView>
     </objects>
     <resources>

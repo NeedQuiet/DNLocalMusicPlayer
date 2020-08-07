@@ -92,6 +92,10 @@ class DetailsPageViewController: BaseViewController {
         return view
     }()
     
+    //MARK: 搜索数组
+    private var searchResultSongs:[Song] = []
+    private var searchKey:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKVOAndNotification()
@@ -194,6 +198,7 @@ extension DetailsPageViewController {
             .subscribe({[unowned self] (event) in
                 if let object = event.element?.object as? [String : Playlist] {
                     self.songs.removeAll()
+                    self.searchResultSongs.removeAll()
                     if let currentShowPlaylist = object["playlist"] {
                         self.playlist = currentShowPlaylist
                         let songs = currentShowPlaylist.songs
@@ -214,7 +219,7 @@ extension DetailsPageViewController {
                 let viewBounds = self.view.bounds
                 // 设置 tableView 的 size
                 self.tableView.frame.size.width = viewBounds.width
-                var tableSize = NSSize(width: viewBounds.width, height:kTableHedaerHeight +  CGFloat(self.songs.count) * (rowHeight + kRowBorderWidth) + kViewFooterHeight)
+                var tableSize = NSSize(width: viewBounds.width, height:kTableHedaerHeight +  CGFloat(self.getSongsOnDisplay().count) * (rowHeight + kRowBorderWidth) + kViewFooterHeight)
                 let tableViewMinHeight = viewBounds.height - kViewHeaderHeight
                 if tableSize.height < tableViewMinHeight {
                     tableSize.height = tableViewMinHeight
@@ -289,6 +294,7 @@ extension DetailsPageViewController {
     private func refreshUI() {
         self.tableView.reloadData()
         self.refreshViewHeader()
+        self.refreshNoSongsView()
         self.refreshDetailsView()
     }
     
@@ -296,6 +302,7 @@ extension DetailsPageViewController {
     private func refreshDataSource(_ newPlaylist:Playlist){
         DispatchQueue.main.async {
             self.songs.removeAll()
+            self.searchResultSongs.removeAll()
             self.playlist = newPlaylist
             let songs = newPlaylist.songs
             for song in songs {
@@ -305,7 +312,7 @@ extension DetailsPageViewController {
         }
     }
     
-    //MARK: 刷新Header & NoSongsView
+    //MARK: 刷新Header
     private func refreshViewHeader() {
         // HeaderView
         let image:NSImage = NSImage(named: "default_artwork_image")!
@@ -323,6 +330,11 @@ extension DetailsPageViewController {
         viewHeader.addMusicButton.isEnabled = playlist.isCustomPlaylist
         viewHeader.renameButton.isHidden = !playlist.isCustomPlaylist
         
+       
+    }
+    
+    //MARK: 刷新NoSongsView
+    private func refreshNoSongsView() {
         // NoSongsView
         if songs.count == 0 {
             if playlist.isCustomPlaylist == false {
@@ -332,18 +344,32 @@ extension DetailsPageViewController {
                 noSongsView.noteTitle.stringValue = "赶快去收藏你喜欢的音乐"
                 noSongsView.noteBody.stringValue = "点击“添加音乐”按钮，选择你喜欢的音乐，将音乐加入歌单！"
             }
+        } else {
+            // 歌曲数量大于0，则判读搜索歌曲
+            if searchKey.count > 0 && searchResultSongs.count == 0 {
+                noSongsView.noteTitle.stringValue = ""
+                noSongsView.noteBody.stringValue = "未能找到 `\(searchKey)` 相关的歌曲"
+            }
         }
     }
+    
     
     //MARK: 刷新内容view，判断tableView | noSongView的frame
     private func refreshDetailsView() {
         // 设置tableView及背景的frame
         let viewSize = view.bounds.size
         viewHeader.isHidden = false
-        if songs.count > 0 {// 有歌曲
+        let isSearchNoSong = songs.count > 0 && searchKey.count > 0 && searchResultSongs.count == 0
+        if songs.count == 0 || isSearchNoSong{ // 无歌曲 或者 无搜索结果
+            self.mainScrollContentView.frame = self.view.bounds
+            self.tableBackScrollView.isHidden = true
+            // 无歌曲提示
+            self.noSongsView.isHidden = false
+            self.noSongsView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: viewSize.width , height: viewSize.height - kViewHeaderHeight)
+        } else { // 有歌曲
             noSongsView.isHidden = true
             tableBackScrollView.isHidden = false
-            var tableSize = NSSize(width: view.bounds.width, height:kTableHedaerHeight + CGFloat(songs.count) * (rowHeight + kRowBorderWidth) + kViewFooterHeight)
+            var tableSize = NSSize(width: view.bounds.width, height:kTableHedaerHeight + CGFloat(getSongsOnDisplay().count) * (rowHeight + kRowBorderWidth) + kViewFooterHeight)
             let tableViewMinHeight = viewSize.height - kViewHeaderHeight
             if tableSize.height < tableViewMinHeight {
                 tableSize.height = tableViewMinHeight
@@ -356,12 +382,6 @@ extension DetailsPageViewController {
             // 设置 mainScrollContentView 的 frame
             let frame = NSRect(x: 0, y: 0, width: viewSize.width, height: kViewHeaderHeight + tableBackScrollView.frame.height)
             mainScrollContentView.frame = frame
-        } else { // 无歌曲
-            self.mainScrollContentView.frame = self.view.bounds
-            self.tableBackScrollView.isHidden = true
-            // 无歌曲提示
-            self.noSongsView.isHidden = false
-            self.noSongsView.frame = CGRect(x: 0, y: kViewHeaderHeight, width: viewSize.width , height: viewSize.height - kViewHeaderHeight)
         }
     }
     
@@ -384,7 +404,7 @@ extension DetailsPageViewController {
     //MARK: Show in finder
     @objc private func showInFinder() {
         let clickedRow = tableView.clickedRow
-        let song = songs[clickedRow]
+        let song = getSongsOnDisplay()[clickedRow]
         let filePath = song.filePath
         NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: filePath)])
     }
@@ -392,7 +412,7 @@ extension DetailsPageViewController {
     //MARK: 删除歌曲
     @objc private func removeSong() {
         let clickedRow = tableView.clickedRow
-        let song = songs[clickedRow]
+        let song = getSongsOnDisplay()[clickedRow]
         SongManager.share.removeSongFrom(playlist, song) {[unowned self] (success) in
             self.refreshDataSource(self.playlist)
         }
@@ -407,6 +427,11 @@ extension DetailsPageViewController {
         }
         return nil
     }
+    
+    //MARK: 获取本页需要展示的歌曲
+    func getSongsOnDisplay() -> [Song] {
+        return searchResultSongs.count > 0 ? searchResultSongs : songs
+    }
 }
 
 //MARK: - NSTableViewDataSource & NSTableViewDelegate
@@ -418,14 +443,14 @@ extension DetailsPageViewController: NSTableViewDataSource {
     
     // MARK: 行数
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return songs.count
+        return getSongsOnDisplay().count
     }
 
     // MARK: 设置每行容器视图
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let tableRowView = DetailsTableRow()
 //        tableView.draggingDestinationFeedbackStyle = .none
-        let song = songs[row]
+        let song = getSongsOnDisplay()[row]
         if isCurrentPlayingSong(song) {
             tableRowView.isSelectedRow = true
         } else {
@@ -453,7 +478,7 @@ extension DetailsPageViewController: NSTableViewDelegate {
             cellView!.addSubview(textLabel)
             
             // 此行歌曲
-            let song = songs[row]
+            let song = getSongsOnDisplay()[row]
             // 根据cell ID 区分是row的哪一列
             switch tableColumn?.identifier {
             case kTitleColumnID: // 标题列
@@ -534,7 +559,7 @@ extension DetailsPageViewController: NSTableViewDelegate {
 extension DetailsPageViewController {
     //设置响应，建立属性面板
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        if playlist.isCustomPlaylist == false{
+        if playlist.isCustomPlaylist == false || searchResultSongs.count > 0{
             return false
         }
         
@@ -552,7 +577,7 @@ extension DetailsPageViewController {
     }
     // 响应处理：替换数据（文件拖入时，列表的状态和鼠标的变化）
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
-        if playlist.isCustomPlaylist == false{
+        if playlist.isCustomPlaylist == false || searchResultSongs.count > 0{
             return NSDragOperation.init(rawValue: 0)
         }
         
@@ -654,8 +679,30 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
             // 此刻的item_playlist是浅copy，因此在realm那更新后，item_playlist的name也会改变
             SongManager.share.renamePlaylist(self.playlist, string)
             self.refreshViewHeader()
+            self.refreshNoSongsView()
             NotificationCenter.default.post(name: kRefreshPlaylistView, object: nil)
         }
+    }
+    
+    //MARK: 搜索
+    func controlTextDidChange(_ stringValue:String) {
+        let pSearch = NSPredicate(format: "self.title contains[c] %@ || self.artist contains[c] %@ || self.album contains[c] %@ ",stringValue,stringValue,stringValue)
+        searchResultSongs = songs.filter { (song) -> Bool in
+            return pSearch.evaluate(with: song)
+        }
+        
+        searchKey = stringValue
+        tableView.reloadData()
+        refreshUI()
+    }
+    
+    //MARK: 清空搜索
+    func clearSearchField() {
+        //TODO: 隐藏 无搜索结果 提示页
+        searchKey = ""
+        searchResultSongs.removeAll()
+        tableView.reloadData()
+        refreshUI()
     }
 }
 

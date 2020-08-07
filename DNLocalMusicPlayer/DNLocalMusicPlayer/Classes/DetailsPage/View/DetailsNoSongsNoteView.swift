@@ -13,7 +13,7 @@ class DetailsNoSongsNoteView: NSView {
 
     @IBOutlet weak var noteTitle: NSTextField!
     @IBOutlet weak var noteBody: NSTextField!
-
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }

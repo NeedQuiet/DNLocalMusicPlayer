@@ -9,9 +9,16 @@
 import Cocoa
 
 protocol DetailsViewHeaderViewDelegate : NSObjectProtocol {
+    //MARK: 播放全部
     func playAll()
+    //MARK: 添加歌曲
     func addSong()
+    //MARK: 重命名
     func renamePlaylist()
+    //MARK: search文字改变
+    func controlTextDidChange(_ stringValue: String)
+    //MARK: 清空搜索内容
+    func clearSearchField()
 }
 
 class DetailsViewHeaderView: NSView {
@@ -26,6 +33,7 @@ class DetailsViewHeaderView: NSView {
     @IBOutlet weak var lineView: NSView!
     @IBOutlet weak var noteLabel: NSTextField!
     @IBOutlet weak var renameButton: DNButton!
+    @IBOutlet weak var searchField: NSSearchField!
     
     weak var delegate:DetailsViewHeaderViewDelegate?
     
@@ -42,6 +50,11 @@ class DetailsViewHeaderView: NSView {
         var topLevelObjects : NSArray?
         _ = Bundle.main.loadNibNamed("DetailsViewHeaderView", owner: self,topLevelObjects: &topLevelObjects)
         return topLevelObjects!.first(where: { $0 is DetailsViewHeaderView }) as! DetailsViewHeaderView
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        searchField.window?.makeFirstResponder(nil)
     }
 }
 
@@ -91,6 +104,15 @@ extension DetailsViewHeaderView {
         // 下划线
         lineView.setBackgroundColor(color: kLightColor)
         lineView.alphaValue = 0.2
+        
+        // 搜索
+        searchField.focusRingType = .none
+        searchField.delegate = self
+        let searBtnCell = searchField.cell as! NSSearchFieldCell
+        //清空按钮
+        let cancelBtnCell = searBtnCell.cancelButtonCell
+        cancelBtnCell?.target = self
+        cancelBtnCell?.action = #selector(cancelBtnAction(_:))
     }
 }
 
@@ -106,5 +128,17 @@ extension DetailsViewHeaderView {
     
     @IBAction func renameButtonPressed(_ sender: Any) {
         delegate?.renamePlaylist()
+    }
+    
+    @objc func cancelBtnAction(_ sender: NSSearchField) {
+        sender.stringValue = ""
+        delegate?.clearSearchField()
+    }
+}
+
+//MARK: - NSSearchFieldDelegate
+extension DetailsViewHeaderView:NSSearchFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        delegate?.controlTextDidChange(searchField.stringValue)
     }
 }
