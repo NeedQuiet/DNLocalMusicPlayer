@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MiniViewController" customModule="DN音乐" customModuleProvider="target">
+            <connections>
+                <outlet property="albumButton" destination="CbB-sC-0Ht" id="Ohf-wn-KxB"/>
+                <outlet property="closeButton" destination="jEC-JV-AIi" id="aDH-UA-LL6"/>
+                <outlet property="enlargeButton" destination="t8W-xU-uJR" id="eOZ-PB-gVQ"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY" customClass="MiniBackView" customModule="DN音乐" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="325" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="jEC-JV-AIi">
+                    <rect key="frame" x="7" y="36" width="8" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="jEC-JV-AIi" secondAttribute="height" multiplier="1:1" id="7u5-Xm-ytC"/>
+                        <constraint firstAttribute="width" constant="8" id="Wlz-Oi-Gjk"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerCloseButtonDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Rjz-AJ-GVQ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="closeButtonClick:" target="-2" id="Boc-1g-GQg"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="t8W-xU-uJR">
+                    <rect key="frame" x="7" y="23" width="8" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="xHg-fe-NZg"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerNormalModeButtonDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="4nQ-z6-RH0">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showMainWindow:" target="-2" id="cTX-kR-hZV"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="CbB-sC-0Ht" customClass="CustomAlbumButton" customModule="DN音乐" customModuleProvider="target">
+                    <rect key="frame" x="27" y="10" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="FiG-91-a0W"/>
+                        <constraint firstAttribute="width" secondItem="CbB-sC-0Ht" secondAttribute="height" multiplier="1:1" id="pbZ-zM-Smm"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerMiniAlbumDefault" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="StD-7k-4G2">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="Ryk-E3-Tm6" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                    <rect key="frame" x="299" y="17" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="smT-Jl-TH9"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerVolumeButtonPressedDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0wc-Ue-tXX">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="vIB-SW-meO" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
+                    <rect key="frame" x="266" y="16" width="18" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="vIB-SW-meO" secondAttribute="height" multiplier="1:1" id="GHO-Qi-OMd"/>
+                        <constraint firstAttribute="width" constant="18" id="n4q-nl-WGu"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="CurrentPlaylist_Default" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="vaI-BU-LAX">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Ryk-E3-Tm6" firstAttribute="leading" secondItem="vIB-SW-meO" secondAttribute="trailing" constant="15" id="0Zd-Qg-3vX"/>
+                <constraint firstItem="CbB-sC-0Ht" firstAttribute="leading" secondItem="jEC-JV-AIi" secondAttribute="trailing" constant="12" id="6bN-cr-xhH"/>
+                <constraint firstItem="vIB-SW-meO" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="8we-TY-JYD"/>
+                <constraint firstItem="Ryk-E3-Tm6" firstAttribute="width" secondItem="Ryk-E3-Tm6" secondAttribute="height" multiplier="1:1" id="9Lb-3K-e3d"/>
+                <constraint firstItem="t8W-xU-uJR" firstAttribute="leading" secondItem="jEC-JV-AIi" secondAttribute="leading" id="DhM-74-VIb"/>
+                <constraint firstItem="CbB-sC-0Ht" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="EdE-s0-Bys"/>
+                <constraint firstAttribute="trailing" secondItem="Ryk-E3-Tm6" secondAttribute="trailing" constant="10" id="PM5-Fl-uLm"/>
+                <constraint firstItem="t8W-xU-uJR" firstAttribute="top" secondItem="jEC-JV-AIi" secondAttribute="bottom" constant="5" id="Vrd-QH-JP9"/>
+                <constraint firstItem="Ryk-E3-Tm6" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="hkq-yI-ZZG"/>
+                <constraint firstItem="jEC-JV-AIi" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="7" id="mqj-sc-g4j"/>
+                <constraint firstItem="t8W-xU-uJR" firstAttribute="width" secondItem="t8W-xU-uJR" secondAttribute="height" multiplier="1:1" id="nnO-pF-Fdp"/>
+                <constraint firstItem="jEC-JV-AIi" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="6" id="sIO-Nr-i6U"/>
+            </constraints>
+            <point key="canvasLocation" x="127.5" y="213"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="CurrentPlaylist_Default" width="32" height="32"/>
+        <image name="MiniPlayerCloseButtonDark" width="8" height="8"/>
+        <image name="MiniPlayerMiniAlbumDefault" width="38" height="38"/>
+        <image name="MiniPlayerNormalModeButtonDark" width="8" height="8"/>
+        <image name="MiniPlayerVolumeButtonPressedDark" width="16" height="16"/>
+    </resources>
+</document>

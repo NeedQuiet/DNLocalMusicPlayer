@@ -6,6 +6,8 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>DN 音乐</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -61,7 +63,5 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
-	<key>CFBundleDisplayName</key>
-	<string>DN 音乐</string>
 </dict>
 </plist>

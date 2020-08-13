@@ -21,6 +21,7 @@ class WindowTitileBar: NSViewController {
         setupKVOAndNotifi()
         self.view.window?.title = ""
     }
+
 }
 
 //MARK: - UI设置
@@ -45,7 +46,13 @@ extension WindowTitileBar {
 
 //MARK: - Action
 extension WindowTitileBar {
+    //MARK: 关闭PlayView
     @IBAction func closeButtonClick(_ sender: Any) {
         WindowManager.share.showPlayView(show: false)
+    }
+    
+    //MARK: 展示mini控制器
+    @IBAction func showMiniWindow(_ sender: Any) {
+        WindowManager.share.showMiniWindow()
     }
 }

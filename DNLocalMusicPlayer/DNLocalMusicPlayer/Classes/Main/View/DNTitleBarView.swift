@@ -6,6 +6,8 @@
 //  Copyright © 2020 大宁. All rights reserved.
 //
 
+// window顶部titleBar背景
+
 import Cocoa
 
 class DNTitleBarView: DNBaseView {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		377C9925EFA6FE0876C78D74 /* Pods_DNLocalMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */; };
+		F512A31424E52D5A006222BA /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512A31324E52D5A006222BA /* MainWindowController.swift */; };
+		F512A31724E546E2006222BA /* MiniPlayerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512A31624E546E2006222BA /* MiniPlayerWindow.swift */; };
+		F512A31924E5497D006222BA /* MiniBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512A31824E5497C006222BA /* MiniBackView.swift */; };
 		F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51A3BA424C850B100F49E10 /* UserDefaultsManager.swift */; };
 		F51C100324B31CBC0079DD35 /* CustomWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C100224B31CBC0079DD35 /* CustomWindow.swift */; };
 		F51C100724B3220B0079DD35 /* DNTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C100624B3220B0079DD35 /* DNTitleBarView.swift */; };
@@ -108,6 +111,9 @@
 		F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */; };
 		F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* DNButton.swift */; };
 		F52ABDEC24BD98E400D093C4 /* DetailsTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */; };
+		F52C0ED024E0E4260080AC09 /* MiniWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52C0ECF24E0E4260080AC09 /* MiniWindowController.swift */; };
+		F52C0ED324E0E5740080AC09 /* MiniViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52C0ED124E0E5740080AC09 /* MiniViewController.swift */; };
+		F52C0ED424E0E5740080AC09 /* MiniViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52C0ED224E0E5740080AC09 /* MiniViewController.xib */; };
 		F5405F1424D9117B00CA4D34 /* EachLineLrcItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5405F1324D9117B00CA4D34 /* EachLineLrcItem.swift */; };
 		F544015424CAB57700B12458 /* DNScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015324CAB57700B12458 /* DNScroller.swift */; };
 		F544015824CAC7C400B12458 /* DNTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015724CAC7C400B12458 /* DNTableView.swift */; };
@@ -160,6 +166,9 @@
 		0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DNLocalMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00D5D51D60A5E837DCC0F81 /* Pods-DNLocalMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		C98DC77936359675D8B9A143 /* Pods-DNLocalMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
+		F512A31324E52D5A006222BA /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		F512A31624E546E2006222BA /* MiniPlayerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerWindow.swift; sourceTree = "<group>"; };
+		F512A31824E5497C006222BA /* MiniBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniBackView.swift; sourceTree = "<group>"; };
 		F51A3BA424C850B100F49E10 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F51C100224B31CBC0079DD35 /* CustomWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWindow.swift; sourceTree = "<group>"; };
 		F51C100624B3220B0079DD35 /* DNTitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleBarView.swift; sourceTree = "<group>"; };
@@ -265,6 +274,9 @@
 		F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressed.tiff; sourceTree = "<group>"; };
 		F51F8A6124AEF8670066E920 /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
 		F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableRow.swift; sourceTree = "<group>"; };
+		F52C0ECF24E0E4260080AC09 /* MiniWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWindowController.swift; sourceTree = "<group>"; };
+		F52C0ED124E0E5740080AC09 /* MiniViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniViewController.swift; sourceTree = "<group>"; };
+		F52C0ED224E0E5740080AC09 /* MiniViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniViewController.xib; sourceTree = "<group>"; };
 		F5405F1324D9117B00CA4D34 /* EachLineLrcItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachLineLrcItem.swift; sourceTree = "<group>"; };
 		F544015324CAB57700B12458 /* DNScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNScroller.swift; sourceTree = "<group>"; };
 		F544015724CAC7C400B12458 /* DNTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTableView.swift; sourceTree = "<group>"; };
@@ -344,6 +356,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F512A31524E5468C006222BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F512A31624E546E2006222BA /* MiniPlayerWindow.swift */,
+				F512A31824E5497C006222BA /* MiniBackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F51F895E24AD87060066E920 = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +408,7 @@
 				F51F89A324ADBE820066E920 /* DetailsPage */,
 				F51F89B524ADC8770066E920 /* Playview */,
 				F51F899124ADBA7A0066E920 /* BottomPlayView */,
-				F560F99724AF3B78008FC9C9 /* CurrentPlaylist */,
+				F52C0ECD24E0E31D0080AC09 /* Mini */,
 				F51F89AB24ADC06D0066E920 /* Tools */,
 			);
 			path = Classes;
@@ -441,6 +462,7 @@
 				F51F89B324ADC3470066E920 /* BottomPlayViewController.swift */,
 				F560F99324AF3730008FC9C9 /* VolumePopover.swift */,
 				F560F99424AF3730008FC9C9 /* VolumePopover.xib */,
+				F560F99724AF3B78008FC9C9 /* CurrentPlaylist */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -450,6 +472,7 @@
 			children = (
 				F51F899B24ADBC920066E920 /* Main.storyboard */,
 				F5CFA52124B342B1001D1343 /* MainViewController.swift */,
+				F512A31324E52D5A006222BA /* MainWindowController.swift */,
 				F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */,
 				F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */,
 			);
@@ -660,6 +683,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F52C0ECD24E0E31D0080AC09 /* Mini */ = {
+			isa = PBXGroup;
+			children = (
+				F512A31524E5468C006222BA /* View */,
+				F52C0ECE24E0E32D0080AC09 /* Controller */,
+			);
+			path = Mini;
+			sourceTree = "<group>";
+		};
+		F52C0ECE24E0E32D0080AC09 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F52C0ECF24E0E4260080AC09 /* MiniWindowController.swift */,
+				F52C0ED124E0E5740080AC09 /* MiniViewController.swift */,
+				F52C0ED224E0E5740080AC09 /* MiniViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		F544015B24CAF1DF00B12458 /* CustomBaseItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +888,7 @@
 				F560F99624AF3730008FC9C9 /* VolumePopover.xib in Resources */,
 				F51F899C24ADBC920066E920 /* Main.storyboard in Resources */,
 				F51F8A2024AEDC550066E920 /* MiniPlayerPraiseButtonDisabled.tiff in Resources */,
+				F52C0ED424E0E5740080AC09 /* MiniViewController.xib in Resources */,
 				F51F89BA24ADC89F0066E920 /* PlayView.storyboard in Resources */,
 				F51F8A5124AEDC550066E920 /* MiniPlayerPlaylistInfoButton.tiff in Resources */,
 				F51F8A4924AEDC550066E920 /* MiniPlayerPlayButton.tiff in Resources */,
@@ -951,13 +994,16 @@
 				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
 				F544015824CAC7C400B12458 /* DNTableView.swift in Sources */,
 				F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */,
+				F512A31724E546E2006222BA /* MiniPlayerWindow.swift in Sources */,
 				F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */,
 				F51F89AE24ADC0A20066E920 /* NSColor-Extension.swift in Sources */,
 				F52ABDEC24BD98E400D093C4 /* DetailsTableRow.swift in Sources */,
 				F5B9E18324DD5693005FF5CD /* DNLabel.swift in Sources */,
 				F51F89AA24ADBF600066E920 /* DetailsPageViewController.swift in Sources */,
 				F5DC90BE24C8118F00FFB4FB /* DNSliderCell.swift in Sources */,
+				F52C0ED324E0E5740080AC09 /* MiniViewController.swift in Sources */,
 				F5A844F224CD35FB00A65AD7 /* PlaylistItemCellView.swift in Sources */,
+				F512A31424E52D5A006222BA /* MainWindowController.swift in Sources */,
 				F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */,
 				F5DC90BA24C80FD700FFB4FB /* DNVolumeSlider.swift in Sources */,
 				F51F896B24AD87060066E920 /* AppDelegate.swift in Sources */,
@@ -970,6 +1016,7 @@
 				F56F6A6D24B9C03F005D550A /* PlayerManager.swift in Sources */,
 				F5405F1424D9117B00CA4D34 /* EachLineLrcItem.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,
+				F512A31924E5497D006222BA /* MiniBackView.swift in Sources */,
 				F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */,
 				F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */,
 				F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */,
@@ -979,6 +1026,7 @@
 				F544015424CAB57700B12458 /* DNScroller.swift in Sources */,
 				F5DC90C024C8137300FFB4FB /* DNSlider.swift in Sources */,
 				F55C3BC724B87E8700017FBD /* Song.swift in Sources */,
+				F52C0ED024E0E4260080AC09 /* MiniWindowController.swift in Sources */,
 				F5B9E18124DD2580005FF5CD /* String-Extension.swift in Sources */,
 				F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */,
 				F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */,

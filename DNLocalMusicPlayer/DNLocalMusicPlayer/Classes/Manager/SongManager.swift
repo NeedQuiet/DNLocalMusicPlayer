@@ -38,7 +38,7 @@ extension SongManager {
         }).map {(songItem) -> Song in
             return Song(iTunesItem: songItem)
         }
-        print("已找到\(Songs.count)首iTunes本地歌曲")
+        print("已查询到\(Songs.count)首iTunes本地歌曲")
         _ = Songs.map { (song)  in
             iTunesPlaylist.songs.append(song)
         }
@@ -53,7 +53,7 @@ extension SongManager {
         playlists = result.map { (piaylist) in
             return piaylist
         }
-        print("已找到\(playlists.count)个自定义歌单")
+        print("已查询到\(playlists.count)个自定义歌单")
         //MARK: 获取记录的播放的Playlist
         let playingPlaylistIndex = UserDefaultsManager.share.checkSeletedPlaylistIndex()
         

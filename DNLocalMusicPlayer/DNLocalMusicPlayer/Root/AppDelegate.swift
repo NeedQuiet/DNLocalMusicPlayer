@@ -10,9 +10,11 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var mainWindow: NSWindow!
+    var mainWindow: NSWindow?
+    
     func applicationWillFinishLaunching(_ notification: Notification) {
         NSApp.activate(ignoringOtherApps: true)
+        
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -21,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windows = NSApplication.shared.windows
         if windows.count > 0 {
             mainWindow = windows[0]
+            WindowManager.share.mainWindow = mainWindow
         }
     }
 
@@ -33,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: NSWindowDelegate {
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if !flag {
-            mainWindow.makeKeyAndOrderFront(nil)
+            mainWindow?.makeKeyAndOrderFront(nil)
         }
         return false
     }
