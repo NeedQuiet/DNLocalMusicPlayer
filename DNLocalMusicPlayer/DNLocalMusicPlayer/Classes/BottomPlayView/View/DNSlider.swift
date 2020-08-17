@@ -35,7 +35,7 @@ extension DNSlider {
     }
     
     override func mouseEntered(with event: NSEvent) {
-        super.mouseEntered(with: event)
+//        super.mouseEntered(with: event)
         NSCursor.pointingHand.set()
         /*
             通过设置 isHighlighted 取反来触发 cell 的 drawKnob 方法;
@@ -46,7 +46,7 @@ extension DNSlider {
     }
     
     override func mouseExited(with event: NSEvent) {
-        super.mouseExited(with: event)
+//        super.mouseExited(with: event)
         NSCursor.arrow.set()
         shouKnob = false
         

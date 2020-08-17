@@ -10,13 +10,17 @@
                 <outlet property="albumButton" destination="CbB-sC-0Ht" id="Ohf-wn-KxB"/>
                 <outlet property="closeButton" destination="jEC-JV-AIi" id="aDH-UA-LL6"/>
                 <outlet property="enlargeButton" destination="t8W-xU-uJR" id="eOZ-PB-gVQ"/>
+                <outlet property="infoBackView" destination="BH6-Kq-dcp" id="YBv-3z-CpD"/>
+                <outlet property="progressSlider" destination="YdT-jg-DEY" id="pe0-jP-8d6"/>
+                <outlet property="progressSliderCell" destination="Nhf-fm-cYF" id="r5D-kj-gPG"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="volumeButton" destination="Ryk-E3-Tm6" id="7nN-NO-XDb"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY" customClass="MiniBackView" customModule="DN音乐" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="325" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="jEC-JV-AIi">
@@ -46,10 +50,10 @@
                         <action selector="showMainWindow:" target="-2" id="cTX-kR-hZV"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="CbB-sC-0Ht" customClass="CustomAlbumButton" customModule="DN音乐" customModuleProvider="target">
-                    <rect key="frame" x="27" y="10" width="30" height="30"/>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="CbB-sC-0Ht">
+                    <rect key="frame" x="25" y="8" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="30" id="FiG-91-a0W"/>
+                        <constraint firstAttribute="width" constant="35" id="FiG-91-a0W"/>
                         <constraint firstAttribute="width" secondItem="CbB-sC-0Ht" secondAttribute="height" multiplier="1:1" id="pbZ-zM-Smm"/>
                     </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerMiniAlbumDefault" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="StD-7k-4G2">
@@ -58,7 +62,7 @@
                     </buttonCell>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="Ryk-E3-Tm6" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
-                    <rect key="frame" x="299" y="17" width="16" height="16"/>
+                    <rect key="frame" x="274" y="20" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="smT-Jl-TH9"/>
                     </constraints>
@@ -66,9 +70,12 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="volumeButtonCLick:" target="-2" id="mwF-cL-K4L"/>
+                    </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="vIB-SW-meO" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
-                    <rect key="frame" x="266" y="16" width="18" height="18"/>
+                    <rect key="frame" x="241" y="19" width="18" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="vIB-SW-meO" secondAttribute="height" multiplier="1:1" id="GHO-Qi-OMd"/>
                         <constraint firstAttribute="width" constant="18" id="n4q-nl-WGu"/>
@@ -78,22 +85,50 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="BH6-Kq-dcp" userLabel="歌曲信息及播控">
+                    <rect key="frame" x="65" y="14" width="171" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="171" id="zij-8b-sXm"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="gXn-CC-Txr" userLabel="进度条">
+                    <rect key="frame" x="67" y="4" width="221" height="8"/>
+                    <subviews>
+                        <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YdT-jg-DEY" customClass="DNSlider" customModule="DN音乐" customModuleProvider="target">
+                            <rect key="frame" x="-2" y="-6" width="225" height="19"/>
+                            <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Nhf-fm-cYF" customClass="DNSliderCell" customModule="DN音乐" customModuleProvider="target"/>
+                        </slider>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="Ir5-Gb-ThT"/>
+                        <constraint firstItem="YdT-jg-DEY" firstAttribute="centerY" secondItem="gXn-CC-Txr" secondAttribute="centerY" id="JlR-SS-3aK"/>
+                        <constraint firstItem="YdT-jg-DEY" firstAttribute="leading" secondItem="gXn-CC-Txr" secondAttribute="leading" id="rQl-mY-a6u"/>
+                        <constraint firstAttribute="trailing" secondItem="YdT-jg-DEY" secondAttribute="trailing" id="rmu-U0-oIa"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
                 <constraint firstItem="Ryk-E3-Tm6" firstAttribute="leading" secondItem="vIB-SW-meO" secondAttribute="trailing" constant="15" id="0Zd-Qg-3vX"/>
-                <constraint firstItem="CbB-sC-0Ht" firstAttribute="leading" secondItem="jEC-JV-AIi" secondAttribute="trailing" constant="12" id="6bN-cr-xhH"/>
-                <constraint firstItem="vIB-SW-meO" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="8we-TY-JYD"/>
+                <constraint firstItem="CbB-sC-0Ht" firstAttribute="leading" secondItem="jEC-JV-AIi" secondAttribute="trailing" constant="10" id="6bN-cr-xhH"/>
                 <constraint firstItem="Ryk-E3-Tm6" firstAttribute="width" secondItem="Ryk-E3-Tm6" secondAttribute="height" multiplier="1:1" id="9Lb-3K-e3d"/>
                 <constraint firstItem="t8W-xU-uJR" firstAttribute="leading" secondItem="jEC-JV-AIi" secondAttribute="leading" id="DhM-74-VIb"/>
                 <constraint firstItem="CbB-sC-0Ht" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="EdE-s0-Bys"/>
+                <constraint firstItem="BH6-Kq-dcp" firstAttribute="leading" secondItem="CbB-sC-0Ht" secondAttribute="trailing" constant="5" id="Ost-rm-vny"/>
                 <constraint firstAttribute="trailing" secondItem="Ryk-E3-Tm6" secondAttribute="trailing" constant="10" id="PM5-Fl-uLm"/>
                 <constraint firstItem="t8W-xU-uJR" firstAttribute="top" secondItem="jEC-JV-AIi" secondAttribute="bottom" constant="5" id="Vrd-QH-JP9"/>
-                <constraint firstItem="Ryk-E3-Tm6" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="hkq-yI-ZZG"/>
+                <constraint firstItem="gXn-CC-Txr" firstAttribute="top" secondItem="BH6-Kq-dcp" secondAttribute="bottom" constant="2" id="aZU-ik-5Ay"/>
+                <constraint firstItem="gXn-CC-Txr" firstAttribute="leading" secondItem="CbB-sC-0Ht" secondAttribute="trailing" constant="7" id="b1A-7N-UNp"/>
+                <constraint firstItem="vIB-SW-meO" firstAttribute="centerY" secondItem="BH6-Kq-dcp" secondAttribute="centerY" id="b7u-rE-5cE"/>
+                <constraint firstItem="gXn-CC-Txr" firstAttribute="trailing" secondItem="Ryk-E3-Tm6" secondAttribute="trailing" constant="-2" id="dMN-ig-Z7W"/>
                 <constraint firstItem="jEC-JV-AIi" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="7" id="mqj-sc-g4j"/>
                 <constraint firstItem="t8W-xU-uJR" firstAttribute="width" secondItem="t8W-xU-uJR" secondAttribute="height" multiplier="1:1" id="nnO-pF-Fdp"/>
+                <constraint firstItem="BH6-Kq-dcp" firstAttribute="top" secondItem="CbB-sC-0Ht" secondAttribute="top" id="oPh-nH-3Gm"/>
+                <constraint firstItem="vIB-SW-meO" firstAttribute="leading" secondItem="BH6-Kq-dcp" secondAttribute="trailing" constant="5" id="oYQ-Qo-t2h"/>
+                <constraint firstItem="Ryk-E3-Tm6" firstAttribute="centerY" secondItem="vIB-SW-meO" secondAttribute="centerY" id="qK3-i5-Fjq"/>
                 <constraint firstItem="jEC-JV-AIi" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="6" id="sIO-Nr-i6U"/>
+                <constraint firstItem="BH6-Kq-dcp" firstAttribute="bottom" secondItem="CbB-sC-0Ht" secondAttribute="bottom" constant="-6" id="ytS-oV-J04"/>
             </constraints>
-            <point key="canvasLocation" x="127.5" y="213"/>
+            <point key="canvasLocation" x="127" y="213"/>
         </customView>
     </objects>
     <resources>

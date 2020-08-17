@@ -52,7 +52,7 @@ extension BottomPlayViewController {
     func setupUI() {
         setBackgroundColor(r: 28, g: 28, b: 28)
         albumButton.image = NSImage.init(named: "MiniPlayerMiniAlbumDefault")
-        albumButton.setCornerRadius(radius: 4)
+        albumButton.setCornerRadius(4)
         
         songTitleButton.defaultColor = kDefaultColor
         songTitleButton.hoverColor = kWhiteHighlightColor

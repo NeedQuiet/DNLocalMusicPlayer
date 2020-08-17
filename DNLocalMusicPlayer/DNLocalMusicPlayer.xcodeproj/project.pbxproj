@@ -151,6 +151,9 @@
 		F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAE88424C18587003901F5 /* DNFippedView.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
+		F5DAD44524EA7067000B68FC /* MiniButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DAD44424EA7067000B68FC /* MiniButton.swift */; };
+		F5DAD44824EA8722000B68FC /* MiniVolumePopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5DAD44624EA8721000B68FC /* MiniVolumePopover.xib */; };
+		F5DAD44924EA8722000B68FC /* MiniVolumePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DAD44724EA8721000B68FC /* MiniVolumePopover.swift */; };
 		F5DC90A224C6BFC300FFB4FB /* WindowTitleBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */; };
 		F5DC90A424C6C26000FFB4FB /* WindowTitileBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */; };
 		F5DC90A624C6E55000FFB4FB /* CustomAlbumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */; };
@@ -315,6 +318,9 @@
 		F5CAE88424C18587003901F5 /* DNFippedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNFippedView.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
+		F5DAD44424EA7067000B68FC /* MiniButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniButton.swift; sourceTree = "<group>"; };
+		F5DAD44624EA8721000B68FC /* MiniVolumePopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniVolumePopover.xib; sourceTree = "<group>"; };
+		F5DAD44724EA8721000B68FC /* MiniVolumePopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniVolumePopover.swift; sourceTree = "<group>"; };
 		F5DC90A124C6BFC300FFB4FB /* WindowTitleBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WindowTitleBar.storyboard; sourceTree = "<group>"; };
 		F5DC90A324C6C26000FFB4FB /* WindowTitileBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTitileBar.swift; sourceTree = "<group>"; };
 		F5DC90A524C6E55000FFB4FB /* CustomAlbumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlbumButton.swift; sourceTree = "<group>"; };
@@ -361,6 +367,7 @@
 			children = (
 				F512A31624E546E2006222BA /* MiniPlayerWindow.swift */,
 				F512A31824E5497C006222BA /* MiniBackView.swift */,
+				F5DAD44424EA7067000B68FC /* MiniButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -407,6 +414,7 @@
 				F51F899D24ADBD580066E920 /* PlayList */,
 				F51F89A324ADBE820066E920 /* DetailsPage */,
 				F51F89B524ADC8770066E920 /* Playview */,
+				F560F99724AF3B78008FC9C9 /* CurrentPlaylist */,
 				F51F899124ADBA7A0066E920 /* BottomPlayView */,
 				F52C0ECD24E0E31D0080AC09 /* Mini */,
 				F51F89AB24ADC06D0066E920 /* Tools */,
@@ -462,7 +470,6 @@
 				F51F89B324ADC3470066E920 /* BottomPlayViewController.swift */,
 				F560F99324AF3730008FC9C9 /* VolumePopover.swift */,
 				F560F99424AF3730008FC9C9 /* VolumePopover.xib */,
-				F560F99724AF3B78008FC9C9 /* CurrentPlaylist */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -698,6 +705,8 @@
 				F52C0ECF24E0E4260080AC09 /* MiniWindowController.swift */,
 				F52C0ED124E0E5740080AC09 /* MiniViewController.swift */,
 				F52C0ED224E0E5740080AC09 /* MiniViewController.xib */,
+				F5DAD44724EA8721000B68FC /* MiniVolumePopover.swift */,
+				F5DAD44624EA8721000B68FC /* MiniVolumePopover.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -890,6 +899,7 @@
 				F51F8A2024AEDC550066E920 /* MiniPlayerPraiseButtonDisabled.tiff in Resources */,
 				F52C0ED424E0E5740080AC09 /* MiniViewController.xib in Resources */,
 				F51F89BA24ADC89F0066E920 /* PlayView.storyboard in Resources */,
+				F5DAD44824EA8722000B68FC /* MiniVolumePopover.xib in Resources */,
 				F51F8A5124AEDC550066E920 /* MiniPlayerPlaylistInfoButton.tiff in Resources */,
 				F51F8A4924AEDC550066E920 /* MiniPlayerPlayButton.tiff in Resources */,
 				F51F8A5D24AEDC550066E920 /* MiniPlayerPlaylistButtonDisabled.tiff in Resources */,
@@ -1017,6 +1027,7 @@
 				F5405F1424D9117B00CA4D34 /* EachLineLrcItem.swift in Sources */,
 				F51F89BC24ADC8C80066E920 /* PlayViewController.swift in Sources */,
 				F512A31924E5497D006222BA /* MiniBackView.swift in Sources */,
+				F5DAD44924EA8722000B68FC /* MiniVolumePopover.swift in Sources */,
 				F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */,
 				F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */,
 				F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */,
@@ -1033,6 +1044,7 @@
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
 				F5A844EE24CC85D400A65AD7 /* PlaylistHeaderCellView.swift in Sources */,
 				F5B47F9424CEA19C00C8FC18 /* CurrentPLTableRow.swift in Sources */,
+				F5DAD44524EA7067000B68FC /* MiniButton.swift in Sources */,
 				F51F89B024ADC26E0066E920 /* BaseViewController.swift in Sources */,
 				F51F896F24AD87060066E920 /* Document.swift in Sources */,
 				F5DC90B024C6F2BA00FFB4FB /* SongProgressViewController.swift in Sources */,

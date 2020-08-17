@@ -19,13 +19,13 @@ import Cocoa
 
 class DNSliderCell: NSSliderCell {
     let Offset:CGFloat = 2 // 进度条，实际上向（根据slider方向）左/右 或者 上/下 偏移2
-    let progressColor = kRedHighlightColor // 进度条进度背景色
+    var progressColor = kRedHighlightColor // 进度条进度背景色
     var backgroundColor = NSColor.clear // 进度条整体背景色
-    let knobColor = kRedHighlightColor // 按钮颜色
-    let sliderThickness:CGFloat = 3.0 // 进度条厚度
+    var knobColor = kRedHighlightColor // 按钮颜色
+    var sliderThickness:CGFloat = 3.0 // 进度条厚度
     let sliderBarRadius:CGFloat = 0 // 进度条圆角
-    let KnobWidth:CGFloat = 12.0 // 按钮宽度
-    let KnobHeight:CGFloat = 12.0 // 按钮高度
+    var KnobWidth:CGFloat = 12.0 // 按钮宽度
+    var KnobHeight:CGFloat = 12.0 // 按钮高度
     var progressRect = NSRect() // 进度的Rect
     var needControlKnobHidden = false // 是否需要控制旋钮显示隐藏
     

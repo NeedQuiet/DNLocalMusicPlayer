@@ -10,8 +10,6 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var mainWindow: NSWindow?
-    
     func applicationWillFinishLaunching(_ notification: Notification) {
         NSApp.activate(ignoringOtherApps: true)
         
@@ -20,11 +18,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         SongManager.share.startScanRealmData()
-        let windows = NSApplication.shared.windows
-        if windows.count > 0 {
-            mainWindow = windows[0]
-            WindowManager.share.mainWindow = mainWindow
-        }
+//        let windows = NSApplication.shared.mainWindow
+//        if windows.count > 0 {
+//            mainWindow = windows[0]
+//            WindowManager.share.mainWindow = mainWindow
+//        }
+        
+        let mainWindow = NSApplication.shared.mainWindow
+        WindowManager.share.mainWindow = mainWindow
+        WindowManager.share.currentWindow = mainWindow
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -36,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: NSWindowDelegate {
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if !flag {
-            mainWindow?.makeKeyAndOrderFront(nil)
+            WindowManager.share.currentWindow?.makeKeyAndOrderFront(nil)
         }
         return false
     }

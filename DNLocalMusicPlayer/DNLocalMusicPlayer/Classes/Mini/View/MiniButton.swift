@@ -12,7 +12,7 @@
 
 import Cocoa
 
-class DNButton: NSButton {
+class MiniButton: NSButton {
     private var hover: Bool = false
     var areaView:NSView = NSView()
     var defaultImage:NSImage?
@@ -24,21 +24,38 @@ class DNButton: NSButton {
         super.draw(dirtyRect)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        addTrackingAreaView()
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        setupUI()
     }
     
-    convenience init(image:NSImage?) {
-        self.init()
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        addTrackingAreaView()
+//    }
+//    
+//    convenience init(image:NSImage?) {
+//        self.init()
+//        self.bezelStyle = .rounded
+//        self.isBordered = false
+//        self.image = image
+//    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupUI() {
+        addTrackingAreaView()
         self.bezelStyle = .rounded
         self.isBordered = false
         self.image = image
     }
+    
 }
 
 //MARK: - 鼠标监听
-extension DNButton {
+extension MiniButton {
     //MARK: NSTrackingArea对象并关联View
     func addTrackingAreaView() {
         addTrackingAreaView(withFrame: bounds)
@@ -46,7 +63,7 @@ extension DNButton {
     
     func addTrackingAreaView(withFrame frame:NSRect) {
         areaView = NSView.init(frame: frame)
-        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: frame, options: [.inVisibleRect, .mouseEnteredAndExited,.activeInKeyWindow], owner: areaView, userInfo: nil)
+        let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: frame, options: [.inVisibleRect, .mouseEnteredAndExited,.activeAlways], owner: areaView, userInfo: nil)
         areaView.addTrackingArea(trackingArea)
         self.addSubview(areaView)
     }

@@ -20,6 +20,9 @@ class WindowManager: NSObject {
     //MARK: 主窗口
     var mainWindow:NSWindow?
     
+    //MARK: 当前窗口
+    var currentWindow:NSWindow?
+    
     //MARK: 小窗口
     lazy var miniWindowController:MiniWindowController =  {
         let miniController = MiniViewController()
@@ -47,12 +50,14 @@ extension WindowManager {
     //MARK: 展示小播放窗口
     func showMiniWindow() {
         mainWindow?.close()
-        miniWindowController.window?.orderFront(nil)
+        miniWindowController.window?.makeKeyAndOrderFront(nil)
+        currentWindow = miniWindowController.window
     }
     
     //MARK: 展示主播放窗口
     func showMainWindow() {
         miniWindowController.window?.close()
         mainWindow?.makeKeyAndOrderFront(nil)
+        currentWindow = mainWindow
     }
 }
