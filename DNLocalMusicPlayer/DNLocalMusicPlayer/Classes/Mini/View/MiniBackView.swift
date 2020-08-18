@@ -30,22 +30,29 @@ class MiniBackView: NSView {
         setBorder(1,kLightestColor)
     }
     
+    // 允许鼠标拖拽移动窗口
     override var mouseDownCanMoveWindow: Bool {
         return true;
     }
     
+    // 翻转坐标系，方便固定trackArea区域
+    override var isFlipped: Bool {
+        return true
+    }
+    
+    // 鼠标移入
     override func mouseEntered(with event: NSEvent) {
-//        super.mouseEntered(with: event)
         delegate?.mouseEntered()
     }
     
+    // 鼠标移出
     override func mouseExited(with event: NSEvent) {
-//        super.mouseExited(with: event)
         delegate?.mouseExited()
     }
 }
 
 extension MiniBackView {
+    // 添加鼠标运动区域
     func addTrackingAreaView(withFrame frame:NSRect) {
         let areaView:NSView = NSView.init(frame: frame)
         let trackingArea:NSTrackingArea = NSTrackingArea.init(rect: frame, options: [.inVisibleRect, .mouseEnteredAndExited,.activeAlways], owner: areaView, userInfo: nil)

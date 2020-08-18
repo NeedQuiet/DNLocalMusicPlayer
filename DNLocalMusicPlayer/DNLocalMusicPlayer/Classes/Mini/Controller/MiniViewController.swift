@@ -10,6 +10,8 @@ import Cocoa
 import RxCocoa
 import SnapKit
 
+private let kWindowHeightOffset:CGFloat = 150
+
 class MiniViewController: NSViewController {
     // 关闭
     @IBOutlet weak var closeButton: NSButton!
@@ -35,6 +37,8 @@ class MiniViewController: NSViewController {
     var nextButton = MiniButton()
     // 音量
     @IBOutlet weak var volumeButton: DNButton!
+    // 是否展示playlist
+    var showPlaylist = false
     
     private lazy var volumePopover:NSPopover = {
         let popover = NSPopover()
@@ -160,18 +164,23 @@ extension MiniViewController {
         songInfoView.isHidden = isEnter
         songControlView.isHidden = !isEnter
     }
-}
-
-//MARK: - IBAction
-extension MiniViewController {
-    //MARK: 关闭
-    @IBAction func closeButtonClick(_ sender: Any) {
-        self.view.window?.close()
-    }
     
-    //MARK: 恢复大窗口
-    @IBAction func showMainWindow(_ sender: Any) {
-        WindowManager.share.showMainWindow()
+    // 展示或隐藏playlist
+    func displayPlaylist(withAnimate animate:Bool) {
+        var frame = self.view.window?.frame
+        if showPlaylist {
+            frame?.size.height += kWindowHeightOffset
+            if frame?.origin.y ?? 0 >= kWindowHeightOffset { // 判断边界
+                frame?.origin.y -= kWindowHeightOffset
+            }
+        } else {
+            frame?.size.height -= kWindowHeightOffset
+            if frame?.origin.y ?? 0 >= kWindowHeightOffset {
+                frame?.origin.y += kWindowHeightOffset
+            }
+        }
+        //        self.view.frame.size.height += 100
+        self.view.window?.setFrame(frame ?? NSRect.zero, display: true, animate: animate)
     }
 }
 
@@ -250,6 +259,22 @@ extension MiniViewController:DNSliderCellDelegate {
 
 //MARK: - Action
 extension MiniViewController {
+    //MARK: 关闭
+    @IBAction func closeButtonClick(_ sender: Any) {
+        self.view.window?.close()
+    }
+    
+    //MARK: 恢复大窗口
+    @IBAction func showMainWindow(_ sender: Any) {
+        // 如果是展开状态再执行，不然高度减没了
+        if showPlaylist {
+            showPlaylist = false
+            displayPlaylist(withAnimate: false)
+        }
+        
+        WindowManager.share.showMainWindow()
+    }
+    
     //MARK: 播放暂停
     @objc func playButtonclick() {
         if PlayerManager.share.isPlaying == true {
@@ -276,5 +301,10 @@ extension MiniViewController {
         } else {
             volumePopover.show(relativeTo: volumeButton.bounds, of: volumeButton, preferredEdge: .minY)
         }
+    }
+    
+    @IBAction func playlistButtonCLick(_ sender: Any) {
+        showPlaylist = !showPlaylist
+        displayPlaylist(withAnimate: true)
     }
 }
