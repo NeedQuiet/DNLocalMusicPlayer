@@ -31,7 +31,7 @@
                     </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerCloseButtonDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Rjz-AJ-GVQ">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="closeButtonClick:" target="-2" id="Boc-1g-GQg"/>
@@ -44,7 +44,7 @@
                     </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerNormalModeButtonDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="4nQ-z6-RH0">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="showMainWindow:" target="-2" id="cTX-kR-hZV"/>
@@ -58,7 +58,7 @@
                     </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerMiniAlbumDefault" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="StD-7k-4G2">
                         <behavior key="behavior" lightByContents="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="Ryk-E3-Tm6" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
@@ -68,7 +68,7 @@
                     </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MiniPlayerVolumeButtonPressedDark" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0wc-Ue-tXX">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="volumeButtonCLick:" target="-2" id="mwF-cL-K4L"/>
@@ -82,7 +82,7 @@
                     </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="CurrentPlaylist_Default" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="vaI-BU-LAX">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="playlistButtonCLick:" target="-2" id="Rwp-gR-JX7"/>
@@ -98,13 +98,13 @@
                     <rect key="frame" x="67" y="4" width="221" height="8"/>
                     <subviews>
                         <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YdT-jg-DEY" customClass="DNSlider" customModule="DN音乐" customModuleProvider="target">
-                            <rect key="frame" x="-2" y="-5" width="225" height="19"/>
+                            <rect key="frame" x="-2" y="-7" width="225" height="19"/>
                             <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Nhf-fm-cYF" customClass="DNSliderCell" customModule="DN音乐" customModuleProvider="target"/>
                         </slider>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="8" id="Ir5-Gb-ThT"/>
-                        <constraint firstItem="YdT-jg-DEY" firstAttribute="centerY" secondItem="gXn-CC-Txr" secondAttribute="centerY" id="JlR-SS-3aK"/>
+                        <constraint firstItem="YdT-jg-DEY" firstAttribute="centerY" secondItem="gXn-CC-Txr" secondAttribute="centerY" constant="2" id="JlR-SS-3aK"/>
                         <constraint firstItem="YdT-jg-DEY" firstAttribute="leading" secondItem="gXn-CC-Txr" secondAttribute="leading" id="rQl-mY-a6u"/>
                         <constraint firstAttribute="trailing" secondItem="YdT-jg-DEY" secondAttribute="trailing" id="rmu-U0-oIa"/>
                     </constraints>

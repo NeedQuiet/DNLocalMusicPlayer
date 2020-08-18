@@ -640,6 +640,9 @@ extension DetailsPageViewController {
                 }
                 SongManager.share.addSongsTo(playlist, songs, index: row) { (success) in
                     self.refreshDataSource(self.playlist)
+                    if self.playlist == PlayerManager.share.currentPlayingPlaylist {
+                        NotificationCenter.default.post(name: kRefreshCurrentPlaylistView, object: nil)
+                    }
                 }
                 return true
             }
@@ -676,6 +679,9 @@ extension DetailsPageViewController: DetailsViewHeaderViewDelegate {
                 if songs.count > 0 {
                     SongManager.share.addSongsTo(self.playlist, songs) {[unowned self] (success) in
                         self.refreshDataSource(self.playlist)
+                        if self.playlist == PlayerManager.share.currentPlayingPlaylist {
+                            NotificationCenter.default.post(name: kRefreshCurrentPlaylistView, object: nil)
+                        }
                     }
                 }
             }
@@ -798,6 +804,9 @@ extension DetailsPageViewController {
         let song = getSongsOnDisplay()[clickedRow]
         SongManager.share.removeSongFrom(playlist, song) {[unowned self] (success) in
             self.refreshDataSource(self.playlist)
+            if self.playlist == PlayerManager.share.currentPlayingPlaylist {
+                NotificationCenter.default.post(name: kRefreshCurrentPlaylistView, object: nil)
+            }
         }
     }
     

@@ -19,6 +19,8 @@ class DNCustomTableRow: NSTableRowView {
     // 鼠标是否悬停
     var isHover:Bool = false
     
+    var needActiveInKeyWindow = true
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
@@ -56,7 +58,12 @@ extension DNCustomTableRow {
             self.removeTrackingArea(trackingArea!)
         }
         
-        trackingArea = NSTrackingArea.init(rect: bounds, options: [.inVisibleRect, .activeInKeyWindow, .mouseEnteredAndExited], owner: self, userInfo: nil)
+        var options:NSTrackingArea.Options = [.inVisibleRect, .activeInKeyWindow, .mouseEnteredAndExited]
+        if !needActiveInKeyWindow {
+            options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
+        }
+        
+        trackingArea = NSTrackingArea.init(rect: bounds, options: options, owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea!)
         
         /**

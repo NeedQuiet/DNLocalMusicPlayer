@@ -37,14 +37,43 @@ class MiniViewController: NSViewController {
     var nextButton = MiniButton()
     // 音量
     @IBOutlet weak var volumeButton: DNButton!
-    // 是否展示playlist
-    var showPlaylist = false
-    
     private lazy var volumePopover:NSPopover = {
         let popover = NSPopover()
         popover.contentViewController = MiniVolumePopover.init()
         popover.behavior = .transient // 点击外部自动close popover
         return popover
+    }()
+    // 是否展示playlist
+    var showPlaylist = false
+    // scrollview
+    private lazy var scrollView:DNFippedScrollView = {
+        let scrollView = DNFippedScrollView()
+        scrollView.borderType = .noBorder
+        scrollView.hasVerticalScroller = true
+        return scrollView
+    }()
+    
+    private lazy var tableView:NSTableView = { [unowned self] in
+        let tableView = NSTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.columnAutoresizingStyle = .uniformColumnAutoresizingStyle
+        tableView.allowsColumnReordering = false // 禁止header拖动排序
+        tableView.allowsColumnResizing = false
+        tableView.rowSizeStyle = .custom
+        tableView.rowHeight = 30
+        tableView.enclosingScrollView?.borderType = .noBorder // 边框
+        tableView.headerView = nil
+        tableView.backgroundColor = NSColor.init(r: 35, g: 35, b: 35)
+        
+        let titleColumn = NSTableColumn.init(identifier: NSUserInterfaceItemIdentifier(rawValue: "TitleColumnID"))
+        titleColumn.resizingMask = .userResizingMask
+        titleColumn.width = 300
+        tableView.doubleAction = #selector(tableViewDoubleClick(_:)) // 双击
+        tableView.target = self
+        tableView.addTableColumn(titleColumn)
+        
+        return tableView
     }()
     
     @IBOutlet weak var progressSlider: DNSlider!
@@ -78,6 +107,17 @@ extension MiniViewController {
         progressSliderCell.progressColor = kLightColor
         progressSliderCell.backgroundColor = kLightestColor
         progressSliderCell.delegate = self
+        
+        // scrollView
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(albumButton.snp.bottom).offset(8)
+            make.height.equalTo(kWindowHeightOffset)
+        }
+        // tableView
+        scrollView.contentView.documentView = tableView
+        tableView.reloadData()
     }
     
     //MARK: 刷新UI
@@ -219,7 +259,22 @@ extension MiniViewController {
                 if let currentSong = change.element {
                     guard currentSong != nil else {  return }
                     self.refreshUI(withSong: currentSong!)
+                    self.tableView.reloadData()
                 }
+        })
+        
+        //MARK: currentPlayingPlaylist
+        _ = PlayerManager.share.rx
+            .observeWeakly(Playlist.self, "currentPlayingPlaylist")
+            .subscribe {[unowned self] (event) in
+                self.tableView.reloadData()
+        }
+        
+        //MARK: kRefreshCurrentPlaylistView
+        _ = NotificationCenter.default.rx
+            .notification(kRefreshCurrentPlaylistView)
+            .subscribe({[unowned self] (event) in
+                self.tableView.reloadData()
         })
     }
 }
@@ -306,5 +361,92 @@ extension MiniViewController {
     @IBAction func playlistButtonCLick(_ sender: Any) {
         showPlaylist = !showPlaylist
         displayPlaylist(withAnimate: true)
+    }
+}
+
+//MARK: - NSTableViewDelegate/NSTableViewDataSource
+extension MiniViewController:NSTableViewDelegate,NSTableViewDataSource {
+    // MARK: 行高
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 30
+    }
+    
+    // MARK: 行数
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return PlayerManager.share.currentPlayingPlaylist.songs.count
+    }
+    
+    // MARK: 设置每行容器视图
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        let tableRowView = CurrentPLTableRow()
+        tableRowView.needActiveInKeyWindow = false
+
+        let song = PlayerManager.share.currentPlayingPlaylist.songs[row]
+        if isCurrentPlayingSong(song) {
+            tableRowView.isSelectedRow = true
+        } else {
+            tableRowView.isSelectedRow = false
+        }
+        tableRowView.index = row
+        return tableRowView
+    }
+    
+    // MARK: 设置每个Item的容器
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?  {
+        var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "miniCellID"), owner: self)
+        if cellView == nil {
+            cellView = NSView.init()
+
+            let song = PlayerManager.share.currentPlayingPlaylist.songs[row]
+            
+            // 歌曲名
+            let textLabel = DNLabel()
+            textLabel.stringValue = song.title
+            cellView!.addSubview(textLabel)
+            textLabel.snp.makeConstraints { (make) in
+                make.left.equalTo(10)
+                make.right.equalTo(10)
+                make.top.equalTo(7.5)
+            }
+            
+            if isCurrentPlayingSong(song) {
+                textLabel.textColor = kRedHighlightColor
+            } else {
+                textLabel.textColor = kDefaultColor
+            }
+        }
+        return cellView
+    }
+}
+
+//MARK: - private
+extension MiniViewController {
+    //MARK: 检测是否为当前播放的歌曲
+    private func isCurrentPlayingSong(_ song:Song) -> Bool {
+        if song.filePath == PlayerManager.share.currentSong?.filePath {
+            return true
+        }
+        return false
+    }
+    
+    //MARK: tableView双击
+    @objc private func tableViewDoubleClick(_ sender:AnyObject) {
+        let clickedRow = tableView.clickedRow
+        
+        if clickedRow == -1  {
+            return // 此时可能点击tableview 空白处
+        }
+        
+        // 如果重复点击，那就 播放/暂停
+        if UserDefaultsManager.share.songSelectedIndex ==  clickedRow{
+            if PlayerManager.share.isPlaying {
+                PlayerManager.share.pause() // 暂停
+            } else {
+                PlayerManager.share.play(withIndex: nil) // 播放
+            }
+            return
+        }
+
+        PlayerManager.share.play(withIndex: clickedRow) // 播放clickedRow
     }
 }

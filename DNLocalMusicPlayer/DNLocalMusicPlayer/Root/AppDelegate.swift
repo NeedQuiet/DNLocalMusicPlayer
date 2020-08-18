@@ -27,6 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let mainWindow = NSApplication.shared.mainWindow
         WindowManager.share.mainWindow = mainWindow
         WindowManager.share.currentWindow = mainWindow
+        print(mainWindow)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
