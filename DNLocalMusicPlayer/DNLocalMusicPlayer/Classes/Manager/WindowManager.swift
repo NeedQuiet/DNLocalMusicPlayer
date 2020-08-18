@@ -18,7 +18,11 @@ class WindowManager: NSObject {
     @objc dynamic var currentPlaylistIsShow:Bool = false
     
     //MARK: 主窗口
-    var mainWindow:NSWindow?
+    var mainWindow:NSWindow? {
+        didSet {
+            mainWindow?.setFrameAutosaveName("mainWindow")
+        }
+    }
     
     //MARK: 当前窗口
     var currentWindow:NSWindow?
@@ -27,6 +31,7 @@ class WindowManager: NSObject {
     lazy var miniWindowController:MiniWindowController =  {
         let miniController = MiniViewController()
         let miniWindow = MiniWindowController(WithRootViewController: miniController)
+        miniWindow.window?.setFrameAutosaveName("miniWindow")
         return miniWindow
     }()
     
@@ -52,6 +57,12 @@ extension WindowManager {
         mainWindow?.close()
         miniWindowController.window?.makeKeyAndOrderFront(nil)
         currentWindow = miniWindowController.window
+        let playModeValue:Int? = UserDefaults.standard.value(forKey: "firstShowMiniPlayer") as? Int
+        if playModeValue == nil {
+            UserDefaults.standard.set(1, forKey: "firstShowMiniPlayer")
+            UserDefaults.standard.synchronize()
+            miniWindowController.window?.center()
+        }
     }
     
     //MARK: 展示主播放窗口

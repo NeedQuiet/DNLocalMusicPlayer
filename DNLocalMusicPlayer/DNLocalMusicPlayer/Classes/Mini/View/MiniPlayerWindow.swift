@@ -18,5 +18,11 @@ class MiniPlayerWindow: NSWindow {
         // 设置透明背景
         isOpaque = false
         backgroundColor = NSColor.clear
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(windowWillClose(_:)), name: NSWindow.willCloseNotification, object: self)
     }
+    
+//    @objc func windowWillClose(_ notification:Notification) {
+//        print("mini windowWillClose")
+//    }
 }

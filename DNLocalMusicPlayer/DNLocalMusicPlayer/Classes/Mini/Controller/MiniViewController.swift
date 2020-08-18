@@ -122,14 +122,16 @@ extension MiniViewController {
     
     //MARK: 刷新UI
     func refreshUI(withSong currentSong:Song) {
-        var image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
-        if let imageData = currentSong.artworkData {
-            image = NSImage(data: imageData) ?? image
+        DispatchQueue.main.async { [unowned self] in
+            var image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
+            if let imageData = currentSong.artworkData {
+                image = NSImage(data: imageData) ?? image
+            }
+            self.albumButton.image = image
+            
+            self.songNameLabel.stringValue = currentSong.title
+            self.songArtistLabel.stringValue = "\(currentSong.artist) -- \(currentSong.album)"
         }
-        albumButton.image = image
-        
-        songNameLabel.stringValue = currentSong.title
-        songArtistLabel.stringValue = "\(currentSong.artist) -- \(currentSong.album)"
     }
     
     //MARK: 歌曲信息/播控
