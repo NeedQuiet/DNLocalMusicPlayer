@@ -56,4 +56,12 @@ class CustomWindow: NSWindow {
             }
         }
     }
+    
+//    override func keyDown(with event: NSEvent) {
+//        let keyCode = event.keyCode
+//        print("Local: \(keyCode)")
+//        if (event.modifierFlags == NSEvent.ModifierFlags.command) {
+//            print("cmd + ")
+//        }
+//    }
 }

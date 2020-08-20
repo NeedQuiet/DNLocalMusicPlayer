@@ -56,9 +56,13 @@ extension BottomPlayViewController {
         
         songTitleButton.defaultColor = kDefaultColor
         songTitleButton.hoverColor = kWhiteHighlightColor
-        
+        songTitleButton.lineBreakMode = .byTruncatingTail
+        songTitleButton.usesSingleLineMode = true
+
         songArtistButton.defaultColor = kLightColor
         songArtistButton.hoverColor = kWhiteHighlightColor
+        songArtistButton.lineBreakMode = .byTruncatingTail
+        songArtistButton.usesSingleLineMode = true
         
         partingLine.isHidden = true
         updatePlayMode()

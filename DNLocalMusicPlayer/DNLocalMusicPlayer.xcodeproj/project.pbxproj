@@ -110,6 +110,7 @@
 		F51F8A5E24AEDC550066E920 /* MiniPlayerCloseButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */; };
 		F51F8A5F24AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */; };
 		F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F8A6124AEF8670066E920 /* DNButton.swift */; };
+		F521C99F24EBDBAC000F3D2E /* KeyBoardListenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F521C99E24EBDBAC000F3D2E /* KeyBoardListenerManager.swift */; };
 		F52ABDEC24BD98E400D093C4 /* DetailsTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */; };
 		F52C0ED024E0E4260080AC09 /* MiniWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52C0ECF24E0E4260080AC09 /* MiniWindowController.swift */; };
 		F52C0ED324E0E5740080AC09 /* MiniViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52C0ED124E0E5740080AC09 /* MiniViewController.swift */; };
@@ -163,6 +164,7 @@
 		F5DC90BE24C8118F00FFB4FB /* DNSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90BD24C8118F00FFB4FB /* DNSliderCell.swift */; };
 		F5DC90C024C8137300FFB4FB /* DNSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90BF24C8137300FFB4FB /* DNSlider.swift */; };
 		F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */; };
+		F5FDE2DA24EE63D800136D84 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5FDE2D924EE63D800136D84 /* Carbon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +278,7 @@
 		F51F8A0F24AEDC550066E920 /* MiniPlayerCloseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButton.tiff; sourceTree = "<group>"; };
 		F51F8A1024AEDC550066E920 /* MiniPlayerCloseButtonPressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniPlayerCloseButtonPressed.tiff; sourceTree = "<group>"; };
 		F51F8A6124AEF8670066E920 /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
+		F521C99E24EBDBAC000F3D2E /* KeyBoardListenerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardListenerManager.swift; sourceTree = "<group>"; };
 		F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableRow.swift; sourceTree = "<group>"; };
 		F52C0ECF24E0E4260080AC09 /* MiniWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWindowController.swift; sourceTree = "<group>"; };
 		F52C0ED124E0E5740080AC09 /* MiniViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +333,7 @@
 		F5DC90BD24C8118F00FFB4FB /* DNSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSliderCell.swift; sourceTree = "<group>"; };
 		F5DC90BF24C8137300FFB4FB /* DNSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSlider.swift; sourceTree = "<group>"; };
 		F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		F5FDE2D924EE63D800136D84 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				377C9925EFA6FE0876C78D74 /* Pods_DNLocalMusicPlayer.framework in Frameworks */,
+				F5FDE2DA24EE63D800136D84 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +361,7 @@
 		A9E865F149EB760F905802D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5FDE2D924EE63D800136D84 /* Carbon.framework */,
 				F56F6A6724B98739005D550A /* RealmSwift.framework */,
 				0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */,
 			);
@@ -780,6 +786,7 @@
 				F56F6A6C24B9C03F005D550A /* PlayerManager.swift */,
 				F55C3BC424B87E4C00017FBD /* SongManager.swift */,
 				F51A3BA424C850B100F49E10 /* UserDefaultsManager.swift */,
+				F521C99E24EBDBAC000F3D2E /* KeyBoardListenerManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1003,6 +1010,7 @@
 				F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */,
 				F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */,
 				F544015824CAC7C400B12458 /* DNTableView.swift in Sources */,
+				F521C99F24EBDBAC000F3D2E /* KeyBoardListenerManager.swift in Sources */,
 				F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */,
 				F512A31724E546E2006222BA /* MiniPlayerWindow.swift in Sources */,
 				F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */,

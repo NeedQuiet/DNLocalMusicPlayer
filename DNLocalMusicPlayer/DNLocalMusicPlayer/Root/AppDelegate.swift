@@ -18,8 +18,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let mainWindow = NSApplication.shared.mainWindow
         WindowManager.share.mainWindow = mainWindow
         WindowManager.share.currentWindow = mainWindow
+        // 开始扫描Realm
         SongManager.share.startScanRealmData()
-//        mainWindow?.setFrameAutosaveName("mainWindow")
+        // 监听键盘
+        KeyBoardListenerManager.share.startListenKeyboardEvent()
+        
+        
+//        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { (event) in
+//            //            let str = event.characters
+//            let code = event.keyCode
+//            print("Global: \(code)")
+//
+//            switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
+//            case [.command] where event.characters == "1", [.command, .shift] where event.characters == "1":
+//                print("command+1 or command+shift+1")
+//            default:
+//                break
+//            }
+//        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
