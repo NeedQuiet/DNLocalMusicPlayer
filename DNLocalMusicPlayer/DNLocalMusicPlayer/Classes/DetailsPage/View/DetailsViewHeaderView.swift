@@ -33,7 +33,7 @@ class DetailsViewHeaderView: NSView {
     @IBOutlet weak var lineView: NSView!
     @IBOutlet weak var noteLabel: NSTextField!
     @IBOutlet weak var renameButton: DNButton!
-    @IBOutlet weak var searchField: NSSearchField!
+    @IBOutlet weak var searchField: DNSearchField!
     
     weak var delegate:DetailsViewHeaderViewDelegate?
     
@@ -140,5 +140,9 @@ extension DetailsViewHeaderView {
 extension DetailsViewHeaderView:NSSearchFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
         delegate?.controlTextDidChange(searchField.stringValue)
+    }
+
+    func controlTextDidEndEditing(_ obj: Notification) {
+        KeyBoardListenerManager.share.TextFieldIsEditing = false
     }
 }

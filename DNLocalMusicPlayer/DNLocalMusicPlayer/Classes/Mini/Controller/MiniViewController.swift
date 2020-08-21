@@ -323,15 +323,13 @@ extension MiniViewController {
     
     //MARK: 恢复大窗口
     @IBAction func showMainWindow(_ sender: Any) {
-        // 如果是展开状态再执行，不然高度减没了
-        if showPlaylist {
-            showPlaylist = false
-            displayPlaylist(withAnimate: false)
-        }
-        
-        WindowManager.share.showMainWindow()
+        showBigWindow()
     }
     
+    @IBAction func albumClick(_ sender: Any) {
+        showBigWindow()
+    }
+
     //MARK: 播放暂停
     @objc func playButtonclick() {
         if PlayerManager.share.isPlaying == true {
@@ -450,5 +448,15 @@ extension MiniViewController {
         }
 
         PlayerManager.share.play(withIndex: clickedRow) // 播放clickedRow
+    }
+    
+    private func showBigWindow() {
+        // 如果是展开状态再执行，不然高度减没了
+        if showPlaylist {
+            showPlaylist = false
+            displayPlaylist(withAnimate: false)
+        }
+        
+        WindowManager.share.showMainWindow()
     }
 }

@@ -37,7 +37,7 @@
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4kH-Ql-5G0">
                                     <rect key="frame" x="7" y="3" width="27" height="14"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="歌单" id="kJO-oT-JeL">
-                                        <font key="font" metaFont="controlContent" size="11"/>
+                                        <font key="font" metaFont="label" size="11"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
@@ -66,7 +66,7 @@
                             </constraints>
                             <buttonCell key="cell" type="square" title="播放全部" bezelStyle="shadowlessSquare" image="play_item" imagePosition="leading" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="mMQ-de-Di8">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="label" size="13"/>
                             </buttonCell>
                             <connections>
                                 <action selector="playallButtonClick:" target="c22-O7-iKe" id="SaB-8X-omV"/>
@@ -80,7 +80,7 @@
                             </constraints>
                             <buttonCell key="cell" type="square" title="添加歌曲" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="hYh-Fo-afb">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="label" size="13"/>
                             </buttonCell>
                             <connections>
                                 <action selector="addSongButtonClick:" target="c22-O7-iKe" id="olE-al-d19"/>
@@ -89,7 +89,7 @@
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Va-ed-zis">
                             <rect key="frame" x="-2" y="48" width="47" height="14"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="歌曲数：" id="JFA-4q-Pgv">
-                                <font key="font" metaFont="controlContent" size="11"/>
+                                <font key="font" metaFont="label" size="11"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -97,7 +97,7 @@
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CPq-m9-IAN">
                             <rect key="frame" x="41" y="48" width="11" height="14"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="SgW-Pj-MEj">
-                                <font key="font" metaFont="controlContent" size="11"/>
+                                <font key="font" metaFont="label" size="11"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -107,7 +107,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="R6I-ja-dcW">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="label" size="13"/>
                             </buttonCell>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="6SG-f2-MrX" customClass="DNButton" customModule="DN音乐" customModuleProvider="target">
@@ -118,7 +118,7 @@
                             </constraints>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="edit_default" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="j7X-qh-BLR">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="label" size="13"/>
                             </buttonCell>
                             <connections>
                                 <action selector="renameButtonPressed:" target="c22-O7-iKe" id="2cV-EM-wDj"/>
@@ -159,7 +159,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dia-uk-roI">
+                <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dia-uk-roI" customClass="DNSearchField" customModule="DN音乐" customModuleProvider="target">
                     <rect key="frame" x="534" y="4" width="130" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="130" id="3Bk-68-MgQ"/>

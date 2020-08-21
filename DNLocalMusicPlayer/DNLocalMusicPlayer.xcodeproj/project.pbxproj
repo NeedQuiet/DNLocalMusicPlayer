@@ -133,7 +133,6 @@
 		F58EF75F24C02424001E94FF /* DNAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF75E24C02424001E94FF /* DNAlertView.swift */; };
 		F58EF76324C02DC5001E94FF /* DNAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58EF76224C02DC5001E94FF /* DNAlertView.xib */; };
 		F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF76424C04A00001E94FF /* NSView-Extension.swift */; };
-		F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */; };
 		F5A844EE24CC85D400A65AD7 /* PlaylistHeaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844ED24CC85D400A65AD7 /* PlaylistHeaderCellView.swift */; };
 		F5A844F024CC937400A65AD7 /* PlaylistTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844EF24CC937400A65AD7 /* PlaylistTableRow.swift */; };
 		F5A844F224CD35FB00A65AD7 /* PlaylistItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A844F124CD35FB00A65AD7 /* PlaylistItemCellView.swift */; };
@@ -165,6 +164,8 @@
 		F5DC90C024C8137300FFB4FB /* DNSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DC90BF24C8137300FFB4FB /* DNSlider.swift */; };
 		F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */; };
 		F5FDE2DA24EE63D800136D84 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5FDE2D924EE63D800136D84 /* Carbon.framework */; };
+		F5FDE2E224EF988400136D84 /* DNEditTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FDE2E124EF988400136D84 /* DNEditTextField.swift */; };
+		F5FDE2E424EF9DCA00136D84 /* DNSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FDE2E324EF9DCA00136D84 /* DNSearchField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -302,7 +303,6 @@
 		F58EF75E24C02424001E94FF /* DNAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNAlertView.swift; sourceTree = "<group>"; };
 		F58EF76224C02DC5001E94FF /* DNAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DNAlertView.xib; sourceTree = "<group>"; };
 		F58EF76424C04A00001E94FF /* NSView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView-Extension.swift"; sourceTree = "<group>"; };
-		F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField-Extension.swift"; sourceTree = "<group>"; };
 		F5A844ED24CC85D400A65AD7 /* PlaylistHeaderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHeaderCellView.swift; sourceTree = "<group>"; };
 		F5A844EF24CC937400A65AD7 /* PlaylistTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableRow.swift; sourceTree = "<group>"; };
 		F5A844F124CD35FB00A65AD7 /* PlaylistItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemCellView.swift; sourceTree = "<group>"; };
@@ -334,6 +334,8 @@
 		F5DC90BF24C8137300FFB4FB /* DNSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSlider.swift; sourceTree = "<group>"; };
 		F5EE566E24B6CC3B00CE9ABC /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		F5FDE2D924EE63D800136D84 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		F5FDE2E124EF988400136D84 /* DNEditTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNEditTextField.swift; sourceTree = "<group>"; };
+		F5FDE2E324EF9DCA00136D84 /* DNSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSearchField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +546,7 @@
 				F52ABDEB24BD98E400D093C4 /* DetailsTableRow.swift */,
 				F544015E24CAF3D800B12458 /* DetailsTableHeaderCell.swift */,
 				F5BE353A24C19100007A1D5C /* FippedTableBackScrollView.swift */,
+				F5FDE2E324EF9DCA00136D84 /* DNSearchField.swift */,
 				F5BE353C24C1A120007A1D5C /* DetailsViewHeaderView.swift */,
 				F5BE353E24C1A160007A1D5C /* DetailsViewHeaderView.xib */,
 				F5BE354224C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift */,
@@ -567,7 +570,6 @@
 			children = (
 				F51F89AD24ADC0A20066E920 /* NSColor-Extension.swift */,
 				F58EF76424C04A00001E94FF /* NSView-Extension.swift */,
-				F58EF76624C052B0001E94FF /* NSTextField-Extension.swift */,
 				F5B9E18024DD2580005FF5CD /* String-Extension.swift */,
 			);
 			path = Extension;
@@ -690,6 +692,7 @@
 			children = (
 				F51C100624B3220B0079DD35 /* DNTitleBarView.swift */,
 				F51C100224B31CBC0079DD35 /* CustomWindow.swift */,
+				F5FDE2E124EF988400136D84 /* DNEditTextField.swift */,
 				F58EF75E24C02424001E94FF /* DNAlertView.swift */,
 				F58EF76224C02DC5001E94FF /* DNAlertView.xib */,
 			);
@@ -1004,7 +1007,6 @@
 				F58EF75F24C02424001E94FF /* DNAlertView.swift in Sources */,
 				F5BE354124C1AC8B007A1D5C /* DNAlphaButton.swift in Sources */,
 				F51F89B224ADC2FB0066E920 /* PlayListViewController.swift in Sources */,
-				F58EF76724C052B0001E94FF /* NSTextField-Extension.swift in Sources */,
 				F560F99D24AF3C6B008FC9C9 /* CurrentPlaylistViewController.swift in Sources */,
 				F544015F24CAF3D800B12458 /* DetailsTableHeaderCell.swift in Sources */,
 				F51A3BA524C850B100F49E10 /* UserDefaultsManager.swift in Sources */,
@@ -1038,12 +1040,14 @@
 				F5DAD44924EA8722000B68FC /* MiniVolumePopover.swift in Sources */,
 				F51F8A6224AEF8670066E920 /* DNButton.swift in Sources */,
 				F5ACF75F24BBF2A9000A41E1 /* DNTitleButton.swift in Sources */,
+				F5FDE2E224EF988400136D84 /* DNEditTextField.swift in Sources */,
 				F58574EC24BC4EC800C7E957 /* Utility.swift in Sources */,
 				F5EE566F24B6CC3B00CE9ABC /* WindowManager.swift in Sources */,
 				F51F89B424ADC3470066E920 /* BottomPlayViewController.swift in Sources */,
 				F5A844F024CC937400A65AD7 /* PlaylistTableRow.swift in Sources */,
 				F544015424CAB57700B12458 /* DNScroller.swift in Sources */,
 				F5DC90C024C8137300FFB4FB /* DNSlider.swift in Sources */,
+				F5FDE2E424EF9DCA00136D84 /* DNSearchField.swift in Sources */,
 				F55C3BC724B87E8700017FBD /* Song.swift in Sources */,
 				F52C0ED024E0E4260080AC09 /* MiniWindowController.swift in Sources */,
 				F5B9E18124DD2580005FF5CD /* String-Extension.swift in Sources */,

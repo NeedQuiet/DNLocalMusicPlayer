@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         SongManager.share.startScanRealmData()
         // 监听键盘
         KeyBoardListenerManager.share.startListenKeyboardEvent()
+        KeyBoardListenerManager.share.startListenTouchBarEvent()
         
         
 //        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { (event) in

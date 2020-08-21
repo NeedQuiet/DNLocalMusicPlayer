@@ -36,7 +36,7 @@ class DNAlertView: NSView {
     // message
     @IBOutlet weak var messageLabel: NSTextField!
     // textField
-    @IBOutlet weak var textField: NSTextField!
+    @IBOutlet weak var textField: DNEditTextField!
     @IBOutlet weak var textfieldBackView: NSView!
     // 确认按钮
     @IBOutlet weak var submitButton: DNAlphaButton!
@@ -93,6 +93,7 @@ extension DNAlertView {
             textField.placeholderString = placeholderString!
             textField.textColor = kDefaultColor
             textField.delegate = self
+            textField.editDelegate = self
         } else {
             textfieldBackView.isHidden = true
         }
@@ -145,15 +146,29 @@ extension DNAlertView {
             windowView.addSubview(self)
             if type == DNAlertType.textFieldType {
                 textField.becomeFirstResponder()
+                KeyBoardListenerManager.share.TextFieldIsEditing = true
             }
         }
     }
 }
 
-//MARK: - NSTextFieldDelegate
-extension DNAlertView: NSTextFieldDelegate {
+//MARK: - NSTextFieldDelegate & DNEditDelegate
+extension DNAlertView: NSTextFieldDelegate,DNEditDelegate {
     // textField 文字内容改变
     func controlTextDidChange(_ obj: Notification) {
         setSubmitButtonEanbled(isEnabled: textField.stringValue.count > 0)
+    }
+    
+    func controlTextDidEndEditing(_ obj: Notification) {
+        KeyBoardListenerManager.share.TextFieldIsEditing = false
+    }
+    
+    // enter点击
+    func enterKeyPressed() {
+        submitButtonClick((Any).self)
+    }
+    // ESC点击
+    func escKeyPressed(){
+        closeButtonClick(Any.self)
     }
 }
