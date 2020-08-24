@@ -38,12 +38,12 @@ extension KeyBoardListenerManager {
         }
         
         /**
-        *  本地键盘监听
-        *      上一曲：Option + ←
-        *      下一曲：Option + →
-        *      播放暂停：Space
-        *      大/小窗口切换：w
-        */
+         *  本地键盘监听
+         *      上一曲：Option + ←
+         *      下一曲：Option + →
+         *      播放暂停：Space
+         *      大/小窗口切换：w
+         */
         NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { [unowned self] (event) -> NSEvent?  in
             let code = event.keyCode
             let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
@@ -59,7 +59,7 @@ extension KeyBoardListenerManager {
         }
     }
     
-    // 播控
+    //MARK: 播控
     func playControlWithKeyCode(_ code:UInt16) {
         if (code == kVK_LeftArrow) { // Left
             PlayerManager.share.previous()
@@ -71,7 +71,7 @@ extension KeyBoardListenerManager {
             } else {
                 PlayerManager.share.play(withIndex: nil)
             }
-        } else if (code == kVK_ANSI_W) {
+        } else if (code == kVK_ANSI_W) { // w
             if self.TextFieldIsEditing { return }
             if WindowManager.share.currentWindow == WindowManager.share.mainWindow {
                 WindowManager.share.showMiniWindow()
@@ -82,9 +82,46 @@ extension KeyBoardListenerManager {
     }
 }
 
-//MARK: - 监听TouchBar
-extension KeyBoardListenerManager{
-    func startListenTouchBarEvent() {
- 
+//MARK: - 监听多媒体键
+class MyApplication: NSApplication {
+    override func sendEvent(_ event: NSEvent) {
+        if  event.type == .systemDefined &&
+            event.subtype == .screenChanged
+        {
+            let keyCode : Int32 = (Int32((event.data1 & 0xFFFF0000) >> 16))
+            let keyFlags = (event.data1 & 0x0000FFFF)
+            let keyState = ((keyFlags & 0xFF00) >> 8) == 0xA
+
+            self.mediaKeyEvent(withKeyCode: keyCode, andState: keyState)
+            return
+        }
+        super.sendEvent(event)
+    }
+    
+    private func mediaKeyEvent(withKeyCode keyCode : Int32, andState state : Bool){
+        if state == false { return }
+        switch keyCode{
+            // Play pressed
+            case NX_KEYTYPE_PLAY:
+                if PlayerManager.share.isPlaying == true {
+                    PlayerManager.share.pause()
+                } else {
+                    PlayerManager.share.play(withIndex: nil)
+                }
+                
+                break
+            // 下一曲(键盘上的居然不是Next，而是Fast)
+            case NX_KEYTYPE_FAST:
+                PlayerManager.share.next()
+                break
+
+            // 上一曲
+            case NX_KEYTYPE_REWIND:
+                PlayerManager.share.previous()
+                break
+            default:
+                break
+        }
+
     }
 }
