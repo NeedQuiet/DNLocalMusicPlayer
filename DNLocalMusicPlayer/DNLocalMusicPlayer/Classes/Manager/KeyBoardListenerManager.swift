@@ -99,26 +99,26 @@ class MyApplication: NSApplication {
     }
     
     private func mediaKeyEvent(withKeyCode keyCode : Int32, andState state : Bool){
-        if state == false { return }
         switch keyCode{
-            // Play pressed
+            // 播放暂停
             case NX_KEYTYPE_PLAY:
-                if PlayerManager.share.isPlaying == true {
-                    PlayerManager.share.pause()
-                } else {
-                    PlayerManager.share.play(withIndex: nil)
+                if state == false {
+                    if PlayerManager.share.isPlaying == true {
+                        PlayerManager.share.pause()
+                    } else {
+                        PlayerManager.share.play(withIndex: nil)
+                    }
                 }
-                
-                break
             // 下一曲(键盘上的居然不是Next，而是Fast)
             case NX_KEYTYPE_FAST:
-                PlayerManager.share.next()
-                break
-
+                if state == true {
+                    PlayerManager.share.next()
+                }
             // 上一曲
             case NX_KEYTYPE_REWIND:
-                PlayerManager.share.previous()
-                break
+                if state == true {
+                    PlayerManager.share.previous()
+                }
             default:
                 break
         }

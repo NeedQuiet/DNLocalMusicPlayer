@@ -15,5 +15,13 @@ class MainWindowController: NSWindowController {
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
-
+    
+    /**
+     * NSDocument 并无 setTitle 这样设置标题的方法
+     *  1. NSDocument  有一个 displayName 的方法
+     *  2. 重写windowTitle方法
+     */
+    override func windowTitle(forDocumentDisplayName displayName: String) -> String {
+        return "DN播放器"
+    }
 }
