@@ -22,6 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         SongManager.share.startScanRealmData()
         // 监听键盘
         KeyBoardListenerManager.share.startListenKeyboardEvent()
+        // 监听媒体功能键
+        KeyBoardListenerManager.share.startListenCGEventTap()
 
 //        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { (event) in
 //            //            let str = event.characters

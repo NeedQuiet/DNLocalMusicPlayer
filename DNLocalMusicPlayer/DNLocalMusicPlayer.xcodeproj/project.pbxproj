@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		377C9925EFA6FE0876C78D74 /* Pods_DNLocalMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */; };
-		F50C636624F3583C00436F5F /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C636524F3583C00436F5F /* MyApplication.swift */; };
 		F512A31424E52D5A006222BA /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512A31324E52D5A006222BA /* MainWindowController.swift */; };
 		F512A31724E546E2006222BA /* MiniPlayerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512A31624E546E2006222BA /* MiniPlayerWindow.swift */; };
 		F512A31924E5497D006222BA /* MiniBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512A31824E5497C006222BA /* MiniBackView.swift */; };
@@ -103,7 +102,6 @@
 		0935B688ED7DB5E6D2246AB0 /* Pods_DNLocalMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DNLocalMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00D5D51D60A5E837DCC0F81 /* Pods-DNLocalMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		C98DC77936359675D8B9A143 /* Pods-DNLocalMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DNLocalMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
-		F50C636524F3583C00436F5F /* MyApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApplication.swift; sourceTree = "<group>"; };
 		F50C636724F358CA00436F5F /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		F512A31324E52D5A006222BA /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		F512A31624E546E2006222BA /* MiniPlayerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerWindow.swift; sourceTree = "<group>"; };
@@ -584,7 +582,6 @@
 				F55C3BC424B87E4C00017FBD /* SongManager.swift */,
 				F51A3BA424C850B100F49E10 /* UserDefaultsManager.swift */,
 				F521C99E24EBDBAC000F3D2E /* KeyBoardListenerManager.swift */,
-				F50C636524F3583C00436F5F /* MyApplication.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -747,7 +744,6 @@
 				F51F89AA24ADBF600066E920 /* DetailsPageViewController.swift in Sources */,
 				F5DC90BE24C8118F00FFB4FB /* DNSliderCell.swift in Sources */,
 				F52C0ED324E0E5740080AC09 /* MiniViewController.swift in Sources */,
-				F50C636624F3583C00436F5F /* MyApplication.swift in Sources */,
 				F5A844F224CD35FB00A65AD7 /* PlaylistItemCellView.swift in Sources */,
 				F512A31424E52D5A006222BA /* MainWindowController.swift in Sources */,
 				F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Foundation
 import Carbon
 
 class KeyBoardListenerManager: NSObject {
@@ -16,7 +17,7 @@ class KeyBoardListenerManager: NSObject {
     var TextFieldIsEditing = false
 }
 
-//MARK: - 监听键盘
+//MARK: - 监听按键
 extension KeyBoardListenerManager {
     //MARK: 监听键盘
     func startListenKeyboardEvent() {
@@ -45,6 +46,7 @@ extension KeyBoardListenerManager {
          *      大/小窗口切换：w
          */
         NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { [unowned self] (event) -> NSEvent?  in
+            if self.TextFieldIsEditing == true { return event}
             let code = event.keyCode
             let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
             // option + 左右时 option的值
@@ -55,7 +57,56 @@ extension KeyBoardListenerManager {
                     self.playControlWithKeyCode(code)
                 }
             }
-            return self.TextFieldIsEditing ? event : nil
+            return nil
+        }
+    }
+
+    //MARK: 监听媒体播放键
+    // 这个方法也可以拿来监听键盘其他key的点击
+    func startListenCGEventTap() {
+        func myCGEventCallback(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
+            if(type == .tapDisabledByTimeout){
+                return Unmanaged.passRetained(event)
+            }
+            
+//            if type.rawValue != NX_SYSDEFINEDMASK {
+//                return Unmanaged.passRetained(event)
+//            }
+            
+            if let nsEvent = NSEvent.init(cgEvent: event) {
+                if (nsEvent.type == .systemDefined && nsEvent.subtype == .screenChanged ) {
+                    let keyCode : Int32 = (Int32((nsEvent.data1 & 0xFFFF0000) >> 16))
+                    let keyFlags = (nsEvent.data1 & 0x0000FFFF)
+                    let keyState = ((keyFlags & 0xFF00) >> 8) == 0xA
+//                    let keyIsRepeat = (keyFlags & 0x1) > 0
+//                    if keyIsRepeat {
+//                        print("keyIsRepeat")
+//                        return nil
+//                    }
+                    mediaKeyEvent(withKeyCode: keyCode, andState: keyState)
+                    return nil
+                }
+            }
+
+            return Unmanaged.passRetained(event)
+        }
+        
+        // let eventMask = (1 << CGEventType.keyDown.rawValue) | (1 << CGEventType.keyUp.rawValue | (1 << CGEventType.flagsChanged.rawValue))
+        
+        // 创建eventTap，此时会唤起’打开隐私权限‘弹窗
+        if let eventTap = CGEvent.tapCreate(tap: .cgSessionEventTap,
+                                            place: .headInsertEventTap,
+                                            options: .defaultTap,
+                                            eventsOfInterest: CGEventMask(NX_SYSDEFINEDMASK),
+                                            callback: myCGEventCallback,
+                                            userInfo: nil) {
+            let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorSystemDefault, eventTap, 0)
+            CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
+            CGEvent.tapEnable(tap: eventTap, enable: true)
+            CFRunLoopRun()
+        } else {
+            print("failed to create event tap")
+//            exit(1)
         }
     }
     
@@ -82,46 +133,50 @@ extension KeyBoardListenerManager {
     }
 }
 
+//MARK: 媒体功能键播控
+func mediaKeyEvent(withKeyCode keyCode : Int32, andState state : Bool){
+    switch keyCode{
+        // 播放暂停
+        case NX_KEYTYPE_PLAY:
+            if state == false {
+                if PlayerManager.share.isPlaying == true {
+                    PlayerManager.share.pause()
+                } else {
+                    PlayerManager.share.play(withIndex: nil)
+                }
+            }
+        // 下一曲(键盘上的居然不是Next，而是Fast)
+        case NX_KEYTYPE_FAST:
+            if state == true {
+                // 加pause是因为媒体播放按钮有时会引发多个歌曲一起播的混乱(可能是因为线程的原因？.commonModes)
+                PlayerManager.share.pause()
+                PlayerManager.share.next()
+            }
+        // 上一曲
+        case NX_KEYTYPE_REWIND:
+            if state == true {
+                PlayerManager.share.pause()
+                PlayerManager.share.previous()
+            }
+        default:
+            break
+    }
+}
+
 //MARK: - 监听多媒体键
 class MyApplication: NSApplication {
-    override func sendEvent(_ event: NSEvent) {
-        if  event.type == .systemDefined &&
-            event.subtype == .screenChanged
-        {
-            let keyCode : Int32 = (Int32((event.data1 & 0xFFFF0000) >> 16))
-            let keyFlags = (event.data1 & 0x0000FFFF)
-            let keyState = ((keyFlags & 0xFF00) >> 8) == 0xA
-
-            self.mediaKeyEvent(withKeyCode: keyCode, andState: keyState)
-            return
-        }
-        super.sendEvent(event)
-    }
-    
-    private func mediaKeyEvent(withKeyCode keyCode : Int32, andState state : Bool){
-        switch keyCode{
-            // 播放暂停
-            case NX_KEYTYPE_PLAY:
-                if state == false {
-                    if PlayerManager.share.isPlaying == true {
-                        PlayerManager.share.pause()
-                    } else {
-                        PlayerManager.share.play(withIndex: nil)
-                    }
-                }
-            // 下一曲(键盘上的居然不是Next，而是Fast)
-            case NX_KEYTYPE_FAST:
-                if state == true {
-                    PlayerManager.share.next()
-                }
-            // 上一曲
-            case NX_KEYTYPE_REWIND:
-                if state == true {
-                    PlayerManager.share.previous()
-                }
-            default:
-                break
-        }
-
-    }
+    // 可以通过重写sendEvent监听媒体功能键，但是会唤起iTunes音乐，无法拦截，所以放弃
+//    override func sendEvent(_ event: NSEvent) {
+//        if  event.type == .systemDefined &&
+//            event.subtype == .screenChanged
+//        {
+//            let keyCode : Int32 = (Int32((event.data1 & 0xFFFF0000) >> 16))
+//            let keyFlags = (event.data1 & 0x0000FFFF)
+//            let keyState = ((keyFlags & 0xFF00) >> 8) == 0xA
+//
+//            mediaKeyEvent(withKeyCode: keyCode, andState: keyState)
+//            return
+//        }
+//        super.sendEvent(event)
+//    }
 }
