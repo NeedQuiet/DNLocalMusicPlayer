@@ -123,7 +123,7 @@ extension MiniViewController {
     //MARK: 刷新UI
     func refreshUI(withSong currentSong:Song) {
         DispatchQueue.main.async { [unowned self] in
-            var image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
+            var image:NSImage = NSImage(named: "default_artwork_image")!
             if let imageData = currentSong.artworkData {
                 image = NSImage(data: imageData) ?? image
             }

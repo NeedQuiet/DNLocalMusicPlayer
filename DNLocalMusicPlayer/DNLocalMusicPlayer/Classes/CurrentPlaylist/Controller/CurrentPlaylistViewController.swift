@@ -154,7 +154,7 @@ extension CurrentPlaylistViewController: NSTableViewDelegate {
             
             // 专辑图
             let imageView = NSImageView()
-            var image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
+            var image:NSImage = NSImage(named: "default_artwork_image")!
             if let imageData = song.artworkData {
                 image = NSImage(data: imageData) ?? image
             }

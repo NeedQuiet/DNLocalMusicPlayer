@@ -190,7 +190,7 @@ extension BottomPlayViewController {
 extension BottomPlayViewController {
     //MARK: 根据歌曲刷新页面信息
     private func refreshUI(withSong currentSong: Song) {
-        var image:NSImage = NSImage(named: "MiniPlayerLargeAlbumDefault")!
+        var image:NSImage = NSImage(named: "default_artwork_image")!
         if let imageData = currentSong.artworkData {
             image = NSImage(data: imageData) ?? image
         }
