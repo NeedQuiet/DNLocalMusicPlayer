@@ -53,8 +53,14 @@ extension KeyBoardListenerManager {
             if (flags.rawValue == 11010048) {
                 self.playControlWithKeyCode(code)
             } else {
-                if (code == kVK_ANSI_W || code == kVK_Space){
-                    self.playControlWithKeyCode(code)
+                if flags == NSEvent.ModifierFlags.command {
+                    if code == kVK_ANSI_W {
+                        WindowManager.share.currentWindow?.close()
+                    }
+                } else {
+                    if (code == kVK_ANSI_W || code == kVK_Space){
+                        self.playControlWithKeyCode(code)
+                    }
                 }
             }
             return nil
