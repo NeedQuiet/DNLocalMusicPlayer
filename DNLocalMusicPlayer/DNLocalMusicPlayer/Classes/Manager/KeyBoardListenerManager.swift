@@ -31,9 +31,10 @@ extension KeyBoardListenerManager {
          *      播放暂停：Option + Space
          */
         NSEvent.addGlobalMonitorForEvents(matching: [.keyDown]) { [unowned self] (event) in
+            // flags貌似是获取与常规键无关的按键
             let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
             // 常规 option || 带有左右键时的 cmd+option
-            if (flags == NSEvent.ModifierFlags.option || flags.rawValue == 12058624) {
+            if (flags == NSEvent.ModifierFlags.option || flags.contains([.command,.option])) {
                 self.playControlWithKeyCode(event.keyCode)
             }
         }
@@ -49,8 +50,8 @@ extension KeyBoardListenerManager {
             if self.TextFieldIsEditing == true { return event}
             let code = event.keyCode
             let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-            // option + 左右时 option的值
-            if (flags.rawValue == 11010048) {
+            
+            if (flags.contains([.option])) { // 包含option
                 self.playControlWithKeyCode(code)
             } else {
                 if flags == NSEvent.ModifierFlags.command {
@@ -74,10 +75,6 @@ extension KeyBoardListenerManager {
             if(type == .tapDisabledByTimeout){
                 return Unmanaged.passRetained(event)
             }
-            
-//            if type.rawValue != NX_SYSDEFINEDMASK {
-//                return Unmanaged.passRetained(event)
-//            }
             
             if let nsEvent = NSEvent.init(cgEvent: event) {
                 if (nsEvent.type == .systemDefined && nsEvent.subtype == .screenChanged ) {

@@ -41,6 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+        WindowManager.share.currentWindow?.makeKeyAndOrderFront(nil)
         print("applicationWillTerminate")
     }
 }
