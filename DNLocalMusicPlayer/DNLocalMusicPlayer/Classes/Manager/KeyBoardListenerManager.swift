@@ -86,8 +86,14 @@ extension KeyBoardListenerManager {
 //                        print("keyIsRepeat")
 //                        return nil
 //                    }
-                    mediaKeyEvent(withKeyCode: keyCode, andState: keyState)
-                    return nil
+                    
+                    if keyCode == NX_KEYTYPE_PLAY ||
+                        keyCode == NX_KEYTYPE_FAST ||
+                        keyCode == NX_KEYTYPE_REWIND
+                        {
+                            mediaKeyEvent(withKeyCode: keyCode, andState: keyState)
+                            return nil
+                    }
                 }
             }
 
