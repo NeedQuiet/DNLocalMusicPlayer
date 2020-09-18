@@ -280,7 +280,14 @@ extension DetailsPageViewController {
             return
         }
         
-        let song = songs[clickedRow]
+        var song:Song
+        
+        if searchResultSongs.count > 0 {
+            song = searchResultSongs[clickedRow]
+        } else {
+            song = songs[clickedRow]
+        }
+        
         if !Utility.songExists(song) {
             tableView.reloadData()
             return
@@ -290,7 +297,9 @@ extension DetailsPageViewController {
         if PlayerManager.share.currentShowPlaylist != PlayerManager.share.currentPlayingPlaylist {
             PlayerManager.share.currentPlayingPlaylist = PlayerManager.share.currentShowPlaylist
         }
-        playSong(withIndex: clickedRow)
+        
+        PlayerManager.share.play(withSong: song)
+//        playSong(withIndex: clickedRow)
     }
     
     //MARK: 播放歌曲
