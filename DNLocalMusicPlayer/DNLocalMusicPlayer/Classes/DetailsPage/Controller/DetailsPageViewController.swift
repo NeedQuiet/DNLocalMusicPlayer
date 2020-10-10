@@ -477,7 +477,7 @@ extension DetailsPageViewController: NSTableViewDelegate {
             textLabel.isEditable = false
             textLabel.backgroundColor = NSColor.clear
             textLabel.cell?.usesSingleLineMode = true
-            textLabel.lineBreakMode = .byTruncatingTail
+            textLabel.cell?.lineBreakMode = .byTruncatingTail
             cellView!.addSubview(textLabel)
             
             // 此行歌曲
@@ -511,8 +511,12 @@ extension DetailsPageViewController: NSTableViewDelegate {
                 textColor = kLightestColor
             }
             
+            // 富文本断行省略
+            let para = NSMutableParagraphStyle()
+            para.lineBreakMode = .byTruncatingTail
+            // 富文本文字
             let colorTitle = NSMutableAttributedString(string: text)
-            colorTitle.addAttributes([.foregroundColor : textColor], range: NSRange(location: 0, length: text.count))
+            colorTitle.addAttributes([.foregroundColor : textColor, .paragraphStyle: para], range: NSRange(location: 0, length: text.count))
             
             if searchKey.count > 0 {
                 let rangeArray = text.rangesOfString(searchKey, ignoreCase: true)
@@ -520,9 +524,9 @@ extension DetailsPageViewController: NSTableViewDelegate {
                      colorTitle.addAttributes([.foregroundColor : kSearchHighColor], range: range)
                 }
             }
-            
+            // 赋值给Label
             textLabel.attributedStringValue = colorTitle
-            
+
             // 标题列
             if tableColumn?.identifier ==  kTitleColumnID{
                 // 如果是当前播放歌曲，前面展示播放状态
@@ -565,7 +569,7 @@ extension DetailsPageViewController: NSTableViewDelegate {
                     // 歌曲名 约束
                     textLabel.snp.makeConstraints { (make) in
                         make.left.equalTo(indexRowLabel.snp.right).offset(15)
-                        make.right.equalTo(3)
+                        make.right.equalTo(-3)
                         make.centerY.equalTo(0)
                     }
                 }

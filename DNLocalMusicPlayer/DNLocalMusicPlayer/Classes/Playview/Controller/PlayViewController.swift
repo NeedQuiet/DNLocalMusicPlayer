@@ -16,19 +16,23 @@ class PlayViewController: BaseViewController {
     
     @IBOutlet weak var artworkBackView: NSView!
     @IBOutlet weak var artworkImageView: NSImageView!
-//    var initArtworkPosition:CGPoint = CGPoint.zero
-    
     @IBOutlet weak var songTitle: NSTextField!
     @IBOutlet weak var albumButton: DNTitleButton!
     @IBOutlet weak var artistButton: DNTitleButton!
     @IBOutlet weak var fromButton: DNTitleButton!
     
     @IBOutlet weak var lrcScrollView: DNFippedScrollView!
-    
+    // 歌词滚动timer
+    var lrcTimer:Timer?
+    // 检测歌词进度的时间间隔
+    let checkLrcTimeInterval:TimeInterval = 0.3
+    // 是否正在用滚轮滚动歌词
     var IsScrollingByWheel:Bool = false
     
     // 歌词数组
     var lrcArray:[EachLineLrcItem] = []
+    lazy var playVM = PlayViewModel()
+    
     // 歌词label数组
     var lrcLabelArray:[NSTextField] = []
     //
@@ -89,7 +93,7 @@ extension PlayViewController {
 extension PlayViewController:DNFippedScrollViewDelegate {
     //MARK: scrollview正在滚动
     func scrollViewIsScrolling(sender:NSScrollView) {
-        print("IsScrolling")
+//        print("IsScrolling")
         IsScrollingByWheel = true
     }
     
@@ -123,17 +127,11 @@ extension PlayViewController {
                     let layer = self.artworkBackView.layer
                     if isPlaying == true {
                         self.resumeLayer(layer)
+                        self.startLrcTimer()
                     } else {
                         self.pauseLayer(layer)
+                        self.stopLrcTimer()
                     }
-                }
-        }
-        
-        //MARK: currentProgress
-        _ = PlayerManager.share.rx.observeWeakly(Double.self, "currentProgress")
-            .subscribe { [unowned self] (change) in
-                if (self.IsScrollingByWheel == false) {
-                    self.updateLRCScrollView()
                 }
         }
     }
@@ -152,12 +150,33 @@ extension PlayViewController {
         songTitle.stringValue = currentSong.title.count > 0 ? currentSong.title : "无"
         albumButton.title = currentSong.album.count > 0 ? currentSong.album : "无"
         artistButton.title = currentSong.artist.count > 0 ? currentSong.artist : "无"
+        fromButton.title = PlayerManager.share.currentPlayingPlaylist.name
+
         let lyrics = Utility.getMusicLyrics(withFilePath: currentSong.filePath)
         // 清理各数组状态
         clearState()
         // 歌词长度大于0，则解析歌词
+        self.lrcArray = []
+        self.lrcScrollView.scrollToTop()
+        
         if lyrics.count > 0 {
-            analysisLyrics(lyrics:lyrics)
+            Utility.analysisLyrics(lyrics: lyrics) { (lrcs) in
+                if lrcs.count > 0 {
+                    self.lrcArray = lrcs
+//                    self.lrcScrollView.scrollToTop()
+                    self.addLrcToScrollView()
+                }
+            }
+        } else {
+            playVM.startGetLyrics(name: currentSong.title, artists: currentSong.artist, album: currentSong.album) { (success) in
+                if success {
+                    self.lrcArray = self.playVM.lrcArray
+                    if self.lrcArray.count > 0 {
+//                        self.lrcScrollView.scrollToTop()
+                        self.addLrcToScrollView()
+                    }
+                }
+            }
         }
     }
     
@@ -202,39 +221,6 @@ extension PlayViewController {
         let pausedTime = layer!.convertTime(CACurrentMediaTime(), from: nil)
         layer!.speed = 0.0
         layer!.timeOffset = pausedTime
-    }
-    
-    //MARK: 解析歌词
-    private func analysisLyrics(lyrics contentOfLRC:String) {
-        // 将歌词中的每行字符串截取出来放入数组
-        var tempArrayOfLRC = contentOfLRC.components(separatedBy: "\r")
-        // 去掉完全没有内容的空行，数组中每个元素的内容将为“[时间]歌词”
-        tempArrayOfLRC = tempArrayOfLRC.filter { $0 != "" }
-//        tempArrayOfLRC = tempArrayOfLRC.filter({ (lyric) -> Bool in
-//            return lyric != ""
-//        })
-        // 将歌词以对应的时间为Key放入字典
-        for j in 0 ..< tempArrayOfLRC.count {
-            // 用“]”分割字符串，可能含有多个时间对应个一句歌词的现象,并且歌词可能为空,例如：“[00:12.34][01:56.78]”，这样分割后的数组为：["[00:12.34", "[01:56.78", ""]
-            let eachLrcArray = tempArrayOfLRC[j].components(separatedBy: "]")
-            let lrc = eachLrcArray.last
-            let datefomat = DateFormatter()
-            datefomat.dateFormat = "[mm:ss.SS"
-            let date1 = datefomat.date(from: eachLrcArray[0])
-            let date2 = datefomat.date(from: "[00:00.00")
-            
-            if let interval1 = date1?.timeIntervalSince1970, let interval2 = date2?.timeIntervalSince1970 {
-                // 歌词绝对时间
-                let lrcTime = abs(interval1 - interval2)
-                let eachLineLrc = EachLineLrcItem(lrc: lrc!, time: lrcTime)
-                lrcArray.append(eachLineLrc)
-            }
-        }
-        
-        if lrcArray.count > 0 {
-            lrcScrollView.scrollToTop()
-            addLrcToScrollView()
-        }
     }
     
     //MARK: 将歌词添加到scrollView上
@@ -307,5 +293,20 @@ extension PlayViewController {
         // 遍历时间数组，找出所有 <= 当前播放时间的item，取中间最大值
         return tempLRCTime.filter{ $0 <= CurrentTime }.max()
     }
-
+    
+    //MARK: 开始歌词timer
+    private func startLrcTimer() {
+        stopLrcTimer()
+        lrcTimer = .scheduledTimer(withTimeInterval: checkLrcTimeInterval, repeats: true, block: { (Timer) in
+            if (self.IsScrollingByWheel == false) {
+                self.updateLRCScrollView()
+            }
+        })
+    }
+    
+    //MARK: 停止歌词timer
+    private func stopLrcTimer() {
+        lrcTimer?.invalidate()
+        lrcTimer = nil
+    }
 }

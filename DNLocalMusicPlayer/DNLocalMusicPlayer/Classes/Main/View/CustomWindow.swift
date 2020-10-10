@@ -41,9 +41,9 @@ class CustomWindow: NSWindow {
             closeBtn.snp.makeConstraints { (make) in
                 make.top.equalTo(kMarginTop)
             }
-//            _ = closeBtn.rx.tap.subscribe(onNext: { event in
-//                WindowManager.share.currentWindow?.close()
-//            })
+            _ = closeBtn.rx.tap.subscribe(onNext: { event in
+                WindowManager.share.currentWindow?.close()
+            })
         }
         
         

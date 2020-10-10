@@ -129,6 +129,46 @@ extension Utility {
     }
 }
 
+// 网络歌词
+extension Utility {
+    //MARK: 解析歌词
+    static func analysisLyrics(lyrics contentOfLRC:String ,_ finishaCallback:@escaping (_ lrcArray: [EachLineLrcItem]) -> ()) {
+        var lrcArray:[EachLineLrcItem] = []
+        // 将歌词中的每行字符串截取出来放入数组
+        var tempArrayOfLRC = contentOfLRC.components(separatedBy: "\r")
+        if tempArrayOfLRC.count == 1 {
+            tempArrayOfLRC = contentOfLRC.components(separatedBy: "\n")
+        }
+        // 去掉完全没有内容的空行，数组中每个元素的内容将为“[时间]歌词”
+        tempArrayOfLRC = tempArrayOfLRC.filter { $0 != "" }
+//        tempArrayOfLRC = tempArrayOfLRC.filter({ (lyric) -> Bool in
+//            return lyric != ""
+//        })
+        // 将歌词以对应的时间为Key放入字典
+        for j in 0 ..< tempArrayOfLRC.count {
+            // 用“]”分割字符串，可能含有多个时间对应个一句歌词的现象,并且歌词可能为空,例如：“[00:12.34][01:56.78]”，这样分割后的数组为：["[00:12.34", "[01:56.78", ""]
+            let eachLrcArray = tempArrayOfLRC[j].components(separatedBy: "]")
+            let lrc = eachLrcArray.last
+            // 越过空行
+            if lrc!.count == 0 {  continue }
+            
+            let datefomat = DateFormatter()
+            datefomat.dateFormat = "[mm:ss.SS"
+            let date1 = datefomat.date(from: eachLrcArray[0])
+            let date2 = datefomat.date(from: "[00:00.00")
+            
+            if let interval1 = date1?.timeIntervalSince1970, let interval2 = date2?.timeIntervalSince1970 {
+                // 歌词绝对时间
+                let lrcTime = abs(interval1 - interval2)
+                let eachLineLrc = EachLineLrcItem(lrc: lrc!, time: lrcTime)
+                lrcArray.append(eachLineLrc)
+            }
+        }
+        
+        finishaCallback(lrcArray)
+    }
+}
+
 //MARK: - Private
 extension Utility {
     //MARK: 根据路径获取文件名

@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.2.1)
   - Realm (5.2.0):
     - Realm/Headers (= 5.2.0)
   - Realm/Headers (5.2.0)
@@ -13,12 +14,14 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - Alamofire
   - RealmSwift
   - RxCocoa
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Realm
     - RealmSwift
     - RxCocoa
@@ -27,6 +30,7 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Realm: f749c723e272f08fdf1939af5e61d2bd09b203e8
   RealmSwift: bf0ab78b52c5bafba8b3ad73be8dfb4c1ea5cf01
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
@@ -34,6 +38,6 @@ SPEC CHECKSUMS:
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 05d6434503e003f13e5763939c78dd6cdad2c4fe
+PODFILE CHECKSUM: 0c00246228cfb7aa8e1d49fe1d8ccb7e9d461670
 
 COCOAPODS: 1.8.4

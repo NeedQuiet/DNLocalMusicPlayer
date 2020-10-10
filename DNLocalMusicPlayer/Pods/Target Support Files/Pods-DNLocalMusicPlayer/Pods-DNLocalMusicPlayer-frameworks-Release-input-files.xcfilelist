@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-DNLocalMusicPlayer/Pods-DNLocalMusicPlayer-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
 ${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework

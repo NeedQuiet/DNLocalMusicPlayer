@@ -155,10 +155,17 @@ extension PlayerManager {
         guard let currentSong = self.currentSong else { return }
         canObservProgress = false
         currentProgress = progress
-        let seconds = currentSong.timeInterval * progress / 100
-        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1
-        let time = CMTime(seconds: seconds, preferredTimescale: timeScale)
-        player?.seek(to: time, completionHandler: {[unowned self] (result) in
+        let seconds:Int = Int(currentSong.timeInterval * progress / 100)
+//        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1000000000
+        
+//        let time = CMTime(seconds: Double(seconds), preferredTimescale: 1000000000)
+        let time = CMTimeMakeWithSeconds(Double(seconds), preferredTimescale: 1000000000)
+        print(seconds,Double(seconds))
+//        player?.seek(to: time, completionHandler: {[unowned self] (result) in
+//            self.canObservProgress = true
+//        })
+        
+        player?.seek(to: time, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (result) in
             self.canObservProgress = true
         })
     }
@@ -272,7 +279,7 @@ extension PlayerManager {
     func addTimeObserver() {
         // 每次添加不需要remove，会直接覆盖
         canObservProgress = true
-        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1
+        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1000000000
         player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: timeScale), queue: DispatchQueue.main, using: {[unowned self] (time) in
             if let currentSong = self.currentSong {
                 if !Utility.songExists(currentSong) {
@@ -281,6 +288,10 @@ extension PlayerManager {
             }
             if (self.canObservProgress == false) { return }
             let currentTime:TimeInterval = CMTimeGetSeconds(time)
+            
+            let t:Float = Float(time.value) / Float(time.timescale)
+            print(time,currentTime,t)
+            
             let totalTimeInterval = self.currentSong?.timeInterval ?? 0
             let songProgress:Double = currentTime / totalTimeInterval * 100
             if songProgress == Double.infinity {

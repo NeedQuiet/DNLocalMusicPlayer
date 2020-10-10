@@ -50,6 +50,7 @@
 		F544015824CAC7C400B12458 /* DNTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015724CAC7C400B12458 /* DNTableView.swift */; };
 		F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015924CAF17100B12458 /* DNOutlineView.swift */; };
 		F544015F24CAF3D800B12458 /* DetailsTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F544015E24CAF3D800B12458 /* DetailsTableHeaderCell.swift */; };
+		F54524122520A3CE006015C1 /* PlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54524112520A3CE006015C1 /* PlayViewModel.swift */; };
 		F55C3BC524B87E4C00017FBD /* SongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC424B87E4C00017FBD /* SongManager.swift */; };
 		F55C3BC724B87E8700017FBD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C3BC624B87E8700017FBD /* Song.swift */; };
 		F560F99524AF3730008FC9C9 /* VolumePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F560F99324AF3730008FC9C9 /* VolumePopover.swift */; };
@@ -78,6 +79,7 @@
 		F5BE354124C1AC8B007A1D5C /* DNAlphaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE354024C1AC8B007A1D5C /* DNAlphaButton.swift */; };
 		F5BE354324C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BE354224C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift */; };
 		F5BE354524C1BFA2007A1D5C /* DetailsNoSongsNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5BE354424C1BFA2007A1D5C /* DetailsNoSongsNoteView.xib */; };
+		F5CABE8E2530489000B46920 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CABE8D2530489000B46920 /* NetworkTools.swift */; };
 		F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAE88424C18587003901F5 /* DNFippedView.swift */; };
 		F5CFA52224B342B1001D1343 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52124B342B1001D1343 /* MainViewController.swift */; };
 		F5CFA52424B40748001D1343 /* DNBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CFA52324B40748001D1343 /* DNBaseView.swift */; };
@@ -150,6 +152,7 @@
 		F544015724CAC7C400B12458 /* DNTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTableView.swift; sourceTree = "<group>"; };
 		F544015924CAF17100B12458 /* DNOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNOutlineView.swift; sourceTree = "<group>"; };
 		F544015E24CAF3D800B12458 /* DetailsTableHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableHeaderCell.swift; sourceTree = "<group>"; };
+		F54524112520A3CE006015C1 /* PlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewModel.swift; sourceTree = "<group>"; };
 		F55C3BC424B87E4C00017FBD /* SongManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongManager.swift; sourceTree = "<group>"; };
 		F55C3BC624B87E8700017FBD /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		F560F99324AF3730008FC9C9 /* VolumePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumePopover.swift; sourceTree = "<group>"; };
@@ -179,6 +182,7 @@
 		F5BE354024C1AC8B007A1D5C /* DNAlphaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNAlphaButton.swift; sourceTree = "<group>"; };
 		F5BE354224C1BF9A007A1D5C /* DetailsNoSongsNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNoSongsNoteView.swift; sourceTree = "<group>"; };
 		F5BE354424C1BFA2007A1D5C /* DetailsNoSongsNoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsNoSongsNoteView.xib; sourceTree = "<group>"; };
+		F5CABE8D2530489000B46920 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		F5CAE88424C18587003901F5 /* DNFippedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNFippedView.swift; sourceTree = "<group>"; };
 		F5CFA52124B342B1001D1343 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5CFA52324B40748001D1343 /* DNBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBaseView.swift; sourceTree = "<group>"; };
@@ -423,6 +427,7 @@
 				F51F89AC24ADC0750066E920 /* Extension */,
 				F560F99F24AF4B4B008FC9C9 /* Constants.swift */,
 				F58574EB24BC4EC800C7E957 /* Utility.swift */,
+				F5CABE8D2530489000B46920 /* NetworkTools.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -440,8 +445,8 @@
 		F51F89B524ADC8770066E920 /* Playview */ = {
 			isa = PBXGroup;
 			children = (
+				F51F89B724ADC8880066E920 /* ViewModel */,
 				F56206DF24D9067D0041337C /* Model */,
-				F51F89B724ADC8880066E920 /* View */,
 				F51F89B624ADC8800066E920 /* Controller */,
 			);
 			path = Playview;
@@ -456,11 +461,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		F51F89B724ADC8880066E920 /* View */ = {
+		F51F89B724ADC8880066E920 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F54524112520A3CE006015C1 /* PlayViewModel.swift */,
 			);
-			path = View;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F51F89C124AEDC380066E920 /* Resource */ = {
@@ -615,7 +621,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "大宁";
 				TargetAttributes = {
 					F51F896624AD87060066E920 = {
@@ -739,6 +745,7 @@
 				F512A31724E546E2006222BA /* MiniPlayerWindow.swift in Sources */,
 				F544015A24CAF17100B12458 /* DNOutlineView.swift in Sources */,
 				F51F89AE24ADC0A20066E920 /* NSColor-Extension.swift in Sources */,
+				F5CABE8E2530489000B46920 /* NetworkTools.swift in Sources */,
 				F52ABDEC24BD98E400D093C4 /* DetailsTableRow.swift in Sources */,
 				F5B9E18324DD5693005FF5CD /* DNLabel.swift in Sources */,
 				F51F89AA24ADBF600066E920 /* DetailsPageViewController.swift in Sources */,
@@ -775,6 +782,7 @@
 				F5B9E18124DD2580005FF5CD /* String-Extension.swift in Sources */,
 				F5CAE88524C18587003901F5 /* DNFippedView.swift in Sources */,
 				F58EF76524C04A00001E94FF /* NSView-Extension.swift in Sources */,
+				F54524122520A3CE006015C1 /* PlayViewModel.swift in Sources */,
 				F560F9A024AF4B4B008FC9C9 /* Constants.swift in Sources */,
 				F5A844EE24CC85D400A65AD7 /* PlaylistHeaderCellView.swift in Sources */,
 				F5B47F9424CEA19C00C8FC18 /* CurrentPLTableRow.swift in Sources */,
@@ -840,6 +848,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -901,6 +910,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sLl-I7-xVb">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sLl-I7-xVb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,7 +73,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Py-LL-gtJ">
                                                 <rect key="frame" x="-2" y="457" width="38" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="专辑：" id="66k-cC-lTg">
-                                                    <font key="font" metaFont="label" size="12"/>
+                                                    <font key="font" metaFont="cellTitle"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -80,7 +81,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BIq-I2-q4L">
                                                 <rect key="frame" x="102" y="457" width="38" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="歌手：" id="95u-Jr-ras">
-                                                    <font key="font" metaFont="label" size="12"/>
+                                                    <font key="font" metaFont="cellTitle"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -88,7 +89,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="At0-pB-nYK">
                                                 <rect key="frame" x="206" y="457" width="38" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="来源：" id="qd8-dq-YBg">
-                                                    <font key="font" metaFont="label" size="12"/>
+                                                    <font key="font" metaFont="cellTitle"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -101,7 +102,7 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="roundRect" title="无" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="8Su-WP-woV">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="label" size="12"/>
+                                                    <font key="font" metaFont="cellTitle"/>
                                                 </buttonCell>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c2n-lm-ffK" userLabel="artistButton" customClass="DNTitleButton" customModule="DN音乐" customModuleProvider="target">
@@ -112,7 +113,7 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="roundRect" title="无" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="qx0-IS-rtf">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="label" size="12"/>
+                                                    <font key="font" metaFont="cellTitle"/>
                                                 </buttonCell>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dyZ-vl-BxI" userLabel="fromButton" customClass="DNTitleButton" customModule="DN音乐" customModuleProvider="target">
@@ -123,11 +124,11 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="roundRect" title="无" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="Lt2-Yc-Qye">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="label" size="12"/>
+                                                    <font key="font" metaFont="cellTitle"/>
                                                 </buttonCell>
                                             </button>
                                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECr-kw-BuT" customClass="DNFippedScrollView" customModule="DN音乐" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="50" width="420" height="380"/>
+                                                <rect key="frame" x="0.0" y="57" width="420" height="380"/>
                                                 <clipView key="contentView" drawsBackground="NO" id="Ur3-tL-4Ym">
                                                     <rect key="frame" x="1" y="1" width="418" height="378"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,6 +157,7 @@
                                         <constraints>
                                             <constraint firstItem="8Py-LL-gtJ" firstAttribute="top" secondItem="RMO-sJ-MA1" secondAttribute="bottom" constant="20" id="2g8-7n-maG"/>
                                             <constraint firstItem="dyZ-vl-BxI" firstAttribute="centerY" secondItem="At0-pB-nYK" secondAttribute="centerY" id="69A-ox-RCv"/>
+                                            <constraint firstItem="ECr-kw-BuT" firstAttribute="top" secondItem="8Py-LL-gtJ" secondAttribute="bottom" constant="20" id="E3f-dw-38h"/>
                                             <constraint firstItem="RMO-sJ-MA1" firstAttribute="top" secondItem="gK2-lK-Emq" secondAttribute="top" constant="40" id="Hzx-t3-1fX"/>
                                             <constraint firstItem="c2n-lm-ffK" firstAttribute="centerY" secondItem="BIq-I2-q4L" secondAttribute="centerY" id="Jwj-dG-2MS"/>
                                             <constraint firstItem="xJN-Pj-oi1" firstAttribute="leading" secondItem="8Py-LL-gtJ" secondAttribute="trailing" constant="5" id="QNB-Rl-y1c"/>
@@ -173,7 +175,6 @@
                                     </customView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ECr-kw-BuT" firstAttribute="top" secondItem="1wG-1A-k6v" secondAttribute="top" id="8Ba-1o-Ozg"/>
                                     <constraint firstAttribute="height" constant="560" id="FPz-V6-6GZ"/>
                                     <constraint firstItem="gK2-lK-Emq" firstAttribute="leading" secondItem="3ty-k7-KCb" secondAttribute="trailing" id="S66-4X-Syc"/>
                                     <constraint firstItem="gK2-lK-Emq" firstAttribute="top" secondItem="m3t-TU-Ysg" secondAttribute="top" id="SIV-Ft-gDb"/>
