@@ -257,7 +257,8 @@ extension PlayViewController {
     private func updateLRCScrollView() {
         // 如果歌词为空，不刷新
         if lrcArray.count == 0 || lrcLabelArray.count == 0{ return }
-        guard let player = PlayerManager.share.player else { return }
+        guard let _ = PlayerManager.share.player.currentItem else { return }
+        let player = PlayerManager.share.player
         // 获取当前播放的时间
         let currentTime:TimeInterval = CMTimeGetSeconds(player.currentItem!.currentTime())
         // 总时长
@@ -285,6 +286,13 @@ extension PlayViewController {
             } else {
                 lrcScrollView.scrollToPositionY(labelY - offSet)
             }
+        } else {
+            // 归位复原
+            for lineLRCLabel in lrcLabelArray {
+                lineLRCLabel.textColor = kLightColor
+                lineLRCLabel.font = NSFont.systemFont(ofSize: 14)
+            }
+            lrcScrollView.scrollToPositionY(0)
         }
     }
     

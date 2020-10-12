@@ -18,7 +18,10 @@ class PlayerManager: NSObject {
     //MARK: 播放状态
     @objc dynamic var isPlaying: Bool = false
     //MARK: player
-    @objc dynamic var player: AVPlayer?
+    @objc dynamic lazy var player:AVPlayer = {
+        let player = AVPlayer()
+        return player
+    }()
     //MARK: 当前歌曲
     @objc dynamic var currentSong: Song?
     //MARK: 当前播放索引
@@ -47,8 +50,10 @@ class PlayerManager: NSObject {
     var playmode: DNPlayMode = .play_mode_repeat_all
     //MARK: 当前播放进度
     @objc dynamic var currentProgress: Double = 0
-    //用来控制observe是否刷新进度，防止闪烁
+    //MARK: 用来控制observe是否刷新进度，防止闪烁
     var canObservProgress:Bool = true
+    //MARK: 进度观察者
+    var TimeObserver:Any? = nil
     
     //MARK: - 声明周期
     override init() {
@@ -91,11 +96,11 @@ extension PlayerManager {
                     return
                 }
             }
-            if player == nil { // player为空：播放第0首
+            if player.currentItem == nil { // player为空：播放第0首
                 playCurrentSong()
             } else { // 不为空：是从pause状态，恢复为play状态，直接play即可
                 isPlaying = true
-                player?.play()
+                player.play()
             }
         } else { // index有值：选中歌曲播放
             currentIndex = index
@@ -105,7 +110,7 @@ extension PlayerManager {
     }
     func play(withSong song:Song) {
         currentSong = song
-        if let index = currentPlayingPlaylist.songs.firstIndex(of:song) {
+        if let index = currentPlayingPlaylist.songs.index(of: song) {
             currentIndex = index
         }
         playCurrentSong()
@@ -115,12 +120,12 @@ extension PlayerManager {
     //MARK: 暂停
     func pause() {
         isPlaying = false
-        player?.pause()
+        player.pause()
     }
     //MARK: 停止
     func stop() {
         isPlaying = false
-        player?.pause()
+        player.pause()
         currentSong = Song()
         currentProgress = 0
     }
@@ -152,28 +157,30 @@ extension PlayerManager {
     
     //MARK: 更改进度
     func seekToProgress(_ progress:Double) {
-        guard let currentSong = self.currentSong else { return }
+        guard let _ = self.currentSong else { return }
+        
         canObservProgress = false
         currentProgress = progress
-        let seconds:Int = Int(currentSong.timeInterval * progress / 100)
-//        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1000000000
         
-//        let time = CMTime(seconds: Double(seconds), preferredTimescale: 1000000000)
-        let time = CMTimeMakeWithSeconds(Double(seconds), preferredTimescale: 1000000000)
-        print(seconds,Double(seconds))
-//        player?.seek(to: time, completionHandler: {[unowned self] (result) in
-//            self.canObservProgress = true
-//        })
+        if let duration = player.currentItem?.duration{
+            let totalSeconds = CMTimeGetSeconds(duration)
+            let value:Int64 = Int64(progress / 100 * totalSeconds)
+            let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
+            DispatchQueue.main.async {
+                self.player.currentItem?.seek(to: seekTime , completionHandler: { (completedSeek) in
+                    self.canObservProgress = true
+                })
+            }
+            
+        }
         
-        player?.seek(to: time, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (result) in
-            self.canObservProgress = true
-        })
+        return
     }
     
     //MARK: 改变音量
     func changeVolume(_ volume:Float){
         self.volume = volume
-        player?.volume = volume
+        player.volume = volume
         UserDefaultsManager.share.setVolume(volume)
     }
 }
@@ -210,33 +217,65 @@ extension PlayerManager {
     //MARK: 播放currentSong
     private func playCurrentSong() {
         if !Utility.songExists(currentSong!) {
-            currentProgress = 0
             isPlaying = false
-            player?.pause()
+            player.pause()
             return
         }
-        player = AVPlayer(playerItem: AVPlayerItem(url: URL(fileURLWithPath: currentSong!.filePath)))
-        player?.volume = volume
-        isPlaying = true
-        self.addTimeObserver()
-        player?.play()
-        print("播放: \(currentSong!.title)")
+        // 进度归0
+        currentProgress = 0
+        
+        let SongURL:URL = URL(fileURLWithPath: currentSong!.filePath)
+        // 给asset设置AVURLAssetPreferPreciseDurationAndTimingKey，seek精度是准了，但是部分flac音轨有问题
+        var asset = AVURLAsset(url: SongURL, options: [AVURLAssetPreferPreciseDurationAndTimingKey: true])
+        if !asset.isPlayable {
+            print("options设置失败，采用正常方式")
+            asset = AVURLAsset(url: SongURL, options: [AVURLAssetPreferPreciseDurationAndTimingKey: false])
+        }
+        // 直接用URL去创建AVPlayerItem会有flac seek精度不准确问题
+        // let playerItem = AVPlayerItem(url: SongURL)
+        
+        asset.loadValuesAsynchronously(forKeys: ["tracks","availableMetadataFormats"]) {
+            let status = asset.statusOfValue(forKey: "availableMetadataFormats", error: nil)
+            switch status {
+            case .loading:
+                print("loading")
+            case .loaded:
+                DispatchQueue.main.async { [unowned self] in
+                    let playerItem = AVPlayerItem(asset: asset)
+                    self.player.replaceCurrentItem(with: playerItem)
+                    self.player.volume = self.volume
+                    self.isPlaying = true
+                    self.addTimeObserver()
+                    self.player.play()
+                    print("播放: \(self.currentSong!.title)")
+                }
+            case .unknown:
+                print("unknown")
+            case .failed:
+                print("failed")
+            case .cancelled:
+                print("cancelled")
+            @unknown default:
+                print("default")
+            }
+        }
     }
     
     //MARK: 上/下一曲方法抽取
     private func playPreviousOfNextSong(withType type:DNPlayControlType) {
         // 暂时按照列表循环处理
         if checkCurrentSongIsEmpty() == false {
-            var newIndex:Int = currentIndex!
+            let current = currentIndex ?? 0
+            var newIndex:Int = current
             if playmode == .play_mode_shuffle{ // 随机播放
                 let random = arc4random_uniform(UInt32(currentPlayingPlaylist.songs.count))
                 newIndex = Int(random)
                 print("随机播放第\(newIndex + 1)首")
             } else { // 列表循环 || 单曲循环
                 if type == .play_previous_song { // 上一曲 (删除index0的正在播放的歌曲，index会减为-1)
-                    newIndex = newIndex <= 0 ? currentPlayingPlaylist.songs.count - 1 : currentIndex! - 1
+                    newIndex = newIndex <= 0 ? currentPlayingPlaylist.songs.count - 1 : current - 1
                 } else { // 下一曲
-                    newIndex = newIndex < currentPlayingPlaylist.songs.count - 1 ? currentIndex! + 1 : 0
+                    newIndex = newIndex < currentPlayingPlaylist.songs.count - 1 ? current + 1 : 0
                 }
             }
             
@@ -277,10 +316,14 @@ extension PlayerManager {
     
     //MARK: 监听播放进度
     func addTimeObserver() {
-        // 每次添加不需要remove，会直接覆盖
+        if (TimeObserver != nil) {
+            player.removeTimeObserver(TimeObserver!)
+            TimeObserver = nil;
+        }
+        
         canObservProgress = true
-        let timeScale = player?.currentItem?.asset.duration.timescale ?? 1000000000
-        player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: timeScale), queue: DispatchQueue.main, using: {[unowned self] (time) in
+        let timeScale = player.currentItem?.asset.duration.timescale ?? 1000000000
+        TimeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: timeScale), queue: DispatchQueue.main, using: {[unowned self] (time) in
             if let currentSong = self.currentSong {
                 if !Utility.songExists(currentSong) {
                     return
@@ -289,8 +332,8 @@ extension PlayerManager {
             if (self.canObservProgress == false) { return }
             let currentTime:TimeInterval = CMTimeGetSeconds(time)
             
-            let t:Float = Float(time.value) / Float(time.timescale)
-            print(time,currentTime,t)
+//            let t:Float = Float(time.value) / Float(time.timescale)
+//            print(time,currentTime,t)
             
             let totalTimeInterval = self.currentSong?.timeInterval ?? 0
             let songProgress:Double = currentTime / totalTimeInterval * 100
