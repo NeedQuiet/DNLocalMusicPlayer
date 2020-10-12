@@ -15,4 +15,5 @@
 - mini模式：
 
 ![mini示例图1](https://s1.ax1x.com/2020/10/12/02IRqx.png)
+
 ![mini示例图2](https://s1.ax1x.com/2020/10/12/02I4IO.png)
