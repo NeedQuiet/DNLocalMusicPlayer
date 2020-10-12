@@ -35,8 +35,12 @@ class PlayViewController: BaseViewController {
     
     // 歌词label数组
     var lrcLabelArray:[NSTextField] = []
-    //
     var tempLRCTime:[TimeInterval] = []
+    
+    // 是否需要重新配置动画
+    var needSetupAnimate = true
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +118,7 @@ extension PlayViewController {
                 if let currentSong = change.element {
                     guard currentSong != nil else {  return }
                     self.refreshUI(withSong: currentSong!)
+                    self.needSetupAnimate = true
                     if PlayerManager.share.isPlaying {
                         self.setupAndStartAnimation()
                     }
@@ -126,6 +131,9 @@ extension PlayViewController {
                 if let isPlaying = change.element {
                     let layer = self.artworkBackView.layer
                     if isPlaying == true {
+                        if self.needSetupAnimate == true {
+                            self.setupAndStartAnimation()
+                        }
                         self.resumeLayer(layer)
                         self.startLrcTimer()
                     } else {
@@ -202,6 +210,7 @@ extension PlayViewController {
         animation.isCumulative = true
         animation.repeatCount = Float(INT_MAX)
         layer?.add(animation, forKey: "animation")
+        needSetupAnimate = false
     }
 
     //MARK: 恢复动画

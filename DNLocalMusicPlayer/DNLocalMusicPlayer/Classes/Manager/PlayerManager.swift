@@ -223,6 +223,7 @@ extension PlayerManager {
         }
         // 进度归0
         currentProgress = 0
+        isPlaying = true
         
         let SongURL:URL = URL(fileURLWithPath: currentSong!.filePath)
         // 给asset设置AVURLAssetPreferPreciseDurationAndTimingKey，seek精度是准了，但是部分flac音轨有问题
@@ -240,11 +241,10 @@ extension PlayerManager {
             case .loading:
                 print("loading")
             case .loaded:
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async {
                     let playerItem = AVPlayerItem(asset: asset)
                     self.player.replaceCurrentItem(with: playerItem)
                     self.player.volume = self.volume
-                    self.isPlaying = true
                     self.addTimeObserver()
                     self.player.play()
                     print("播放: \(self.currentSong!.title)")
