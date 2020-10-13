@@ -1,4 +1,5 @@
 # DNLocalMusicPlayer
+安装链接:[百度网盘](https://pan.baidu.com/s/1JhFbM89TfXoOrldyDqGCvA)  密码:hbev
 
 ## 说明
 
